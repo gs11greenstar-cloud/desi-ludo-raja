@@ -1,0 +1,11 @@
+{
+  "name": "देसी लूडो राजा",
+  "short_name": "देसी लूडो राजा",
+  "description": "Desi Ludo Raja - Casual Ludo board game with Bot and Pass & Play modes.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ff7a00"
+}

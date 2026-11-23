@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#ff7a00" />
+  <title>देसी लूडो राजा - Desi Ludo Raja</title>
+  <link rel="manifest" href="/manifest.json" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: linear-gradient(180deg, #ff9900 0%, #ff5500 50%, #8f1d00 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      color: #222;
+      overflow-x: hidden;
+    }
+    .app-shell {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      background: #fff9f0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .header {
+      background: linear-gradient(135deg, #ffb300, #ff6f00);
+      padding: 14px 16px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+    .header h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .sound-btn {
+      background: rgba(255,255,255,0.25);
+      border: none;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .screen { display: none; padding: 14px; flex: 1; flex-direction: column; gap: 12px; }
+    .screen.active { display: flex; }
+
+    /* Wallet Card */
+    .wallet-card {
+      background: linear-gradient(135deg, #fff3cd, #ffe082);
+      border: 2px solid #ffb300;
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(255,179,0,0.2);
+    }
+    .wallet-left { display: flex; align-items: center; gap: 10px; }
+    .wallet-icon { font-size: 2rem; }
+    .wallet-title { font-size: 0.8rem; color: #7a4f00; font-weight: 700; }
+    .wallet-amount { font-size: 1.45rem; font-weight: 900; color: #1b5e20; }
+    .wallet-wins { font-size: 0.78rem; color: #b26a00; font-weight: 700; }
+    .bonus-btn {
+      background: #2e7d32;
+      color: #fff;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .section-label { font-size: 0.88rem; font-weight: 800; color: #5d3a00; margin-bottom: 4px; }
+    .btn-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .btn-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .pill-btn {
+      padding: 10px 8px;
+      border-radius: 12px;
+      border: 2px solid #e0c088;
+      background: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .pill-btn.active {
+      background: linear-gradient(135deg, #6a1b9a, #4a148c);
+      color: #fff;
+      border-color: #4a148c;
+      box-shadow: 0 3px 8px rgba(106,27,154,0.3);
+    }
+    .pill-btn.active-gold {
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      color: #fff;
+      border-color: #e65100;
+    }
+
+    /* Player Inputs */
+    .players-list { display: flex; flex-direction: column; gap: 8px; }
+    .player-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 2px solid #eee;
+    }
+    .p-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+    .avatar-btn {
+      font-size: 1.35rem;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .player-row input {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .rank-btn {
+      background: linear-gradient(135deg, #7b1fa2, #512da8);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(123,31,162,0.3);
+    }
+    .play-btn {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(27,94,32,0.4);
+      margin-top: auto;
+    }
+
+    /* Game Screen */
+    .game-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid #ffe0b2;
+    }
+    .turn-badge {
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .exit-btn {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    /* Ludo Board */
+    .board-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #fff;
+      border: 4px solid #3e2723;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      grid-template-rows: repeat(15, 1fr);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+    .cell {
+      border: 0.5px solid rgba(0,0,0,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 0.65rem;
+    }
+    .red-bg { background: #e53935; }
+    .green-bg { background: #43a047; }
+    .yellow-bg { background: #fdd835; }
+    .blue-bg { background: #1e88e5; }
+    .star-cell::after { content: "★"; color: rgba(0,0,0,0.35); font-size: 0.75rem; }
+
+    .yard {
+      position: absolute;
+      width: 40%;
+      height: 40%;
+      padding: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .yard-inner {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14%;
+      padding: 14%;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .yard-slot {
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .center-home {
+      position: absolute;
+      left: 40%;
+      top: 40%;
+      width: 20%;
+      height: 20%;
+      background: conic-gradient(#43a047 0deg 90deg, #fdd835 90deg 180deg, #1e88e5 180deg 270deg, #e53935 270deg 360deg);
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .token {
+      width: 78%;
+      height: 78%;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.45);
+      cursor: pointer;
+      z-index: 5;
+      transition: transform 0.15s;
+    }
+    .token.movable {
+      animation: pulse 0.7s infinite alternate;
+      box-shadow: 0 0 0 3px #fff, 0 0 10px #000;
+      z-index: 10;
+    }
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.24); }
+    }
+
+    /* Dice Panel */
+    .dice-panel {
+      background: #fff;
+      border: 2px solid #ffcc80;
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .dice-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #ffffff, #f0f0f0);
+      border: 3px solid #ff6f00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #d84315;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      user-select: none;
+    }
+    .dice-box.rolling { animation: shake 0.35s infinite; }
+    @keyframes shake {
+      0% { transform: rotate(0deg) scale(1.05); }
+      25% { transform: rotate(12deg) scale(1.1); }
+      50% { transform: rotate(-12deg) scale(1.05); }
+      75% { transform: rotate(8deg) scale(1.1); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+    .status-text { flex: 1; font-size: 0.9rem; font-weight: 700; color: #333; line-height: 1.35; }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-card {
+      background: #fff;
+      width: 100%;
+      max-width: 390px;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .modal-card h2 { font-size: 1.2rem; color: #4a148c; margin-bottom: 10px; }
+    .leader-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-bottom: 1px solid #eee;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .close-modal {
+      margin-top: 12px;
+      width: 100%;
+      padding: 10px;
+      background: #ff6f00;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="header">
+      <h1>👑 देसी लूडो राजा</h1>
+      <button class="sound-btn" id="soundToggle">🔊 चालू</button>
+    </div>
+
+    <!-- HOME SCREEN -->
+    <div class="screen active" id="homeScreen">
+      <div class="wallet-card">
+        <div class="wallet-left">
+          <div class="wallet-icon">💰</div>
+          <div>
+            <div class="wallet-title">फन कॉइन वॉलेट (Fun Coins)</div>
+            <div class="wallet-amount">₹ <span id="walletBal">700</span></div>
+            <div class="wallet-wins">🏆 कुल जीत: <span id="totalWins">0</span></div>
+          </div>
+        </div>
+        <button class="bonus-btn" id="claimBonusBtn">+₹200 बोनस</button>
+      </div>
+
+      <div>
+        <div class="section-label">👥 खिलाड़ी चुनें</div>
+        <div class="btn-row" id="playerCountRow">
+          <button class="pill-btn" data-count="2">2P</button>
+          <button class="pill-btn" data-count="3">3P</button>
+          <button class="pill-btn active-gold" data-count="4">4P</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">🎮 खेल मोड</div>
+        <div class="btn-row-2" id="modeRow">
+          <button class="pill-btn active" data-mode="bot">🤖 vs बॉट (Vs Bot)</button>
+          <button class="pill-btn" data-mode="pass">👥 पास-एंड-प्ले</button>
+        </div>
+      </div>
+
+      <div class="players-list" id="playersList"></div>
+
+      <div>
+        <div class="section-label">🪙 बाज़ी (Entry Fee - केवल फन कॉइन्स)</div>
+        <div class="btn-row-2" id="feeRow">
+          <button class="pill-btn active-gold" data-fee="0">Free</button>
+          <button class="pill-btn" data-fee="50">₹50 (इनाम ₹150)</button>
+        </div>
+      </div>
+
+      <button class="rank-btn" id="openRankBtn">🏆 रैंकिंग & इनाम</button>
+      <button class="play-btn" id="startGameBtn">▶ खेल शुरू करें</button>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div class="screen" id="gameScreen">
+      <div class="game-top">
+        <div class="turn-badge" id="turnIndicator">🔴 आप (राजा) की बारी</div>
+        <button class="exit-btn" id="exitGameBtn">बाहर निकलें</button>
+      </div>
+
+      <div class="board-wrap" id="ludoBoard"></div>
+
+      <div class="dice-panel">
+        <div class="dice-box" id="diceBtn">🎲</div>
+        <div class="status-text" id="gameStatus">पासा फेंकने के लिए 🎲 पर टैप करें!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RANKING MODAL -->
+  <div class="modal-backdrop" id="rankModal">
+    <div class="modal-card">
+      <h2>🏆 देसी लूडो राजा लीडरबोर्ड</h2>
+      <div id="leaderboardList"></div>
+      <p style="font-size:0.75rem;color:#666;margin-top:8px;">नोट: यह गेम केवल मनोरंजन के लिए है। सभी कॉइन्स वर्चुअल हैं।</p>
+      <button class="close-modal" id="closeRankBtn">ठीक है</button>
+    </div>
+  </div>
+
+  <script>
+    // Sound Engine (Web Audio API - No external files needed)
+    let soundOn = true;
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playTone(freq, type = 'sine', dur = 0.12) {
+      if (!soundOn) return;
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    }
+
+    document.getElementById('soundToggle').onclick = () => {
+      soundOn = !soundOn;
+      document.getElementById('soundToggle').textContent = soundOn ? '🔊 चालू' : '🔇 बंद';
+    };
+
+    // Saved State
+    let wallet = parseInt(localStorage.getItem('dlr_wallet') || '700', 10);
+    let wins = parseInt(localStorage.getItem('dlr_wins') || '0', 10);
+    let playerCount = 4;
+    let gameMode = 'bot';
+    let entryFee = 0;
+
+    const avatars = ['🦁', '🐯', '🦅', '👑', '🐉', '🔥'];
+    const defaultPlayers = [
+      { id: 0, name: 'आप (राजा)', color: 'red', hex: '#e53935', avatar: '🦁', isBot: false },
+      { id: 1, name: 'शेरनी', color: 'green', hex: '#43a047', avatar: '🐯', isBot: true },
+      { id: 2, name: 'बाज़', color: 'yellow', hex: '#fdd835', avatar: '🦅', isBot: true },
+      { id: 3, name: 'तूफ़ान', color: 'blue', hex: '#1e88e5', avatar: '🐉', isBot: true }
+    ];
+
+    function updateWalletUI() {
+      document.getElementById('walletBal').textContent = wallet;
+      document.getElementById('totalWins').textContent = wins;
+      localStorage.setItem('dlr_wallet', wallet);
+      localStorage.setItem('dlr_wins', wins);
+    }
+    updateWalletUI();
+
+    document.getElementById('claimBonusBtn').onclick = () => {
+      wallet += 200;
+      updateWalletUI();
+      playTone(660, 'triangle', 0.2);
+      alert('🎉 ₹200 फन कॉइन बोनस मिल गया!');
+    };
+
+    function renderPlayersSetup() {
+      const list = document.getElementById('playersList');
+      list.innerHTML = '';
+      const activeIndices = playerCount === 2 ? [0, 2] : playerCount === 3 ? [0, 1, 2] : [0, 1, 2, 3];
+      activeIndices.forEach((idx, i) => {
+        const p = defaultPlayers[idx];
+        p.isBot = (gameMode === 'bot' && i > 0);
+        const row = document.createElement('div');
+        row.className = 'player-row';
+        row.innerHTML = `
+          <span class="p-dot" style="background:${p.hex}"></span>
+          <button class="avatar-btn" data-idx="${idx}">${p.avatar}</button>
+          <input type="text" value="${p.name}" data-idx="${idx}" />
+          <span style="font-size:0.75rem;font-weight:700;color:#666;">${p.isBot ? '🤖 बॉट' : '👤'}</span>
+        `;
+        list.appendChild(row);
+      });
+
+      list.querySelectorAll('.avatar-btn').forEach(btn => {
+        btn.onclick = () => {
+          const idx = btn.dataset.idx;
+          const next = (avatars.indexOf(defaultPlayers[idx].avatar) + 1) % avatars.length;
+          defaultPlayers[idx].avatar = avatars[next];
+          btn.textContent = avatars[next];
+          playTone(500);
+        };
+      });
+
+      list.querySelectorAll('input').forEach(inp => {
+        inp.oninput = () => {
+          defaultPlayers[inp.dataset.idx].name = inp.value || 'खिलाड़ी';
+        };
+      });
+    }
+    renderPlayersSetup();
+
+    document.querySelectorAll('#playerCountRow .pill-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('#playerCountRow .pill-btn').forEach(b => b.classList.remove('active-gold'));
+        btn.classList.add('active-gold');
+        playerCount = parseInt(btn.dataset.count, 10);
+        renderPlayersSetup();
+        playTone(440);
+      };
+    });
+
+    document.querySelectorAll('#modeRow .pill-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('#modeRow .pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        gameMode = btn.dataset.mode;
+        renderPlayersSetup();
+        playTone(440);
+      };
+    });
+
+    document.querySelectorAll('#feeRow .pill-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('#feeRow .pill-btn').forEach(b => b.classList.remove('active-gold'));
+        btn.classList.add('active-gold');
+        entryFee = parseInt(btn.dataset.fee, 10);
+        playTone(440);
+      };
+    });
+
+    // Leaderboard Modal
+    document.getElementById('openRankBtn').onclick = () => {
+      const board = document.getElementById('leaderboardList');
+      const data = [
+        { name: `${defaultPlayers[0].avatar} ${defaultPlayers[0].name}`, score: `₹${wallet} (${wins} जीत)` },
+        { name: '👑 विक्रम (जबलपुर)', score: '₹2,450 (14 जीत)' },
+        { name: '🦁 आरव (भोपाल)', score: '₹1,900 (11 जीत)' },
+        { name: '🦅 कबीर (इंदौर)', score: '₹1,350 (8 जीत)' }
+      ];
+      board.innerHTML = data.map((d, i) => `<div class="leader-item"><span>#${i + 1} ${d.name}</span><span>${d.score}</span></div>`).join('');
+      document.getElementById('rankModal').classList.add('open');
+    };
+    document.getElementById('closeRankBtn').onclick = () => document.getElementById('rankModal').classList.remove('open');
+
+    // Ludo Path Coordinates (15x15 Grid, 0-indexed [row, col])
+    const mainTrack = [
+      [6,1],[6,2],[6,3],[6,4],[6,5],
+      [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
+      [0,7],[0,8],
+      [1,8],[2,8],[3,8],[4,8],[5,8],
+      [6,9],[6,10],[6,11],[6,12],[6,13],[6,14],
+      [7,14],[8,14],
+      [8,13],[8,12],[8,11],[8,10],[8,9],
+      [9,8],[10,8],[11,8],[12,8],[13,8],[14,8],
+      [14,7],[14,6],
+      [13,6],[12,6],[11,6],[10,6],[9,6],
+      [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],
+      [7,0],[6,0]
+    ];
+
+    const homeStretches = {
+      red:    [[7,1],[7,2],[7,3],[7,4],[7,5],[7,6]],
+      green:  [[1,7],[2,7],[3,7],[4,7],[5,7],[6,7]],
+      yellow: [[7,13],[7,12],[7,11],[7,10],[7,9],[7,8]],
+      blue:   [[13,7],[12,7],[11,7],[10,7],[9,7],[8,7]]
+    };
+
+    const startOffsets = { red: 0, green: 13, yellow: 26, blue: 39 };
+    const safeIndices = [0, 8, 13, 21, 26, 34, 39, 47];
+
+    let activePlayers = [];
+    let turnIdx = 0;
+    let diceValue = 0;
+    let waitingForMove = false;
+    let isRolling = false;
+
+    function buildBoardDOM() {
+      const board = document.getElementById('ludoBoard');
+      board.innerHTML = '';
+      for (let r = 0; r < 15; r++) {
+        for (let c = 0; c < 15; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.id = `cell-${r}-${c}`;
+          if (r === 7 && c >= 1 && c <= 5) cell.classList.add('red-bg');
+          if (c === 7 && r >= 1 && r <= 5) cell.classList.add('green-bg');
+          if (r === 7 && c >= 9 && c <= 13) cell.classList.add('yellow-bg');
+          if (c === 7 && r >= 9 && r <= 13) cell.classList.add('blue-bg');
+          if (r === 6 && c === 1) cell.classList.add('red-bg', 'star-cell');
+          if (r === 1 && c === 8) cell.classList.add('green-bg', 'star-cell');
+          if (r === 8 && c === 13) cell.classList.add('yellow-bg', 'star-cell');
+          if (r === 13 && c === 6) cell.classList.add('blue-bg', 'star-cell');
+          if ((r === 2 && c === 6) || (r === 6 && c === 12) || (r === 12 && c === 8) || (r === 8 && c === 2)) {
+            cell.classList.add('star-cell');
+          }
+          board.appendChild(cell);
+        }
+      }
+
+      // 4 Corner Yards
+      const yards = [
+        { color: 'red', top: '0%', left: '0%', bg: '#e53935' },
+        { color: 'green', top: '0%', left: '60%', bg: '#43a047' },
+        { color: 'blue', top: '60%', left: '0%', bg: '#1e88e5' },
+        { color: 'yellow', top: '60%', left: '60%', bg: '#fdd835' }
+      ];
+      yards.forEach(y => {
+        const div = document.createElement('div');
+        div.className = 'yard';
+        div.style.top = y.top;
+        div.style.left = y.left;
+        div.style.background = y.bg;
+        div.innerHTML = `<div class="yard-inner">${[0,1,2,3].map(s => `<div class="yard-slot" id="yard-${y.color}-${s}"></div>`).join('')}</div>`;
+        board.appendChild(div);
+      });
+
+      const center = document.createElement('div');
+      center.className = 'center-home';
+      center.textContent = '👑';
+      board.appendChild(center);
+    }
+
+    function renderTokens() {
+      document.querySelectorAll('.token').forEach(t => t.remove());
+      activePlayers.forEach((p, pIdx) => {
+        p.tokens.forEach((step, tIdx) => {
+          const tok = document.createElement('div');
+          tok.className = 'token';
+          tok.style.background = p.hex;
+          if (waitingForMove && pIdx === turnIdx && canMoveToken(p, step, diceValue)) {
+            tok.classList.add('movable');
+            tok.onclick = () => moveToken(pIdx, tIdx);
+          }
+
+          if (step === -1) {
+            const slot = document.getElementById(`yard-${p.color}-${tIdx}`);
+            if (slot) slot.appendChild(tok);
+          } else if (step >= 57) {
+            // Finished token
+          } else if (step >= 51) {
+            const [r, c] = homeStretches[p.color][step - 51];
+            document.getElementById(`cell-${r}-${c}`).appendChild(tok);
+          } else {
+            const trackIdx = (startOffsets[p.color] + step) % 52;
+            const [r, c] = mainTrack[trackIdx];
+            document.getElementById(`cell-${r}-${c}`).appendChild(tok);
+          }
+        });
+      });
+    }
+
+    function canMoveToken(player, step, dice) {
+      if (step === -1) return dice === 6;
+      if (step >= 57) return false;
+      return (step + dice) <= 57;
+    }
+
+    function updateTurnUI() {
+      const p = activePlayers[turnIdx];
+      document.getElementById('turnIndicator').innerHTML = `<span style="color:${p.hex}">●</span> ${p.avatar} ${p.name} की बारी`;
+      if (p.isBot) {
+        document.getElementById('gameStatus').textContent = `${p.name} पासा फेंक रहा है...`;
+        setTimeout(() => rollDice(), 700);
+      } else {
+        document.getElementById('gameStatus').textContent = `${p.name}, पासा फेंकने के लिए 🎲 पर टैप करें!`;
+      }
+    }
+
+    function rollDice() {
+      if (isRolling || waitingForMove) return;
+      isRolling = true;
+      const diceBtn = document.getElementById('diceBtn');
+      diceBtn.classList.add('rolling');
+      playTone(300, 'square', 0.1);
+
+      setTimeout(() => {
+        diceBtn.classList.remove('rolling');
+        isRolling = false;
+        diceValue = Math.floor(Math.random() * 6) + 1;
+        const faces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+        diceBtn.textContent = `${faces[diceValue - 1]} (${diceValue})`;
+        playTone(520, 'sine', 0.15);
+
+        const p = activePlayers[turnIdx];
+        const validMoves = p.tokens.map((s, i) => canMoveToken(p, s, diceValue) ? i : -1).filter(i => i !== -1);
+
+        if (validMoves.length === 0) {
+          document.getElementById('gameStatus').textContent = `${diceValue} आया — कोई चाल उपलब्ध नहीं!`;
+          setTimeout(nextTurn, 850);
+        } else if (validMoves.length === 1 || p.isBot) {
+          // Bot picks smart move (capture or bring out or advance)
+          let chosen = validMoves[0];
+          if (p.isBot) {
+            const bringOut = validMoves.find(i => p.tokens[i] === -1);
+            if (bringOut !== undefined) chosen = bringOut;
+          }
+          document.getElementById('gameStatus').textContent = `${diceValue} आया! गोटी चल रही है...`;
+          setTimeout(() => moveToken(turnIdx, chosen), 450);
+        } else {
+          waitingForMove = true;
+          document.getElementById('gameStatus').textContent = `${diceValue} आया! चमकती हुई गोटी पर टैप करें।`;
+          renderTokens();
+        }
+      }, 400);
+    }
+
+    function moveToken(pIdx, tIdx) {
+      waitingForMove = false;
+      const p = activePlayers[pIdx];
+      let step = p.tokens[tIdx];
+      let extraTurn = (diceValue === 6);
+
+      if (step === -1 && diceValue === 6) {
+        p.tokens[tIdx] = 0;
+        playTone(620, 'triangle', 0.15);
+      } else {
+        p.tokens[tIdx] += diceValue;
+        playTone(480, 'sine', 0.1);
+      }
+
+      const newStep = p.tokens[tIdx];
+      if (newStep === 57) {
+        extraTurn = true;
+        playTone(780, 'triangle', 0.25);
+      }
+
+      // Check capture on main track
+      if (newStep >= 0 && newStep < 51) {
+        const myTrackIdx = (startOffsets[p.color] + newStep) % 52;
+        if (!safeIndices.includes(myTrackIdx)) {
+          activePlayers.forEach((other, oIdx) => {
+            if (oIdx === pIdx) return;
+            other.tokens.forEach((oStep, otIdx) => {
+              if (oStep >= 0 && oStep < 51) {
+                const oTrackIdx = (startOffsets[other.color] + oStep) % 52;
+                if (oTrackIdx === myTrackIdx) {
+                  other.tokens[otIdx] = -1;
+                  extraTurn = true;
+                  playTone(200, 'sawtooth', 0.3);
+                  document.getElementById('gameStatus').textContent = `💥 ${p.name} ने ${other.name} की गोटी काट दी!`;
+                }
+              }
+            });
+          });
+        }
+      }
+
+      renderTokens();
+
+      // Check Win
+      if (p.tokens.every(s => s >= 57)) {
+        if (p.id === 0) {
+          wins += 1;
+          if (entryFee > 0) wallet += entryFee * 3;
+          updateWalletUI();
+        }
+        alert(`🏆 बधाई हो! ${p.avatar} ${p.name} यह मैच जीत गया!`);
+        exitToHome();
+        return;
+      }
+
+      if (extraTurn) {
+        document.getElementById('gameStatus').textContent = `🎉 बोनस बारी! ${p.name} फिर से पासा फेंकें।`;
+        if (p.isBot) setTimeout(() => rollDice(), 650);
+      } else {
+        nextTurn();
+      }
+    }
+
+    function nextTurn() {
+      turnIdx = (turnIdx + 1) % activePlayers.length;
+      updateTurnUI();
+    }
+
+    document.getElementById('diceBtn').onclick = () => {
+      if (!activePlayers[turnIdx].isBot) rollDice();
+    };
+
+    document.getElementById('startGameBtn').onclick = () => {
+      if (entryFee > 0 && wallet < entryFee) {
+        alert('पर्याप्त फन कॉइन्स नहीं हैं! ऊपर से +₹200 बोनस लें या Free चुनें।');
+        return;
+      }
+      if (entryFee > 0) {
+        wallet -= entryFee;
+        updateWalletUI();
+      }
+
+      const activeIndices = playerCount === 2 ? [0, 2] : playerCount === 3 ? [0, 1, 2] : [0, 1, 2, 3];
+      activePlayers = activeIndices.map(idx => ({
+        ...defaultPlayers[idx],
+        tokens: [-1, -1, -1, -1]
+      }));
+
+      turnIdx = 0;
+      waitingForMove = false;
+      isRolling = false;
+      document.getElementById('diceBtn').textContent = '🎲';
+
+      buildBoardDOM();
+      renderTokens();
+      document.getElementById('homeScreen').classList.remove('active');
+      document.getElementById('gameScreen').classList.add('active');
+      updateTurnUI();
+      playTone(580, 'triangle', 0.2);
+    };
+
+    function exitToHome() {
+      document.getElementById('gameScreen').classList.remove('active');
+      document.getElementById('homeScreen').classList.add('active');
+    }
+    document.getElementById('exitGameBtn').onclick = exitToHome;
+  </script>
+</body>
+</html>
