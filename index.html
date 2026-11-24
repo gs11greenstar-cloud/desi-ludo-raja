@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="icon-512.png" />
   <style>
     :root {
-      --bg-1: #0f172a;
+      --bg-1: #090d1e;
       --bg-2: #1e3a8a;
       --card: #ffffff;
       --ink: #0f172a;
@@ -31,7 +31,11 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top, #1d4ed8, #0f172a 85%);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.28), transparent 45%),
+        radial-gradient(circle at 85% 18%, rgba(251, 191, 36, 0.26), transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.25), transparent 50%),
+        linear-gradient(160deg, #090d1e 0%, #111c44 55%, #090d1e 100%);
       color: var(--ink);
       min-height: 100vh;
       display: flex;
@@ -40,7 +44,7 @@
       overflow-x: hidden;
     }
 
-    /* स्टार्टिंग स्क्रीन बैकग्राउंड एनीमेशन (तैरती डाइस, क्राउन और शाइन) */
+    /* स्टार्टिंग स्क्रीन कलरफुल ऑरोरा और एनिमेटेड बैकग्राउंड */
     .bg-ambient {
       position: fixed;
       inset: 0;
@@ -49,24 +53,63 @@
       z-index: 0;
     }
 
+    .aurora-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(42px);
+      opacity: 0.45;
+      animation: auroraDrift 9s infinite alternate ease-in-out;
+    }
+
+    .aurora-orb.one {
+      width: 220px;
+      height: 220px;
+      top: -40px;
+      left: -40px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+    }
+
+    .aurora-orb.two {
+      width: 240px;
+      height: 240px;
+      top: 22%;
+      right: -60px;
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      animation-delay: -3s;
+    }
+
+    .aurora-orb.three {
+      width: 250px;
+      height: 250px;
+      bottom: -50px;
+      left: 15%;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      animation-delay: -6s;
+    }
+
+    @keyframes auroraDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(22px, 18px) scale(1.16); }
+    }
+
     .ambient-item {
       position: absolute;
       font-size: 1.6rem;
-      opacity: 0.16;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+      opacity: 0.22;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55));
       animation: floatDice 10s infinite ease-in-out;
     }
 
-    .ambient-item:nth-child(1) { top: 8%; left: 7%; animation-delay: 0s; font-size: 2rem; }
-    .ambient-item:nth-child(2) { top: 18%; right: 9%; animation-delay: -2s; }
-    .ambient-item:nth-child(3) { top: 45%; left: 4%; animation-delay: -4s; font-size: 1.8rem; }
-    .ambient-item:nth-child(4) { top: 62%; right: 6%; animation-delay: -6s; font-size: 2.1rem; }
-    .ambient-item:nth-child(5) { bottom: 12%; left: 12%; animation-delay: -8s; }
-    .ambient-item:nth-child(6) { bottom: 20%; right: 14%; animation-delay: -3s; font-size: 1.7rem; }
+    .ambient-item:nth-child(4) { top: 9%; left: 8%; animation-delay: 0s; font-size: 2rem; }
+    .ambient-item:nth-child(5) { top: 19%; right: 8%; animation-delay: -2s; }
+    .ambient-item:nth-child(6) { top: 46%; left: 4%; animation-delay: -4s; font-size: 1.85rem; }
+    .ambient-item:nth-child(7) { top: 64%; right: 6%; animation-delay: -6s; font-size: 2.1rem; }
+    .ambient-item:nth-child(8) { bottom: 11%; left: 10%; animation-delay: -8s; }
+    .ambient-item:nth-child(9) { bottom: 19%; right: 12%; animation-delay: -3s; font-size: 1.8rem; }
 
     @keyframes floatDice {
-      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.14; }
-      50% { transform: translateY(-18px) rotate(22deg) scale(1.12); opacity: 0.25; }
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.16; }
+      50% { transform: translateY(-18px) rotate(24deg) scale(1.14); opacity: 0.32; }
     }
 
     .app-wrap {
@@ -80,15 +123,15 @@
     }
 
     .top-bar {
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      border: 1.5px solid rgba(251, 191, 36, 0.55);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 58, 138, 0.92));
+      border: 1.5px solid rgba(251, 191, 36, 0.7);
       border-radius: 16px;
       padding: 8px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #fff;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.55), 0 0 18px rgba(251, 191, 36, 0.2);
       position: relative;
       overflow: hidden;
     }
@@ -112,12 +155,13 @@
       font-size: 1rem;
       color: #fde047;
       line-height: 1.1;
+      text-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
     }
 
     .brand-sub {
       font-size: 0.64rem;
       letter-spacing: 0.7px;
-      color: #cbd5e1;
+      color: #e2e8f0;
       font-weight: 700;
     }
 
@@ -128,7 +172,7 @@
     }
 
     .coin-pill {
-      background: rgba(251, 191, 36, 0.16);
+      background: rgba(251, 191, 36, 0.18);
       border: 1px solid #fbbf24;
       color: #fef08a;
       padding: 5px 8px;
@@ -138,7 +182,7 @@
     }
 
     .icon-btn {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      background: linear-gradient(135deg, #fde047, #f59e0b);
       color: #0f172a;
       border: none;
       border-radius: 999px;
@@ -146,19 +190,44 @@
       font-weight: 900;
       font-size: 0.75rem;
       cursor: pointer;
+      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
     }
 
+    /* प्रोफ़ेशनल कलरफुल शाइनी स्टार्टिंग पैनल */
     .panel {
-      background: rgba(255, 255, 255, 0.97);
-      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 250, 252, 0.97) 100%);
+      border-radius: 20px;
       padding: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-      border: 2px solid #fde68a;
+      box-shadow:
+        0 14px 34px rgba(2, 6, 23, 0.5),
+        0 0 22px rgba(56, 189, 248, 0.22);
+      border: 2px solid transparent;
+      background-clip: padding-box;
       position: relative;
       overflow: hidden;
     }
 
-    /* शाइन स्वीप इफ़ेक्ट (Hero और बटन पर चमकती किरण) */
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, #fbbf24, #ec4899, #38bdf8, #22c55e, #fbbf24);
+      background-size: 300% 300%;
+      animation: borderPrism 5s linear infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes borderPrism {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .shine-layer {
       position: relative;
       overflow: hidden;
@@ -167,64 +236,78 @@
     .shine-layer::after {
       content: "";
       position: absolute;
-      top: -40%;
-      left: -120%;
-      width: 60%;
-      height: 180%;
+      top: -45%;
+      left: -130%;
+      width: 65%;
+      height: 190%;
       background: linear-gradient(
         115deg,
         transparent 20%,
-        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0.65) 50%,
         transparent 80%
       );
-      transform: skewX(-20deg);
-      animation: shineSweep 3.4s infinite ease-in-out;
+      transform: skewX(-22deg);
+      animation: shineSweep 2.9s infinite ease-in-out;
       pointer-events: none;
     }
 
     @keyframes shineSweep {
-      0% { left: -120%; }
-      55%, 100% { left: 160%; }
+      0% { left: -130%; }
+      55%, 100% { left: 165%; }
     }
 
     .hero {
-      background: linear-gradient(135deg, #fffbeb, #fef3c7);
-      border: 1.5px solid #fbbf24;
-      border-radius: 14px;
-      padding: 10px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 45%, #e0f2fe 100%);
+      border: 1.5px solid #f59e0b;
+      border-radius: 16px;
+      padding: 11px 10px;
       text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 6px 16px rgba(245, 158, 11, 0.22);
     }
 
     .hero-dice-row {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 1.5rem;
+      gap: 10px;
+      font-size: 1.65rem;
     }
 
     .hero-spin-dice {
       display: inline-block;
-      animation: heroDiceBounce 2.2s infinite ease-in-out;
-      filter: drop-shadow(0 4px 8px rgba(180, 83, 9, 0.35));
+      animation: heroDiceBounce 2.1s infinite ease-in-out;
+      filter: drop-shadow(0 5px 10px rgba(37, 99, 235, 0.4));
+    }
+
+    .hero-crown {
+      display: inline-block;
+      animation: crownGlow 1.8s infinite alternate ease-in-out;
+      filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.6));
     }
 
     @keyframes heroDiceBounce {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(180deg); }
+      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+      50% { transform: translateY(-7px) rotate(180deg) scale(1.12); }
+    }
+
+    @keyframes crownGlow {
+      from { transform: scale(1) rotate(-5deg); }
+      to { transform: scale(1.14) rotate(5deg); }
     }
 
     .hero h1 {
-      margin: 2px 0;
-      font-size: 1.25rem;
-      color: #92400e;
+      margin: 3px 0 2px;
+      font-size: 1.32rem;
+      background: linear-gradient(90deg, #92400e, #be185d, #1d4ed8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-weight: 900;
     }
 
     .hero p {
       margin: 0;
-      font-size: 0.72rem;
-      color: #78350f;
-      font-weight: 700;
+      font-size: 0.74rem;
+      color: #334155;
+      font-weight: 800;
     }
 
     .sec-title {
@@ -249,6 +332,12 @@
       font-size: 0.85rem;
       outline: none;
       background: #fff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .name-row input:focus, .loc-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
     }
 
     .name-row input {
@@ -263,13 +352,14 @@
     }
 
     .btn-save {
-      background: #1e3a8a;
+      background: linear-gradient(135deg, #2563eb, #1e3a8a);
       color: #fff;
       border: none;
       border-radius: 10px;
       padding: 0 13px;
       font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
     }
 
     .grid-4 {
@@ -300,35 +390,43 @@
       color: #0f172a;
       cursor: pointer;
       text-align: center;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .opt-btn:active {
+      transform: scale(0.96);
     }
 
     .opt-btn.active {
       background: linear-gradient(135deg, #fef08a, #fde047);
       border-color: #f59e0b;
       color: #78350f;
-      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.32);
     }
 
     .table-opt {
-      background: #fffbeb;
-      border: 1.5px solid #fde68a;
-      border-radius: 11px;
+      background: linear-gradient(180deg, #fffbeb, #fef3c7);
+      border: 1.5px solid #fbbf24;
+      border-radius: 12px;
       padding: 7px 4px;
       text-align: center;
       cursor: pointer;
+      transition: transform 0.12s ease;
     }
 
     .table-opt.active {
-      background: #fef08a;
-      border-color: #f59e0b;
-      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+      background: linear-gradient(135deg, #fde047, #f59e0b);
+      border-color: #b45309;
+      color: #0f172a;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(245, 158, 11, 0.38);
     }
 
     .room-strip {
       margin-top: 8px;
-      background: #f1f5f9;
-      border: 1px dashed #94a3b8;
-      border-radius: 11px;
+      background: linear-gradient(135deg, #eff6ff, #fdf4ff);
+      border: 1.5px dashed #6366f1;
+      border-radius: 12px;
       padding: 7px 9px;
       display: flex;
       align-items: center;
@@ -353,11 +451,11 @@
     }
 
     .wa-btn {
-      background: #25d366;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
       border: none;
       border-radius: 8px;
-      padding: 5px 9px;
+      padding: 5px 10px;
       font-size: 0.75rem;
       font-weight: 900;
       text-decoration: none;
@@ -365,13 +463,14 @@
       align-items: center;
       gap: 4px;
       cursor: pointer;
+      box-shadow: 0 3px 10px rgba(22, 163, 74, 0.35);
     }
 
     .lb-box {
       margin-top: 10px;
-      background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 13px;
+      background: linear-gradient(180deg, #f8fafc, #eff6ff);
+      border: 1.5px solid #bfdbfe;
+      border-radius: 14px;
       padding: 8px;
     }
 
@@ -393,7 +492,7 @@
     }
 
     .lb-tab.active {
-      background: #1e3a8a;
+      background: linear-gradient(135deg, #2563eb, #1e3a8a);
       color: #ffffff;
       border-color: #1e3a8a;
     }
@@ -412,7 +511,7 @@
     }
 
     .lb-item.me {
-      background: #fef9c3;
+      background: linear-gradient(135deg, #fef9c3, #fef08a);
       border-color: #f59e0b;
     }
 
@@ -420,15 +519,15 @@
       width: 100%;
       margin-top: 10px;
       padding: 13px;
-      border-radius: 14px;
-      border: none;
-      background: linear-gradient(135deg, #22c55e, #15803d);
+      border-radius: 15px;
+      border: 1.5px solid #fde047;
+      background: linear-gradient(135deg, #22c55e 0%, #15803d 55%, #0ea5e9 100%);
       color: #ffffff;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.45), 0 0 18px rgba(56, 189, 248, 0.35);
     }
 
     .game-top {
@@ -620,7 +719,6 @@
       justify-content: center;
     }
 
-    /* स्टेप चलते समय दिखने वाली शैडो ट्रेल */
     .sq.step-shadow {
       box-shadow: inset 0 0 12px rgba(251, 191, 36, 0.9), inset 0 0 6px rgba(15, 23, 42, 0.45);
       background-color: #fef08a !important;
@@ -715,7 +813,6 @@
       background: rgba(255, 255, 255, 0.88);
     }
 
-    /* हर स्टेप चलने पर Happy (😊) + गहरी शैडो + शाइन */
     .pawn.stepping-happy {
       transform: scale(1.24) translateY(-4px);
       box-shadow: 0 0 14px #fde047, 0 8px 12px rgba(0, 0, 0, 0.65);
@@ -907,8 +1004,11 @@
   </style>
 </head>
 <body>
-  <!-- स्टार्टिंग स्क्रीन बैकग्राउंड एनीमेशन -->
+  <!-- स्टार्टिंग स्क्रीन कलरफुल ऑरोरा व एनिमेटेड बैकग्राउंड -->
   <div class="bg-ambient" id="ambientBg">
+    <div class="aurora-orb one"></div>
+    <div class="aurora-orb two"></div>
+    <div class="aurora-orb three"></div>
     <div class="ambient-item">🎲</div>
     <div class="ambient-item">👑</div>
     <div class="ambient-item">🎲</div>
@@ -923,7 +1023,7 @@
         <img src="icon-512.png" alt="देसी लूडो राजा" onerror="this.style.display='none'" />
         <div>
           <div class="brand-name">देसी लूडो राजा</div>
-          <div class="brand-sub">SHINE • STEP HAPPY • SAFE EXIT</div>
+          <div class="brand-sub">PRISM SHINE • STEP HAPPY • SAFE EXIT</div>
         </div>
       </div>
       <div class="wallet-group">
@@ -933,16 +1033,16 @@
       </div>
     </div>
 
-    <!-- लॉबी -->
+    <!-- कलरफुल शाइनी स्टार्टिंग लॉबी -->
     <div class="panel" id="lobbyScreen">
       <div class="hero shine-layer">
         <div class="hero-dice-row">
           <span class="hero-spin-dice">🎲</span>
-          <span>👑</span>
+          <span class="hero-crown">👑</span>
           <span class="hero-spin-dice">🎲</span>
         </div>
         <h1>देसी लूडो राजा</h1>
-        <p>स्टेप पर 😊 + शैडो + शाइन • सुरक्षित एग्जिट</p>
+        <p>रंगीन ऑरोरा शाइन • स्टेप पर 😊 + शैडो • सुरक्षित एग्जिट</p>
       </div>
 
       <div class="sec-title"><span>खिलाड़ी व स्थान (City / State)</span></div>
@@ -1114,14 +1214,14 @@
     let consecutiveSixes = 0;
     let activeTimers = [];
 
-    let steppingPawn = null;     // { pIdx, pawnIdx } — हर स्टेप पर 😊 + शाइन + शैडो
-    let shadowCellKey = null;    // "r-c" — जिस खाने पर शैडो दिख रही है
+    let steppingPawn = null;
+    let shadowCellKey = null;
     let cryingPawn = null;
     let happyPawn = null;
     let killerPawn = null;
     let scaredPawnsSet = new Set();
     let seatEmotions = {};
-    let exitMode = 'TO_LOBBY';   // 'TO_LOBBY' | 'CLOSE_APP'
+    let exitMode = 'TO_LOBBY';
 
     let audioCtx = null;
     function playTone(freq, duration = 0.08, type = 'sine', gainVal = 0.08) {
@@ -1633,7 +1733,6 @@
       return validPawns[0];
     }
 
-    // हर स्टेप पर Happy (😊) + शैडो + शाइन के साथ चाल
     function startStepByStepMove(pIdx, pawnIdx) {
       if (pIdx !== turnIdx || state !== 'WAIT_MOVE') return;
       const p = players[pIdx];
@@ -1866,7 +1965,6 @@
       }
     }
 
-    // बैक बटन दबाने पर पहले चेतावनी दिखाएं (गेम में हों तो लॉबी में जाने की, लॉबी में हों तो ऐप बंद करने की)
     window.addEventListener('popstate', () => {
       const isInGame = !document.getElementById('gameScreen').classList.contains('hidden');
       if (isInGame) {
