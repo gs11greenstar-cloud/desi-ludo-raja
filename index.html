@@ -16,16 +16,10 @@
       --ink: #0f172a;
       --muted: #64748b;
       --gold: #f59e0b;
-      --gold-light: #fef08a;
-      --gold-dark: #92400e;
       --red: #e11d48;
-      --red-dark: #9f1239;
       --green: #16a34a;
-      --green-dark: #166534;
       --yellow: #eab308;
-      --yellow-dark: #854d0e;
       --blue: #2563eb;
-      --blue-dark: #1e40af;
     }
 
     * {
@@ -47,10 +41,11 @@
 
     .app-wrap {
       width: 100%;
-      max-width: 450px;
+      max-width: 455px;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      position: relative;
     }
 
     .top-bar {
@@ -87,8 +82,8 @@
     }
 
     .brand-sub {
-      font-size: 0.65rem;
-      letter-spacing: 0.8px;
+      font-size: 0.64rem;
+      letter-spacing: 0.7px;
       color: #cbd5e1;
       font-weight: 700;
     }
@@ -96,16 +91,16 @@
     .wallet-group {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .coin-pill {
       background: rgba(251, 191, 36, 0.16);
       border: 1px solid #fbbf24;
       color: #fef08a;
-      padding: 5px 9px;
+      padding: 5px 8px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
     }
 
@@ -114,9 +109,9 @@
       color: #0f172a;
       border: none;
       border-radius: 999px;
-      padding: 5px 10px;
+      padding: 5px 9px;
       font-weight: 900;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       cursor: pointer;
     }
 
@@ -132,29 +127,29 @@
       background: linear-gradient(135deg, #fffbeb, #fef3c7);
       border: 1.5px solid #fbbf24;
       border-radius: 14px;
-      padding: 10px;
+      padding: 9px;
       text-align: center;
     }
 
     .hero h1 {
       margin: 2px 0;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       color: #92400e;
       font-weight: 900;
     }
 
     .hero p {
       margin: 0;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: #78350f;
       font-weight: 700;
     }
 
     .sec-title {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 900;
       color: #1e3a8a;
-      margin: 10px 0 6px;
+      margin: 9px 0 5px;
       display: flex;
       justify-content: space-between;
     }
@@ -164,18 +159,25 @@
       gap: 6px;
     }
 
-    .name-row input {
-      flex: 1;
-      padding: 8px 10px;
+    .name-row input, .loc-input {
+      padding: 7px 9px;
       border-radius: 10px;
       border: 1.5px solid #cbd5e1;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       outline: none;
+      background: #fff;
     }
 
-    .name-row input:focus {
-      border-color: #2563eb;
+    .name-row input {
+      flex: 1;
+    }
+
+    .loc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
     }
 
     .btn-save {
@@ -183,7 +185,7 @@
       color: #fff;
       border: none;
       border-radius: 10px;
-      padding: 0 14px;
+      padding: 0 13px;
       font-weight: 800;
       cursor: pointer;
     }
@@ -212,7 +214,7 @@
       border-radius: 11px;
       padding: 8px 5px;
       font-weight: 800;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #0f172a;
       cursor: pointer;
       text-align: center;
@@ -250,6 +252,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 6px;
+      flex-wrap: wrap;
     }
 
     .mini-btn {
@@ -257,9 +260,79 @@
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       padding: 5px 8px;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 800;
       cursor: pointer;
+      text-decoration: none;
+      color: #0f172a;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .wa-btn {
+      background: #25d366;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    /* लीडरबोर्ड बॉक्स */
+    .lb-box {
+      margin-top: 10px;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 13px;
+      padding: 8px;
+    }
+
+    .lb-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    .lb-tab {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 5px 4px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .lb-tab.active {
+      background: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+
+    .lb-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 9px;
+      padding: 5px 8px;
+      margin-bottom: 4px;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .lb-item.me {
+      background: #fef9c3;
+      border-color: #f59e0b;
     }
 
     .play-btn {
@@ -277,7 +350,6 @@
       box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
     }
 
-    /* गेम स्क्रीन और लुडो किंग स्टाइल डाइस बार */
     .game-top {
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(251, 191, 36, 0.4);
@@ -318,6 +390,7 @@
       border: 2px solid #cbd5e1;
       opacity: 0.65;
       transition: all 0.15s ease;
+      position: relative;
     }
 
     .seat-box.active-turn {
@@ -365,7 +438,26 @@
       font-weight: 700;
     }
 
-    /* 3D डॉट डाइस */
+    .seat-emotion {
+      position: absolute;
+      top: -12px;
+      right: 8px;
+      background: #0f172a;
+      color: #fff;
+      border: 1.5px solid #fbbf24;
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 0.88rem;
+      z-index: 15;
+      animation: emotionPop 0.45s ease-out;
+    }
+
+    @keyframes emotionPop {
+      0% { transform: scale(0.4) translateY(6px); opacity: 0; }
+      70% { transform: scale(1.2) translateY(-2px); opacity: 1; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
     .dice-3d {
       width: 44px;
       height: 44px;
@@ -413,20 +505,19 @@
 
     .pip.on {
       background: #0f172a;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
     }
 
     .pip.red-pip {
       background: #dc2626;
     }
 
-    /* 15x15 लुडो बोर्ड */
     .board-frame {
       background: #1e293b;
       padding: 5px;
       border-radius: 16px;
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
       border: 2px solid #fbbf24;
+      position: relative;
     }
 
     .ludo-grid {
@@ -498,7 +589,6 @@
       z-index: 1;
     }
 
-    /* एक ही खाने पर एक से ज़्यादा गोटियाँ होने पर ऑटो-ग्रिड */
     .tokens-cluster {
       width: 100%;
       height: 100%;
@@ -535,6 +625,75 @@
       height: 38%;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.85);
+    }
+
+    /* इमोशन बैज (डर 😨, किलर 😈, रोना 😭, ख़ुशी 🥳) */
+    .pawn.emo-scared {
+      animation: scaredTremble 0.2s infinite alternate;
+      outline: 2px solid #f59e0b;
+    }
+    .pawn.emo-scared::before {
+      content: "😨";
+      position: absolute;
+      top: -15px;
+      font-size: 0.88rem;
+      z-index: 12;
+    }
+
+    .pawn.emo-killer {
+      animation: killerZoom 0.35s infinite alternate;
+      outline: 2px solid #dc2626;
+    }
+    .pawn.emo-killer::before {
+      content: "😈";
+      position: absolute;
+      top: -15px;
+      font-size: 0.9rem;
+      z-index: 12;
+    }
+
+    .pawn.emo-happy {
+      animation: happyBounce 0.35s infinite alternate;
+      outline: 2px solid #16a34a;
+    }
+    .pawn.emo-happy::before {
+      content: "🥳";
+      position: absolute;
+      top: -15px;
+      font-size: 0.9rem;
+      z-index: 12;
+    }
+
+    .pawn.crying {
+      animation: cryShake 0.25s infinite alternate;
+      outline: 2.5px solid #ef4444;
+    }
+    .pawn.crying::before {
+      content: "😭";
+      position: absolute;
+      top: -15px;
+      font-size: 0.92rem;
+      z-index: 12;
+    }
+
+    @keyframes scaredTremble {
+      from { transform: translateX(-1.5px); }
+      to { transform: translateX(1.5px); }
+    }
+
+    @keyframes killerZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.16); }
+    }
+
+    @keyframes happyBounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-3px); }
+    }
+
+    @keyframes cryShake {
+      from { transform: rotate(-12deg) scale(1.05); }
+      to { transform: rotate(12deg) scale(1.12); }
     }
 
     .pawn.selectable {
@@ -577,6 +736,68 @@
       cursor: pointer;
     }
 
+    .warn-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.78);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .warn-card {
+      width: 100%;
+      max-width: 340px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      border: 2px solid #f59e0b;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    .warn-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-top: 6px;
+    }
+
+    .warn-desc {
+      font-size: 0.84rem;
+      color: #475569;
+      margin: 6px 0 14px;
+      font-weight: 600;
+    }
+
+    .warn-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-stay {
+      background: #16a34a;
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      padding: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-quit {
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      padding: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -584,13 +805,12 @@
 </head>
 <body>
   <div class="app-wrap">
-    <!-- टॉप बार -->
     <div class="top-bar">
       <div class="brand">
         <img src="icon-512.png" alt="देसी लूडो राजा" onerror="this.style.display='none'" />
         <div>
           <div class="brand-name">देसी लूडो राजा</div>
-          <div class="brand-sub">LUDO KING STYLE EDITION</div>
+          <div class="brand-sub">EMOTION • LEADERBOARD • WHATSAPP</div>
         </div>
       </div>
       <div class="wallet-group">
@@ -600,18 +820,22 @@
       </div>
     </div>
 
-    <!-- लॉबी स्क्रीन -->
+    <!-- लॉबी -->
     <div class="panel" id="lobbyScreen">
       <div class="hero">
-        <div style="font-size: 1.6rem;">👑</div>
+        <div style="font-size: 1.5rem;">👑</div>
         <h1>देसी लूडो राजा</h1>
-        <p>स्टेप-बाय-स्टेप चाल • असली डाइस • स्टार सेफ़ ज़ोन</p>
+        <p>डर • किलर • ख़ुशी • रोते हुए वापसी</p>
       </div>
 
-      <div class="sec-title"><span>आपका नाम</span></div>
+      <div class="sec-title"><span>खिलाड़ी व स्थान (City / State)</span></div>
       <div class="name-row">
-        <input type="text" id="nameInput" value="राजा" maxlength="14" />
+        <input type="text" id="nameInput" value="राजा" maxlength="14" placeholder="आपका नाम" />
         <button type="button" class="btn-save" id="saveNameBtn">सेव</button>
+      </div>
+      <div class="loc-grid">
+        <input type="text" class="loc-input" id="cityInput" value="जबलपुर" maxlength="16" placeholder="शहर (City)" />
+        <input type="text" class="loc-input" id="stateInput" value="मध्य प्रदेश" maxlength="18" placeholder="राज्य (State)" />
       </div>
 
       <div class="sec-title">
@@ -657,11 +881,22 @@
           <div style="font-size:0.68rem;color:#64748b;font-weight:700;">रूम कोड</div>
           <div style="font-weight:900;font-size:0.9rem;" id="roomCodeDisplay">RAJA-8042</div>
         </div>
-        <div style="display:flex;gap:5px;">
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
           <button type="button" class="mini-btn" id="refreshRoomBtn">↻ नया</button>
           <button type="button" class="mini-btn" id="copyRoomBtn">कॉपी</button>
-          <button type="button" class="mini-btn" style="background:#fef08a;border-color:#f59e0b;" id="shareRoomBtn">इनवाइट</button>
+          <a class="wa-btn" id="whatsappInviteLink" target="_blank" rel="noopener">💬 WhatsApp</a>
         </div>
+      </div>
+
+      <!-- लीडरबोर्ड: Friend / City / State -->
+      <div class="lb-box">
+        <div class="sec-title" style="margin:0 0 6px;"><span>🏆 लीडरबोर्ड</span></div>
+        <div class="lb-tabs" id="lbTabs">
+          <button type="button" class="lb-tab active" data-lb="friend">🤝 Friend</button>
+          <button type="button" class="lb-tab" data-lb="city">🏙️ City</button>
+          <button type="button" class="lb-tab" data-lb="state">🗺️ State</button>
+        </div>
+        <div id="lbRows"></div>
       </div>
 
       <div id="lobbyMsg" style="text-align:center;font-size:0.78rem;font-weight:800;color:#b45309;margin-top:6px;min-height:16px;"></div>
@@ -676,30 +911,42 @@
         <button type="button" class="exit-btn" id="leaveMatchBtn">← बाहर</button>
       </div>
 
-      <!-- ऊपर के 2 खिलाड़ी (लाल और हरा) -->
       <div class="players-pair" id="topSeats"></div>
 
-      <!-- 15x15 लूडो बोर्ड -->
       <div class="board-frame">
         <div class="ludo-grid" id="boardGrid"></div>
       </div>
 
-      <!-- नीचे के 2 खिलाड़ी (नीला और पीला) -->
       <div class="players-pair" id="bottomSeats"></div>
 
       <div class="status-banner" id="statusBar">डाइस दबाएं</div>
 
       <div class="emotes-bar">
         <button type="button" class="emote-chip" data-msg="🔥 शाबाश!">🔥 शाबाश!</button>
-        <button type="button" class="emote-chip" data-msg="😄 मौज कर दी!">😄 मौज!</button>
-        <button type="button" class="emote-chip" data-msg="👑 असली राजा!">👑 राजा!</button>
-        <button type="button" class="emote-chip" data-msg="😅 बाल-बाल बचा!">😅 बच गया!</button>
+        <button type="button" class="emote-chip" data-msg="😈 किलर चाल!">😈 किलर!</button>
+        <button type="button" class="emote-chip" data-msg="😭 हाय! कट गई!">😭 कट गई!</button>
+        <button type="button" class="emote-chip" data-msg="🥳 ख़ुशी की बात!">🥳 ख़ुशी!</button>
+      </div>
+    </div>
+
+    <!-- बैक चेतावनी मोडल -->
+    <div class="warn-backdrop hidden" id="exitWarningModal">
+      <div class="warn-card">
+        <div style="font-size: 2rem;">⚠️</div>
+        <div class="warn-title">गेम से बाहर जाएं?</div>
+        <div class="warn-desc" id="exitWarningText">
+          क्या आप वाकई मौजूदा गेम छोड़कर लॉबी में जाना चाहते हैं?
+        </div>
+        <div class="warn-actions">
+          <button type="button" class="btn-stay" id="cancelExitBtn">खेलते रहें</button>
+          <button type="button" class="btn-quit" id="confirmExitBtn">बाहर जाएं</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // 52 खानों का मानक क्लॉकवाइज़ ट्रैक
+    const GAME_URL = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
     const TRACK = [
       [6,1],[6,2],[6,3],[6,4],[6,5],
       [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
@@ -715,7 +962,6 @@
       [7,0],[6,0]
     ];
 
-    // 4 रंगों की सीट कॉन्फ़िग (0: लाल, 1: हरा, 2: पीला, 3: नीला)
     const SEAT_TEMPLATES = [
       { seatId: 0, label: 'लाल', hex: '#e11d48', bgClass: 'bg-red', startIdx: 0, homeLane: [[7,1],[7,2],[7,3],[7,4],[7,5]] },
       { seatId: 1, label: 'हरा', hex: '#16a34a', bgClass: 'bg-green', startIdx: 13, homeLane: [[1,7],[2,7],[3,7],[4,7],[5,7]] },
@@ -723,11 +969,8 @@
       { seatId: 3, label: 'नीला', hex: '#2563eb', bgClass: 'bg-blue', startIdx: 39, homeLane: [[13,7],[12,7],[11,7],[10,7],[9,7]] }
     ];
 
-    // लुडो किंग के 8 सेफ़ ज़ोन (4 रंगीन स्टार्ट + 4 स्टार)
     const SAFE_TRACK_INDICES = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
     const BOT_ALIASES = ['बब्बू बॉट', 'चुन्नू बॉट', 'मंटू बॉट'];
-
-    // 3x3 डाइस डॉट पैटर्न (1 से 6)
     const DICE_PIPS = {
       1: [4],
       2: [0, 8],
@@ -739,20 +982,29 @@
 
     let coins = 5000;
     let userName = 'राजा';
+    let userCity = 'जबलपुर';
+    let userState = 'मध्य प्रदेश';
     let selectedPlayersCount = 2;
     let selectedMode = 'bot';
     let selectedTable = { entry: 500, win: 2000 };
     let roomCode = 'RAJA-8042';
+    let activeLbScope = 'friend';
     let soundOn = true;
 
     let players = [];
     let turnIdx = 0;
     let diceVal = 6;
-    let state = 'IDLE'; // 'IDLE' | 'WAIT_ROLL' | 'ROLLING' | 'WAIT_MOVE' | 'ANIMATING' | 'FINISHED'
+    let state = 'IDLE';
     let consecutiveSixes = 0;
     let activeTimers = [];
 
-    // हल्का बिल्ट-इन साउंड इफ़ेक्ट (Web Audio API)
+    // गोटियों के इमोशन स्टेट
+    let cryingPawn = null;       // { pIdx, pawnIdx }
+    let happyPawn = null;        // { pIdx, pawnIdx }
+    let killerPawn = null;       // { pIdx, pawnIdx }
+    let scaredPawnsSet = new Set(); // "pIdx-pawnIdx" जब विरोधी पास हो
+    let seatEmotions = {};       // { [seatId]: emoji }
+
     let audioCtx = null;
     function playTone(freq, duration = 0.08, type = 'sine', gainVal = 0.08) {
       if (!soundOn) return;
@@ -787,15 +1039,103 @@
       activeTimers = [];
     }
 
+    function updateWhatsAppInvite() {
+      const msg = `👑 आओ *देसी लूडो राजा* खेलें!\nरूम कोड: *${roomCode}*\nखेलने का लिंक: ${GAME_URL}`;
+      document.getElementById('whatsappInviteLink').href =
+        `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    }
+
+    function renderLeaderboard() {
+      const container = document.getElementById('lbRows');
+      container.innerHTML = '';
+
+      const baseRows = {
+        friend: [
+          { name: 'अमन दोस्त', place: userCity, pts: 6400 },
+          { name: 'समीर दोस्त', place: userCity, pts: 5800 },
+          { name: userName, place: `${userCity}, ${userState}`, pts: coins, isMe: true }
+        ],
+        city: [
+          { name: 'राजा वीर', place: userCity, pts: 8200 },
+          { name: 'कबीर सिंह', place: userCity, pts: 7100 },
+          { name: userName, place: userCity, pts: coins, isMe: true }
+        ],
+        state: [
+          { name: 'मालवा किंग', place: userState, pts: 12500 },
+          { name: 'नर्मदा शेर', place: userState, pts: 10900 },
+          { name: userName, place: userState, pts: coins, isMe: true }
+        ]
+      };
+
+      const list = [...(baseRows[activeLbScope] || baseRows.friend)].sort((a, b) => b.pts - a.pts);
+
+      list.forEach((row, idx) => {
+        const div = document.createElement('div');
+        div.className = `lb-item ${row.isMe ? 'me' : ''}`;
+        div.innerHTML = `
+          <span>#${idx + 1} ${row.name} <small style="color:#64748b;">(${row.place})</small></span>
+          <span>🪙 ${row.pts}</span>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function showSeatEmotion(seatId, emoji) {
+      seatEmotions[seatId] = emoji;
+      renderSeats();
+      trackTimer(setTimeout(() => {
+        delete seatEmotions[seatId];
+        renderSeats();
+      }, 1500));
+    }
+
+    // पास आने पर डरने (😨) और बग़ल/शिकार के पास होने पर किलर (😈) रिएक्शन की गणना
+    function refreshProximityEmotions() {
+      scaredPawnsSet = new Set();
+      killerPawn = null;
+
+      const cur = players[turnIdx];
+      if (!cur) return;
+
+      // वर्तमान खिलाड़ी की गोटियों के पास अगर कोई विपक्षी गोटी है तो किलर (😈) और विपक्षी पर डर (😨)
+      cur.pawns.forEach((myStep, myPIdx) => {
+        if (myStep < 0 || myStep > 50) return;
+        const myAbs = (cur.startIdx + myStep) % TRACK.length;
+
+        players.forEach((other, oIdx) => {
+          if (oIdx === turnIdx) return;
+          other.pawns.forEach((oStep, oPIdx) => {
+            if (oStep < 0 || oStep > 50) return;
+            const oAbs = (other.startIdx + oStep) % TRACK.length;
+
+            // यदि मेरी गोटी विपक्षी से 1 से 4 कदम पीछे है तो मेरी गोटी 'किलर' (😈) और विपक्षी 'डरा हुआ' (😨)
+            const diff = (oAbs - myAbs + TRACK.length) % TRACK.length;
+            if (diff >= 1 && diff <= 4 && !SAFE_TRACK_INDICES.has(oAbs)) {
+              scaredPawnsSet.add(`${oIdx}-${oPIdx}`);
+              if (!killerPawn) {
+                killerPawn = { pIdx: turnIdx, pawnIdx: myPIdx };
+              }
+            }
+
+            // यदि विपक्षी गोटी मेरी गोटी से 1 से 3 कदम पीछे है तो मेरी गोटी पर डर (😨)
+            const threatDiff = (myAbs - oAbs + TRACK.length) % TRACK.length;
+            if (threatDiff >= 1 && threatDiff <= 3 && !SAFE_TRACK_INDICES.has(myAbs)) {
+              scaredPawnsSet.add(`${turnIdx}-${myPIdx}`);
+            }
+          });
+        });
+      });
+    }
+
     function updateWalletUI() {
       document.getElementById('walletCoins').textContent = `🪙 ${coins}`;
+      renderLeaderboard();
     }
 
     function setStatus(text) {
       document.getElementById('statusBar').textContent = text;
     }
 
-    // 2 खिलाड़ी होने पर लुडो किंग की तरह आमने-सामने (लाल [0] और पीला [2])
     function getSeatOrderForCount(count) {
       if (count === 1) return [0];
       if (count === 2) return [0, 2];
@@ -824,7 +1164,6 @@
           ...tpl,
           name,
           isBot,
-          // -1 = यार्ड, 0..50 = मुख्य ट्रैक, 51..55 = होम लेन, 56 = घर पहुँचा
           pawns: [-1, -1, -1, -1]
         };
       });
@@ -877,7 +1216,6 @@
       topContainer.innerHTML = '';
       bottomContainer.innerHTML = '';
 
-      // ऊपर: लाल (0) बाएं, हरा (1) दाएं | नीचे: नीला (3) बाएं, पीला (2) दाएं
       const layout = [
         { seatId: 0, target: topContainer },
         { seatId: 1, target: topContainer },
@@ -907,10 +1245,12 @@
         const homeDone = p.pawns.filter((s) => s === 56).length;
         const canClickDice = isTurn && state === 'WAIT_ROLL' && !p.isBot;
         const isRollingNow = isTurn && state === 'ROLLING';
+        const emo = seatEmotions[p.seatId];
 
         const card = document.createElement('div');
         card.className = `seat-box ${isTurn ? 'active-turn' : ''}`;
         card.innerHTML = `
+          ${emo ? `<div class="seat-emotion">${emo}</div>` : ''}
           <div class="seat-info">
             <div class="seat-badge ${p.bgClass}">${p.isBot ? '🤖' : '👑'}</div>
             <div style="min-width:0;">
@@ -930,11 +1270,29 @@
       });
     }
 
+    function applyPawnEmotionClasses(pawnEl, pIdx, pawnIdx) {
+      if (cryingPawn && cryingPawn.pIdx === pIdx && cryingPawn.pawnIdx === pawnIdx) {
+        pawnEl.classList.add('crying');
+        return;
+      }
+      if (happyPawn && happyPawn.pIdx === pIdx && happyPawn.pawnIdx === pawnIdx) {
+        pawnEl.classList.add('emo-happy');
+        return;
+      }
+      if (killerPawn && killerPawn.pIdx === pIdx && killerPawn.pawnIdx === pawnIdx) {
+        pawnEl.classList.add('emo-killer');
+        return;
+      }
+      if (scaredPawnsSet.has(`${pIdx}-${pawnIdx}`)) {
+        pawnEl.classList.add('emo-scared');
+      }
+    }
+
     function renderBoard() {
+      refreshProximityEmotions();
       const grid = document.getElementById('boardGrid');
       grid.innerHTML = '';
 
-      // 4 कोनों के यार्ड
       const yardDefs = [
         { seatId: 0, bg: 'bg-red', col: 1, row: 1 },
         { seatId: 1, bg: 'bg-green', col: 10, row: 1 },
@@ -958,6 +1316,8 @@
           if (p && p.pawns[i] === -1) {
             const pawn = document.createElement('div');
             pawn.className = `pawn ${p.bgClass}`;
+            applyPawnEmotionClasses(pawn, pIdx, i);
+
             const canSelect = pIdx === turnIdx && state === 'WAIT_MOVE' && !p.isBot && isMoveValid(-1, diceVal);
             if (canSelect) {
               pawn.classList.add('selectable');
@@ -971,13 +1331,11 @@
         grid.appendChild(yardDiv);
       });
 
-      // बीच का 3x3 राजा घर
       const center = document.createElement('div');
       center.className = 'home-center';
       center.textContent = '👑';
       grid.appendChild(center);
 
-      // बाकी सभी 15x15 ट्रैक व होम लेन सेल
       for (let r = 0; r < 15; r++) {
         for (let c = 0; c < 15; c++) {
           const inYard =
@@ -993,13 +1351,11 @@
           cell.style.gridRow = r + 1;
           cell.style.gridColumn = c + 1;
 
-          // रंगीन होम लेन व स्टार्ट खानें
           if ((r === 7 && c >= 1 && c <= 5) || (r === 6 && c === 1)) cell.classList.add('bg-red');
           if ((c === 7 && r >= 1 && r <= 5) || (r === 1 && c === 8)) cell.classList.add('bg-green');
           if ((r === 7 && c >= 9 && c <= 13) || (r === 8 && c === 13)) cell.classList.add('bg-yellow');
           if ((c === 7 && r >= 9 && r <= 13) || (r === 13 && c === 6)) cell.classList.add('bg-blue');
 
-          // सेफ़ स्टार चिह्न
           const isStar =
             (r === 6 && c === 1) || (r === 2 && c === 6) ||
             (r === 1 && c === 8) || (r === 6 && c === 12) ||
@@ -1007,7 +1363,6 @@
             (r === 13 && c === 6) || (r === 8 && c === 2);
           if (isStar) cell.classList.add('star-mark');
 
-          // इस खाने पर मौजूद सभी गोटियाँ इकट्ठी करें
           const cellPawns = [];
           players.forEach((p, pIdx) => {
             p.pawns.forEach((st, pawnIdx) => {
@@ -1025,6 +1380,8 @@
             cellPawns.forEach(({ p, pIdx, pawnIdx, st }) => {
               const pawn = document.createElement('div');
               pawn.className = `pawn ${p.bgClass}`;
+              applyPawnEmotionClasses(pawn, pIdx, pawnIdx);
+
               const canSelect = pIdx === turnIdx && state === 'WAIT_MOVE' && !p.isBot && isMoveValid(st, diceVal);
               if (canSelect) {
                 pawn.classList.add('selectable');
@@ -1043,6 +1400,9 @@
 
     function beginTurn(samePlayerBonus = false) {
       clearAllTimers();
+      cryingPawn = null;
+      happyPawn = null;
+
       if (!samePlayerBonus && players.length > 0) {
         turnIdx = (turnIdx + 1) % players.length;
         consecutiveSixes = 0;
@@ -1116,7 +1476,6 @@
             setStatus(`${cur.name} का ${finalRoll} आया — चल रहा है...`);
             trackTimer(setTimeout(() => startStepByStepMove(turnIdx, chosen), 450));
           } else if (validPawns.length === 1 && cur.pawns[validPawns[0]] !== -1) {
-            // अगर बोर्ड पर केवल 1 ही गोटी चलने योग्य है तो तुरंत स्टेप-बाय-स्टेप चलाएं
             setStatus(`${cur.name} का ${finalRoll} आया — गोटी चल रही है...`);
             trackTimer(setTimeout(() => startStepByStepMove(turnIdx, validPawns[0]), 300));
           } else {
@@ -1127,7 +1486,6 @@
     }
 
     function pickBestBotPawn(botPlayer, validPawns, roll) {
-      // 1. पहले गोटी काटने वाली चाल प्राथमिकता से चुनें
       for (const idx of validPawns) {
         const curStep = botPlayer.pawns[idx];
         const targetStep = curStep === -1 ? 0 : curStep + roll;
@@ -1142,7 +1500,6 @@
           }
         }
       }
-      // 2. फिर घर पहुँचने या यार्ड से बाहर निकलने वाली गोटी
       for (const idx of validPawns) {
         if (botPlayer.pawns[idx] + roll === 56) return idx;
       }
@@ -1152,18 +1509,18 @@
       return validPawns[0];
     }
 
-    // लुडो किंग की तरह एक-एक खाने पर स्टेप-बाय-स्टेप चाल
     function startStepByStepMove(pIdx, pawnIdx) {
       if (pIdx !== turnIdx || state !== 'WAIT_MOVE') return;
       const p = players[pIdx];
       const startStep = p.pawns[pawnIdx];
       if (!isMoveValid(startStep, diceVal)) return;
 
+      const cameOutFromYard = startStep === -1;
       state = 'ANIMATING';
       renderSeats();
       renderBoard();
 
-      const stepsToTake = startStep === -1 ? 1 : diceVal;
+      const stepsToTake = cameOutFromYard ? 1 : diceVal;
       let taken = 0;
 
       const stepInterval = trackTimer(setInterval(() => {
@@ -1178,66 +1535,113 @@
 
         if (taken >= stepsToTake) {
           clearInterval(stepInterval);
-          finishPawnMove(pIdx, pawnIdx);
+          finishPawnMove(pIdx, pawnIdx, cameOutFromYard);
         }
       }, 135));
     }
 
-    function finishPawnMove(pIdx, pawnIdx) {
+    function retreatCapturedPawnStepByStep(victimIdx, victimPawnIdx, onDone) {
+      const victim = players[victimIdx];
+      state = 'RETREATING';
+      cryingPawn = { pIdx: victimIdx, pawnIdx: victimPawnIdx };
+      showSeatEmotion(victim.seatId, '😭');
+      setStatus(`😭 हाय! ${victim.name} की गोटी कट गई — रोते हुए वापस जा रही है...`);
+      renderBoard();
+
+      let currentStep = victim.pawns[victimPawnIdx];
+      const stepDrop = Math.max(1, Math.ceil(currentStep / 14));
+
+      const retreatTimer = trackTimer(setInterval(() => {
+        currentStep -= stepDrop;
+        playTone(360 - Math.min(200, (15 - currentStep) * 12), 0.05, 'sawtooth', 0.07);
+
+        if (currentStep <= 0) {
+          clearInterval(retreatTimer);
+          victim.pawns[victimPawnIdx] = -1;
+          renderBoard();
+          renderSeats();
+          trackTimer(setTimeout(() => {
+            cryingPawn = null;
+            renderBoard();
+            onDone();
+          }, 550));
+        } else {
+          victim.pawns[victimPawnIdx] = currentStep;
+          renderBoard();
+        }
+      }, 65));
+    }
+
+    function finishPawnMove(pIdx, pawnIdx, cameOutFromYard) {
       const p = players[pIdx];
       const landedStep = p.pawns[pawnIdx];
       let earnedBonus = diceVal === 6;
 
-      // घर (56) पहुँचने पर बोनस चाल
-      if (landedStep === 56) {
-        earnedBonus = true;
-        playTone(780, 0.2, 'triangle', 0.12);
-        setStatus(`🎉 ${p.name} की एक गोटी घर पहुँची!`);
+      // बाहर निकलने पर ख़ुशी और संदेश
+      if (cameOutFromYard) {
+        happyPawn = { pIdx, pawnIdx };
+        showSeatEmotion(p.seatId, '🥳');
+        playTone(660, 0.16, 'triangle', 0.1);
+        setStatus(`🥳 वाह! ${p.name} की गोटी बाहर निकल आई!`);
       }
 
-      // मुख्य ट्रैक पर कटने (Capture) की जाँच (एक ही रंग की 2 गोटियों की जोड़ी सुरक्षित रहती है)
+      if (landedStep === 56) {
+        earnedBonus = true;
+        happyPawn = { pIdx, pawnIdx };
+        playTone(780, 0.2, 'triangle', 0.12);
+        showSeatEmotion(p.seatId, '👑');
+        setStatus(`👑 ${p.name} की गोटी घर पहुँची! बोनस चाल!`);
+      }
+
+      let capturedVictim = null;
+
       if (landedStep >= 0 && landedStep <= 50) {
         const absIdx = (p.startIdx + landedStep) % TRACK.length;
         if (!SAFE_TRACK_INDICES.has(absIdx)) {
-          players.forEach((other) => {
-            if (other.seatId === p.seatId) return;
-            const matchingIndices = [];
-            other.pawns.forEach((os, oIdx) => {
+          for (let oIdx = 0; oIdx < players.length; oIdx++) {
+            if (oIdx === pIdx) continue;
+            const other = players[oIdx];
+            const matching = [];
+            other.pawns.forEach((os, oTIdx) => {
               if (os >= 0 && os <= 50 && (other.startIdx + os) % TRACK.length === absIdx) {
-                matchingIndices.push(oIdx);
+                matching.push(oTIdx);
               }
             });
-
-            // यदि विपक्षी की केवल 1 अकेली गोटी है तो वह कट जाएगी; 2 की जोड़ी सुरक्षित रहेगी
-            if (matchingIndices.length === 1) {
-              other.pawns[matchingIndices[0]] = -1;
-              earnedBonus = true;
-              playTone(190, 0.25, 'sawtooth', 0.11);
-              setStatus(`💥 ${p.name} ने ${other.name} की गोटी काट दी! बोनस चाल!`);
+            if (matching.length === 1) {
+              capturedVictim = { oIdx, oTIdx: matching[0], otherName: other.name };
+              break;
             }
-          });
+          }
         }
       }
 
       renderSeats();
       renderBoard();
 
-      // जीत की जाँच
-      if (p.pawns.every((s) => s === 56)) {
-        state = 'FINISHED';
-        if (!p.isBot) {
-          coins += selectedTable.win;
-          updateWalletUI();
+      const afterMoveCheck = () => {
+        if (p.pawns.every((s) => s === 56)) {
+          state = 'FINISHED';
+          if (!p.isBot) {
+            coins += selectedTable.win;
+            updateWalletUI();
+          }
+          playTone(880, 0.35, 'triangle', 0.14);
+          showSeatEmotion(p.seatId, '🏆');
+          setStatus(`🏆 ${p.name} विजेता बना! (+${selectedTable.win} कॉइन्स)`);
+          renderSeats();
+          return;
         }
-        playTone(880, 0.35, 'triangle', 0.14);
-        setStatus(`🏆 ${p.name} विजेता बना! (+${selectedTable.win} कॉइन्स)`);
-        renderSeats();
-        return;
-      }
-
-      trackTimer(setTimeout(() => {
         beginTurn(earnedBonus);
-      }, 350));
+      };
+
+      if (capturedVictim) {
+        earnedBonus = true;
+        killerPawn = { pIdx, pawnIdx };
+        showSeatEmotion(p.seatId, '😈');
+        retreatCapturedPawnStepByStep(capturedVictim.oIdx, capturedVictim.oTIdx, afterMoveCheck);
+      } else {
+        trackTimer(setTimeout(afterMoveCheck, 450));
+      }
     }
 
     function launchMatch() {
@@ -1250,6 +1654,10 @@
       document.getElementById('lobbyMsg').textContent = '';
 
       clearAllTimers();
+      cryingPawn = null;
+      happyPawn = null;
+      killerPawn = null;
+      seatEmotions = {};
       players = createPlayersList(selectedMode, selectedPlayersCount, userName);
       turnIdx = 0;
       diceVal = 6;
@@ -1267,29 +1675,51 @@
       document.getElementById('lobbyScreen').classList.add('hidden');
       document.getElementById('gameScreen').classList.remove('hidden');
 
-      // फ़ोन के बैक बटन से पूरा ऐप बंद न हो इसके लिए हिस्ट्री स्टेट जोड़ें
       try {
-        history.pushState({ inGame: true }, '');
+        history.pushState({ gameOpen: true }, '');
       } catch (e) {}
 
       beginTurn(true);
     }
 
-    function exitMatchToLobby() {
+    function openExitWarning(fromHardwareBack = false) {
+      const modal = document.getElementById('exitWarningModal');
+      document.getElementById('exitWarningText').textContent = fromHardwareBack
+        ? 'बैक बटन दबाया गया है — क्या आप गेम छोड़कर लॉबी में जाना चाहते हैं?'
+        : 'क्या आप मौजूदा गेम छोड़कर लॉबी में वापस जाना चाहते हैं?';
+      modal.classList.remove('hidden');
+    }
+
+    function closeExitWarning() {
+      document.getElementById('exitWarningModal').classList.add('hidden');
+      try {
+        history.pushState({ gameOpen: true }, '');
+      } catch (e) {}
+    }
+
+    function confirmExitToLobby() {
+      document.getElementById('exitWarningModal').classList.add('hidden');
       clearAllTimers();
+      cryingPawn = null;
+      happyPawn = null;
+      killerPawn = null;
+      seatEmotions = {};
       state = 'IDLE';
       document.getElementById('gameScreen').classList.add('hidden');
       document.getElementById('lobbyScreen').classList.remove('hidden');
     }
 
-    // फ़ोन का हार्डवेयर/जेस्चर बैक बटन दबाने पर लॉबी में लौटें (ऐप बंद न हो)
     window.addEventListener('popstate', () => {
-      if (!document.getElementById('gameScreen').classList.contains('hidden')) {
-        exitMatchToLobby();
+      const isInGame = !document.getElementById('gameScreen').classList.contains('hidden');
+      if (isInGame) {
+        openExitWarning(true);
       }
     });
 
-    // लॉबी कंट्रोल इवेंट्स
+    document.getElementById('leaveMatchBtn').addEventListener('click', () => openExitWarning(false));
+    document.getElementById('cancelExitBtn').addEventListener('click', closeExitWarning);
+    document.getElementById('confirmExitBtn').addEventListener('click', confirmExitToLobby);
+
     document.getElementById('addBonusBtn').addEventListener('click', () => {
       coins += 500;
       updateWalletUI();
@@ -1302,10 +1732,23 @@
     });
 
     document.getElementById('saveNameBtn').addEventListener('click', () => {
-      const val = document.getElementById('nameInput').value.trim();
-      userName = val || 'राजा';
+      userName = document.getElementById('nameInput').value.trim() || 'राजा';
+      userCity = document.getElementById('cityInput').value.trim() || 'जबलपुर';
+      userState = document.getElementById('stateInput').value.trim() || 'मध्य प्रदेश';
       document.getElementById('nameInput').value = userName;
-      document.getElementById('lobbyMsg').textContent = `नाम सेव हो गया: ${userName}`;
+      document.getElementById('cityInput').value = userCity;
+      document.getElementById('stateInput').value = userState;
+      renderLeaderboard();
+      document.getElementById('lobbyMsg').textContent = `सेव हो गया: ${userName} (${userCity}, ${userState})`;
+    });
+
+    document.querySelectorAll('#lbTabs .lb-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('#lbTabs .lb-tab').forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeLbScope = tab.dataset.lb;
+        renderLeaderboard();
+      });
     });
 
     document.querySelectorAll('#countButtons .opt-btn').forEach((btn) => {
@@ -1339,6 +1782,7 @@
     document.getElementById('refreshRoomBtn').addEventListener('click', () => {
       roomCode = `RAJA-${Math.floor(1000 + Math.random() * 9000)}`;
       document.getElementById('roomCodeDisplay').textContent = roomCode;
+      updateWhatsAppInvite();
     });
 
     document.getElementById('copyRoomBtn').addEventListener('click', () => {
@@ -1346,29 +1790,20 @@
       document.getElementById('lobbyMsg').textContent = `कोड कॉपी हुआ: ${roomCode}`;
     });
 
-    document.getElementById('shareRoomBtn').addEventListener('click', () => {
-      const url = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
-      if (navigator.share) {
-        navigator.share({
-          title: 'देसी लूडो राजा',
-          text: `आओ देसी लूडो राजा खेलें! रूम कोड: ${roomCode}`,
-          url
-        }).catch(() => {});
-      } else {
-        document.getElementById('lobbyMsg').textContent = `इनवाइट लिंक तैयार • कोड: ${roomCode}`;
-      }
-    });
-
     document.getElementById('startPlayBtn').addEventListener('click', launchMatch);
-    document.getElementById('leaveMatchBtn').addEventListener('click', exitMatchToLobby);
 
     document.querySelectorAll('.emote-chip').forEach((btn) => {
       btn.addEventListener('click', () => {
         const cur = players[turnIdx];
+        if (cur) {
+          const emoMatch = btn.dataset.msg.match(/^(🔥|😈|😭|🥳)/);
+          if (emoMatch) showSeatEmotion(cur.seatId, emoMatch[1]);
+        }
         setStatus(`${cur ? cur.name : userName}: ${btn.dataset.msg}`);
       });
     });
 
+    updateWhatsAppInvite();
     updateWalletUI();
   </script>
 </body>
