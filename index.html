@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#1e3a8a" />
+  <meta name="theme-color" content="#1d4ed8" />
   <title>देसी लूडो राजा - Desi Ludo Raja</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
   <style>
     :root {
-      --bg-1: #090d1e;
-      --bg-2: #1e3a8a;
-      --card: #ffffff;
-      --ink: #0f172a;
-      --muted: #64748b;
-      --gold: #f59e0b;
+      --gold: #fbbf24;
+      --gold-dark: #d97706;
+      --navy-1: #1e40af;
+      --navy-2: #1d4ed8;
+      --navy-3: #0f172a;
       --red: #e11d48;
       --green: #16a34a;
       --yellow: #eab308;
@@ -32,84 +31,20 @@
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.28), transparent 45%),
-        radial-gradient(circle at 85% 18%, rgba(251, 191, 36, 0.26), transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.25), transparent 50%),
-        linear-gradient(160deg, #090d1e 0%, #111c44 55%, #090d1e 100%);
-      color: var(--ink);
+        repeating-linear-gradient(
+          45deg,
+          rgba(30, 64, 175, 0.35) 0px,
+          rgba(30, 64, 175, 0.35) 28px,
+          rgba(29, 78, 216, 0.35) 28px,
+          rgba(29, 78, 216, 0.35) 56px
+        ),
+        radial-gradient(circle at top, #3b82f6 0%, #1e3a8a 55%, #090d1e 100%);
+      color: #ffffff;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 8px;
+      padding: 6px;
       overflow-x: hidden;
-    }
-
-    /* स्टार्टिंग स्क्रीन कलरफुल ऑरोरा और एनिमेटेड बैकग्राउंड */
-    .bg-ambient {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .aurora-orb {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(42px);
-      opacity: 0.45;
-      animation: auroraDrift 9s infinite alternate ease-in-out;
-    }
-
-    .aurora-orb.one {
-      width: 220px;
-      height: 220px;
-      top: -40px;
-      left: -40px;
-      background: linear-gradient(135deg, #38bdf8, #6366f1);
-    }
-
-    .aurora-orb.two {
-      width: 240px;
-      height: 240px;
-      top: 22%;
-      right: -60px;
-      background: linear-gradient(135deg, #f59e0b, #ec4899);
-      animation-delay: -3s;
-    }
-
-    .aurora-orb.three {
-      width: 250px;
-      height: 250px;
-      bottom: -50px;
-      left: 15%;
-      background: linear-gradient(135deg, #10b981, #3b82f6);
-      animation-delay: -6s;
-    }
-
-    @keyframes auroraDrift {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(22px, 18px) scale(1.16); }
-    }
-
-    .ambient-item {
-      position: absolute;
-      font-size: 1.6rem;
-      opacity: 0.22;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55));
-      animation: floatDice 10s infinite ease-in-out;
-    }
-
-    .ambient-item:nth-child(4) { top: 9%; left: 8%; animation-delay: 0s; font-size: 2rem; }
-    .ambient-item:nth-child(5) { top: 19%; right: 8%; animation-delay: -2s; }
-    .ambient-item:nth-child(6) { top: 46%; left: 4%; animation-delay: -4s; font-size: 1.85rem; }
-    .ambient-item:nth-child(7) { top: 64%; right: 6%; animation-delay: -6s; font-size: 2.1rem; }
-    .ambient-item:nth-child(8) { bottom: 11%; left: 10%; animation-delay: -8s; }
-    .ambient-item:nth-child(9) { bottom: 19%; right: 12%; animation-delay: -3s; font-size: 1.8rem; }
-
-    @keyframes floatDice {
-      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.16; }
-      50% { transform: translateY(-18px) rotate(24deg) scale(1.14); opacity: 0.32; }
     }
 
     .app-wrap {
@@ -117,317 +52,410 @@
       max-width: 455px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
       position: relative;
       z-index: 2;
     }
 
-    .top-bar {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 58, 138, 0.92));
-      border: 1.5px solid rgba(251, 191, 36, 0.7);
-      border-radius: 16px;
-      padding: 8px 12px;
+    /* शुरू होने से पहले GREEN STAR स्पलैश एनीमेशन */
+    .green-star-splash {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #064e3b 0%, #022c22 65%, #020617 100%);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.55), 0 0 18px rgba(251, 191, 36, 0.2);
-      position: relative;
-      overflow: hidden;
+      justify-content: center;
+      z-index: 90;
+      text-align: center;
+      padding: 20px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .brand img {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      border: 1.5px solid #fbbf24;
-      object-fit: cover;
-    }
-
-    .brand-name {
-      font-weight: 900;
-      font-size: 1rem;
-      color: #fde047;
-      line-height: 1.1;
-      text-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
-    }
-
-    .brand-sub {
-      font-size: 0.64rem;
-      letter-spacing: 0.7px;
-      color: #e2e8f0;
-      font-weight: 700;
-    }
-
-    .wallet-group {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .coin-pill {
-      background: rgba(251, 191, 36, 0.18);
-      border: 1px solid #fbbf24;
-      color: #fef08a;
-      padding: 5px 8px;
+    .gstar-ring {
+      width: 128px;
+      height: 128px;
       border-radius: 999px;
-      font-size: 0.78rem;
+      background: radial-gradient(circle, #34d399, #059669 70%, #065f46);
+      border: 4px solid #fde047;
+      box-shadow: 0 0 36px rgba(52, 211, 153, 0.85), 0 0 70px rgba(251, 191, 36, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.6rem;
+      animation: greenStarPulse 1.3s infinite alternate ease-in-out;
+    }
+
+    @keyframes greenStarPulse {
+      0% { transform: scale(0.92) rotate(-8deg); box-shadow: 0 0 24px rgba(52, 211, 153, 0.7); }
+      100% { transform: scale(1.1) rotate(8deg); box-shadow: 0 0 50px rgba(16, 185, 129, 1), 0 0 24px #fde047; }
+    }
+
+    .gstar-title {
+      margin-top: 16px;
+      font-size: 1.85rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #6ee7b7;
+      text-shadow: 0 0 18px rgba(16, 185, 129, 0.9), 0 3px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .gstar-sub {
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: #fde68a;
       font-weight: 800;
     }
 
-    .icon-btn {
-      background: linear-gradient(135deg, #fde047, #f59e0b);
-      color: #0f172a;
-      border: none;
-      border-radius: 999px;
-      padding: 5px 9px;
-      font-weight: 900;
-      font-size: 0.75rem;
-      cursor: pointer;
-      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
-    }
-
-    /* प्रोफ़ेशनल कलरफुल शाइनी स्टार्टिंग पैनल */
-    .panel {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 250, 252, 0.97) 100%);
-      border-radius: 20px;
-      padding: 12px;
-      box-shadow:
-        0 14px 34px rgba(2, 6, 23, 0.5),
-        0 0 22px rgba(56, 189, 248, 0.22);
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
+    /* Facebook और Guest लॉगिन ओवरले */
+    .auth-overlay {
+      position: fixed;
       inset: 0;
-      border-radius: 20px;
-      padding: 2px;
-      background: linear-gradient(135deg, #fbbf24, #ec4899, #38bdf8, #22c55e, #fbbf24);
-      background-size: 300% 300%;
-      animation: borderPrism 5s linear infinite;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+      background: rgba(9, 13, 30, 0.9);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 80;
     }
 
-    @keyframes borderPrism {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .auth-card {
+      width: 100%;
+      max-width: 360px;
+      background: linear-gradient(180deg, #1e3a8a, #0f172a);
+      border: 2.5px solid #fbbf24;
+      border-radius: 22px;
+      padding: 18px 14px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
     }
 
-    .shine-layer {
+    .fb-login-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 13px;
+      border: 2px solid #93c5fd;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 16px rgba(29, 78, 216, 0.45);
+    }
+
+    .guest-login-btn {
+      width: 100%;
+      margin-top: 9px;
+      padding: 12px;
+      border-radius: 13px;
+      border: 2px solid #fde047;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0f172a;
+      font-size: 0.95rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+    }
+
+    /* टॉप हेडर (Ludo King स्टाइल) */
+    .lk-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 4px 2px;
+    }
+
+    .profile-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 2px solid #fbbf24;
+      border-radius: 14px;
+      padding: 3px 8px 3px 4px;
+      cursor: pointer;
+    }
+
+    .avatar-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #38bdf8, #1d4ed8);
+      border: 1.5px solid #fde047;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      position: relative;
+    }
+
+    .lvl-tag {
+      position: absolute;
+      bottom: -5px;
+      right: -4px;
+      background: #f59e0b;
+      color: #0f172a;
+      font-size: 0.62rem;
+      font-weight: 900;
+      padding: 0 4px;
+      border-radius: 6px;
+      border: 1px solid #fff;
+    }
+
+    .lk-stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 2px solid #fbbf24;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .plus-badge {
+      background: #22c55e;
+      color: #fff;
+      border: none;
+      width: 19px;
+      height: 19px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* सेंटर लोगो बैनर */
+    .lk-banner {
+      text-align: center;
+      padding: 4px 6px 2px;
+      position: relative;
+    }
+
+    .lk-title-box {
+      display: inline-block;
+      background: linear-gradient(180deg, #fde047, #f59e0b 65%, #b45309);
+      border: 2.5px solid #fef9c3;
+      border-radius: 16px;
+      padding: 5px 18px;
+      box-shadow: 0 6px 0 #78350f, 0 10px 22px rgba(0, 0, 0, 0.45);
       position: relative;
       overflow: hidden;
     }
 
-    .shine-layer::after {
+    .lk-title-box::after {
       content: "";
       position: absolute;
-      top: -45%;
-      left: -130%;
-      width: 65%;
-      height: 190%;
-      background: linear-gradient(
-        115deg,
-        transparent 20%,
-        rgba(255, 255, 255, 0.65) 50%,
-        transparent 80%
-      );
-      transform: skewX(-22deg);
-      animation: shineSweep 2.9s infinite ease-in-out;
+      top: -40%;
+      left: -120%;
+      width: 55%;
+      height: 180%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.65) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 3.2s infinite ease-in-out;
       pointer-events: none;
     }
 
     @keyframes shineSweep {
-      0% { left: -130%; }
-      55%, 100% { left: 165%; }
+      0% { left: -120%; }
+      55%, 100% { left: 160%; }
     }
 
-    .hero {
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 45%, #e0f2fe 100%);
-      border: 1.5px solid #f59e0b;
-      border-radius: 16px;
-      padding: 11px 10px;
-      text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 6px 16px rgba(245, 158, 11, 0.22);
+    .lk-title-text {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #0f172a;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
     }
 
-    .hero-dice-row {
-      display: inline-flex;
+    .music-strip {
+      margin-top: 5px;
+      display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.65rem;
-    }
-
-    .hero-spin-dice {
-      display: inline-block;
-      animation: heroDiceBounce 2.1s infinite ease-in-out;
-      filter: drop-shadow(0 5px 10px rgba(37, 99, 235, 0.4));
-    }
-
-    .hero-crown {
-      display: inline-block;
-      animation: crownGlow 1.8s infinite alternate ease-in-out;
-      filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.6));
-    }
-
-    @keyframes heroDiceBounce {
-      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-      50% { transform: translateY(-7px) rotate(180deg) scale(1.12); }
-    }
-
-    @keyframes crownGlow {
-      from { transform: scale(1) rotate(-5deg); }
-      to { transform: scale(1.14) rotate(5deg); }
-    }
-
-    .hero h1 {
-      margin: 3px 0 2px;
-      font-size: 1.32rem;
-      background: linear-gradient(90deg, #92400e, #be185d, #1d4ed8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 900;
-    }
-
-    .hero p {
-      margin: 0;
-      font-size: 0.74rem;
-      color: #334155;
-      font-weight: 800;
-    }
-
-    .sec-title {
-      font-size: 0.78rem;
-      font-weight: 900;
-      color: #1e3a8a;
-      margin: 9px 0 5px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .name-row {
-      display: flex;
+      justify-content: center;
       gap: 6px;
+      flex-wrap: wrap;
     }
 
-    .name-row input, .loc-input {
-      padding: 7px 9px;
-      border-radius: 10px;
-      border: 1.5px solid #cbd5e1;
-      font-weight: 800;
-      font-size: 0.85rem;
-      outline: none;
-      background: #fff;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .name-row input:focus, .loc-input:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
-    }
-
-    .name-row input {
-      flex: 1;
-    }
-
-    .loc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .btn-save {
-      background: linear-gradient(135deg, #2563eb, #1e3a8a);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 0 13px;
+    .music-chip {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(251, 191, 36, 0.65);
+      color: #fde68a;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.7rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
     }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
+    .music-chip.active {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #bbf7d0;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 7px;
+    /* Ludo King स्टाइल बड़े गोल्ड-बॉर्डर कार्ड */
+    .lk-card {
+      background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+      border: 2.5px solid #fbbf24;
+      border-radius: 16px;
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #92400e, 0 8px 18px rgba(0, 0, 0, 0.35);
+      position: relative;
+      transition: transform 0.12s ease;
+    }
+
+    .lk-card:active {
+      transform: translateY(2px);
+    }
+
+    .lk-card.selected-card {
+      background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+      border-color: #fef08a;
+      box-shadow: 0 5px 0 #14532d, 0 0 18px rgba(74, 222, 128, 0.6);
+    }
+
+    .play-now-tag {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 900;
+      padding: 1px 8px;
+      border-radius: 999px;
+      border: 1.5px solid #fde047;
+      white-space: nowrap;
+    }
+
+    .lk-card-icon {
+      font-size: 1.55rem;
+      line-height: 1.1;
+      filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
+    }
+
+    .lk-card-title {
+      margin-top: 4px;
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: #fde047;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .lk-card-sub {
+      font-size: 0.68rem;
+      color: #86efac;
+      font-weight: 800;
+      margin-top: 1px;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 7px;
+      margin-top: 4px;
     }
 
-    .opt-btn {
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 11px;
-      padding: 8px 5px;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .sub-box {
+      background: rgba(15, 23, 42, 0.82);
+      border: 2px solid rgba(251, 191, 36, 0.75);
+      border-radius: 16px;
+      padding: 9px 10px;
+      margin-top: 6px;
+    }
+
+    .sub-title {
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: #fde047;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .mini-opt {
+      background: #1e3a8a;
+      color: #fff;
+      border: 1.5px solid #93c5fd;
+      border-radius: 10px;
+      padding: 6px 4px;
+      font-size: 0.76rem;
       font-weight: 800;
-      font-size: 0.8rem;
-      color: #0f172a;
       cursor: pointer;
-      text-align: center;
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
 
-    .opt-btn:active {
-      transform: scale(0.96);
-    }
-
-    .opt-btn.active {
-      background: linear-gradient(135deg, #fef08a, #fde047);
-      border-color: #f59e0b;
-      color: #78350f;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.32);
-    }
-
-    .table-opt {
-      background: linear-gradient(180deg, #fffbeb, #fef3c7);
-      border: 1.5px solid #fbbf24;
-      border-radius: 12px;
-      padding: 7px 4px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.12s ease;
-    }
-
-    .table-opt.active {
+    .mini-opt.active {
       background: linear-gradient(135deg, #fde047, #f59e0b);
-      border-color: #b45309;
       color: #0f172a;
-      transform: translateY(-1px);
-      box-shadow: 0 5px 14px rgba(245, 158, 11, 0.38);
+      border-color: #fff;
+    }
+
+    .loc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 6px;
+    }
+
+    .loc-input {
+      padding: 6px 8px;
+      border-radius: 9px;
+      border: 1.5px solid #93c5fd;
+      background: #fff;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 0.78rem;
+      outline: none;
+      width: 100%;
+    }
+
+    .save-mini-btn {
+      background: #22c55e;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 0 10px;
+      font-weight: 900;
+      font-size: 0.76rem;
+      cursor: pointer;
     }
 
     .room-strip {
-      margin-top: 8px;
-      background: linear-gradient(135deg, #eff6ff, #fdf4ff);
-      border: 1.5px dashed #6366f1;
-      border-radius: 12px;
-      padding: 7px 9px;
+      margin-top: 7px;
+      background: rgba(30, 58, 138, 0.65);
+      border: 1.5px dashed #fde047;
+      border-radius: 11px;
+      padding: 6px 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -437,102 +465,124 @@
 
     .mini-btn {
       background: #ffffff;
-      border: 1px solid #cbd5e1;
+      border: none;
       border-radius: 8px;
-      padding: 5px 8px;
-      font-size: 0.74rem;
-      font-weight: 800;
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      font-weight: 900;
       cursor: pointer;
-      text-decoration: none;
       color: #0f172a;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
     }
 
     .wa-btn {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
+      background: #22c55e;
       color: #ffffff;
       border: none;
       border-radius: 8px;
-      padding: 5px 10px;
-      font-size: 0.75rem;
+      padding: 5px 9px;
+      font-size: 0.73rem;
       font-weight: 900;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      box-shadow: 0 3px 10px rgba(22, 163, 74, 0.35);
-    }
-
-    .lb-box {
-      margin-top: 10px;
-      background: linear-gradient(180deg, #f8fafc, #eff6ff);
-      border: 1.5px solid #bfdbfe;
-      border-radius: 14px;
-      padding: 8px;
+      gap: 3px;
     }
 
     .lb-tabs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 5px;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .lb-tab {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #64748b;
       border-radius: 8px;
       padding: 5px 4px;
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       font-weight: 800;
       cursor: pointer;
     }
 
     .lb-tab.active {
-      background: linear-gradient(135deg, #2563eb, #1e3a8a);
-      color: #ffffff;
-      border-color: #1e3a8a;
+      background: #f59e0b;
+      color: #0f172a;
+      border-color: #fde047;
     }
 
     .lb-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(251, 191, 36, 0.35);
       border-radius: 9px;
       padding: 5px 8px;
       margin-bottom: 4px;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-weight: 800;
+      color: #fff;
     }
 
     .lb-item.me {
-      background: linear-gradient(135deg, #fef9c3, #fef08a);
-      border-color: #f59e0b;
+      background: rgba(251, 191, 36, 0.24);
+      border-color: #fde047;
+      color: #fef08a;
     }
 
-    .play-btn {
+    .start-big-btn {
       width: 100%;
-      margin-top: 10px;
-      padding: 13px;
+      margin-top: 8px;
+      padding: 12px;
       border-radius: 15px;
-      border: 1.5px solid #fde047;
-      background: linear-gradient(135deg, #22c55e 0%, #15803d 55%, #0ea5e9 100%);
+      border: 2px solid #fef08a;
+      background: linear-gradient(135deg, #22c55e, #15803d);
       color: #ffffff;
-      font-size: 1.08rem;
+      font-size: 1.04rem;
       font-weight: 900;
-      letter-spacing: 0.6px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.45), 0 0 18px rgba(56, 189, 248, 0.35);
+      box-shadow: 0 5px 0 #14532d, 0 8px 20px rgba(34, 197, 94, 0.45);
     }
 
+    /* बॉटम नेविगेशन बार (Ludo King स्टाइल) */
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      background: linear-gradient(180deg, #1e3a8a, #0f172a);
+      border: 2px solid #fbbf24;
+      border-radius: 16px;
+      padding: 5px;
+      margin-top: 4px;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      border-radius: 11px;
+      padding: 5px 3px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(180deg, #38bdf8, #1d4ed8);
+      color: #fde047;
+      border: 1px solid #fde047;
+    }
+
+    /* गेमप्ले स्क्रीन */
     .game-top {
       background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(251, 191, 36, 0.45);
+      border: 1.5px solid #fbbf24;
       border-radius: 14px;
       padding: 6px 10px;
       display: flex;
@@ -561,6 +611,7 @@
 
     .seat-box {
       background: #ffffff;
+      color: #0f172a;
       border-radius: 13px;
       padding: 6px 8px;
       display: flex;
@@ -652,7 +703,6 @@
       gap: 2px;
       cursor: pointer;
       flex-shrink: 0;
-      transition: transform 0.12s ease;
     }
 
     .dice-3d.ready {
@@ -683,13 +733,8 @@
       background: transparent;
     }
 
-    .pip.on {
-      background: #0f172a;
-    }
-
-    .pip.red-pip {
-      background: #dc2626;
-    }
+    .pip.on { background: #0f172a; }
+    .pip.red-pip { background: #dc2626; }
 
     .board-frame {
       background: #1e293b;
@@ -697,7 +742,6 @@
       border-radius: 16px;
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
       border: 2px solid #fbbf24;
-      position: relative;
     }
 
     .ludo-grid {
@@ -747,7 +791,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15);
     }
 
     .home-center {
@@ -819,7 +862,6 @@
       filter: brightness(1.25) drop-shadow(0 6px 8px rgba(251, 191, 36, 0.85));
       z-index: 14;
     }
-
     .pawn.stepping-happy::before {
       content: "😊";
       position: absolute;
@@ -880,17 +922,14 @@
       from { transform: translateX(-1.5px); }
       to { transform: translateX(1.5px); }
     }
-
     @keyframes killerZoom {
       from { transform: scale(1); }
       to { transform: scale(1.16); }
     }
-
     @keyframes happyBounce {
       from { transform: translateY(0); }
       to { transform: translateY(-3px); }
     }
-
     @keyframes cryShake {
       from { transform: rotate(-12deg) scale(1.05); }
       to { transform: rotate(12deg) scale(1.12); }
@@ -939,43 +978,31 @@
     .warn-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 23, 0.82);
+      background: rgba(2, 6, 23, 0.84);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      z-index: 60;
+      z-index: 95;
     }
 
     .warn-card {
       width: 100%;
       max-width: 340px;
       background: #ffffff;
+      color: #0f172a;
       border-radius: 18px;
       padding: 16px;
       text-align: center;
-      border: 2px solid #f59e0b;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
-    }
-
-    .warn-title {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 6px;
-    }
-
-    .warn-desc {
-      font-size: 0.84rem;
-      color: #475569;
-      margin: 6px 0 14px;
-      font-weight: 600;
+      border: 2.5px solid #f59e0b;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
     }
 
     .warn-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
+      margin-top: 12px;
     }
 
     .btn-stay {
@@ -1004,109 +1031,148 @@
   </style>
 </head>
 <body>
-  <!-- स्टार्टिंग स्क्रीन कलरफुल ऑरोरा व एनिमेटेड बैकग्राउंड -->
-  <div class="bg-ambient" id="ambientBg">
-    <div class="aurora-orb one"></div>
-    <div class="aurora-orb two"></div>
-    <div class="aurora-orb three"></div>
-    <div class="ambient-item">🎲</div>
-    <div class="ambient-item">👑</div>
-    <div class="ambient-item">🎲</div>
-    <div class="ambient-item">✨</div>
-    <div class="ambient-item">🎲</div>
-    <div class="ambient-item">👑</div>
+  <!-- 1. शुरू होने से पहले GREEN STAR एनीमेशन -->
+  <div class="green-star-splash" id="greenStarSplash">
+    <div class="gstar-ring">⭐</div>
+    <div class="gstar-title">GREEN STAR</div>
+    <div class="gstar-sub">देसी लूडो राजा • लोडिंग हो रहा है...</div>
+  </div>
+
+  <!-- 2. Facebook और Guest लॉगिन स्क्रीन -->
+  <div class="auth-overlay hidden" id="authModal">
+    <div class="auth-card">
+      <div style="font-size: 2.3rem;">👑🎲</div>
+      <div style="font-size: 1.25rem; font-weight: 900; color: #fde047; margin-top: 4px;">
+        देसी लूडो राजा
+      </div>
+      <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 2px;">
+        खेलने का तरीका चुनें
+      </div>
+
+      <button type="button" class="fb-login-btn" id="loginFacebookBtn">
+        <span>📘</span>
+        <span>Continue with Facebook</span>
+      </button>
+
+      <button type="button" class="guest-login-btn" id="loginGuestBtn">
+        <span>👤</span>
+        <span>Play as Guest</span>
+      </button>
+    </div>
   </div>
 
   <div class="app-wrap">
-    <div class="top-bar shine-layer">
-      <div class="brand">
-        <img src="icon-512.png" alt="देसी लूडो राजा" onerror="this.style.display='none'" />
+    <!-- Ludo King जैसा टॉप हेडर -->
+    <div class="lk-header">
+      <div class="profile-pill" id="profilePill">
+        <div class="avatar-box">
+          <span id="avatarEmoji">👑</span>
+          <span class="lvl-tag">12</span>
+        </div>
         <div>
-          <div class="brand-name">देसी लूडो राजा</div>
-          <div class="brand-sub">PRISM SHINE • STEP HAPPY • SAFE EXIT</div>
+          <div style="font-size:0.78rem;font-weight:900;color:#fde047;" id="headerPlayerName">राजा</div>
+          <div style="font-size:0.62rem;color:#86efac;font-weight:800;" id="headerAuthTag">Guest</div>
         </div>
       </div>
-      <div class="wallet-group">
-        <div class="coin-pill" id="walletCoins">🪙 5000</div>
-        <button type="button" class="icon-btn" id="addBonusBtn">+500</button>
-        <button type="button" class="icon-btn" id="soundToggleBtn">🔊</button>
+
+      <div class="lk-stat-pill">
+        <span>💎</span>
+        <span id="gemsCount">50</span>
+        <button type="button" class="plus-badge" id="addGemsBtn">+</button>
+      </div>
+
+      <div class="lk-stat-pill">
+        <span>🪙</span>
+        <span id="walletCoins">5000</span>
+        <button type="button" class="plus-badge" id="addBonusBtn">+</button>
+        <button type="button" class="plus-badge" style="background:#f59e0b;color:#0f172a;margin-left:2px;" id="soundToggleBtn">🔊</button>
       </div>
     </div>
 
-    <!-- कलरफुल शाइनी स्टार्टिंग लॉबी -->
-    <div class="panel" id="lobbyScreen">
-      <div class="hero shine-layer">
-        <div class="hero-dice-row">
-          <span class="hero-spin-dice">🎲</span>
-          <span class="hero-crown">👑</span>
-          <span class="hero-spin-dice">🎲</span>
+    <!-- डैशबोर्ड / लॉबी -->
+    <div id="lobbyScreen">
+      <div class="lk-banner">
+        <div class="lk-title-box">
+          <div class="lk-title-text">👑 देसी लूडो राजा</div>
         </div>
-        <h1>देसी लूडो राजा</h1>
-        <p>रंगीन ऑरोरा शाइन • स्टेप पर 😊 + शैडो • सुरक्षित एग्जिट</p>
-      </div>
-
-      <div class="sec-title"><span>खिलाड़ी व स्थान (City / State)</span></div>
-      <div class="name-row">
-        <input type="text" id="nameInput" value="राजा" maxlength="14" placeholder="आपका नाम" />
-        <button type="button" class="btn-save" id="saveNameBtn">सेव</button>
-      </div>
-      <div class="loc-grid">
-        <input type="text" class="loc-input" id="cityInput" value="जबलपुर" maxlength="16" placeholder="शहर (City)" />
-        <input type="text" class="loc-input" id="stateInput" value="मध्य प्रदेश" maxlength="18" placeholder="राज्य (State)" />
-      </div>
-
-      <div class="sec-title">
-        <span>खिलाड़ी चुनें (1, 2, 3, 4)</span>
-        <span id="countBadge">2 खिलाड़ी</span>
-      </div>
-      <div class="grid-4" id="countButtons">
-        <button type="button" class="opt-btn" data-count="1">1 खिलाड़ी</button>
-        <button type="button" class="opt-btn active" data-count="2">2 खिलाड़ी</button>
-        <button type="button" class="opt-btn" data-count="3">3 खिलाड़ी</button>
-        <button type="button" class="opt-btn" data-count="4">4 खिलाड़ी</button>
-      </div>
-
-      <div class="sec-title"><span>गेम मोड</span></div>
-      <div class="grid-2" id="modeButtons">
-        <button type="button" class="opt-btn active" data-mode="bot">🤖 कंप्यूटर (Bot)</button>
-        <button type="button" class="opt-btn" data-mode="friend">🤝 दोस्त के साथ</button>
-        <button type="button" class="opt-btn" data-mode="pass">📱 एक ही फ़ोन</button>
-        <button type="button" class="opt-btn" data-mode="solo">👑 सोलो प्रैक्टिस</button>
-      </div>
-
-      <div class="sec-title"><span>टेबल चुनें</span></div>
-      <div class="grid-3" id="tableButtons">
-        <div class="table-opt active" data-entry="500" data-win="2000">
-          <div style="font-weight:900;font-size:0.8rem;">देसी टेबल</div>
-          <div style="font-size:0.76rem;color:#92400e;font-weight:800;">🪙 500</div>
-          <div style="font-size:0.7rem;color:#15803d;font-weight:800;">जीत 2000</div>
-        </div>
-        <div class="table-opt" data-entry="2000" data-win="8000">
-          <div style="font-weight:900;font-size:0.8rem;">नवाबी टेबल</div>
-          <div style="font-size:0.76rem;color:#92400e;font-weight:800;">🪙 2000</div>
-          <div style="font-size:0.7rem;color:#15803d;font-weight:800;">जीत 8000</div>
-        </div>
-        <div class="table-opt" data-entry="5000" data-win="20000">
-          <div style="font-weight:900;font-size:0.8rem;">बादशाह टेबल</div>
-          <div style="font-size:0.76rem;color:#92400e;font-weight:800;">🪙 5000</div>
-          <div style="font-size:0.7rem;color:#15803d;font-weight:800;">जीत 20000</div>
+        <div class="music-strip">
+          <button type="button" class="music-chip active" data-track="splash">🎵 इंट्रो धुन</button>
+          <button type="button" class="music-chip" data-track="lobby">🎶 लॉबी बीट</button>
+          <button type="button" class="music-chip" data-track="game">🔥 गेमप्ले धुन</button>
         </div>
       </div>
 
-      <div class="room-strip">
-        <div>
-          <div style="font-size:0.68rem;color:#64748b;font-weight:700;">रूम कोड</div>
-          <div style="font-weight:900;font-size:0.9rem;" id="roomCodeDisplay">RAJA-8042</div>
+      <!-- Ludo King स्टाइल 3 मुख्य मोड कार्ड -->
+      <div class="grid-3">
+        <div class="lk-card selected-card" data-mode="bot">
+          <div class="play-now-tag">PLAY NOW</div>
+          <div class="lk-card-icon">🌐🤖</div>
+          <div class="lk-card-title">ONLINE / BOT</div>
+          <div class="lk-card-sub">● Players: 85,139</div>
         </div>
-        <div style="display:flex;gap:5px;flex-wrap:wrap;">
-          <button type="button" class="mini-btn" id="refreshRoomBtn">↻ नया</button>
-          <button type="button" class="mini-btn" id="copyRoomBtn">कॉपी</button>
-          <a class="wa-btn" id="whatsappInviteLink" target="_blank" rel="noopener">💬 WhatsApp</a>
+
+        <div class="lk-card" data-mode="pass">
+          <div class="lk-card-icon">⚔️🛡️</div>
+          <div class="lk-card-title">TEAM UP</div>
+          <div class="lk-card-sub">● Players: 1,520</div>
+        </div>
+
+        <div class="lk-card" data-mode="friend">
+          <div class="lk-card-icon">🤝❤️</div>
+          <div class="lk-card-title">FRIENDS</div>
+          <div class="lk-card-sub">● Players: 11,116</div>
         </div>
       </div>
 
-      <div class="lb-box">
-        <div class="sec-title" style="margin:0 0 6px;"><span>🏆 लीडरबोर्ड</span></div>
+      <!-- COMPUTER और PASS N PLAY कार्ड -->
+      <div class="grid-2">
+        <div class="lk-card" data-mode="bot">
+          <div class="lk-card-icon">💻 VS 🤖</div>
+          <div class="lk-card-title">COMPUTER</div>
+        </div>
+
+        <div class="lk-card" data-mode="pass">
+          <div class="lk-card-icon">📱🎲📱</div>
+          <div class="lk-card-title">PASS N PLAY</div>
+        </div>
+      </div>
+
+      <!-- खिलाड़ी संख्या + WhatsApp इनवाइट -->
+      <div class="sub-box">
+        <div class="sub-title">
+          <span>खिलाड़ी संख्या</span>
+          <span id="countBadge">2 खिलाड़ी</span>
+        </div>
+        <div class="grid-4" id="countButtons">
+          <button type="button" class="mini-opt" data-count="1">1 खिलाड़ी</button>
+          <button type="button" class="mini-opt active" data-count="2">2 खिलाड़ी</button>
+          <button type="button" class="mini-opt" data-count="3">3 खिलाड़ी</button>
+          <button type="button" class="mini-opt" data-count="4">4 खिलाड़ी</button>
+        </div>
+
+        <div class="room-strip">
+          <div>
+            <div style="font-size:0.65rem;color:#fde68a;font-weight:700;">रूम कोड</div>
+            <div style="font-weight:900;font-size:0.86rem;" id="roomCodeDisplay">RAJA-8042</div>
+          </div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;">
+            <button type="button" class="mini-btn" id="refreshRoomBtn">↻ नया</button>
+            <button type="button" class="mini-btn" id="copyRoomBtn">कॉपी</button>
+            <a class="wa-btn" id="whatsappInviteLink" target="_blank" rel="noopener">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- नीचे वाले टैब्स: शहर/राज्य + लीडरबोर्ड -->
+      <div class="sub-box" id="tabSection">
+        <div class="sub-title"><span>शहर / राज्य (City & State)</span></div>
+        <div class="loc-grid">
+          <input type="text" class="loc-input" id="cityInput" value="जबलपुर" maxlength="16" placeholder="शहर" />
+          <input type="text" class="loc-input" id="stateInput" value="मध्य प्रदेश" maxlength="18" placeholder="राज्य" />
+          <button type="button" class="save-mini-btn" id="saveLocBtn">सेव</button>
+        </div>
+
+        <div class="sub-title" style="margin-top:8px;"><span>🏆 लीडरबोर्ड</span></div>
         <div class="lb-tabs" id="lbTabs">
           <button type="button" class="lb-tab active" data-lb="friend">🤝 Friend</button>
           <button type="button" class="lb-tab" data-lb="city">🏙️ City</button>
@@ -1115,12 +1181,32 @@
         <div id="lbRows"></div>
       </div>
 
-      <div id="lobbyMsg" style="text-align:center;font-size:0.78rem;font-weight:800;color:#b45309;margin-top:6px;min-height:16px;"></div>
+      <div id="lobbyMsg" style="text-align:center;font-size:0.76rem;font-weight:800;color:#fde047;margin-top:4px;min-height:14px;"></div>
 
-      <button type="button" class="play-btn shine-layer" id="startPlayBtn">▶ खेल शुरू करें</button>
+      <button type="button" class="start-big-btn" id="startPlayBtn">▶ अभी खेल शुरू करें</button>
+
+      <!-- Ludo King स्टाइल बॉटम नेविगेशन बार -->
+      <div class="bottom-nav">
+        <button type="button" class="nav-btn active" id="navHomeBtn">
+          <span>🏠</span>
+          <span>HOME</span>
+        </button>
+        <button type="button" class="nav-btn" id="navAuthBtn">
+          <span>👤</span>
+          <span>FB / GUEST</span>
+        </button>
+        <button type="button" class="nav-btn" id="navLbBtn">
+          <span>🏆</span>
+          <span>LEADERBOARD</span>
+        </button>
+        <button type="button" class="nav-btn" id="navExitBtn">
+          <span>🚪</span>
+          <span>EXIT</span>
+        </button>
+      </div>
     </div>
 
-    <!-- गेम स्क्रीन -->
+    <!-- गेमप्ले स्क्रीन -->
     <div class="hidden" id="gameScreen" style="display:flex;flex-direction:column;gap:7px;">
       <div class="game-top">
         <span id="matchTitle" style="font-weight:800;">देसी लूडो राजा</span>
@@ -1149,8 +1235,8 @@
     <div class="warn-backdrop hidden" id="exitWarningModal">
       <div class="warn-card">
         <div style="font-size: 2rem;">🚪</div>
-        <div class="warn-title" id="exitWarningTitle">बाहर निकलें?</div>
-        <div class="warn-desc" id="exitWarningText">
+        <div style="font-size: 1.05rem; font-weight: 900; margin-top: 4px;" id="exitWarningTitle">बाहर निकलें?</div>
+        <div style="font-size: 0.84rem; color: #475569; margin: 6px 0; font-weight: 600;" id="exitWarningText">
           क्या आप वाकई बाहर जाना चाहते हैं?
         </div>
         <div class="warn-actions">
@@ -1196,8 +1282,16 @@
       6: [0, 2, 3, 5, 6, 8]
     };
 
+    const MUSIC_NOTES = {
+      splash: [523.25, 659.25, 783.99, 1046.5],
+      lobby: [392.0, 440.0, 523.25, 440.0],
+      game: [329.63, 392.0, 493.88, 587.33]
+    };
+
     let coins = 5000;
+    let gems = 50;
     let userName = 'राजा';
+    let loginType = 'Guest';
     let userCity = 'जबलपुर';
     let userState = 'मध्य प्रदेश';
     let selectedPlayersCount = 2;
@@ -1205,6 +1299,7 @@
     let selectedTable = { entry: 500, win: 2000 };
     let roomCode = 'RAJA-8042';
     let activeLbScope = 'friend';
+    let currentMusicTrack = 'splash';
     let soundOn = true;
 
     let players = [];
@@ -1224,24 +1319,48 @@
     let exitMode = 'TO_LOBBY';
 
     let audioCtx = null;
-    function playTone(freq, duration = 0.08, type = 'sine', gainVal = 0.08) {
-      if (!soundOn) return;
+    function getAudioCtx() {
+      if (!soundOn) return null;
       try {
         if (!audioCtx) {
           audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (audioCtx.state === 'suspended') audioCtx.resume();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
+        return audioCtx;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function playTone(freq, duration = 0.08, type = 'sine', gainVal = 0.08) {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
         osc.type = type;
         osc.frequency.value = freq;
-        gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
         osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        gain.connect(ctx.destination);
         osc.start();
-        osc.stop(audioCtx.currentTime + duration);
+        osc.stop(ctx.currentTime + duration);
       } catch (e) {}
+    }
+
+    function playTrackTheme(trackName) {
+      currentMusicTrack = trackName;
+      document.querySelectorAll('.music-chip').forEach((chip) => {
+        chip.classList.toggle('active', chip.dataset.track === trackName);
+      });
+      const notes = MUSIC_NOTES[trackName] || MUSIC_NOTES.lobby;
+      notes.forEach((n, idx) => {
+        setTimeout(() => {
+          const wave = trackName === 'splash' ? 'triangle' : trackName === 'game' ? 'sawtooth' : 'sine';
+          playTone(n, 0.14, wave, 0.055);
+        }, idx * 145);
+      });
     }
 
     function trackTimer(id) {
@@ -1291,7 +1410,7 @@
         const div = document.createElement('div');
         div.className = `lb-item ${row.isMe ? 'me' : ''}`;
         div.innerHTML = `
-          <span>#${idx + 1} ${row.name} <small style="color:#64748b;">(${row.place})</small></span>
+          <span>#${idx + 1} ${row.name} <small style="opacity:0.75;">(${row.place})</small></span>
           <span>🪙 ${row.pts}</span>
         `;
         container.appendChild(div);
@@ -1341,8 +1460,12 @@
       });
     }
 
-    function updateWalletUI() {
-      document.getElementById('walletCoins').textContent = `🪙 ${coins}`;
+    function updateHeaderStats() {
+      document.getElementById('walletCoins').textContent = `${coins}`;
+      document.getElementById('gemsCount').textContent = `${gems}`;
+      document.getElementById('headerPlayerName').textContent = userName;
+      document.getElementById('headerAuthTag').textContent = loginType;
+      document.getElementById('avatarEmoji').textContent = loginType === 'Facebook' ? '📘' : '👑';
       renderLeaderboard();
     }
 
@@ -1854,7 +1977,7 @@
           state = 'FINISHED';
           if (!p.isBot) {
             coins += selectedTable.win;
-            updateWalletUI();
+            updateHeaderStats();
           }
           playTone(880, 0.35, 'triangle', 0.14);
           showSeatEmotion(p.seatId, '🏆');
@@ -1883,13 +2006,14 @@
 
     function launchMatch() {
       if (coins < selectedTable.entry) {
-        document.getElementById('lobbyMsg').textContent = 'कॉइन्स कम हैं! ऊपर +500 दबाएं।';
+        document.getElementById('lobbyMsg').textContent = 'कॉइन्स कम हैं! ऊपर + दबाएं।';
         return;
       }
       coins -= selectedTable.entry;
-      updateWalletUI();
+      updateHeaderStats();
       document.getElementById('lobbyMsg').textContent = '';
 
+      playTrackTheme('game');
       clearAllTimers();
       steppingPawn = null;
       shadowCellKey = null;
@@ -1905,11 +2029,10 @@
       const modeNames = {
         bot: '🤖 कंप्यूटर',
         friend: '🤝 दोस्त के साथ',
-        pass: '📱 एक ही फ़ोन',
-        solo: '👑 सोलो'
+        pass: '📱 एक ही फ़ोन'
       };
       document.getElementById('matchTitle').textContent =
-        `${modeNames[selectedMode]} • ${selectedPlayersCount} खिलाड़ी`;
+        `${modeNames[selectedMode] || '👑 गेम'} • ${selectedPlayersCount} खिलाड़ी`;
 
       document.getElementById('lobbyScreen').classList.add('hidden');
       document.getElementById('gameScreen').classList.remove('hidden');
@@ -1961,6 +2084,7 @@
         state = 'IDLE';
         document.getElementById('gameScreen').classList.add('hidden');
         document.getElementById('lobbyScreen').classList.remove('hidden');
+        playTrackTheme('lobby');
         pushGuardHistory();
       }
     }
@@ -1974,14 +2098,75 @@
       }
     });
 
+    // Facebook / Guest लॉगिन बटन
+    document.getElementById('loginFacebookBtn').addEventListener('click', () => {
+      loginType = 'Facebook';
+      userName = 'FB राजा';
+      document.getElementById('authModal').classList.add('hidden');
+      updateHeaderStats();
+      playTrackTheme('lobby');
+      document.getElementById('lobbyMsg').textContent = '📘 Facebook से लॉगिन हुआ!';
+    });
+
+    document.getElementById('loginGuestBtn').addEventListener('click', () => {
+      loginType = 'Guest';
+      userName = 'राजा';
+      document.getElementById('authModal').classList.add('hidden');
+      updateHeaderStats();
+      playTrackTheme('lobby');
+      document.getElementById('lobbyMsg').textContent = '👤 Guest के रूप में तैयार!';
+    });
+
+    document.getElementById('navAuthBtn').addEventListener('click', () => {
+      document.getElementById('authModal').classList.remove('hidden');
+    });
+
+    document.getElementById('profilePill').addEventListener('click', () => {
+      document.getElementById('authModal').classList.remove('hidden');
+    });
+
+    // म्यूज़िक ट्रैक स्विचर
+    document.querySelectorAll('.music-chip').forEach((chip) => {
+      chip.addEventListener('click', () => playTrackTheme(chip.dataset.track));
+    });
+
+    // मोड कार्ड चयन
+    document.querySelectorAll('.lk-card[data-mode]').forEach((card) => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.lk-card[data-mode]').forEach((c) => c.classList.remove('selected-card'));
+        card.classList.add('selected-card');
+        selectedMode = card.dataset.mode;
+        document.getElementById('lobbyMsg').textContent = `मोड चुना गया: ${card.querySelector('.lk-card-title').textContent}`;
+      });
+    });
+
     document.getElementById('leaveMatchBtn').addEventListener('click', () => openExitModal('TO_LOBBY'));
+    document.getElementById('navExitBtn').addEventListener('click', () => openExitModal('CLOSE_APP'));
     document.getElementById('cancelExitBtn').addEventListener('click', cancelExitModal);
     document.getElementById('confirmExitBtn').addEventListener('click', confirmExitModal);
 
+    document.getElementById('navHomeBtn').addEventListener('click', () => {
+      document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
+      document.getElementById('navHomeBtn').classList.add('active');
+      playTrackTheme('lobby');
+    });
+
+    document.getElementById('navLbBtn').addEventListener('click', () => {
+      document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
+      document.getElementById('navLbBtn').classList.add('active');
+      document.getElementById('tabSection').scrollIntoView({ behavior: 'smooth' });
+    });
+
     document.getElementById('addBonusBtn').addEventListener('click', () => {
       coins += 500;
-      updateWalletUI();
+      updateHeaderStats();
       document.getElementById('lobbyMsg').textContent = '🎉 +500 कॉइन्स जुड़ गए!';
+    });
+
+    document.getElementById('addGemsBtn').addEventListener('click', () => {
+      gems += 25;
+      updateHeaderStats();
+      document.getElementById('lobbyMsg').textContent = '💎 +25 जेम्स जुड़ गए!';
     });
 
     document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
@@ -1989,15 +2174,13 @@
       e.target.textContent = soundOn ? '🔊' : '🔇';
     });
 
-    document.getElementById('saveNameBtn').addEventListener('click', () => {
-      userName = document.getElementById('nameInput').value.trim() || 'राजा';
+    document.getElementById('saveLocBtn').addEventListener('click', () => {
       userCity = document.getElementById('cityInput').value.trim() || 'जबलपुर';
       userState = document.getElementById('stateInput').value.trim() || 'मध्य प्रदेश';
-      document.getElementById('nameInput').value = userName;
       document.getElementById('cityInput').value = userCity;
       document.getElementById('stateInput').value = userState;
       renderLeaderboard();
-      document.getElementById('lobbyMsg').textContent = `सेव हो गया: ${userName} (${userCity}, ${userState})`;
+      document.getElementById('lobbyMsg').textContent = `सेव हो गया: ${userCity}, ${userState}`;
     });
 
     document.querySelectorAll('#lbTabs .lb-tab').forEach((tab) => {
@@ -2009,31 +2192,12 @@
       });
     });
 
-    document.querySelectorAll('#countButtons .opt-btn').forEach((btn) => {
+    document.querySelectorAll('#countButtons .mini-opt').forEach((btn) => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('#countButtons .opt-btn').forEach((b) => b.classList.remove('active'));
+        document.querySelectorAll('#countButtons .mini-opt').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
         selectedPlayersCount = Number(btn.dataset.count);
         document.getElementById('countBadge').textContent = `${selectedPlayersCount} खिलाड़ी`;
-      });
-    });
-
-    document.querySelectorAll('#modeButtons .opt-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#modeButtons .opt-btn').forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedMode = btn.dataset.mode;
-      });
-    });
-
-    document.querySelectorAll('#tableButtons .table-opt').forEach((card) => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('#tableButtons .table-opt').forEach((c) => c.classList.remove('active'));
-        card.classList.add('active');
-        selectedTable = {
-          entry: Number(card.dataset.entry),
-          win: Number(card.dataset.win)
-        };
       });
     });
 
@@ -2061,9 +2225,16 @@
       });
     });
 
+    // शुरू होते ही GREEN STAR स्पलैश -> फिर Facebook / Guest लॉगिन
     pushGuardHistory();
     updateWhatsAppInvite();
-    updateWalletUI();
+    updateHeaderStats();
+    playTrackTheme('splash');
+
+    setTimeout(() => {
+      document.getElementById('greenStarSplash').classList.add('hidden');
+      document.getElementById('authModal').classList.remove('hidden');
+    }, 1500);
   </script>
 </body>
 </html>
