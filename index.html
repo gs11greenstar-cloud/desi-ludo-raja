@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#f59e0b" />
   <title>देसी लूडो राजा — Desi Ludo Raja</title>
-  <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fef08a'/%3E%3Cstop offset='55%23' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='128' height='128' rx='30' fill='url(%23bg)'/%3E%3Crect x='14' y='14' width='100' height='100' rx='22' fill='%23fffbeb' stroke='%2378350f' stroke-width='4'/%3E%3Crect x='22' y='22' width='36' height='36' rx='8' fill='%23ef4444'/%3E%3Crect x='70' y='22' width='36' height='36' rx='8' fill='%2316a34a'/%3E%3Crect x='22' y='70' width='36' height='36' rx='8' fill='%232563eb'/%3E%3Crect x='70' y='70' width='36' height='36' rx='8' fill='%23eab308'/%3E%3Ccircle cx='64' cy='64' r='20' fill='%237c2d12' stroke='%23fde047' stroke-width='4'/%3E%3Cpath d='M52 70 L55 56 L64 63 L73 56 L76 70 Z' fill='%23fde047'/%3E%3C/svg%3E" />
+  <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fef08a'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='128' height='128' rx='30' fill='url(%23bg)'/%3E%3Crect x='14' y='14' width='100' height='100' rx='22' fill='%23fffbeb' stroke='%2378350f' stroke-width='4'/%3E%3Crect x='22' y='22' width='36' height='36' rx='8' fill='%23ef4444'/%3E%3Crect x='70' y='22' width='36' height='36' rx='8' fill='%2316a34a'/%3E%3Crect x='22' y='70' width='36' height='36' rx='8' fill='%232563eb'/%3E%3Crect x='70' y='70' width='36' height='36' rx='8' fill='%23eab308'/%3E%3Ccircle cx='64' cy='64' r='20' fill='%237c2d12' stroke='%23fde047' stroke-width='4'/%3E%3Cpath d='M52 70 L55 56 L64 63 L73 56 L76 70 Z' fill='%23fde047'/%3E%3C/svg%3E" />
   <style>
     :root {
       --bg-cream: #fffbeb;
@@ -537,7 +537,7 @@
       border: 2px solid #ffffff;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.45), inset 0 -3px 4px rgba(0, 0, 0, 0.35);
       cursor: pointer;
-      transition: transform 0.15s ease;
+      transition: transform 0.12s ease;
       z-index: 6;
       display: flex;
       align-items: center;
@@ -718,7 +718,6 @@
     </div>
   </div>
 
-  <!-- Lobby Screen (Center Table Layout) -->
   <div id="startScreen" class="lobby-wrap">
     <div class="lobby-topbar">
       <div class="coin-pill">🪙 <span id="lobbyCoins">5000</span> कॉइन्स</div>
@@ -747,7 +746,7 @@
         <path d="M52 70 L55 56 L64 63 L73 56 L76 70 Z" fill="#fde047"/>
       </svg>
       <h1 class="hero-title">देसी लूडो राजा</h1>
-      <p class="hero-sub">यूनिक गोट्टी मूड • 3D पासा • देसी रिएक्शन</p>
+      <p class="hero-sub">स्टेप-बाय-स्टेप चाल • ऑटो-मूव • देसी रिएक्शन</p>
     </div>
 
     <div class="profile-card">
@@ -759,7 +758,6 @@
       <button class="small-gold-btn" onclick="savePlayerName()">सेव</button>
     </div>
 
-    <!-- Center Mode & Coin Table -->
     <div class="section-card center-table-card">
       <div class="section-head">
         <span>🎲 मोड और कॉइन टेबल</span>
@@ -827,7 +825,6 @@
     </div>
   </div>
 
-  <!-- Game Screen -->
   <div id="gameScreen" class="hidden" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;">
     <div class="top-bar">
       <div class="brand" onclick="requestExitWarning()">
@@ -953,7 +950,7 @@
       playTone(783.99, 0.22, 'triangle', 0.22, 0.2);
     }
 
-    function sfxMove() { playTone(440, 0.07, 'sine', 0.14, 0); }
+    function sfxMove() { playTone(440, 0.065, 'sine', 0.14, 0); }
     function sfxCut() {
       playTone(190, 0.14, 'sawtooth', 0.2, 0);
       playTone(110, 0.22, 'sawtooth', 0.2, 0.12);
@@ -1409,7 +1406,7 @@
       });
 
       document.getElementById('statusText').textContent =
-        `${pName} — ${botTurn ? 'पासा चल रहा है...' : (rolled ? 'गोट्टी चुनें!' : 'डाइस दबाएं!')}`;
+        `${pName} — ${botTurn ? 'पासा चल रहा है...' : (rolled ? 'गोट्टी चल रही है...' : 'डाइस दबाएं!')}`;
       document.getElementById('lastRollBadge').textContent = `🎲 ${diceValue}`;
     }
 
@@ -1453,7 +1450,10 @@
           } else if (isPlayerBot(color)) {
             const exitToken = movable.find((t) => t.step === -1);
             const chosen = exitToken || movable[0];
-            setTimeout(() => executeMove(chosen, diceValue), 450);
+            setTimeout(() => executeMove(chosen, diceValue), 420);
+          } else if (movable.length === 1) {
+            // Auto-move when only 1 token can move (Ludo King feel)
+            setTimeout(() => executeMove(movable[0], diceValue), 280);
           } else {
             busy = false;
             renderTokens();
@@ -1468,10 +1468,34 @@
       busy = true;
       renderTokens();
 
-      if (token.step === -1 && roll === 6) token.step = 0;
-      else token.step += roll;
-      sfxMove();
+      // If starting from yard on 6, step out to start cell (step 0)
+      if (token.step === -1 && roll === 6) {
+        token.step = 0;
+        sfxMove();
+        renderTokens();
+        finishTokenArrival(token, roll);
+        return;
+      }
 
+      // Otherwise walk one step at a time like Ludo King
+      let stepsLeft = roll;
+      function stepOnce() {
+        if (!isInGameView) return;
+        if (stepsLeft <= 0) {
+          finishTokenArrival(token, roll);
+          return;
+        }
+        token.step += 1;
+        stepsLeft -= 1;
+        sfxMove();
+        renderTokens();
+        setTimeout(stepOnce, 135);
+      }
+
+      stepOnce();
+    }
+
+    function finishTokenArrival(token, roll) {
       const gIdx = getGlobalTrackIndex(token);
       let captured = false;
       if (gIdx !== null && !SAFE_INDICES.has(gIdx)) {
