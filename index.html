@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -10,6 +11,7 @@
       --bg-dark: #140524;
       --bg-card: #24093f;
       --gold: #fbbf24;
+      --gold-dark: #b45309;
       --red: #ef4444;
       --red-dark: #991b1b;
       --green: #22c55e;
@@ -40,6 +42,111 @@
       overflow-x: hidden;
     }
 
+    .hidden {
+      display: none !important;
+    }
+
+    /* Starting Screen */
+    .start-screen {
+      width: 100%;
+      max-width: 440px;
+      margin: auto 0;
+      background: linear-gradient(160deg, rgba(59, 7, 100, 0.92), rgba(20, 5, 36, 0.96));
+      border: 2px solid rgba(251, 191, 36, 0.55);
+      border-radius: 24px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .crown-hero {
+      font-size: 3.4rem;
+      line-height: 1;
+      filter: drop-shadow(0 6px 14px rgba(251, 191, 36, 0.45));
+    }
+
+    .start-title {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.65);
+    }
+
+    .start-sub {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #e9d5ff;
+      opacity: 0.9;
+    }
+
+    .mode-box {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mode-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: left;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .mode-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px 8px;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .mode-btn.selected {
+      background: rgba(251, 191, 36, 0.2);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .play-cta {
+      background: linear-gradient(180deg, #facc15, #d97706);
+      border: none;
+      border-radius: 16px;
+      padding: 14px 18px;
+      color: #140524;
+      font-size: 1.1rem;
+      font-weight: 900;
+      box-shadow: 0 5px 0 var(--gold-dark), 0 12px 24px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+
+    .play-cta:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 var(--gold-dark), 0 6px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .start-foot-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Top Header */
     .top-bar {
       width: 100%;
       max-width: 480px;
@@ -60,6 +167,7 @@
       font-weight: 800;
       font-size: 1.05rem;
       color: var(--gold);
+      cursor: pointer;
     }
 
     .controls {
@@ -363,71 +471,97 @@
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="brand">👑 देसी लूडो राजा</div>
-    <div class="controls">
-      <button id="soundToggle" class="icon-btn active" onclick="toggleSound()">🔊 साउंड</button>
-      <button class="icon-btn" onclick="resetGame()">↻ नया खेल</button>
+  <!-- Starting Screen -->
+  <div id="startScreen" class="start-screen">
+    <div class="crown-hero">👑</div>
+    <h1 class="start-title">देसी लूडो राजा</h1>
+    <p class="start-sub">3D पासा • देसी साउंड • धमाकेदार रिएक्शन</p>
+
+    <div class="mode-box">
+      <div class="mode-label">खेल का मोड चुनें:</div>
+      <div class="mode-grid">
+        <button id="mode4Btn" class="mode-btn selected" onclick="selectMode('4p')">4 खिलाड़ी (3 बॉट)</button>
+        <button id="mode2Btn" class="mode-btn" onclick="selectMode('2p')">2 खिलाड़ी (1 बॉट)</button>
+      </div>
+    </div>
+
+    <button class="play-cta" onclick="startGameFromLobby()">▶ खेल शुरू करें</button>
+
+    <div class="start-foot-row">
+      <button id="startSoundToggle" class="icon-btn active" onclick="toggleSound()">🔊 साउंड ऑन</button>
     </div>
   </div>
 
-  <div id="gameWrap" class="game-wrap">
-    <div class="players-row">
-      <div id="card-red" class="player-card active-turn">
-        <div class="p-info">
-          <span class="p-name">🔴 राजा (आप)</span>
-          <span class="p-tag">लाल टोली</span>
-        </div>
-        <button id="dice-red" class="dice-box" onclick="handleDiceClick('red')"></button>
-      </div>
-
-      <div id="card-green" class="player-card">
-        <div class="p-info">
-          <span class="p-name">🟢 बब्बू बॉट</span>
-          <span class="p-tag">हरी टोली</span>
-        </div>
-        <button id="dice-green" class="dice-box locked" disabled></button>
+  <!-- Active Game Screen -->
+  <div id="gameScreen" class="hidden" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;">
+    <div class="top-bar">
+      <div class="brand" onclick="openStartScreen()" title="होम स्क्रीन">👑 देसी लूडो राजा</div>
+      <div class="controls">
+        <button id="soundToggle" class="icon-btn active" onclick="toggleSound()">🔊 साउंड</button>
+        <button class="icon-btn" onclick="openStartScreen()">🏠 होम</button>
       </div>
     </div>
 
-    <div class="board-frame">
-      <div id="board" class="board"></div>
-    </div>
-
-    <div class="players-row">
-      <div id="card-blue" class="player-card">
-        <div class="p-info">
-          <span class="p-name">🔵 चुन्नू बॉट</span>
-          <span class="p-tag">नीली टोली</span>
+    <div id="gameWrap" class="game-wrap">
+      <div class="players-row">
+        <div id="card-red" class="player-card active-turn">
+          <div class="p-info">
+            <span class="p-name">🔴 राजा (आप)</span>
+            <span class="p-tag">लाल टोली</span>
+          </div>
+          <button id="dice-red" class="dice-box" onclick="handleDiceClick('red')"></button>
         </div>
-        <button id="dice-blue" class="dice-box locked" disabled></button>
+
+        <div id="card-green" class="player-card">
+          <div class="p-info">
+            <span class="p-name">🟢 बब्बू बॉट</span>
+            <span class="p-tag">हरी टोली</span>
+          </div>
+          <button id="dice-green" class="dice-box locked" disabled></button>
+        </div>
       </div>
 
-      <div id="card-yellow" class="player-card">
-        <div class="p-info">
-          <span class="p-name">🟡 मंटू बॉट</span>
-          <span class="p-tag">पीली टोली</span>
-        </div>
-        <button id="dice-yellow" class="dice-box locked" disabled></button>
+      <div class="board-frame">
+        <div id="board" class="board"></div>
       </div>
-    </div>
 
-    <div id="statusBanner" class="status-banner">
-      <span id="statusText">राजा (आप) की बारी — पासा फेंकने के लिए डाइस दबाएं!</span>
-      <span id="lastRollBadge">🎲 -</span>
-    </div>
+      <div class="players-row">
+        <div id="card-blue" class="player-card">
+          <div class="p-info">
+            <span class="p-name">🔵 चुन्नू बॉट</span>
+            <span class="p-tag">नीली टोली</span>
+          </div>
+          <button id="dice-blue" class="dice-box locked" disabled></button>
+        </div>
 
-    <div class="reactions-bar">
-      <button class="react-btn" onclick="sendReaction('🔥 शाबाश!')">🔥 शाबाश!</button>
-      <button class="react-btn" onclick="sendReaction('😂 मौज कर दी!')">😂 मौज!</button>
-      <button class="react-btn" onclick="sendReaction('👑 राजा बाबू!')">👑 राजा!</button>
-      <button class="react-btn" onclick="sendReaction('😤 बच गया!')">😤 बच गया!</button>
+        <div id="card-yellow" class="player-card">
+          <div class="p-info">
+            <span class="p-name">🟡 मंटू बॉट</span>
+            <span class="p-tag">पीली टोली</span>
+          </div>
+          <button id="dice-yellow" class="dice-box locked" disabled></button>
+        </div>
+      </div>
+
+      <div id="statusBanner" class="status-banner">
+        <span id="statusText">राजा (आप) की बारी — पासा फेंकने के लिए डाइस दबाएं!</span>
+        <span id="lastRollBadge">🎲 -</span>
+      </div>
+
+      <div class="reactions-bar">
+        <button class="react-btn" onclick="sendReaction('🔥 शाबाश!')">🔥 शाबाश!</button>
+        <button class="react-btn" onclick="sendReaction('😂 मौज कर दी!')">😂 मौज!</button>
+        <button class="react-btn" onclick="sendReaction('👑 राजा बाबू!')">👑 राजा!</button>
+        <button class="react-btn" onclick="sendReaction('😤 बच गया!')">😤 बच गया!</button>
+      </div>
     </div>
   </div>
 
   <script>
     let soundEnabled = true;
     let audioCtx = null;
+    let selectedMode = '4p';
+    let activePlayers = ['red', 'green', 'yellow', 'blue'];
 
     function getAudio() {
       if (!audioCtx) {
@@ -486,8 +620,36 @@
     function toggleSound() {
       soundEnabled = !soundEnabled;
       const btn = document.getElementById('soundToggle');
-      btn.textContent = soundEnabled ? '🔊 साउंड' : '🔇 म्यूट';
-      btn.classList.toggle('active', soundEnabled);
+      const sBtn = document.getElementById('startSoundToggle');
+      if (btn) {
+        btn.textContent = soundEnabled ? '🔊 साउंड' : '🔇 म्यूट';
+        btn.classList.toggle('active', soundEnabled);
+      }
+      if (sBtn) {
+        sBtn.textContent = soundEnabled ? '🔊 साउंड ऑन' : '🔇 साउंड म्यूट';
+        sBtn.classList.toggle('active', soundEnabled);
+      }
+    }
+
+    function selectMode(mode) {
+      selectedMode = mode;
+      document.getElementById('mode4Btn').classList.toggle('selected', mode === '4p');
+      document.getElementById('mode2Btn').classList.toggle('selected', mode === '2p');
+      sfxReact();
+    }
+
+    function openStartScreen() {
+      busy = false;
+      rolled = false;
+      document.getElementById('gameScreen').classList.add('hidden');
+      document.getElementById('startScreen').classList.remove('hidden');
+    }
+
+    function startGameFromLobby() {
+      sfxSix();
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('gameScreen').classList.remove('hidden');
+      resetGame();
     }
 
     const PIP_MAP = {
@@ -560,7 +722,7 @@
       }
     };
 
-    const TURN_ORDER = ['red', 'green', 'yellow', 'blue'];
+    const ALL_COLORS = ['red', 'green', 'yellow', 'blue'];
     let currentTurnIdx = 0;
     let diceValue = 1;
     let rolled = false;
@@ -569,7 +731,7 @@
 
     function initTokens() {
       tokens = {};
-      TURN_ORDER.forEach((color) => {
+      activePlayers.forEach((color) => {
         tokens[color] = [0, 1, 2, 3].map((idx) => ({
           id: `${color}-${idx}`,
           color,
@@ -638,7 +800,7 @@
         yellow: '10 / 10 / span 6 / span 6'
       };
 
-      ['red', 'green', 'blue', 'yellow'].forEach((color) => {
+      ALL_COLORS.forEach((color) => {
         const yard = document.createElement('div');
         yard.className = `yard-box home-${color}`;
         yard.style.gridArea = yardAreas[color];
@@ -661,16 +823,16 @@
       const board = document.getElementById('board');
       board.querySelectorAll('.token').forEach((el) => el.remove());
 
-      const activeColor = TURN_ORDER[currentTurnIdx];
+      const activeColor = activePlayers[currentTurnIdx];
       const movableIds = new Set();
-      if (rolled && !busy && !PLAYER_CONFIG[activeColor].isBot) {
+      if (rolled && !busy && !PLAYER_CONFIG[activeColor].isBot && tokens[activeColor]) {
         tokens[activeColor].forEach((t) => {
           if (canMoveToken(t, diceValue)) movableIds.add(t.id);
         });
       }
 
-      TURN_ORDER.forEach((color) => {
-        tokens[color].forEach((t) => {
+      activePlayers.forEach((color) => {
+        (tokens[color] || []).forEach((t) => {
           const [r, c] = getTokenCoord(t);
           const el = document.createElement('div');
           el.className = `token ${color}` + (movableIds.has(t.id) ? ' movable' : '');
@@ -688,14 +850,16 @@
     }
 
     function updateTurnUI() {
-      const activeColor = TURN_ORDER[currentTurnIdx];
+      const activeColor = activePlayers[currentTurnIdx];
       const cfg = PLAYER_CONFIG[activeColor];
 
-      TURN_ORDER.forEach((c) => {
+      ALL_COLORS.forEach((c) => {
         const card = document.getElementById(`card-${c}`);
         const dBtn = document.getElementById(`dice-${c}`);
+        const isInGame = activePlayers.includes(c);
+        card.style.opacity = isInGame ? '1' : '0.35';
         card.classList.toggle('active-turn', c === activeColor);
-        const canRoll = (c === activeColor) && !cfg.isBot && !rolled && !busy;
+        const canRoll = isInGame && (c === activeColor) && !cfg.isBot && !rolled && !busy;
         dBtn.disabled = !canRoll;
         dBtn.classList.toggle('locked', !canRoll);
       });
@@ -706,14 +870,14 @@
     }
 
     function handleDiceClick(color) {
-      const activeColor = TURN_ORDER[currentTurnIdx];
+      const activeColor = activePlayers[currentTurnIdx];
       if (color !== activeColor || rolled || busy || PLAYER_CONFIG[color].isBot) return;
       rollDiceForCurrentPlayer();
     }
 
     function rollDiceForCurrentPlayer() {
       busy = true;
-      const color = TURN_ORDER[currentTurnIdx];
+      const color = activePlayers[currentTurnIdx];
       const dBtn = document.getElementById(`dice-${color}`);
       dBtn.classList.add('rolling');
       sfxDice();
@@ -735,7 +899,7 @@
             sendReaction('🔥 छक्का! राजा की चाल!');
           }
 
-          const movable = tokens[color].filter((t) => canMoveToken(t, diceValue));
+          const movable = (tokens[color] || []).filter((t) => canMoveToken(t, diceValue));
           if (movable.length === 0) {
             busy = false;
             setTimeout(nextTurn, 650);
@@ -766,9 +930,9 @@
       const gIdx = getGlobalTrackIndex(token);
       let captured = false;
       if (gIdx !== null && !SAFE_INDICES.has(gIdx)) {
-        TURN_ORDER.forEach((otherColor) => {
+        activePlayers.forEach((otherColor) => {
           if (otherColor === token.color) return;
-          tokens[otherColor].forEach((otherTok) => {
+          (tokens[otherColor] || []).forEach((otherTok) => {
             if (getGlobalTrackIndex(otherTok) === gIdx) {
               otherTok.step = -1;
               captured = true;
@@ -788,7 +952,7 @@
 
       renderTokens();
 
-      if (tokens[token.color].every((t) => t.step === 56)) {
+      if ((tokens[token.color] || []).every((t) => t.step === 56)) {
         sfxSix();
         document.getElementById('statusText').textContent =
           `🏆 ${PLAYER_CONFIG[token.color].name} जीत गया!`;
@@ -812,11 +976,11 @@
 
     function nextTurn() {
       rolled = false;
-      currentTurnIdx = (currentTurnIdx + 1) % TURN_ORDER.length;
+      currentTurnIdx = (currentTurnIdx + 1) % activePlayers.length;
       updateTurnUI();
       renderTokens();
 
-      const nextColor = TURN_ORDER[currentTurnIdx];
+      const nextColor = activePlayers[currentTurnIdx];
       if (PLAYER_CONFIG[nextColor].isBot) {
         setTimeout(rollDiceForCurrentPlayer, 650);
       }
@@ -834,17 +998,19 @@
     }
 
     function resetGame() {
+      activePlayers = selectedMode === '2p' ? ['red', 'yellow'] : ['red', 'green', 'yellow', 'blue'];
       currentTurnIdx = 0;
       diceValue = 1;
       rolled = false;
       busy = false;
       initTokens();
-      TURN_ORDER.forEach((c) => renderDice(c, 1, false));
+      ALL_COLORS.forEach((c) => renderDice(c, 1, false));
       buildBoardGrid();
       renderTokens();
       updateTurnUI();
     }
 
+    // Prepare board behind lobby screen
     resetGame();
   </script>
 </body>
