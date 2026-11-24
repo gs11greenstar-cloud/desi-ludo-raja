@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -32,8 +33,7 @@
     body {
       margin: 0;
       min-height: 100dvh;
-      background:
-        radial-gradient(circle at 50% 0%, #581c87 0%, #240642 45%, #120420 100%);
+      background: radial-gradient(circle at 50% 0%, #581c87 0%, #240642 45%, #120420 100%);
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -47,7 +47,6 @@
       display: none !important;
     }
 
-    /* Lobby / Starting Screen */
     .lobby-wrap {
       width: 100%;
       max-width: 460px;
@@ -84,20 +83,19 @@
       background: linear-gradient(145deg, rgba(126, 34, 206, 0.55), rgba(34, 7, 59, 0.92));
       border: 2px solid rgba(251, 191, 36, 0.65);
       border-radius: 22px;
-      padding: 14px 14px 12px;
+      padding: 12px;
       text-align: center;
       box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
     }
 
     .hero-crown {
-      font-size: 2.3rem;
+      font-size: 2.1rem;
       line-height: 1.1;
-      filter: drop-shadow(0 4px 10px rgba(251, 191, 36, 0.5));
     }
 
     .hero-title {
       margin: 2px 0;
-      font-size: 1.55rem;
+      font-size: 1.5rem;
       font-weight: 900;
       background: linear-gradient(180deg, #fef08a, #f59e0b);
       -webkit-background-clip: text;
@@ -106,11 +104,10 @@
 
     .hero-sub {
       margin: 0;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: #e9d5ff;
     }
 
-    /* Profile Name Editor */
     .profile-card {
       background: var(--bg-card);
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -123,17 +120,16 @@
     }
 
     .avatar-badge {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
       border-radius: 12px;
       background: linear-gradient(145deg, #f87171, var(--red-dark));
       border: 2px solid var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 900;
+      font-size: 1.2rem;
     }
 
     .name-box {
@@ -156,7 +152,7 @@
       border-radius: 9px;
       padding: 6px 9px;
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 800;
       outline: none;
       user-select: text;
@@ -168,13 +164,12 @@
       border-radius: 10px;
       padding: 8px 10px;
       color: #120420;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 900;
       cursor: pointer;
       white-space: nowrap;
     }
 
-    /* Section Card */
     .section-card {
       background: var(--bg-card);
       border: 1px solid rgba(255, 255, 255, 0.14);
@@ -195,10 +190,10 @@
       color: var(--gold);
     }
 
-    .mode-row {
+    .mode-grid-4 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 7px;
     }
 
     .choice-btn {
@@ -207,20 +202,19 @@
       border-radius: 12px;
       padding: 8px 6px;
       color: #fff;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       cursor: pointer;
       text-align: center;
     }
 
     .choice-btn.active {
-      background: rgba(251, 191, 36, 0.2);
+      background: rgba(251, 191, 36, 0.22);
       border-color: var(--gold);
       color: var(--gold-bright);
       box-shadow: 0 0 12px rgba(251, 191, 36, 0.25);
     }
 
-    /* Coin Entry Tables */
     .tables-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -244,25 +238,10 @@
       border-color: var(--gold);
     }
 
-    .t-title {
-      font-size: 0.72rem;
-      opacity: 0.85;
-      font-weight: 700;
-    }
+    .t-title { font-size: 0.72rem; opacity: 0.85; font-weight: 700; }
+    .t-entry { font-size: 0.9rem; font-weight: 900; color: var(--gold-bright); }
+    .t-win { font-size: 0.68rem; color: #86efac; font-weight: 700; }
 
-    .t-entry {
-      font-size: 0.9rem;
-      font-weight: 900;
-      color: var(--gold-bright);
-    }
-
-    .t-win {
-      font-size: 0.68rem;
-      color: #86efac;
-      font-weight: 700;
-    }
-
-    /* Invite Friend Box */
     .invite-box {
       background: rgba(0, 0, 0, 0.28);
       border: 1px dashed rgba(251, 191, 36, 0.55);
@@ -275,13 +254,19 @@
     }
 
     .room-code-txt {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 900;
       letter-spacing: 1px;
       color: var(--gold-bright);
     }
 
     .invite-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .join-row {
       display: flex;
       gap: 6px;
     }
@@ -292,12 +277,11 @@
       border-radius: 9px;
       padding: 6px 9px;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 800;
       cursor: pointer;
     }
 
-    /* Primary Play Button */
     .play-now-btn {
       width: 100%;
       background: linear-gradient(180deg, #fde047, #f59e0b 65%, #d97706);
@@ -305,7 +289,7 @@
       border-radius: 18px;
       padding: 14px 16px;
       color: #120420;
-      font-size: 1.12rem;
+      font-size: 1.1rem;
       font-weight: 900;
       box-shadow: 0 6px 0 var(--gold-dark), 0 14px 28px rgba(0, 0, 0, 0.6);
       cursor: pointer;
@@ -316,7 +300,6 @@
       box-shadow: 0 3px 0 var(--gold-dark), 0 8px 16px rgba(0, 0, 0, 0.5);
     }
 
-    /* Leaderboard */
     .lb-list {
       display: flex;
       flex-direction: column;
@@ -339,11 +322,8 @@
       background: rgba(251, 191, 36, 0.14);
     }
 
-    .lb-coins {
-      color: var(--gold-bright);
-    }
+    .lb-coins { color: var(--gold-bright); }
 
-    /* Active Game Styles */
     .top-bar {
       width: 100%;
       max-width: 480px;
@@ -362,7 +342,7 @@
       align-items: center;
       gap: 6px;
       font-weight: 800;
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       color: var(--gold);
       cursor: pointer;
     }
@@ -370,6 +350,7 @@
     .controls {
       display: flex;
       gap: 6px;
+      align-items: center;
     }
 
     .icon-btn {
@@ -422,24 +403,9 @@
       transform: scale(1.02);
     }
 
-    .p-info {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .p-name {
-      font-size: 0.85rem;
-      font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .p-tag {
-      font-size: 0.7rem;
-      opacity: 0.8;
-    }
+    .p-info { display: flex; flex-direction: column; min-width: 0; }
+    .p-name { font-size: 0.85rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .p-tag { font-size: 0.7rem; opacity: 0.8; }
 
     .dice-box {
       width: 46px;
@@ -459,14 +425,8 @@
     }
 
     .dice-box:disabled,
-    .dice-box.locked {
-      opacity: 0.65;
-      cursor: default;
-    }
-
-    .dice-box.rolling {
-      animation: diceShake 0.22s infinite;
-    }
+    .dice-box.locked { opacity: 0.65; cursor: default; }
+    .dice-box.rolling { animation: diceShake 0.22s infinite; }
 
     @keyframes diceShake {
       0% { transform: rotate(-10deg) scale(1.06); }
@@ -474,22 +434,9 @@
       100% { transform: rotate(-8deg) scale(1.06); }
     }
 
-    .pip {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: transparent;
-      place-self: center;
-    }
-
-    .pip.on {
-      background: #1e1b4b;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
-    }
-
-    .dice-box.six-glow .pip.on {
-      background: #dc2626;
-    }
+    .pip { width: 8px; height: 8px; border-radius: 50%; background: transparent; place-self: center; }
+    .pip.on { background: #1e1b4b; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6); }
+    .dice-box.six-glow .pip.on { background: #dc2626; }
 
     .board-frame {
       background: linear-gradient(135deg, #fbbf24, #d97706, #fbbf24);
@@ -657,9 +604,7 @@
       100% { opacity: 0; transform: translate(-50%, -100%) scale(0.9); }
     }
 
-    .screen-shake {
-      animation: shakeFX 0.35s ease;
-    }
+    .screen-shake { animation: shakeFX 0.35s ease; }
 
     @keyframes shakeFX {
       0%, 100% { transform: translateX(0); }
@@ -669,7 +614,7 @@
   </style>
 </head>
 <body>
-  <!-- Professional Lobby / Starting Screen -->
+  <!-- Lobby / Starting Screen -->
   <div id="startScreen" class="lobby-wrap">
     <div class="lobby-topbar">
       <div class="coin-pill">🪙 <span id="lobbyCoins">5000</span> कॉइन्स</div>
@@ -695,16 +640,18 @@
       <button class="small-gold-btn" onclick="savePlayerName()">सेव</button>
     </div>
 
-    <!-- Match Mode & Coin Table -->
+    <!-- 4 Modes & Coin Table -->
     <div class="section-card">
       <div class="section-head">
-        <span>🎲 मैच मोड और कॉइन टेबल</span>
+        <span>🎲 मोड और कॉइन टेबल</span>
         <span id="selectedPrizeTag" style="color:#86efac;">जीत: 2000 कॉइन्स</span>
       </div>
 
-      <div class="mode-row">
-        <button id="mode4Btn" class="choice-btn active" onclick="selectMode('4p')">4 खिलाड़ी (3 बॉट)</button>
-        <button id="mode2Btn" class="choice-btn" onclick="selectMode('2p')">2 खिलाड़ी (1 बॉट)</button>
+      <div class="mode-grid-4">
+        <button id="mode-4p" class="choice-btn active" onclick="selectMode('4p')">4 खिलाड़ी (3 बॉट)</button>
+        <button id="mode-2p" class="choice-btn" onclick="selectMode('2p')">2 खिलाड़ी (1 बॉट)</button>
+        <button id="mode-friend" class="choice-btn" onclick="selectMode('friend')">दोस्त के साथ (Friend)</button>
+        <button id="mode-pass" class="choice-btn" onclick="selectMode('pass')">एक ही फ़ोन (Pass & Play)</button>
       </div>
 
       <div class="tables-grid">
@@ -726,21 +673,28 @@
       </div>
     </div>
 
-    <!-- Invite Friend Match -->
+    <!-- Invite & Join Room -->
     <div class="section-card">
       <div class="section-head">
-        <span>🤝 दोस्त के साथ मैच (Invite Match)</span>
-        <span style="font-size:0.72rem;color:#e9d5ff;">रूम कोड</span>
+        <span>🤝 इनवाइट और दोस्त रूम</span>
+        <span style="font-size:0.72rem;color:#e9d5ff;">Invite Match</span>
       </div>
+
       <div class="invite-box">
         <div>
-          <div style="font-size:0.68rem;opacity:0.75;">आपका रूम कोड:</div>
+          <div style="font-size:0.68rem;opacity:0.75;">रूम कोड:</div>
           <div id="roomCodeDisplay" class="room-code-txt">RAJA-8042</div>
         </div>
         <div class="invite-actions">
-          <button class="ghost-btn" onclick="newRoomCode()">↻ नया कोड</button>
-          <button class="small-gold-btn" onclick="copyInviteCode()">इनवाइट कॉपी</button>
+          <button class="ghost-btn" onclick="newRoomCode()">↻ नया</button>
+          <button class="ghost-btn" onclick="copyInviteCode()">कॉपी</button>
+          <button class="small-gold-btn" onclick="shareInviteWhatsApp()">इनवाइट भेजें</button>
         </div>
+      </div>
+
+      <div class="join-row">
+        <input id="joinRoomInput" class="name-input" type="text" maxlength="12" placeholder="दोस्त का रूम कोड डालें (उदा. RAJA-1234)" />
+        <button class="small-gold-btn" onclick="joinFriendRoom()">जुड़ें</button>
       </div>
     </div>
 
@@ -759,11 +713,11 @@
   <!-- Active Game Screen -->
   <div id="gameScreen" class="hidden" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;">
     <div class="top-bar">
-      <div class="brand" onclick="openStartScreen()">👑 <span id="gameHeaderTitle">देसी लूडो राजा</span></div>
+      <div class="brand" onclick="handleBackToLobby()">👑 देसी लूडो राजा</div>
       <div class="controls">
         <span class="coin-pill" style="padding:4px 8px;font-size:0.76rem;">🪙 <span id="gameCoins">5000</span></span>
         <button id="soundToggle" class="icon-btn active" onclick="toggleSound()">🔊</button>
-        <button class="icon-btn" onclick="openStartScreen()">🏠 लॉबी</button>
+        <button class="icon-btn" onclick="handleBackToLobby()">← वापस</button>
       </div>
     </div>
 
@@ -779,7 +733,7 @@
 
         <div id="card-green" class="player-card">
           <div class="p-info">
-            <span class="p-name">🟢 बब्बू बॉट</span>
+            <span id="greenPlayerLabel" class="p-name">🟢 बब्बू बॉट</span>
             <span class="p-tag">हरी टोली</span>
           </div>
           <button id="dice-green" class="dice-box locked" disabled></button>
@@ -793,7 +747,7 @@
       <div class="players-row">
         <div id="card-blue" class="player-card">
           <div class="p-info">
-            <span class="p-name">🔵 चुन्नू बॉट</span>
+            <span id="bluePlayerLabel" class="p-name">🔵 चुन्नू बॉट</span>
             <span class="p-tag">नीली टोली</span>
           </div>
           <button id="dice-blue" class="dice-box locked" disabled></button>
@@ -801,7 +755,7 @@
 
         <div id="card-yellow" class="player-card">
           <div class="p-info">
-            <span class="p-name">🟡 मंटू बॉट</span>
+            <span id="yellowPlayerLabel" class="p-name">🟡 मंटू बॉट</span>
             <span class="p-tag">पीली टोली</span>
           </div>
           <button id="dice-yellow" class="dice-box locked" disabled></button>
@@ -809,7 +763,7 @@
       </div>
 
       <div id="statusBanner" class="status-banner">
-        <span id="statusText">राजा की बारी — पासा फेंकने के लिए डाइस दबाएं!</span>
+        <span id="statusText">राजा की बारी — डाइस दबाएं!</span>
         <span id="lastRollBadge">🎲 -</span>
       </div>
 
@@ -831,15 +785,14 @@
     let playerName = localStorage.getItem('dlr_name') || 'राजा';
     let roomCode = localStorage.getItem('dlr_room') || 'RAJA-8042';
     let activePlayers = ['red', 'green', 'yellow', 'blue'];
+    let isInGameView = false;
 
     function getAudio() {
       if (!audioCtx) {
         const AC = window.AudioContext || window.webkitAudioContext;
         if (AC) audioCtx = new AC();
       }
-      if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
       return audioCtx;
     }
 
@@ -872,15 +825,11 @@
       playTone(783.99, 0.22, 'triangle', 0.22, 0.2);
     }
 
-    function sfxMove() {
-      playTone(440, 0.07, 'sine', 0.14, 0);
-    }
-
+    function sfxMove() { playTone(440, 0.07, 'sine', 0.14, 0); }
     function sfxCut() {
       playTone(190, 0.14, 'sawtooth', 0.2, 0);
       playTone(110, 0.22, 'sawtooth', 0.2, 0.12);
     }
-
     function sfxReact() {
       playTone(587.33, 0.08, 'sine', 0.14, 0);
       playTone(880, 0.12, 'sine', 0.14, 0.07);
@@ -898,6 +847,31 @@
         sBtn.textContent = soundEnabled ? '🔊' : '🔇';
         sBtn.classList.toggle('active', soundEnabled);
       }
+    }
+
+    // --- Phone / Browser Back Button Protection ---
+    window.addEventListener('popstate', () => {
+      if (isInGameView) {
+        showLobbyScreen(false);
+        history.pushState({ view: 'lobby' }, '', '#lobby');
+      }
+    });
+
+    function showLobbyScreen(pushState = true) {
+      busy = false;
+      rolled = false;
+      isInGameView = false;
+      syncLobbyUI();
+      document.getElementById('gameScreen').classList.add('hidden');
+      document.getElementById('startScreen').classList.remove('hidden');
+      if (pushState) {
+        history.pushState({ view: 'lobby' }, '', '#lobby');
+      }
+    }
+
+    function handleBackToLobby() {
+      sfxReact();
+      showLobbyScreen(true);
     }
 
     function syncLobbyUI() {
@@ -930,8 +904,9 @@
 
     function selectMode(mode) {
       selectedMode = mode;
-      document.getElementById('mode4Btn').classList.toggle('active', mode === '4p');
-      document.getElementById('mode2Btn').classList.toggle('active', mode === '2p');
+      ['4p', '2p', 'friend', 'pass'].forEach((m) => {
+        document.getElementById(`mode-${m}`).classList.toggle('active', m === mode);
+      });
       sfxReact();
     }
 
@@ -951,12 +926,34 @@
       sendReaction(`🎲 नया रूम कोड: ${roomCode}`);
     }
 
+    function getInviteText() {
+      return `👑 देसी लूडो राजा में मैच खेलें! रूम कोड: ${roomCode} | लिंक: https://gs11greenstar-cloud.github.io/desi-ludo-raja/`;
+    }
+
     function copyInviteCode() {
-      const msg = `👑 देसी लूडो राजा में आओ! रूम कोड: ${roomCode} | लिंक: https://gs11greenstar-cloud.github.io/desi-ludo-raja/`;
+      const msg = getInviteText();
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(msg).catch(() => {});
       }
       sendReaction(`📋 इनवाइट कॉपी (${roomCode})`);
+    }
+
+    function shareInviteWhatsApp() {
+      const msg = encodeURIComponent(getInviteText());
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    function joinFriendRoom() {
+      const code = document.getElementById('joinRoomInput').value.trim().toUpperCase();
+      if (!code) {
+        sendReaction('🔑 पहले दोस्त का कोड डालें!');
+        return;
+      }
+      roomCode = code;
+      selectedMode = 'friend';
+      selectMode('friend');
+      syncLobbyUI();
+      sendReaction(`🤝 रूम ${roomCode} जुड़ गया!`);
     }
 
     function renderLeaderboard() {
@@ -979,14 +976,6 @@
       });
     }
 
-    function openStartScreen() {
-      busy = false;
-      rolled = false;
-      syncLobbyUI();
-      document.getElementById('gameScreen').classList.add('hidden');
-      document.getElementById('startScreen').classList.remove('hidden');
-    }
-
     function startGameFromLobby() {
       savePlayerName();
       if (coins < entryCoins) {
@@ -996,6 +985,9 @@
       coins -= entryCoins;
       syncLobbyUI();
       sfxSix();
+
+      isInGameView = true;
+      history.pushState({ view: 'game' }, '', '#game');
       document.getElementById('startScreen').classList.add('hidden');
       document.getElementById('gameScreen').classList.remove('hidden');
       resetGame();
@@ -1048,21 +1040,21 @@
         yardCoords: [[1,1],[1,4],[4,1],[4,4]]
       },
       green: {
-        name: 'बब्बू बॉट',
+        defaultName: 'बब्बू बॉट',
         isBot: true,
         startTrackIdx: 13,
         homeStretch: [[1,7],[2,7],[3,7],[4,7],[5,7]],
         yardCoords: [[1,10],[1,13],[4,10],[4,13]]
       },
       yellow: {
-        name: 'मंटू बॉट',
+        defaultName: 'मंटू बॉट',
         isBot: true,
         startTrackIdx: 26,
         homeStretch: [[7,13],[7,12],[7,11],[7,10],[7,9]],
         yardCoords: [[10,10],[10,13],[13,10],[13,13]]
       },
       blue: {
-        name: 'चुन्नू बॉट',
+        defaultName: 'चुन्नू बॉट',
         isBot: true,
         startTrackIdx: 39,
         homeStretch: [[13,7],[12,7],[11,7],[10,7],[9,7]],
@@ -1076,9 +1068,38 @@
     let rolled = false;
     let busy = false;
     let tokens = {};
+    let modeBotMap = {};
+
+    function applyModeSetup() {
+      modeBotMap = { red: false, green: true, yellow: true, blue: true };
+      if (selectedMode === '2p') {
+        activePlayers = ['red', 'yellow'];
+      } else if (selectedMode === 'friend') {
+        activePlayers = ['red', 'yellow'];
+      } else if (selectedMode === 'pass') {
+        activePlayers = ['red', 'green', 'yellow', 'blue'];
+        modeBotMap = { red: false, green: false, yellow: false, blue: false };
+      } else {
+        activePlayers = ['red', 'green', 'yellow', 'blue'];
+      }
+
+      document.getElementById('redPlayerLabel').textContent = `🔴 ${playerName}`;
+      document.getElementById('greenPlayerLabel').textContent =
+        `🟢 ${modeBotMap.green ? 'बब्बू बॉट' : 'खिलाड़ी 2'}`;
+      document.getElementById('yellowPlayerLabel').textContent =
+        `🟡 ${selectedMode === 'friend' ? 'दोस्त (' + roomCode + ')' : (modeBotMap.yellow ? 'मंटू बॉट' : 'खिलाड़ी 3')}`;
+      document.getElementById('bluePlayerLabel').textContent =
+        `🔵 ${modeBotMap.blue ? 'चुन्नू बॉट' : 'खिलाड़ी 4'}`;
+    }
 
     function getPlayerDisplayName(color) {
-      return color === 'red' ? playerName : PLAYER_CONFIG[color].name;
+      if (color === 'red') return playerName;
+      if (color === 'yellow' && selectedMode === 'friend') return `दोस्त (${roomCode})`;
+      return modeBotMap[color] ? PLAYER_CONFIG[color].defaultName : `खिलाड़ी ${color}`;
+    }
+
+    function isPlayerBot(color) {
+      return Boolean(modeBotMap[color]);
     }
 
     function initTokens() {
@@ -1177,7 +1198,7 @@
 
       const activeColor = activePlayers[currentTurnIdx];
       const movableIds = new Set();
-      if (rolled && !busy && !PLAYER_CONFIG[activeColor].isBot && tokens[activeColor]) {
+      if (rolled && !busy && !isPlayerBot(activeColor) && tokens[activeColor]) {
         tokens[activeColor].forEach((t) => {
           if (canMoveToken(t, diceValue)) movableIds.add(t.id);
         });
@@ -1203,7 +1224,7 @@
 
     function updateTurnUI() {
       const activeColor = activePlayers[currentTurnIdx];
-      const cfg = PLAYER_CONFIG[activeColor];
+      const botTurn = isPlayerBot(activeColor);
       const pName = getPlayerDisplayName(activeColor);
 
       ALL_COLORS.forEach((c) => {
@@ -1212,23 +1233,24 @@
         const isInGame = activePlayers.includes(c);
         card.style.opacity = isInGame ? '1' : '0.35';
         card.classList.toggle('active-turn', c === activeColor);
-        const canRoll = isInGame && (c === activeColor) && !cfg.isBot && !rolled && !busy;
+        const canRoll = isInGame && (c === activeColor) && !botTurn && !rolled && !busy;
         dBtn.disabled = !canRoll;
         dBtn.classList.toggle('locked', !canRoll);
       });
 
       document.getElementById('statusText').textContent =
-        `${pName} (${roomCode}) — ${cfg.isBot ? 'पासा चल रहा है...' : (rolled ? 'गोट्टी चुनें!' : 'डाइस दबाएं!')}`;
+        `${pName} — ${botTurn ? 'पासा चल रहा है...' : (rolled ? 'गोट्टी चुनें!' : 'डाइस दबाएं!')}`;
       document.getElementById('lastRollBadge').textContent = `🎲 ${diceValue}`;
     }
 
     function handleDiceClick(color) {
       const activeColor = activePlayers[currentTurnIdx];
-      if (color !== activeColor || rolled || busy || PLAYER_CONFIG[color].isBot) return;
+      if (color !== activeColor || rolled || busy || isPlayerBot(color)) return;
       rollDiceForCurrentPlayer();
     }
 
     function rollDiceForCurrentPlayer() {
+      if (!isInGameView) return;
       busy = true;
       const color = activePlayers[currentTurnIdx];
       const dBtn = document.getElementById(`dice-${color}`);
@@ -1242,6 +1264,7 @@
         if (ticks >= 7) {
           clearInterval(interval);
           dBtn.classList.remove('rolling');
+          if (!isInGameView) return;
           diceValue = Math.floor(Math.random() * 6) + 1;
           rolled = true;
           renderDice(color, diceValue, diceValue === 6);
@@ -1256,7 +1279,7 @@
           if (movable.length === 0) {
             busy = false;
             setTimeout(nextTurn, 650);
-          } else if (PLAYER_CONFIG[color].isBot) {
+          } else if (isPlayerBot(color)) {
             const exitToken = movable.find((t) => t.step === -1);
             const chosen = exitToken || movable[0];
             setTimeout(() => executeMove(chosen, diceValue), 450);
@@ -1270,14 +1293,12 @@
     }
 
     function executeMove(token, roll) {
+      if (!isInGameView) return;
       busy = true;
       renderTokens();
 
-      if (token.step === -1 && roll === 6) {
-        token.step = 0;
-      } else {
-        token.step += roll;
-      }
+      if (token.step === -1 && roll === 6) token.step = 0;
+      else token.step += roll;
       sfxMove();
 
       const gIdx = getGlobalTrackIndex(token);
@@ -1328,7 +1349,7 @@
 
       if (bonusSix) {
         updateTurnUI();
-        if (PLAYER_CONFIG[token.color].isBot) {
+        if (isPlayerBot(token.color)) {
           setTimeout(rollDiceForCurrentPlayer, 650);
         }
       } else {
@@ -1337,13 +1358,14 @@
     }
 
     function nextTurn() {
+      if (!isInGameView) return;
       rolled = false;
       currentTurnIdx = (currentTurnIdx + 1) % activePlayers.length;
       updateTurnUI();
       renderTokens();
 
       const nextColor = activePlayers[currentTurnIdx];
-      if (PLAYER_CONFIG[nextColor].isBot) {
+      if (isPlayerBot(nextColor)) {
         setTimeout(rollDiceForCurrentPlayer, 650);
       }
     }
@@ -1360,7 +1382,7 @@
     }
 
     function resetGame() {
-      activePlayers = selectedMode === '2p' ? ['red', 'yellow'] : ['red', 'green', 'yellow', 'blue'];
+      applyModeSetup();
       currentTurnIdx = 0;
       diceValue = 1;
       rolled = false;
@@ -1372,6 +1394,7 @@
       updateTurnUI();
     }
 
+    history.replaceState({ view: 'lobby' }, '', '#lobby');
     syncLobbyUI();
     resetGame();
   </script>
