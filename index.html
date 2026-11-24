@@ -574,10 +574,33 @@
       box-shadow: 0 0 0 2px #dc2626, 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
+    .token.mood-cry-back {
+      border-color: #93c5fd;
+      animation: cryBackBob 0.25s infinite alternate;
+      z-index: 10;
+    }
+
+    .token.mood-win-up {
+      border-color: #fef08a;
+      box-shadow: 0 0 0 3px #f59e0b, 0 10px 18px rgba(245, 158, 11, 0.75);
+      animation: joyLiftUp 0.55s ease-in-out infinite alternate;
+      z-index: 12;
+    }
+
     .token.movable {
       animation: tokenPulse 0.7s infinite alternate;
       box-shadow: 0 0 0 3px #fff, 0 0 12px #d97706;
       z-index: 9;
+    }
+
+    @keyframes cryBackBob {
+      from { transform: translateY(0px) rotate(-8deg) scale(0.96); }
+      to { transform: translateY(3px) rotate(8deg) scale(1.04); }
+    }
+
+    @keyframes joyLiftUp {
+      from { transform: translateY(-4px) scale(1.12); }
+      to { transform: translateY(-12px) scale(1.26); }
     }
 
     @keyframes dangerJitter {
@@ -746,7 +769,7 @@
         <path d="M52 70 L55 56 L64 63 L73 56 L76 70 Z" fill="#fde047"/>
       </svg>
       <h1 class="hero-title">देसी लूडो राजा</h1>
-      <p class="hero-sub">स्टेप-बाय-स्टेप चाल • ऑटो-मूव • देसी रिएक्शन</p>
+      <p class="hero-sub">स्टेप-बाय-स्टेप चाल • रोते हुए वापसी • खुशी से जश्न</p>
     </div>
 
     <div class="profile-card">
@@ -911,6 +934,7 @@
     let activePlayers = ['red', 'green', 'yellow', 'blue'];
     let isInGameView = false;
     let temporaryMoods = {};
+    let winningColor = null;
 
     function getAudio() {
       if (!audioCtx) {
@@ -951,6 +975,7 @@
     }
 
     function sfxMove() { playTone(440, 0.065, 'sine', 0.14, 0); }
+    function sfxCryStep() { playTone(260, 0.07, 'sawtooth', 0.1, 0); }
     function sfxCut() {
       playTone(190, 0.14, 'sawtooth', 0.2, 0);
       playTone(110, 0.22, 'sawtooth', 0.2, 0.12);
@@ -1232,6 +1257,7 @@
     function initTokens() {
       tokens = {};
       temporaryMoods = {};
+      winningColor = null;
       activePlayers.forEach((color) => {
         tokens[color] = [0, 1, 2, 3].map((idx) => ({
           id: `${color}-${idx}`,
@@ -1245,15 +1271,20 @@
     function setTokenMood(tokenId, emoji, cls, ms = 1800) {
       temporaryMoods[tokenId] = { emoji, cls };
       renderTokens();
-      setTimeout(() => {
-        delete temporaryMoods[tokenId];
-        if (isInGameView) renderTokens();
-      }, ms);
+      if (ms > 0) {
+        setTimeout(() => {
+          delete temporaryMoods[tokenId];
+          if (isInGameView) renderTokens();
+        }, ms);
+      }
     }
 
     function computeTokenMood(t) {
       if (temporaryMoods[t.id]) return temporaryMoods[t.id];
-      if (t.step === 56) return { emoji: '😎', cls: '' };
+      if (winningColor && t.color === winningColor) {
+        return { emoji: '🥳', cls: 'mood-win-up' };
+      }
+      if (t.step === 56) return { emoji: '🥳', cls: 'mood-win-up' };
       if (t.step === -1) return { emoji: '🙂', cls: '' };
 
       const myIdx = getGlobalTrackIndex(t);
@@ -1400,7 +1431,7 @@
         const isInGame = activePlayers.includes(c);
         card.style.opacity = isInGame ? '1' : '0.35';
         card.classList.toggle('active-turn', c === activeColor);
-        const canRoll = isInGame && (c === activeColor) && !botTurn && !rolled && !busy;
+        const canRoll = isInGame && (c === activeColor) && !botTurn && !rolled && !busy && !winningColor;
         dBtn.disabled = !canRoll;
         dBtn.classList.toggle('locked', !canRoll);
       });
@@ -1411,13 +1442,14 @@
     }
 
     function handleDiceClick(color) {
+      if (winningColor) return;
       const activeColor = activePlayers[currentTurnIdx];
       if (color !== activeColor || rolled || busy || isPlayerBot(color)) return;
       rollDiceForCurrentPlayer();
     }
 
     function rollDiceForCurrentPlayer() {
-      if (!isInGameView) return;
+      if (!isInGameView || winningColor) return;
       busy = true;
       const color = activePlayers[currentTurnIdx];
       const dBtn = document.getElementById(`dice-${color}`);
@@ -1452,7 +1484,6 @@
             const chosen = exitToken || movable[0];
             setTimeout(() => executeMove(chosen, diceValue), 420);
           } else if (movable.length === 1) {
-            // Auto-move when only 1 token can move (Ludo King feel)
             setTimeout(() => executeMove(movable[0], diceValue), 280);
           } else {
             busy = false;
@@ -1468,7 +1499,6 @@
       busy = true;
       renderTokens();
 
-      // If starting from yard on 6, step out to start cell (step 0)
       if (token.step === -1 && roll === 6) {
         token.step = 0;
         sfxMove();
@@ -1477,7 +1507,6 @@
         return;
       }
 
-      // Otherwise walk one step at a time like Ludo King
       let stepsLeft = roll;
       function stepOnce() {
         if (!isInGameView) return;
@@ -1495,35 +1524,79 @@
       stepOnce();
     }
 
+    function walkBackCrying(victimTok, onDone) {
+      temporaryMoods[victimTok.id] = { emoji: '😭', cls: 'mood-cry-back' };
+      renderTokens();
+
+      function retreatStep() {
+        if (!isInGameView) return;
+        if (victimTok.step <= 0) {
+          victimTok.step = -1;
+          delete temporaryMoods[victimTok.id];
+          renderTokens();
+          if (onDone) onDone();
+          return;
+        }
+        victimTok.step -= 1;
+        sfxCryStep();
+        renderTokens();
+        setTimeout(retreatStep, 95);
+      }
+
+      setTimeout(retreatStep, 120);
+    }
+
     function finishTokenArrival(token, roll) {
+      if (token.step === 56) {
+        setTokenMood(token.id, '🥳', 'mood-win-up', 2200);
+        sfxSix();
+      }
+
       const gIdx = getGlobalTrackIndex(token);
-      let captured = false;
+      const victims = [];
       if (gIdx !== null && !SAFE_INDICES.has(gIdx)) {
         activePlayers.forEach((otherColor) => {
           if (otherColor === token.color) return;
           (tokens[otherColor] || []).forEach((otherTok) => {
             if (getGlobalTrackIndex(otherTok) === gIdx) {
-              otherTok.step = -1;
-              captured = true;
-              setTokenMood(otherTok.id, '😭', 'mood-danger', 1800);
+              victims.push(otherTok);
             }
           });
         });
       }
 
-      if (captured) {
+      if (victims.length > 0) {
         sfxCut();
         setTokenMood(token.id, '😎', 'mood-hunter', 1800);
         const wrap = document.getElementById('gameWrap');
         wrap.classList.remove('screen-shake');
         void wrap.offsetWidth;
         wrap.classList.add('screen-shake');
-        sendReaction('💥 गोट्टी काट दी!');
+        sendReaction('💥 गोट्टी काट दी! रोते हुए वापसी!');
+
+        let pending = victims.length;
+        victims.forEach((vTok) => {
+          walkBackCrying(vTok, () => {
+            pending -= 1;
+            if (pending === 0) {
+              afterArrivalCheckWin(token, roll);
+            }
+          });
+        });
+        return;
       }
 
+      afterArrivalCheckWin(token, roll);
+    }
+
+    function afterArrivalCheckWin(token, roll) {
       renderTokens();
 
       if ((tokens[token.color] || []).every((t) => t.step === 56)) {
+        winningColor = token.color;
+        (tokens[token.color] || []).forEach((t) => {
+          setTokenMood(t.id, '🥳', 'mood-win-up', 0);
+        });
         sfxSix();
         const winnerName = getPlayerDisplayName(token.color);
         const prize = entryCoins * 4;
@@ -1536,7 +1609,9 @@
           document.getElementById('statusText').textContent =
             `🏆 ${winnerName} जीत गया!`;
         }
+        sendReaction(`🥳 ${winnerName} का धमाकेदार जश्न!`);
         busy = false;
+        updateTurnUI();
         return;
       }
 
@@ -1555,7 +1630,7 @@
     }
 
     function nextTurn() {
-      if (!isInGameView) return;
+      if (!isInGameView || winningColor) return;
       rolled = false;
       currentTurnIdx = (currentTurnIdx + 1) % activePlayers.length;
       updateTurnUI();
