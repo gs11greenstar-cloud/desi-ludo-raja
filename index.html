@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -5,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#f59e0b" />
   <title>देसी लूडो राजा — Desi Ludo Raja</title>
+  <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fef08a'/%3E%3Cstop offset='55%23' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='128' height='128' rx='30' fill='url(%23bg)'/%3E%3Crect x='14' y='14' width='100' height='100' rx='22' fill='%23fffbeb' stroke='%2378350f' stroke-width='4'/%3E%3Crect x='22' y='22' width='36' height='36' rx='8' fill='%23ef4444'/%3E%3Crect x='70' y='22' width='36' height='36' rx='8' fill='%2316a34a'/%3E%3Crect x='22' y='70' width='36' height='36' rx='8' fill='%232563eb'/%3E%3Crect x='70' y='70' width='36' height='36' rx='8' fill='%23eab308'/%3E%3Ccircle cx='64' cy='64' r='20' fill='%237c2d12' stroke='%23fde047' stroke-width='4'/%3E%3Cpath d='M52 70 L55 56 L64 63 L73 56 L76 70 Z' fill='%23fde047'/%3E%3C/svg%3E" />
   <style>
     :root {
       --bg-cream: #fffbeb;
@@ -49,7 +51,6 @@
       display: none !important;
     }
 
-    /* Royal Light & Gold Lobby */
     .lobby-wrap {
       width: 100%;
       max-width: 460px;
@@ -86,19 +87,33 @@
       background: linear-gradient(135deg, #fffbeb 0%, #fef08a 50%, #fed7aa 100%);
       border: 2px solid #f59e0b;
       border-radius: 22px;
-      padding: 14px 12px;
+      padding: 13px 12px;
       text-align: center;
       box-shadow: 0 10px 24px rgba(180, 83, 9, 0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
     }
 
-    .hero-crown {
-      font-size: 2.3rem;
-      line-height: 1.1;
+    .unique-app-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      box-shadow: 0 6px 14px rgba(124, 45, 18, 0.28);
+      flex-shrink: 0;
+    }
+
+    .mini-app-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      flex-shrink: 0;
     }
 
     .hero-title {
-      margin: 2px 0;
-      font-size: 1.6rem;
+      margin: 0;
+      font-size: 1.55rem;
       font-weight: 900;
       color: #7c2d12;
       text-shadow: 0 1px 0 #fff;
@@ -121,6 +136,12 @@
       flex-direction: column;
       gap: 9px;
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    .center-table-card {
+      border: 2px solid #f59e0b;
+      background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
+      box-shadow: 0 10px 22px rgba(180, 83, 9, 0.16);
     }
 
     .profile-card {
@@ -196,7 +217,7 @@
     }
 
     .choice-btn {
-      background: #fffbeb;
+      background: #ffffff;
       border: 1.5px solid #e2e8f0;
       border-radius: 12px;
       padding: 8px 6px;
@@ -221,7 +242,7 @@
     }
 
     .table-tile {
-      background: #fffbeb;
+      background: #ffffff;
       border: 1.5px solid #e2e8f0;
       border-radius: 13px;
       padding: 8px 5px;
@@ -235,6 +256,7 @@
     .table-tile.selected {
       background: #fef08a;
       border-color: #d97706;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.22);
     }
 
     .t-title { font-size: 0.72rem; color: var(--muted); font-weight: 800; }
@@ -321,7 +343,6 @@
 
     .lb-coins { color: #b45309; }
 
-    /* Game Screen */
     .top-bar {
       width: 100%;
       max-width: 480px;
@@ -338,7 +359,7 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       font-weight: 900;
       font-size: 0.96rem;
       color: #7c2d12;
@@ -509,7 +530,6 @@
       pointer-events: none;
     }
 
-    /* Unique Pawn / Goti with Mood Expression */
     .token {
       width: 84%;
       height: 84%;
@@ -642,7 +662,6 @@
       75% { transform: translateX(6px); }
     }
 
-    /* Exit Warning Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -687,7 +706,6 @@
   </style>
 </head>
 <body>
-  <!-- Exit Warning Modal -->
   <div id="exitModal" class="modal-backdrop hidden">
     <div class="modal-card">
       <div style="font-size:2rem;margin-bottom:4px;">⚠️</div>
@@ -700,7 +718,7 @@
     </div>
   </div>
 
-  <!-- Lobby / Starting Screen -->
+  <!-- Lobby Screen (Center Table Layout) -->
   <div id="startScreen" class="lobby-wrap">
     <div class="lobby-topbar">
       <div class="coin-pill">🪙 <span id="lobbyCoins">5000</span> कॉइन्स</div>
@@ -711,13 +729,29 @@
     </div>
 
     <div class="hero-banner">
-      <div class="hero-crown">👑</div>
+      <svg class="unique-app-icon" viewBox="0 0 128 128" aria-label="देसी लूडो राजा आइकन">
+        <defs>
+          <linearGradient id="dlrGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fef08a"/>
+            <stop offset="55%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#b45309"/>
+          </linearGradient>
+        </defs>
+        <rect width="128" height="128" rx="30" fill="url(#dlrGrad)"/>
+        <rect x="14" y="14" width="100" height="100" rx="22" fill="#fffbeb" stroke="#78350f" stroke-width="4"/>
+        <rect x="22" y="22" width="36" height="36" rx="8" fill="#ef4444"/>
+        <rect x="70" y="22" width="36" height="36" rx="8" fill="#16a34a"/>
+        <rect x="22" y="70" width="36" height="36" rx="8" fill="#2563eb"/>
+        <rect x="70" y="70" width="36" height="36" rx="8" fill="#eab308"/>
+        <circle cx="64" cy="64" r="20" fill="#7c2d12" stroke="#fde047" stroke-width="4"/>
+        <path d="M52 70 L55 56 L64 63 L73 56 L76 70 Z" fill="#fde047"/>
+      </svg>
       <h1 class="hero-title">देसी लूडो राजा</h1>
       <p class="hero-sub">यूनिक गोट्टी मूड • 3D पासा • देसी रिएक्शन</p>
     </div>
 
     <div class="profile-card">
-      <div class="avatar-badge">👑</div>
+      <div class="avatar-badge">♛</div>
       <div class="name-box">
         <span class="name-label">आपका खिलाड़ी नाम (Name Edit)</span>
         <input id="playerNameInput" class="name-input" type="text" maxlength="16" placeholder="अपना नाम लिखें..." />
@@ -725,7 +759,8 @@
       <button class="small-gold-btn" onclick="savePlayerName()">सेव</button>
     </div>
 
-    <div class="section-card">
+    <!-- Center Mode & Coin Table -->
+    <div class="section-card center-table-card">
       <div class="section-head">
         <span>🎲 मोड और कॉइन टेबल</span>
         <span id="selectedPrizeTag" style="color:#15803d;">जीत: 2000 कॉइन्स</span>
@@ -795,7 +830,17 @@
   <!-- Game Screen -->
   <div id="gameScreen" class="hidden" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;">
     <div class="top-bar">
-      <div class="brand" onclick="requestExitWarning()">👑 देसी लूडो राजा</div>
+      <div class="brand" onclick="requestExitWarning()">
+        <svg class="mini-app-icon" viewBox="0 0 128 128">
+          <rect width="128" height="128" rx="30" fill="#f59e0b"/>
+          <rect x="20" y="20" width="38" height="38" rx="8" fill="#ef4444"/>
+          <rect x="70" y="20" width="38" height="38" rx="8" fill="#16a34a"/>
+          <rect x="20" y="70" width="38" height="38" rx="8" fill="#2563eb"/>
+          <rect x="70" y="70" width="38" height="38" rx="8" fill="#eab308"/>
+          <circle cx="64" cy="64" r="18" fill="#7c2d12" stroke="#fde047" stroke-width="4"/>
+        </svg>
+        <span>देसी लूडो राजा</span>
+      </div>
       <div class="controls">
         <span class="coin-pill" style="padding:4px 8px;font-size:0.76rem;">🪙 <span id="gameCoins">5000</span></span>
         <button id="soundToggle" class="icon-btn active" onclick="toggleSound()">🔊</button>
@@ -932,7 +977,6 @@
       }
     }
 
-    // --- Exit Warning Modal & Back Button ---
     function requestExitWarning() {
       if (!isInGameView) return;
       document.getElementById('exitModal').classList.remove('hidden');
@@ -981,7 +1025,7 @@
       const val = document.getElementById('playerNameInput').value.trim();
       playerName = val || 'राजा';
       syncLobbyUI();
-      sendReaction(`👑 नाम सेव: ${playerName}!`);
+      sendReaction(`♛ नाम सेव: ${playerName}!`);
     }
 
     function claimBonusCoins() {
@@ -1015,7 +1059,7 @@
     }
 
     function getInviteText() {
-      return `👑 देसी लूडो राजा में मैच खेलें! रूम कोड: ${roomCode} | लिंक: https://gs11greenstar-cloud.github.io/desi-ludo-raja/`;
+      return `♛ देसी लूडो राजा में मैच खेलें! रूम कोड: ${roomCode} | लिंक: https://gs11greenstar-cloud.github.io/desi-ludo-raja/`;
     }
 
     function copyInviteCode() {
@@ -1220,7 +1264,6 @@
         return { emoji: '😊', cls: '' };
       }
 
-      // Check if another player is behind within 1..6 steps (danger / scared)
       for (const otherColor of activePlayers) {
         if (otherColor === t.color) continue;
         for (const otherTok of (tokens[otherColor] || [])) {
@@ -1230,7 +1273,6 @@
           if (distBehind >= 1 && distBehind <= 6) {
             return { emoji: '😰', cls: 'mood-danger' };
           }
-          // Check if an opponent is ahead within 1..6 steps (angry hunter)
           const distAhead = (oIdx - myIdx + 52) % 52;
           if (distAhead >= 1 && distAhead <= 6 && !SAFE_INDICES.has(oIdx)) {
             return { emoji: '😠', cls: 'mood-hunter' };
@@ -1309,7 +1351,7 @@
 
       const center = document.createElement('div');
       center.className = 'center-home';
-      center.textContent = '👑';
+      center.textContent = '♛';
       board.appendChild(center);
     }
 
