@@ -318,7 +318,6 @@
       margin-top: 10px;
     }
 
-    /* गेम बोर्ड */
     .board-grid {
       aspect-ratio: 1 / 1;
       width: 100%;
@@ -450,12 +449,12 @@
     }
 
     .dice-trigger {
-      width: 60px;
+      width: 64px;
       height: 60px;
       border-radius: 15px;
       background: linear-gradient(145deg, #ffffff, #fef3c7);
       border: 2px solid var(--gold);
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 900;
       color: var(--ink);
       cursor: pointer;
@@ -506,7 +505,6 @@
 </head>
 <body>
   <div class="shell">
-    <!-- टॉप हेडर -->
     <div class="panel header-row">
       <div class="brand-box">
         <img src="icon-512.png" alt="देसी लूडो राजा" class="brand-icon" onerror="this.style.display='none'" />
@@ -521,7 +519,6 @@
       </div>
     </div>
 
-    <!-- लॉबी -->
     <div class="panel" id="lobbyView">
       <div class="hero-banner">
         <div class="hero-crown">👑</div>
@@ -602,7 +599,6 @@
       <button type="button" class="start-cta" id="startBtn">खेल शुरू करें</button>
     </div>
 
-    <!-- गेम स्क्रीन -->
     <div class="hidden" id="gameView" style="display: flex; flex-direction: column; gap: 10px;">
       <div class="panel header-row">
         <div style="display: flex; align-items: center; gap: 8px;">
@@ -675,6 +671,7 @@
     let currentRoll = null;
     let turnPhase = 'ROLL'; // 'ROLL' | 'MOVE' | 'END'
     let aiTimeout = null;
+    let rollInterval = null;
 
     function syncCoins() {
       document.getElementById('coinDisplay').textContent = `🪙 ${coins} कॉइन्स`;
@@ -689,14 +686,17 @@
       document.getElementById('gameToast').textContent = text;
     }
 
-    function clearAiTimeout() {
+    function clearTimers() {
       if (aiTimeout) {
         clearTimeout(aiTimeout);
         aiTimeout = null;
       }
+      if (rollInterval) {
+        clearInterval(rollInterval);
+        rollInterval = null;
+      }
     }
 
-    // 1, 2, 3, 4 खिलाड़ियों के लिए खिलाड़ी लिस्ट
     function buildPlayers(mode, count, mainName) {
       const safeCount = Math.max(1, Math.min(4, Number(count) || 2));
       let botCounter = 0;
@@ -722,7 +722,6 @@
       });
     }
 
-    // Friend, Pass & Play और Solo में डाइस अपने आप नहीं घूमेगी
     function shouldBotAutoRoll(mode, player) {
       if (!player) return false;
       return mode === 'bot' && Boolean(player.isBot);
@@ -871,11 +870,11 @@
       document.getElementById('turnMessage').textContent = message;
       const cur = activePlayers[turnIndex];
       const diceBtn = document.getElementById('diceBtn');
-      diceBtn.disabled = turnPhase !== 'ROLL' || !cur || cur.isBot;
+      diceBtn.disabled = turnPhase !== 'ROLL' || !cur || cur.isBot || Boolean(rollInterval);
     }
 
     function advanceTurn(keepSameTurn = false) {
-      clearAiTimeout();
+      clearTimers();
       if (!keepSameTurn && activePlayers.length > 0) {
         turnIndex = (turnIndex + 1) % activePlayers.length;
       }
@@ -891,7 +890,7 @@
         refreshTurnControls(`${cur.name} डाइस घुमा रहा है...`);
         aiTimeout = setTimeout(() => {
           rollDiceNow();
-        }, 700);
+        }, 650);
       } else {
         refreshTurnControls(`${cur.name} — डाइस दबाएं!`);
       }
@@ -903,7 +902,7 @@
       const curStep = p.tokens[tIdx];
       if (!canMoveStep(curStep, currentRoll)) return;
 
-      clearAiTimeout();
+      clearTimers();
       const nextStep = curStep === -1 ? 0 : curStep + currentRoll;
       p.tokens[tIdx] = nextStep;
 
@@ -944,32 +943,47 @@
 
     function rollDiceNow() {
       const cur = activePlayers[turnIndex];
-      if (!cur || turnPhase !== 'ROLL') return;
+      if (!cur || turnPhase !== 'ROLL' || rollInterval) return;
 
-      const val = Math.floor(Math.random() * 6) + 1;
-      currentRoll = val;
-      document.getElementById('diceBtn').textContent = `🎲 ${val}`;
+      clearTimers();
+      const diceBtn = document.getElementById('diceBtn');
+      diceBtn.disabled = true;
 
-      const movable = getMovableIndices(cur, val);
-      if (movable.length === 0) {
-        refreshTurnControls(`${cur.name} ने ${val} चला — कोई चाल नहीं।`);
-        aiTimeout = setTimeout(() => {
-          advanceTurn(false);
-        }, 750);
-        return;
-      }
+      let ticks = 0;
+      rollInterval = setInterval(() => {
+        ticks += 1;
+        const tempFace = Math.floor(Math.random() * 6) + 1;
+        diceBtn.textContent = `🎲 ${tempFace}`;
 
-      if (cur.isBot) {
-        turnPhase = 'MOVE';
-        refreshTurnControls(`${cur.name} ने ${val} चला...`);
-        aiTimeout = setTimeout(() => {
-          moveToken(turnIndex, movable[0]);
-        }, 650);
-      } else {
-        turnPhase = 'MOVE';
-        refreshTurnControls(`${cur.name}: ${val} आया — चमकती गोटी चुनें।`);
-        renderBoard();
-      }
+        if (ticks >= 4) {
+          clearInterval(rollInterval);
+          rollInterval = null;
+
+          const val = Math.floor(Math.random() * 6) + 1;
+          currentRoll = val;
+          diceBtn.textContent = `🎲 ${val}`;
+
+          const movable = getMovableIndices(cur, val);
+          if (movable.length === 0) {
+            refreshTurnControls(`${cur.name} ने ${val} चला — कोई चाल नहीं।`);
+            aiTimeout = setTimeout(() => {
+              advanceTurn(false);
+            }, 650);
+            return;
+          }
+
+          turnPhase = 'MOVE';
+          if (cur.isBot) {
+            refreshTurnControls(`${cur.name} ने ${val} चला — गोटी चल रहा है...`);
+            aiTimeout = setTimeout(() => {
+              moveToken(turnIndex, movable[0]);
+            }, 550);
+          } else {
+            refreshTurnControls(`${cur.name}: ${val} आया — चमकती गोटी चुनें।`);
+            renderBoard();
+          }
+        }
+      }, 80);
     }
 
     function openGame() {
@@ -982,7 +996,7 @@
       setLobbyNote('');
       setGameToast('');
 
-      clearAiTimeout();
+      clearTimers();
       activePlayers = buildPlayers(gameMode, playerCount, playerName);
       turnIndex = 0;
       currentRoll = null;
@@ -1006,7 +1020,6 @@
       refreshTurnControls(`${activePlayers[0].name} — डाइस दबाएं!`);
     }
 
-    // लॉबी इवेंट्स
     document.getElementById('bonusBtn').addEventListener('click', () => {
       coins += 500;
       syncCoins();
@@ -1079,14 +1092,14 @@
     document.getElementById('startBtn').addEventListener('click', openGame);
 
     document.getElementById('exitToLobbyBtn').addEventListener('click', () => {
-      clearAiTimeout();
+      clearTimers();
       document.getElementById('gameView').classList.add('hidden');
       document.getElementById('lobbyView').classList.remove('hidden');
     });
 
     document.getElementById('diceBtn').addEventListener('click', () => {
       const cur = activePlayers[turnIndex];
-      if (!cur || cur.isBot || turnPhase !== 'ROLL') return;
+      if (!cur || cur.isBot || turnPhase !== 'ROLL' || rollInterval) return;
       rollDiceNow();
     });
 
