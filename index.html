@@ -957,6 +957,12 @@
     }
 
     /* गेमप्ले स्क्रीन */
+    #gameScreen:not(.hidden) {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
     .game-top {
       background: rgba(30, 58, 138, 0.85);
       border: 2px solid #fef08a;
@@ -1652,7 +1658,7 @@
     </div>
 
     <!-- गेमप्ले स्क्रीन -->
-    <div class="hidden" id="gameScreen" style="display:flex;flex-direction:column;gap:7px;">
+    <div class="hidden" id="gameScreen">
       <div class="game-top">
         <span id="matchTitle" style="font-weight:800;">देसी लूडो राजा</span>
         <div class="game-top-actions">
@@ -1699,7 +1705,6 @@
     const GAME_URL = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
     const STORAGE_LANG_KEY = 'desi_ludo_raja_lang_v1';
     const STORAGE_PREFS_KEY = 'desi_ludo_raja_prefs_v1';
-    const STORAGE_MATCH_KEY = 'desi_ludo_raja_match_v1';
 
     const LANG_TEXTS = {
       hi: {
@@ -1937,90 +1942,6 @@
         if (typeof p.soundOn === 'boolean') soundOn = p.soundOn;
         if (typeof p.seasonClaimed === 'boolean') seasonClaimed = p.seasonClaimed;
       } catch (e) {}
-    }
-
-    function clearSavedMatchState() {
-      try {
-        localStorage.removeItem(STORAGE_MATCH_KEY);
-      } catch (e) {}
-    }
-
-    function saveActiveMatchState() {
-      try {
-        const isInGame = !document.getElementById('gameScreen').classList.contains('hidden');
-        if (!isInGame || !Array.isArray(players) || players.length === 0 || state === 'FINISHED') {
-          return;
-        }
-        const safeState = (state === 'ROLLING' || state === 'ANIMATING' || state === 'RETREATING')
-          ? 'WAIT_ROLL'
-          : state;
-        localStorage.setItem(STORAGE_MATCH_KEY, JSON.stringify({
-          players,
-          turnIdx,
-          diceVal,
-          playerDiceValues,
-          state: safeState,
-          consecutiveSixes,
-          selectedMode,
-          selectedPlayersCount,
-          selectedTable
-        }));
-      } catch (e) {}
-    }
-
-    function restoreSavedMatchIfAny() {
-      try {
-        const raw = localStorage.getItem(STORAGE_MATCH_KEY);
-        if (!raw) return false;
-        const saved = JSON.parse(raw);
-        if (!saved || !Array.isArray(saved.players) || saved.players.length === 0 || saved.state === 'FINISHED') {
-          return false;
-        }
-
-        players = saved.players;
-        turnIdx = Math.min(Math.max(0, Number(saved.turnIdx) || 0), players.length - 1);
-        diceVal = Number(saved.diceVal) || 6;
-        playerDiceValues = saved.playerDiceValues && typeof saved.playerDiceValues === 'object'
-          ? saved.playerDiceValues
-          : {};
-        players.forEach((pl) => {
-          if (!playerDiceValues[pl.seatId]) playerDiceValues[pl.seatId] = 6;
-        });
-        consecutiveSixes = Number(saved.consecutiveSixes) || 0;
-        if (['bot', 'friend', 'pass'].includes(saved.selectedMode)) selectedMode = saved.selectedMode;
-        if ([1, 2, 3, 4].includes(Number(saved.selectedPlayersCount))) selectedPlayersCount = Number(saved.selectedPlayersCount);
-        if (saved.selectedTable && typeof saved.selectedTable.entry === 'number') selectedTable = saved.selectedTable;
-
-        const restoredState = ['WAIT_ROLL', 'WAIT_MOVE'].includes(saved.state) ? saved.state : 'WAIT_ROLL';
-        state = restoredState;
-
-        const modeNames = {
-          bot: '🤖 Com',
-          friend: '🤝 Friends',
-          pass: '📱 Pass N Play'
-        };
-        document.getElementById('matchTitle').textContent =
-          `${modeNames[selectedMode] || '👑 गेम'} • ${selectedPlayersCount} खिलाड़ी`;
-
-        document.getElementById('lobbyScreen').classList.add('hidden');
-        document.getElementById('gameScreen').classList.remove('hidden');
-
-        renderSeats();
-        renderBoard();
-
-        const cur = players[turnIdx];
-        if (cur && isAutoBotTurn(selectedMode, cur) && state === 'WAIT_ROLL') {
-          setStatus(`${cur.name} का डाइस उछलकर घूम रहा है...`);
-          trackTimer(setTimeout(() => triggerDiceRoll(), 650));
-        } else if (cur && state === 'WAIT_MOVE') {
-          setStatus(`${cur.name} का ${diceVal} आया — चमकती गोटी चुनें`);
-        } else if (cur) {
-          setStatus(`${cur.name} की बारी — अपने डाइस पर टैप करें`);
-        }
-        return true;
-      } catch (e) {
-        return false;
-      }
     }
 
     function applyLanguageTexts() {
@@ -2554,7 +2475,6 @@
       state = 'WAIT_ROLL';
       renderSeats();
       renderBoard();
-      saveActiveMatchState();
 
       const cur = players[turnIdx];
       if (!cur) return;
@@ -2617,7 +2537,6 @@
           state = 'WAIT_MOVE';
           renderSeats();
           renderBoard();
-          saveActiveMatchState();
 
           if (cur.isBot) {
             const chosen = pickBestBotPawn(cur, validPawns, finalRoll);
@@ -2776,7 +2695,6 @@
       const afterMoveCheck = () => {
         if (p.pawns.every((s) => s === 56)) {
           state = 'FINISHED';
-          clearSavedMatchState();
           if (!p.isBot) {
             coins += selectedTable.win;
             updateHeaderStats();
@@ -2874,14 +2792,12 @@
     function confirmExitModal() {
       document.getElementById('exitWarningModal').classList.add('hidden');
       if (exitMode === 'CLOSE_APP') {
-        saveActiveMatchState();
         clearAllTimers();
         try {
           window.close();
         } catch (e) {}
         document.getElementById('lobbyMsg').textContent = 'ऐप बंद करने के लिए फ़ोन का होम बटन दबाएं।';
       } else {
-        clearSavedMatchState();
         clearAllTimers();
         steppingPawn = null;
         shadowCellKey = null;
@@ -2912,13 +2828,11 @@
 
     window.addEventListener('beforeunload', () => {
       suppressNextPopstateOnce = true;
-      saveActiveMatchState();
       savePrefsState();
     });
 
     window.addEventListener('pagehide', () => {
       suppressNextPopstateOnce = true;
-      saveActiveMatchState();
       savePrefsState();
     });
 
@@ -3144,6 +3058,13 @@
       });
     });
 
+    try {
+      localStorage.removeItem('desi_ludo_raja_match_v1');
+    } catch (e) {}
+
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('lobbyScreen').classList.remove('hidden');
+
     loadPrefsState();
     applyLanguageTexts();
     syncLobbyControlsFromState();
@@ -3152,15 +3073,8 @@
     updateHeaderStats();
     playGreenStarFanfare();
 
-    const restoredMatch = restoreSavedMatchIfAny();
-    if (restoredMatch) {
-      splashFinished = true;
-      document.getElementById('greenStarSplash').classList.add('hidden');
-      document.getElementById('authModal').classList.add('hidden');
-    } else {
-      setTimeout(finishSplashAndOpenAuth, 2200);
-      setTimeout(finishSplashAndOpenAuth, 4000);
-    }
+    setTimeout(finishSplashAndOpenAuth, 2200);
+    setTimeout(finishSplashAndOpenAuth, 4000);
   </script>
 </body>
 </html>
