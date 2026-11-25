@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#1d4ed8" />
+  <meta name="theme-color" content="#2563eb" />
   <title>देसी लूडो राजा - Desi Ludo Raja</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
@@ -11,6 +11,8 @@
   <style>
     :root {
       --gold: #fbbf24;
+      --gold-light: #fef08a;
+      --gold-deep: #b45309;
       --red: #e11d48;
       --green: #16a34a;
       --yellow: #eab308;
@@ -29,12 +31,12 @@
       background:
         repeating-linear-gradient(
           45deg,
-          rgba(37, 99, 235, 0.24) 0px,
-          rgba(37, 99, 235, 0.24) 24px,
-          rgba(29, 78, 216, 0.24) 24px,
-          rgba(29, 78, 216, 0.24) 48px
+          rgba(255, 255, 255, 0.06) 0px,
+          rgba(255, 255, 255, 0.06) 24px,
+          transparent 24px,
+          transparent 48px
         ),
-        radial-gradient(circle at 50% 0%, #3b82f6 0%, #1e3a8a 52%, #080d21 100%);
+        linear-gradient(180deg, #38bdf8 0%, #2563eb 38%, #1d4ed8 75%, #1e40af 100%);
       color: #ffffff;
       min-height: 100vh;
       display: flex;
@@ -53,11 +55,13 @@
       z-index: 2;
     }
 
-    /* शुरू होने से पहले GREEN STAR एनीमेशन */
+    /* शुरू में ब्राइट + यूनिक GREEN STAR स्पलैश */
     .green-star-splash {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #065f46 0%, #022c22 65%, #020617 100%);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(167, 243, 208, 0.45) 0%, rgba(16, 185, 129, 0.25) 38%, transparent 70%),
+        linear-gradient(160deg, #059669 0%, #0284c7 55%, #1d4ed8 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -65,120 +69,295 @@
       z-index: 90;
       text-align: center;
       padding: 20px;
+      overflow: hidden;
+    }
+
+    .gstar-halo {
+      position: relative;
+      width: 152px;
+      height: 152px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gstar-orbit {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      border: 3px dashed #fef08a;
+      animation: orbitSpin 4s linear infinite;
+    }
+
+    @keyframes orbitSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .gstar-ring {
       width: 122px;
       height: 122px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #34d399, #059669 72%, #064e3b);
-      border: 3.5px solid #fde047;
-      box-shadow: 0 0 36px rgba(16, 185, 129, 0.8), 0 0 64px rgba(251, 191, 36, 0.35);
+      border-radius: 28px;
+      background: linear-gradient(145deg, #34d399, #059669 65%, #047857);
+      border: 3.5px solid #fef08a;
+      box-shadow: 0 8px 0 #065f46, 0 0 38px rgba(254, 240, 138, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3.4rem;
-      animation: gstarSpinPulse 1.35s infinite alternate ease-in-out;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      animation: gstarPop 1.2s infinite alternate ease-in-out;
     }
 
-    @keyframes gstarSpinPulse {
-      0% { transform: scale(0.93) rotate(-6deg); }
-      100% { transform: scale(1.08) rotate(6deg); }
+    .gstar-ring::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -130%;
+      width: 65%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.75) 50%, transparent 80%);
+      transform: skewX(-22deg);
+      animation: shineSweep 2.2s infinite ease-in-out;
+    }
+
+    @keyframes gstarPop {
+      0% { transform: scale(0.95); }
+      100% { transform: scale(1.07); }
+    }
+
+    .gstar-badge-plate {
+      margin-top: 16px;
+      background: linear-gradient(180deg, #fef08a, #fbbf24 65%, #d97706);
+      border: 2.5px solid #ffffff;
+      border-radius: 18px;
+      padding: 6px 24px;
+      box-shadow: 0 6px 0 #92400e, 0 12px 26px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gstar-badge-plate::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -120%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.75) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 2.4s infinite ease-in-out;
     }
 
     .gstar-title {
-      margin-top: 15px;
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       font-weight: 900;
-      letter-spacing: 2.5px;
-      color: #6ee7b7;
-      text-shadow: 0 0 18px rgba(16, 185, 129, 0.85);
+      letter-spacing: 2px;
+      color: #064e3b;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     .gstar-sub {
-      margin-top: 4px;
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.22);
+      border: 1.5px solid rgba(254, 240, 138, 0.8);
+      border-radius: 999px;
+      padding: 4px 14px;
       font-size: 0.82rem;
-      color: #fde68a;
+      color: #ffffff;
       font-weight: 800;
     }
 
-    /* Facebook और Guest लॉगिन */
+    /* बड़ा, चमकता हुआ और आकर्षक स्टार्ट/लॉगिन कार्ड */
     .auth-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(5, 9, 24, 0.88);
-      backdrop-filter: blur(7px);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(125, 211, 252, 0.45), transparent 60%),
+        linear-gradient(180deg, #38bdf8 0%, #2563eb 45%, #1d4ed8 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 14px;
       z-index: 80;
     }
 
     .auth-card {
       width: 100%;
-      max-width: 356px;
-      background: linear-gradient(180deg, #1e3a8a 0%, #0f172a 100%);
-      border: 2.5px solid #fbbf24;
-      border-radius: 22px;
-      padding: 20px 16px;
+      max-width: 395px;
+      background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 65%, #1e40af 100%);
+      border: 3px solid #fef08a;
+      border-radius: 26px;
+      padding: 20px 16px 22px;
       text-align: center;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 10px 0 #1e3a8a, 0 22px 46px rgba(15, 23, 42, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-card::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -130%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.42) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 3.5s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .start-hero-board {
+      width: 148px;
+      height: 92px;
+      margin: 0 auto 8px;
+      border-radius: 14px;
+      background: conic-gradient(
+        var(--green) 0deg 90deg,
+        var(--yellow) 90deg 180deg,
+        var(--blue) 180deg 270deg,
+        var(--red) 270deg 360deg
+      );
+      border: 3px solid #ffffff;
+      transform: perspective(260px) rotateX(22deg);
+      box-shadow: 0 9px 0 #b45309, 0 16px 26px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .start-hero-dice {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #ffffff, #fef9c3);
+      border: 2px solid #f59e0b;
+      color: #e11d48;
+      font-weight: 900;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 0 #d97706;
+    }
+
+    .start-brand-pill {
+      display: inline-block;
+      background: linear-gradient(180deg, #fef9c3, #fbbf24 65%, #d97706);
+      border: 2.5px solid #ffffff;
+      border-radius: 18px;
+      padding: 6px 20px;
+      box-shadow: 0 5px 0 #92400e, 0 10px 20px rgba(0, 0, 0, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .start-brand-pill::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -120%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.78) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 2.6s infinite ease-in-out;
+    }
+
+    .start-brand-title {
+      font-size: 1.48rem;
+      font-weight: 900;
+      color: #0f172a;
     }
 
     .fb-login-btn {
       width: 100%;
-      margin-top: 13px;
-      padding: 12px;
-      border-radius: 13px;
-      border: 2px solid #93c5fd;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 2.5px solid #ffffff;
+      background: linear-gradient(180deg, #3b82f6, #1d4ed8);
       color: #fff;
-      font-size: 0.94rem;
+      font-size: 1.04rem;
       font-weight: 900;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45);
+      gap: 9px;
+      box-shadow: 0 6px 0 #1e3a8a, 0 10px 20px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fb-login-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -120%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.55) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 3s infinite ease-in-out;
     }
 
     .guest-login-btn {
       width: 100%;
-      margin-top: 9px;
-      padding: 12px;
-      border-radius: 13px;
-      border: 2px solid #fde047;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 2.5px solid #ffffff;
+      background: linear-gradient(180deg, #fef08a, #f59e0b 70%, #d97706);
       color: #0f172a;
-      font-size: 0.94rem;
+      font-size: 1.04rem;
       font-weight: 900;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+      gap: 9px;
+      box-shadow: 0 6px 0 #92400e, 0 10px 20px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
     }
 
-    /* टॉप हेडर */
+    .guest-login-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -120%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.65) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 3.2s infinite ease-in-out;
+    }
+
+    @keyframes shineSweep {
+      0% { left: -120%; }
+      55%, 100% { left: 165%; }
+    }
+
+    /* टॉप हेडर (ब्राइट रॉयल ब्लू + गोल्ड) */
     .lk-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 5px;
-      padding: 3px 2px;
+      background: rgba(30, 58, 138, 0.72);
+      border: 2px solid #fef08a;
+      border-radius: 16px;
+      padding: 4px 7px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
     }
 
     .profile-pill {
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(15, 23, 42, 0.78);
-      border: 2px solid #fbbf24;
-      border-radius: 14px;
-      padding: 3px 8px 3px 4px;
       cursor: pointer;
     }
 
@@ -186,8 +365,8 @@
       width: 34px;
       height: 34px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #38bdf8, #1d4ed8);
-      border: 1.5px solid #fde047;
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+      border: 2px solid #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -199,8 +378,8 @@
       position: absolute;
       bottom: -4px;
       right: -4px;
-      background: #f59e0b;
-      color: #0f172a;
+      background: #22c55e;
+      color: #ffffff;
       font-size: 0.6rem;
       font-weight: 900;
       padding: 0 4px;
@@ -212,8 +391,8 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      background: rgba(15, 23, 42, 0.82);
-      border: 2px solid #fbbf24;
+      background: rgba(23, 37, 84, 0.78);
+      border: 2px solid #fef08a;
       border-radius: 999px;
       padding: 3px 7px;
       font-size: 0.76rem;
@@ -223,9 +402,9 @@
     .plus-badge {
       background: #22c55e;
       color: #fff;
-      border: none;
-      width: 18px;
-      height: 18px;
+      border: 1.5px solid #ffffff;
+      width: 19px;
+      height: 19px;
       border-radius: 999px;
       font-weight: 900;
       font-size: 0.78rem;
@@ -255,8 +434,8 @@
       width: 40px;
       height: 40px;
       border-radius: 999px;
-      background: linear-gradient(145deg, #fde047, #f59e0b 65%, #b45309);
-      border: 2px solid #fef9c3;
+      background: linear-gradient(180deg, #fef08a, #fbbf24 65%, #d97706);
+      border: 2px solid #ffffff;
       color: #0f172a;
       font-size: 1.05rem;
       font-weight: 900;
@@ -264,17 +443,17 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 0 #78350f, 0 6px 12px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 0 #92400e, 0 6px 12px rgba(0, 0, 0, 0.25);
     }
 
     .side-orb-label {
       font-size: 0.58rem;
       font-weight: 900;
       color: #fef08a;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(23, 37, 84, 0.85);
       padding: 1px 5px;
       border-radius: 999px;
-      border: 1px solid rgba(251, 191, 36, 0.5);
+      border: 1px solid #fef08a;
       margin-top: -4px;
     }
 
@@ -285,46 +464,46 @@
     }
 
     .mini-3d-board {
-      width: 98px;
-      height: 62px;
-      margin: 0 auto 4px;
-      border-radius: 10px;
+      width: 104px;
+      height: 66px;
+      margin: 0 auto 5px;
+      border-radius: 11px;
       background: conic-gradient(
         var(--green) 0deg 90deg,
         var(--yellow) 90deg 180deg,
         var(--blue) 180deg 270deg,
         var(--red) 270deg 360deg
       );
-      border: 2.5px solid #fef08a;
+      border: 2.5px solid #ffffff;
       transform: perspective(260px) rotateX(24deg);
-      box-shadow: 0 8px 0 #92400e, 0 14px 22px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 7px 0 #b45309, 0 12px 20px rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .mini-3d-dice {
-      width: 26px;
-      height: 26px;
-      border-radius: 7px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
       background: #ffffff;
-      border: 1.5px solid #0f172a;
+      border: 1.5px solid #f59e0b;
       color: #e11d48;
       font-weight: 900;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 3px 0 #475569;
+      box-shadow: 0 3px 0 #d97706;
     }
 
     .lk-title-box {
       display: inline-block;
-      background: linear-gradient(180deg, #fef08a, #f59e0b 65%, #b45309);
-      border: 2px solid #fffbeb;
-      border-radius: 14px;
+      background: linear-gradient(180deg, #fef9c3, #fbbf24 65%, #d97706);
+      border: 2.5px solid #ffffff;
+      border-radius: 15px;
       padding: 4px 16px;
-      box-shadow: 0 5px 0 #78350f, 0 8px 18px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 5px 0 #92400e, 0 8px 18px rgba(0, 0, 0, 0.28);
       position: relative;
       overflow: hidden;
     }
@@ -336,19 +515,14 @@
       left: -120%;
       width: 55%;
       height: 200%;
-      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.65) 50%, transparent 80%);
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.72) 50%, transparent 80%);
       transform: skewX(-20deg);
-      animation: shineSweep 3.4s infinite ease-in-out;
+      animation: shineSweep 3s infinite ease-in-out;
       pointer-events: none;
     }
 
-    @keyframes shineSweep {
-      0% { left: -120%; }
-      55%, 100% { left: 165%; }
-    }
-
     .lk-title-text {
-      font-size: 1.18rem;
+      font-size: 1.2rem;
       font-weight: 900;
       color: #0f172a;
     }
@@ -363,32 +537,47 @@
     }
 
     .music-chip {
-      background: rgba(15, 23, 42, 0.78);
-      border: 1px solid rgba(251, 191, 36, 0.6);
-      color: #fde68a;
+      background: rgba(23, 37, 84, 0.72);
+      border: 1.5px solid #fef08a;
+      color: #fef08a;
       border-radius: 999px;
-      padding: 2px 8px;
-      font-size: 0.67rem;
-      font-weight: 800;
+      padding: 2px 9px;
+      font-size: 0.68rem;
+      font-weight: 900;
       cursor: pointer;
     }
 
     .music-chip.active {
-      background: #16a34a;
+      background: linear-gradient(180deg, #4ade80, #16a34a);
       color: #ffffff;
-      border-color: #bbf7d0;
+      border-color: #ffffff;
     }
 
+    /* ब्राइट ब्लू + गोल्ड गेम कार्ड्स */
     .lk-card {
-      background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
-      border: 2.5px solid #fbbf24;
+      background: linear-gradient(180deg, #60a5fa 0%, #2563eb 55%, #1d4ed8 100%);
+      border: 2.5px solid #fef08a;
       border-radius: 16px;
       padding: 9px 7px;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 5px 0 #92400e, 0 8px 18px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 5px 0 #b45309, 0 8px 18px rgba(15, 23, 42, 0.25);
       position: relative;
+      overflow: hidden;
       transition: transform 0.12s ease;
+    }
+
+    .lk-card::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -130%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 4s infinite ease-in-out;
+      pointer-events: none;
     }
 
     .lk-card:active {
@@ -396,14 +585,14 @@
     }
 
     .lk-card.selected-card {
-      background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
-      border-color: #fef08a;
-      box-shadow: 0 5px 0 #14532d, 0 0 16px rgba(74, 222, 128, 0.55);
+      background: linear-gradient(180deg, #4ade80 0%, #16a34a 65%, #15803d 100%);
+      border-color: #ffffff;
+      box-shadow: 0 5px 0 #166534, 0 0 18px rgba(254, 240, 138, 0.65);
     }
 
     .play-now-tag {
       position: absolute;
-      top: -9px;
+      top: -8px;
       left: 50%;
       transform: translateX(-50%);
       background: #ef4444;
@@ -412,8 +601,9 @@
       font-weight: 900;
       padding: 1px 7px;
       border-radius: 999px;
-      border: 1.5px solid #fde047;
+      border: 1.5px solid #ffffff;
       white-space: nowrap;
+      z-index: 2;
     }
 
     .lk-card-icon {
@@ -425,13 +615,13 @@
       margin-top: 4px;
       font-size: 0.85rem;
       font-weight: 900;
-      color: #fde047;
-      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
+      color: #fef08a;
+      text-shadow: 0 2px 3px rgba(15, 23, 42, 0.45);
     }
 
     .lk-card-sub {
       font-size: 0.66rem;
-      color: #86efac;
+      color: #dcfce7;
       font-weight: 800;
       margin-top: 1px;
     }
@@ -451,16 +641,16 @@
     }
 
     .claim-ribbon {
-      margin: 4px auto 0;
-      background: linear-gradient(180deg, #fde047, #f59e0b 65%, #b45309);
-      border: 2px solid #fffbeb;
-      border-radius: 12px;
-      padding: 5px 14px;
+      margin: 5px auto 0;
+      background: linear-gradient(180deg, #fef9c3, #fbbf24 65%, #d97706);
+      border: 2.5px solid #ffffff;
+      border-radius: 13px;
+      padding: 5px 15px;
       color: #0f172a;
       font-size: 0.78rem;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 4px 0 #78350f;
+      box-shadow: 0 4px 0 #92400e;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -469,17 +659,18 @@
     }
 
     .sub-box {
-      background: rgba(15, 23, 42, 0.84);
-      border: 2px solid rgba(251, 191, 36, 0.72);
+      background: rgba(30, 58, 138, 0.78);
+      border: 2px solid #fef08a;
       border-radius: 16px;
       padding: 9px 10px;
       margin-top: 5px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.22);
     }
 
     .sub-title {
       font-size: 0.76rem;
       font-weight: 900;
-      color: #fde047;
+      color: #fef08a;
       margin-bottom: 6px;
       display: flex;
       justify-content: space-between;
@@ -492,9 +683,9 @@
     }
 
     .mini-opt {
-      background: #1e3a8a;
+      background: rgba(37, 99, 235, 0.9);
       color: #fff;
-      border: 1.5px solid #93c5fd;
+      border: 1.5px solid #bfdbfe;
       border-radius: 10px;
       padding: 6px 4px;
       font-size: 0.75rem;
@@ -503,9 +694,9 @@
     }
 
     .mini-opt.active {
-      background: linear-gradient(135deg, #fde047, #f59e0b);
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
       color: #0f172a;
-      border-color: #fff;
+      border-color: #ffffff;
     }
 
     .loc-grid {
@@ -517,8 +708,8 @@
     .loc-input {
       padding: 6px 8px;
       border-radius: 9px;
-      border: 1.5px solid #93c5fd;
-      background: #1e293b;
+      border: 1.5px solid #fef08a;
+      background: rgba(23, 37, 84, 0.85);
       color: #ffffff;
       font-weight: 800;
       font-size: 0.77rem;
@@ -527,9 +718,9 @@
     }
 
     .save-mini-btn {
-      background: #22c55e;
+      background: linear-gradient(180deg, #4ade80, #16a34a);
       color: #fff;
-      border: none;
+      border: 1.5px solid #ffffff;
       border-radius: 9px;
       padding: 0 10px;
       font-weight: 900;
@@ -539,8 +730,8 @@
 
     .room-strip {
       margin-top: 7px;
-      background: rgba(30, 58, 138, 0.65);
-      border: 1.5px dashed #fde047;
+      background: rgba(23, 37, 84, 0.65);
+      border: 1.5px dashed #fef08a;
       border-radius: 11px;
       padding: 6px 8px;
       display: flex;
@@ -564,9 +755,9 @@
     .wa-btn {
       background: #22c55e;
       color: #ffffff;
-      border: none;
+      border: 1.5px solid #ffffff;
       border-radius: 8px;
-      padding: 5px 9px;
+      padding: 4px 9px;
       font-size: 0.72rem;
       font-weight: 900;
       text-decoration: none;
@@ -583,9 +774,9 @@
     }
 
     .lb-tab {
-      background: #1e293b;
+      background: rgba(23, 37, 84, 0.8);
       color: #e2e8f0;
-      border: 1px solid #64748b;
+      border: 1.5px solid #93c5fd;
       border-radius: 8px;
       padding: 5px 4px;
       font-size: 0.72rem;
@@ -594,17 +785,17 @@
     }
 
     .lb-tab.active {
-      background: #f59e0b;
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
       color: #0f172a;
-      border-color: #fde047;
+      border-color: #ffffff;
     }
 
     .lb-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(30, 41, 59, 0.9);
-      border: 1px solid rgba(251, 191, 36, 0.35);
+      background: rgba(23, 37, 84, 0.75);
+      border: 1px solid rgba(254, 240, 138, 0.55);
       border-radius: 9px;
       padding: 5px 8px;
       margin-bottom: 4px;
@@ -614,31 +805,45 @@
     }
 
     .lb-item.me {
-      background: rgba(251, 191, 36, 0.24);
-      border-color: #fde047;
-      color: #fef08a;
+      background: rgba(254, 240, 138, 0.25);
+      border-color: #ffffff;
+      color: #fef9c3;
     }
 
     .start-big-btn {
       width: 100%;
       margin-top: 6px;
-      padding: 12px;
-      border-radius: 15px;
-      border: 2px solid #fef08a;
-      background: linear-gradient(135deg, #22c55e, #15803d);
+      padding: 13px;
+      border-radius: 16px;
+      border: 2.5px solid #ffffff;
+      background: linear-gradient(180deg, #4ade80, #16a34a 70%, #15803d);
       color: #ffffff;
-      font-size: 1.02rem;
+      font-size: 1.06rem;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 5px 0 #14532d, 0 8px 20px rgba(34, 197, 94, 0.45);
+      box-shadow: 0 5px 0 #166534, 0 10px 22px rgba(22, 163, 74, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .start-big-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -120%;
+      width: 55%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.55) 50%, transparent 80%);
+      transform: skewX(-20deg);
+      animation: shineSweep 2.8s infinite ease-in-out;
     }
 
     .bottom-nav {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 4px;
-      background: linear-gradient(180deg, #1e3a8a, #0f172a);
-      border: 2px solid #fbbf24;
+      background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+      border: 2px solid #fef08a;
       border-radius: 16px;
       padding: 4px;
       margin-top: 4px;
@@ -647,7 +852,7 @@
     .nav-btn {
       background: transparent;
       border: none;
-      color: #cbd5e1;
+      color: #e0f2fe;
       border-radius: 11px;
       padding: 5px 2px;
       font-size: 0.62rem;
@@ -660,15 +865,15 @@
     }
 
     .nav-btn.active {
-      background: linear-gradient(180deg, #38bdf8, #1d4ed8);
-      color: #fde047;
-      border: 1px solid #fde047;
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      border: 1.5px solid #ffffff;
     }
 
     /* गेमप्ले स्क्रीन */
     .game-top {
-      background: rgba(15, 23, 42, 0.92);
-      border: 1.5px solid #fbbf24;
+      background: rgba(30, 58, 138, 0.85);
+      border: 2px solid #fef08a;
       border-radius: 14px;
       padding: 6px 10px;
       display: flex;
@@ -681,7 +886,7 @@
     .exit-btn {
       background: #ef4444;
       color: #fff;
-      border: none;
+      border: 1.5px solid #ffffff;
       border-radius: 8px;
       padding: 5px 10px;
       font-weight: 800;
@@ -714,7 +919,7 @@
       opacity: 1;
       border-color: #fbbf24;
       background: #fffbeb;
-      box-shadow: 0 0 14px rgba(251, 191, 36, 0.65);
+      box-shadow: 0 0 14px rgba(251, 191, 36, 0.75);
     }
 
     .seat-box.empty-seat {
@@ -775,7 +980,6 @@
       100% { transform: scale(1) translateY(0); opacity: 1; }
     }
 
-    /* हर खिलाड़ी का अपना डाइस + घूमने और जंप (Jump) एनीमेशन */
     .dice-3d {
       width: 44px;
       height: 44px;
@@ -825,11 +1029,11 @@
     .pip.red-pip { background: #dc2626; }
 
     .board-frame {
-      background: #1e293b;
+      background: #1d4ed8;
       padding: 5px;
       border-radius: 16px;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
-      border: 2px solid #fbbf24;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.35);
+      border: 2.5px solid #fef08a;
     }
 
     .ludo-grid {
@@ -916,7 +1120,6 @@
       z-index: 3;
     }
 
-    /* बड़ी गोटियाँ (Big Pawns) */
     .pawn {
       width: 86%;
       height: 86%;
@@ -1037,9 +1240,9 @@
     }
 
     .status-banner {
-      background: rgba(15, 23, 42, 0.92);
-      color: #fef08a;
-      border: 1px solid rgba(251, 191, 36, 0.45);
+      background: rgba(30, 58, 138, 0.88);
+      color: #fef9c3;
+      border: 2px solid #fef08a;
       border-radius: 12px;
       padding: 8px 10px;
       text-align: center;
@@ -1054,8 +1257,8 @@
     }
 
     .emote-chip {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1.5px solid #fbbf24;
+      background: #ffffff;
+      border: 2px solid #fbbf24;
       border-radius: 10px;
       padding: 6px 4px;
       font-size: 0.76rem;
@@ -1067,7 +1270,8 @@
     .warn-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 23, 0.84);
+      background: rgba(29, 78, 216, 0.72);
+      backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1084,7 +1288,7 @@
       padding: 16px;
       text-align: center;
       border: 2.5px solid #f59e0b;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
     }
 
     .warn-actions {
@@ -1120,22 +1324,29 @@
   </style>
 </head>
 <body>
-  <!-- शुरू होने से पहले GREEN STAR स्पलैश -->
+  <!-- शुरू में ब्राइट + यूनिक GREEN STAR स्पलैश -->
   <div class="green-star-splash" id="greenStarSplash">
-    <div class="gstar-ring">⭐</div>
-    <div class="gstar-title">GREEN STAR</div>
-    <div class="gstar-sub">देसी लूडो राजा • तैयार हो रहा है...</div>
+    <div class="gstar-halo">
+      <div class="gstar-orbit"></div>
+      <div class="gstar-ring">👑</div>
+    </div>
+    <div class="gstar-badge-plate">
+      <div class="gstar-title">⭐ GREEN STAR</div>
+    </div>
+    <div class="gstar-sub">देसी लूडो राजा • रॉयल एडिशन</div>
   </div>
 
-  <!-- Facebook और Guest लॉगिन -->
+  <!-- बड़ा, चमकता हुआ और आकर्षक स्टार्ट/लॉगिन कार्ड -->
   <div class="auth-overlay hidden" id="authModal">
     <div class="auth-card">
-      <div style="font-size: 2.2rem;">👑🎲</div>
-      <div style="font-size: 1.2rem; font-weight: 900; color: #fde047; margin-top: 4px;">
-        देसी लूडो राजा
+      <div class="start-hero-board">
+        <div class="start-hero-dice">🎲</div>
       </div>
-      <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 2px;">
-        खेलने का तरीका चुनें
+      <div class="start-brand-pill">
+        <div class="start-brand-title">👑 देसी लूडो राजा</div>
+      </div>
+      <div style="font-size: 0.84rem; color: #fef9c3; font-weight: 800; margin-top: 8px;">
+        अपना लॉगिन चुनें और खेल शुरू करें
       </div>
 
       <button type="button" class="fb-login-btn" id="loginFacebookBtn">
@@ -1159,8 +1370,8 @@
           <span class="lvl-tag">12</span>
         </div>
         <div>
-          <div style="font-size:0.76rem;font-weight:900;color:#fde047;" id="headerPlayerName">राजा</div>
-          <div style="font-size:0.6rem;color:#86efac;font-weight:800;" id="headerAuthTag">Guest</div>
+          <div style="font-size:0.76rem;font-weight:900;color:#fef08a;" id="headerPlayerName">You</div>
+          <div style="font-size:0.6rem;color:#dcfce7;font-weight:800;" id="headerAuthTag">Guest</div>
         </div>
       </div>
 
@@ -1174,7 +1385,7 @@
         <span>🪙</span>
         <span id="walletCoins">5000</span>
         <button type="button" class="plus-badge" id="addBonusBtn">+</button>
-        <button type="button" class="plus-badge" style="background:#f59e0b;color:#0f172a;margin-left:1px;" id="soundToggleBtn">🔊</button>
+        <button type="button" class="plus-badge" style="background:#fbbf24;color:#0f172a;margin-left:1px;" id="soundToggleBtn">🔊</button>
       </div>
     </div>
 
@@ -1262,7 +1473,7 @@
 
         <div class="room-strip">
           <div>
-            <div style="font-size:0.64rem;color:#fde68a;font-weight:700;">रूम कोड</div>
+            <div style="font-size:0.64rem;color:#fef08a;font-weight:700;">रूम कोड</div>
             <div style="font-weight:900;font-size:0.86rem;" id="roomCodeDisplay">RAJA-8042</div>
           </div>
           <div style="display:flex;gap:5px;flex-wrap:wrap;">
@@ -1290,7 +1501,7 @@
         <div id="lbRows"></div>
       </div>
 
-      <div id="lobbyMsg" style="text-align:center;font-size:0.75rem;font-weight:800;color:#fde047;margin-top:4px;min-height:14px;"></div>
+      <div id="lobbyMsg" style="text-align:center;font-size:0.76rem;font-weight:800;color:#fef9c3;margin-top:4px;min-height:14px;"></div>
 
       <button type="button" class="start-big-btn" id="startPlayBtn">▶ अभी खेल शुरू करें</button>
 
@@ -1665,7 +1876,6 @@
       return `<div class="dice-3d ${isReady ? 'ready' : ''} ${isRolling ? 'rolling' : ''}">${dotsHTML}</div>`;
     }
 
-    // हर खिलाड़ी की सीट के पास उसका अपना डाइस
     function renderSeats() {
       const topContainer = document.getElementById('topSeats');
       const bottomContainer = document.getElementById('bottomSeats');
