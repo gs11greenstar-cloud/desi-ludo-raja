@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>देसी लूडो राजा</title>
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+  <link rel="apple-touch-icon" href="icon-512.png" />
+  <style>
+    :root {
+      --gold: #fbbf24;
+      --gold-light: #fef08a;
+      --red: #e11d48;
+      --green: #16a34a;
+      --yellow: #eab308;
+      --blue: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #38bdf8 0%, #2563eb 45%, #1e3a8a 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .app-wrap {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* लॉबी कार्ड */
+    .lobby-card {
+      background: rgba(15, 23, 42, 0.42);
+      border: 2.5px solid var(--gold-light);
+      border-radius: 22px;
+      padding: 16px 14px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      border: 2px solid var(--gold-light);
+      object-fit: cover;
+      background: #0f172a;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--gold-light);
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.48);
+      border: 2px solid var(--gold-light);
+      border-radius: 14px;
+      padding: 8px 10px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .pill-btn {
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      border: 1.5px solid #ffffff;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .danger-btn {
+      background: #ef4444;
+      color: #ffffff;
+      border: 1.5px solid #ffffff;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .section-box {
+      margin-top: 10px;
+      background: rgba(30, 58, 138, 0.65);
+      border: 1.5px solid rgba(254, 240, 138, 0.75);
+      border-radius: 14px;
+      padding: 10px;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .opt-btn {
+      background: rgba(15, 23, 42, 0.45);
+      color: #ffffff;
+      border: 1.5px solid #93c5fd;
+      border-radius: 10px;
+      padding: 7px 4px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .opt-btn.active {
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      border-color: #ffffff;
+    }
+
+    .start-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 15px;
+      border: 2px solid #ffffff;
+      background: linear-gradient(180deg, #4ade80, #16a34a);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #166534;
+    }
+
+    /* भाषा चुनने का मोडल */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      z-index: 50;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 360px;
+      background: linear-gradient(180deg, #2563eb, #1e3a8a);
+      border: 2.5px solid var(--gold-light);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+      margin: 10px 0 12px;
+    }
+
+    /* गेमप्ले */
+    #gameScreen:not(.hidden) {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .seats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .seat-card {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 12px;
+      padding: 8px 10px;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      opacity: 0.75;
+    }
+
+    .seat-card.active {
+      opacity: 1;
+      border-color: var(--gold);
+      background: #fffbeb;
+    }
+
+    .dice-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      border: 2px solid #0f172a;
+      background: #ffffff;
+      color: #e11d48;
+      font-size: 1.2rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .board-wrap {
+      background: #1e3a8a;
+      padding: 6px;
+      border-radius: 16px;
+      border: 2px solid var(--gold-light);
+    }
+
+    .board-15 {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      grid-template-rows: repeat(15, 1fr);
+      background: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .cell {
+      border: 0.5px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .bg-red { background: var(--red); }
+    .bg-green { background: var(--green); }
+    .bg-yellow { background: var(--yellow); }
+    .bg-blue { background: var(--blue); }
+
+    .yard {
+      padding: 14%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16%;
+      place-items: center;
+      border: 1px solid #0f172a;
+    }
+
+    .yard-slot {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .center-home {
+      grid-column: 7 / span 3;
+      grid-row: 7 / span 3;
+      background: conic-gradient(
+        var(--green) 0deg 90deg,
+        var(--yellow) 90deg 180deg,
+        var(--blue) 180deg 270deg,
+        var(--red) 270deg 360deg
+      );
+      border: 1px solid #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .token {
+      width: 82%;
+      height: 82%;
+      border-radius: 999px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+    }
+
+    .token.can-move {
+      outline: 2.5px solid #0f172a;
+      transform: scale(1.15);
+      cursor: pointer;
+    }
+
+    .status-box {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1.5px solid var(--gold-light);
+      border-radius: 12px;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-wrap">
+    <!-- लॉबी स्क्रीन -->
+    <div id="lobbyScreen" class="lobby-card">
+      <div class="brand-row">
+        <img src="icon-512.png" alt="देसी लूडो राजा" class="brand-icon" />
+        <div class="brand-title" id="lobbyTitle">👑 देसी लूडो राजा</div>
+      </div>
+
+      <div class="top-bar">
+        <span>🪙 <strong id="coinsText">5000</strong></span>
+        <button type="button" class="pill-btn" id="lobbyLangBtn">🌐 भाषा</button>
+      </div>
+
+      <div class="section-box">
+        <span class="section-label" id="playersLabel">खिलाड़ी संख्या</span>
+        <div class="grid-4" id="playerCountGroup">
+          <button type="button" class="opt-btn active" data-count="2">2</button>
+          <button type="button" class="opt-btn" data-count="3">3</button>
+          <button type="button" class="opt-btn" data-count="4">4</button>
+          <button type="button" class="opt-btn" data-count="1">1 (Bot)</button>
+        </div>
+      </div>
+
+      <div id="lobbyMsg" style="margin-top:8px;font-size:0.8rem;color:#fef08a;font-weight:700;min-height:16px;"></div>
+
+      <button type="button" class="start-btn" id="startGameBtn">▶ खेल शुरू करें</button>
+    </div>
+
+    <!-- गेमप्ले स्क्रीन -->
+    <div id="gameScreen" class="hidden">
+      <div class="top-bar">
+        <span id="gameHeaderTitle">👑 देसी लूडो राजा</span>
+        <div style="display:flex;gap:6px;">
+          <button type="button" class="pill-btn" id="gameLangBtn">🌐 भाषा</button>
+          <button type="button" class="danger-btn" id="exitGameBtn">बाहर</button>
+        </div>
+      </div>
+
+      <div class="seats-row" id="seatsTop"></div>
+
+      <div class="board-wrap">
+        <div class="board-15" id="boardGrid"></div>
+      </div>
+
+      <div class="seats-row" id="seatsBottom"></div>
+
+      <div class="status-box" id="statusText">डाइस दबाएं</div>
+    </div>
+  </div>
+
+  <!-- भाषा मोडल (पहली बार या भाषा बटन दबाने पर खुलता है) -->
+  <div class="modal-backdrop hidden" id="langModal">
+    <div class="modal-card">
+      <div style="font-size:1.05rem;font-weight:900;color:#fef08a;" id="langModalTitle">🌐 भाषा चुनें</div>
+      <div class="lang-grid" id="langChoices">
+        <button type="button" class="opt-btn active" data-lang="hi">हिन्दी</button>
+        <button type="button" class="opt-btn" data-lang="en">English</button>
+        <button type="button" class="opt-btn" data-lang="mr">मराठी</button>
+        <button type="button" class="opt-btn" data-lang="bn">বাংলা</button>
+        <button type="button" class="opt-btn" data-lang="ta">தமிழ்</button>
+        <button type="button" class="opt-btn" data-lang="te">తెలుగు</button>
+        <button type="button" class="opt-btn" data-lang="gu">ગુજરાતી</button>
+        <button type="button" class="opt-btn" data-lang="kn">ಕನ್ನಡ</button>
+      </div>
+      <button type="button" class="pill-btn" style="width:100%;padding:9px;" id="saveLangBtn">सेव करें</button>
+    </div>
+  </div>
+
+  <script>
+    const LANG_KEY = 'dlr_lang_saved_v1';
+    const PREFS_KEY = 'dlr_prefs_v1';
+    const MATCH_KEY = 'dlr_active_match_v1';
+
+    const UI_TEXT = {
+      hi: {
+        title: '👑 देसी लूडो राजा',
+        players: 'खिलाड़ी संख्या',
+        start: '▶ खेल शुरू करें',
+        langBtn: '🌐 भाषा',
+        exitBtn: 'बाहर',
+        modalTitle: '🌐 भाषा चुनें',
+        saveBtn: 'सेव करें',
+        rollPrompt: 'डाइस पर टैप करें',
+        movePrompt: 'चमकती गोटी चुनें'
+      },
+      en: {
+        title: '👑 Desi Ludo Raja',
+        players: 'Players',
+        start: '▶ Start Game',
+        langBtn: '🌐 Lang',
+        exitBtn: 'Exit',
+        modalTitle: '🌐 Select Language',
+        saveBtn: 'Save',
+        rollPrompt: 'Tap the dice',
+        movePrompt: 'Select a highlighted token'
+      },
+      mr: {
+        title: '👑 देसी लुडो राजा',
+        players: 'खेळाडू संख्या',
+        start: '▶ खेळ सुरू करा',
+        langBtn: '🌐 भाषा',
+        exitBtn: 'बाहेर',
+        modalTitle: '🌐 भाषा निवडा',
+        saveBtn: 'जतन करा',
+        rollPrompt: 'फासा दाबा',
+        movePrompt: 'गोटी निवडा'
+      },
+      bn: {
+        title: '👑 দেশি লুডো রাজা',
+        players: 'খেলোয়াড়',
+        start: '▶ খেলা শুরু করুন',
+        langBtn: '🌐 ভাষা',
+        exitBtn: 'বাহির',
+        modalTitle: '🌐 ভাষা নির্বাচন করুন',
+        saveBtn: 'সংরক্ষণ করুন',
+        rollPrompt: 'ডাইস ট্যাপ করুন',
+        movePrompt: 'গুটি নির্বাচন করুন'
+      },
+      ta: {
+        title: '👑 தேசி லுடோ ராஜா',
+        players: 'வீரர்கள்',
+        start: '▶ விளையாடத் தொடங்கு',
+        langBtn: '🌐 மொழி',
+        exitBtn: 'வெளியேறு',
+        modalTitle: '🌐 மொழியைத் தேர்ந்தெடுக்கவும்',
+        saveBtn: 'சேமிக்கவும்',
+        rollPrompt: 'பகடையைத் தட்டவும்',
+        movePrompt: 'காயைத் தேர்ந்தெடுக்கவும்'
+      },
+      te: {
+        title: '👑 దేశీ లూడో రాజా',
+        players: 'ఆటగాళ్లు',
+        start: '▶ ఆట ప్రారంభించండి',
+        langBtn: '🌐 భాష',
+        exitBtn: 'నిష్క్రమించు',
+        modalTitle: '🌐 భాషను ఎంచుకోండి',
+        saveBtn: 'సేవ్ చేయండి',
+        rollPrompt: 'పాచికను తాకండి',
+        movePrompt: 'పావును ఎంచుకోండి'
+      },
+      gu: {
+        title: '👑 દેસી લૂડો રાજા',
+        players: 'ખેલાડીઓ',
+        start: '▶ રમત શરૂ કરો',
+        langBtn: '🌐 ભાષા',
+        exitBtn: 'બહાર',
+        modalTitle: '🌐 ભાષા પસંદ કરો',
+        saveBtn: 'સાચવો',
+        rollPrompt: 'પાસો દબાવો',
+        movePrompt: 'કૂકરી પસંદ કરો'
+      },
+      kn: {
+        title: '👑 ದೇಸಿ ಲೂಡೋ ರಾಜ',
+        players: 'ಆಟಗಾರರು',
+        start: '▶ ಆಟ ಪ್ರಾರಂಭಿಸಿ',
+        langBtn: '🌐 ಭಾಷೆ',
+        exitBtn: 'ಹೊರಗೆ',
+        modalTitle: '🌐 ಭಾಷೆಯನ್ನು ಆರಿಸಿ',
+        saveBtn: 'ಉಳಿಸಿ',
+        rollPrompt: 'ದಾಳವನ್ನು ಒತ್ತಿ',
+        movePrompt: 'ಕಾಯಿಯನ್ನು ಆರಿಸಿ'
+      }
+    };
+
+    const TRACK = [
+      [6,1],[6,2],[6,3],[6,4],[6,5],
+      [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
+      [0,7],[0,8],
+      [1,8],[2,8],[3,8],[4,8],[5,8],
+      [6,9],[6,10],[6,11],[6,12],[6,13],[6,14],
+      [7,14],[8,14],
+      [8,13],[8,12],[8,11],[8,10],[8,9],
+      [9,8],[10,8],[11,8],[12,8],[13,8],[14,8],
+      [14,7],[14,6],
+      [13,6],[12,6],[11,6],[10,6],[9,6],
+      [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],
+      [7,0],[6,0]
+    ];
+
+    const COLORS = [
+      { id: 0, name: 'लाल', bg: 'bg-red', start: 0, lane: [[7,1],[7,2],[7,3],[7,4],[7,5]] },
+      { id: 1, name: 'हरा', bg: 'bg-green', start: 13, lane: [[1,7],[2,7],[3,7],[4,7],[5,7]] },
+      { id: 2, name: 'पीला', bg: 'bg-yellow', start: 26, lane: [[7,13],[7,12],[7,11],[7,10],[7,9]] },
+      { id: 3, name: 'नीला', bg: 'bg-blue', start: 39, lane: [[13,7],[12,7],[11,7],[10,7],[9,7]] }
+    ];
+
+    let lang = localStorage.getItem(LANG_KEY) || 'hi';
+    let hasLangSaved = Boolean(localStorage.getItem(LANG_KEY));
+    let coins = 5000;
+    let playerCount = 2;
+
+    let match = null;
+
+    function loadPrefs() {
+      try {
+        const raw = localStorage.getItem(PREFS_KEY);
+        if (!raw) return;
+        const p = JSON.parse(raw);
+        if (typeof p.coins === 'number') coins = p.coins;
+        if ([1, 2, 3, 4].includes(Number(p.playerCount))) playerCount = Number(p.playerCount);
+      } catch (e) {}
+    }
+
+    function savePrefs() {
+      try {
+        localStorage.setItem(PREFS_KEY, JSON.stringify({ coins, playerCount }));
+      } catch (e) {}
+    }
+
+    function saveMatch() {
+      try {
+        if (!match) {
+          localStorage.removeItem(MATCH_KEY);
+          return;
+        }
+        localStorage.setItem(MATCH_KEY, JSON.stringify(match));
+      } catch (e) {}
+    }
+
+    function clearMatch() {
+      match = null;
+      try {
+        localStorage.removeItem(MATCH_KEY);
+      } catch (e) {}
+    }
+
+    function applyLang() {
+      const t = UI_TEXT[lang] || UI_TEXT.hi;
+      document.documentElement.lang = lang;
+      document.getElementById('lobbyTitle').textContent = t.title;
+      document.getElementById('gameHeaderTitle').textContent = t.title;
+      document.getElementById('playersLabel').textContent = t.players;
+      document.getElementById('startGameBtn').textContent = t.start;
+      document.getElementById('lobbyLangBtn').textContent = t.langBtn;
+      document.getElementById('gameLangBtn').textContent = t.langBtn;
+      document.getElementById('exitGameBtn').textContent = t.exitBtn;
+      document.getElementById('langModalTitle').textContent = t.modalTitle;
+      document.getElementById('saveLangBtn').textContent = t.saveBtn;
+      document.querySelectorAll('#langChoices .opt-btn').forEach((b) => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      if (match) renderGame();
+    }
+
+    function openLangModal() {
+      document.getElementById('langModal').classList.remove('hidden');
+    }
+
+    function closeLangModal() {
+      document.getElementById('langModal').classList.add('hidden');
+    }
+
+    function showLobby() {
+      document.getElementById('gameScreen').classList.add('hidden');
+      document.getElementById('lobbyScreen').classList.remove('hidden');
+      document.getElementById('coinsText').textContent = String(coins);
+      document.querySelectorAll('#playerCountGroup .opt-btn').forEach((b) => {
+        b.classList.toggle('active', Number(b.dataset.count) === playerCount);
+      });
+    }
+
+    function getTokenCoords(player, step) {
+      if (step < 0 || step > 56) return null;
+      if (step <= 50) return TRACK[(player.start + step) % TRACK.length];
+      if (step <= 55) return player.lane[step - 51];
+      return [7, 7];
+    }
+
+    function canTokenMove(step, dice) {
+      if (step === -1) return dice === 6;
+      if (step >= 0 && step <= 55) return step + dice <= 56;
+      return false;
+    }
+
+    function startNewMatch() {
+      if (coins < 200) {
+        coins = 5000;
+        savePrefs();
+      }
+      coins -= 200;
+      savePrefs();
+
+      const seats = playerCount === 1 ? [0] : playerCount === 2 ? [0, 2] : playerCount === 3 ? [0, 1, 2] : [0, 1, 2, 3];
+      const players = seats.map((seatId, idx) => ({
+        ...COLORS[seatId],
+        name: idx === 0 ? 'You' : (playerCount === 1 ? 'Bot' : `P${idx + 1}`),
+        isBot: idx > 0 && playerCount === 1,
+        tokens: [-1, -1, -1, -1]
+      }));
+
+      match = {
+        players,
+        turn: 0,
+        dice: 6,
+        phase: 'ROLL' // ROLL | MOVE | DONE
+      };
+      saveMatch();
+      showGame();
+    }
+
+    function showGame() {
+      document.getElementById('lobbyScreen').classList.add('hidden');
+      document.getElementById('gameScreen').classList.remove('hidden');
+      renderGame();
+    }
+
+    function rollDice() {
+      if (!match || match.phase !== 'ROLL') return;
+      const val = Math.floor(Math.random() * 6) + 1;
+      match.dice = val;
+      const cur = match.players[match.turn];
+      const movable = cur.tokens.some((s) => canTokenMove(s, val));
+
+      if (!movable) {
+        match.phase = 'ROLL';
+        match.turn = (match.turn + 1) % match.players.length;
+        saveMatch();
+        renderGame();
+        document.getElementById('statusText').textContent = `${cur.name}: ${val} (कोई चाल नहीं)`;
+        return;
+      }
+
+      match.phase = 'MOVE';
+      saveMatch();
+      renderGame();
+
+      if (cur.isBot) {
+        const idx = cur.tokens.findIndex((s) => canTokenMove(s, val));
+        if (idx >= 0) setTimeout(() => moveToken(idx), 350);
+      }
+    }
+
+    function moveToken(tokenIdx) {
+      if (!match || match.phase !== 'MOVE') return;
+      const cur = match.players[match.turn];
+      const step = cur.tokens[tokenIdx];
+      if (!canTokenMove(step, match.dice)) return;
+
+      cur.tokens[tokenIdx] = step === -1 ? 0 : step + match.dice;
+
+      // कटना चेक
+      const newStep = cur.tokens[tokenIdx];
+      if (newStep >= 0 && newStep <= 50) {
+        const absPos = (cur.start + newStep) % TRACK.length;
+        match.players.forEach((other, oIdx) => {
+          if (oIdx === match.turn) return;
+          other.tokens.forEach((os, otIdx) => {
+            if (os >= 0 && os <= 50 && (other.start + os) % TRACK.length === absPos) {
+              other.tokens[otIdx] = -1;
+            }
+          });
+        });
+      }
+
+      if (cur.tokens.every((s) => s === 56)) {
+        match.phase = 'DONE';
+        if (!cur.isBot) {
+          coins += 500;
+          savePrefs();
+        }
+        clearMatch();
+        renderGame();
+        document.getElementById('statusText').textContent = `🏆 ${cur.name} जीता!`;
+        return;
+      }
+
+      if (match.dice !== 6) {
+        match.turn = (match.turn + 1) % match.players.length;
+      }
+      match.phase = 'ROLL';
+      saveMatch();
+      renderGame();
+    }
+
+    function renderGame() {
+      const t = UI_TEXT[lang] || UI_TEXT.hi;
+      const topEl = document.getElementById('seatsTop');
+      const botEl = document.getElementById('seatsBottom');
+      topEl.innerHTML = '';
+      botEl.innerHTML = '';
+
+      match.players.forEach((p, idx) => {
+        const isCur = idx === match.turn && match.phase !== 'DONE';
+        const homeCnt = p.tokens.filter((s) => s === 56).length;
+        const card = document.createElement('div');
+        card.className = `seat-card ${isCur ? 'active' : ''}`;
+        card.innerHTML = `
+          <div>
+            <div style="font-weight:900;font-size:0.85rem;">${p.name} (${p.name})</div>
+            <div style="font-size:0.72rem;color:#475569;font-weight:700;">घर: ${homeCnt}/4</div>
+          </div>
+          <div class="dice-box" title="Dice">${isCur ? match.dice : '🎲'}</div>
+        `;
+        if (isCur && match.phase === 'ROLL' && !p.isBot) {
+          card.querySelector('.dice-box').addEventListener('click', rollDice);
+        }
+        if (idx < 2) topEl.appendChild(card);
+        else botEl.appendChild(card);
+      });
+
+      const board = document.getElementById('boardGrid');
+      board.innerHTML = '';
+
+      const yards = [
+        { id: 0, bg: 'bg-red', col: 1, row: 1 },
+        { id: 1, bg: 'bg-green', col: 10, row: 1 },
+        { id: 2, bg: 'bg-yellow', col: 10, row: 10 },
+        { id: 3, bg: 'bg-blue', col: 1, row: 10 }
+      ];
+
+      yards.forEach((y) => {
+        const yDiv = document.createElement('div');
+        yDiv.className = `yard ${y.bg}`;
+        yDiv.style.gridColumn = `${y.col} / span 6`;
+        yDiv.style.gridRow = `${y.row} / span 6`;
+        const pIdx = match.players.findIndex((pl) => pl.id === y.id);
+        const p = pIdx >= 0 ? match.players[pIdx] : null;
+
+        for (let i = 0; i < 4; i++) {
+          const slot = document.createElement('div');
+          slot.className = 'yard-slot';
+          if (p && p.tokens[i] === -1) {
+            const tok = document.createElement('div');
+            tok.className = `token ${p.bg}`;
+            if (pIdx === match.turn && match.phase === 'MOVE' && !p.isBot && canTokenMove(-1, match.dice)) {
+              tok.classList.add('can-move');
+              tok.addEventListener('click', () => moveToken(i));
+            }
+            slot.appendChild(tok);
+          }
+          yDiv.appendChild(slot);
+        }
+        board.appendChild(yDiv);
+      });
+
+      const center = document.createElement('div');
+      center.className = 'center-home';
+      center.textContent = '👑';
+      board.appendChild(center);
+
+      for (let r = 0; r < 15; r++) {
+        for (let c = 0; c < 15; c++) {
+          const skip =
+            (r < 6 && c < 6) ||
+            (r < 6 && c > 8) ||
+            (r > 8 && c > 8) ||
+            (r > 8 && c < 6) ||
+            (r >= 6 && r <= 8 && c >= 6 && c <= 8);
+          if (skip) continue;
+
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.style.gridRow = String(r + 1);
+          cell.style.gridColumn = String(c + 1);
+
+          if ((r === 7 && c >= 1 && c <= 5) || (r === 6 && c === 1)) cell.classList.add('bg-red');
+          if ((c === 7 && r >= 1 && r <= 5) || (r === 1 && c === 8)) cell.classList.add('bg-green');
+          if ((r === 7 && c >= 9 && c <= 13) || (r === 8 && c === 13)) cell.classList.add('bg-yellow');
+          if ((c === 7 && r >= 9 && r <= 13) || (r === 13 && c === 6)) cell.classList.add('bg-blue');
+
+          match.players.forEach((p, pIdx) => {
+            p.tokens.forEach((st, tIdx) => {
+              const xy = getTokenCoords(p, st);
+              if (xy && xy[0] === r && xy[1] === c) {
+                const tok = document.createElement('div');
+                tok.className = `token ${p.bg}`;
+                if (pIdx === match.turn && match.phase === 'MOVE' && !p.isBot && canTokenMove(st, match.dice)) {
+                  tok.classList.add('can-move');
+                  tok.addEventListener('click', () => moveToken(tIdx));
+                }
+                cell.appendChild(tok);
+              }
+            });
+          });
+
+          board.appendChild(cell);
+        }
+      }
+
+      const cur = match.players[match.turn];
+      document.getElementById('statusText').textContent =
+        match.phase === 'MOVE'
+          ? `${cur.name} (${match.dice}) — ${t.movePrompt}`
+          : `${cur.name} — ${t.rollPrompt}`;
+    }
+
+    // इवेंट्स
+    document.querySelectorAll('#langChoices .opt-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        lang = btn.dataset.lang;
+        applyLang();
+      });
+    });
+
+    document.getElementById('saveLangBtn').addEventListener('click', () => {
+      try {
+        localStorage.setItem(LANG_KEY, lang);
+      } catch (e) {}
+      hasLangSaved = true;
+      closeLangModal();
+    });
+
+    document.getElementById('lobbyLangBtn').addEventListener('click', openLangModal);
+    document.getElementById('gameLangBtn').addEventListener('click', openLangModal);
+
+    document.querySelectorAll('#playerCountGroup .opt-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        playerCount = Number(btn.dataset.count);
+        savePrefs();
+        document.querySelectorAll('#playerCountGroup .opt-btn').forEach((b) => {
+          b.classList.toggle('active', Number(b.dataset.count) === playerCount);
+        });
+      });
+    });
+
+    document.getElementById('startGameBtn').addEventListener('click', startNewMatch);
+
+    document.getElementById('exitGameBtn').addEventListener('click', () => {
+      clearMatch();
+      showLobby();
+    });
+
+    // रिफ़्रेश होने पर चालू मैच बिना बैक प्रॉम्प्ट के वहीं से जारी रहे
+    window.addEventListener('beforeunload', () => {
+      savePrefs();
+      saveMatch();
+    });
+
+    // इनिशियलाइज़ेशन
+    loadPrefs();
+    applyLang();
+
+    try {
+      const savedMatchRaw = localStorage.getItem(MATCH_KEY);
+      if (savedMatchRaw) {
+        const parsed = JSON.parse(savedMatchRaw);
+        if (parsed && Array.isArray(parsed.players) && parsed.phase !== 'DONE') {
+          match = parsed;
+        }
+      }
+    } catch (e) {}
+
+    if (match) {
+      showGame();
+    } else {
+      showLobby();
+    }
+
+    if (!hasLangSaved) {
+      openLangModal();
+    }
+  </script>
+</body>
+</html>
