@@ -70,6 +70,7 @@
       text-align: center;
       padding: 20px;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .gstar-halo {
@@ -169,17 +170,36 @@
       font-weight: 800;
     }
 
+    .splash-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .splash-sound-btn {
-      margin-top: 12px;
       background: linear-gradient(180deg, #fef08a, #f59e0b);
       color: #0f172a;
       border: 2px solid #ffffff;
       border-radius: 999px;
-      padding: 6px 16px;
+      padding: 7px 16px;
       font-size: 0.78rem;
       font-weight: 900;
       cursor: pointer;
       box-shadow: 0 4px 0 #92400e;
+    }
+
+    .splash-skip-btn {
+      background: linear-gradient(180deg, #4ade80, #16a34a);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #166534;
     }
 
     /* बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड */
@@ -1400,7 +1420,10 @@
       <div class="gstar-title">⭐ GREEN STAR</div>
     </div>
     <div class="gstar-sub">देसी लूडो राजा • रॉयल मेलोडी एडिशन</div>
-    <button type="button" class="splash-sound-btn" id="replaySplashMusicBtn">🎶 रॉयल धुन सुनें</button>
+    <div class="splash-actions">
+      <button type="button" class="splash-sound-btn" id="replaySplashMusicBtn">🎶 रॉयल धुन सुनें</button>
+      <button type="button" class="splash-skip-btn" id="skipSplashBtn">▶ आगे बढ़ें</button>
+    </div>
   </div>
 
   <!-- बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड + भाषा विकल्प + बड़ा-छोटा एनीमेशन -->
@@ -1769,7 +1792,6 @@
       6: [0, 2, 3, 5, 6, 8]
     };
 
-    /* GREEN STAR की लंबी जोशीली मेलोडी और ट्रैक नोट्स */
     const GREEN_STAR_MELODY = [
       { f: 523.25, d: 0.14, gap: 110 },
       { f: 659.25, d: 0.14, gap: 110 },
@@ -1806,6 +1828,7 @@
     let currentMusicTrack = 'splash';
     let soundOn = true;
     let seasonClaimed = false;
+    let splashFinished = false;
 
     let players = [];
     let turnIdx = 0;
@@ -1828,11 +1851,13 @@
     function getAudioCtx() {
       if (!soundOn) return null;
       try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return null;
         if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          audioCtx = new Ctx();
         }
         if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
+          audioCtx.resume().catch(() => {});
         }
         return audioCtx;
       } catch (e) {
@@ -1841,9 +1866,9 @@
     }
 
     function playTone(freq, duration = 0.1, type = 'triangle', gainVal = 0.09) {
-      const ctx = getAudioCtx();
-      if (!ctx) return;
       try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = type;
@@ -1857,29 +1882,31 @@
       } catch (e) {}
     }
 
-    /* किसी भी ऑप्शन (Friend, Bot, Language आदि) चुनने पर मधुर मेलोडी */
     function playOptionSelectMusic(baseFreq = 587.33) {
-      if (!soundOn) return;
-      const chord = [baseFreq, baseFreq * 1.25, baseFreq * 1.5, baseFreq * 2];
-      chord.forEach((n, idx) => {
-        setTimeout(() => {
-          playTone(n, 0.13, 'triangle', 0.095);
-          playTone(n * 0.5, 0.13, 'sine', 0.055);
-        }, idx * 65);
-      });
+      try {
+        if (!soundOn) return;
+        const chord = [baseFreq, baseFreq * 1.25, baseFreq * 1.5, baseFreq * 2];
+        chord.forEach((n, idx) => {
+          setTimeout(() => {
+            playTone(n, 0.13, 'triangle', 0.095);
+            playTone(n * 0.5, 0.13, 'sine', 0.055);
+          }, idx * 65);
+        });
+      } catch (e) {}
     }
 
-    /* GREEN STAR स्क्रीन की शानदार रॉयल मेलोडी */
     function playGreenStarFanfare() {
-      if (!soundOn) return;
-      let delaySoFar = 0;
-      GREEN_STAR_MELODY.forEach((item) => {
-        setTimeout(() => {
-          playTone(item.f, item.d, 'triangle', 0.11);
-          playTone(item.f * 0.5, item.d, 'sine', 0.065);
-        }, delaySoFar);
-        delaySoFar += item.gap;
-      });
+      try {
+        if (!soundOn) return;
+        let delaySoFar = 0;
+        GREEN_STAR_MELODY.forEach((item) => {
+          setTimeout(() => {
+            playTone(item.f, item.d, 'triangle', 0.11);
+            playTone(item.f * 0.5, item.d, 'sine', 0.065);
+          }, delaySoFar);
+          delaySoFar += item.gap;
+        });
+      } catch (e) {}
     }
 
     function playDiceSpinTick(stepNum) {
@@ -1887,38 +1914,33 @@
     }
 
     function playTrackTheme(trackName) {
-      currentMusicTrack = trackName;
-      document.querySelectorAll('.music-chip').forEach((chip) => {
-        chip.classList.toggle('active', chip.dataset.track === trackName);
-      });
-      if (trackName === 'splash') {
-        playGreenStarFanfare();
-        return;
-      }
-      const notes = MUSIC_NOTES[trackName] || MUSIC_NOTES.lobby;
-      notes.forEach((n, idx) => {
-        setTimeout(() => {
-          const wave = trackName === 'game' ? 'sawtooth' : 'triangle';
-          playTone(n, 0.14, wave, 0.075);
-        }, idx * 125);
-      });
+      try {
+        currentMusicTrack = trackName;
+        document.querySelectorAll('.music-chip').forEach((chip) => {
+          chip.classList.toggle('active', chip.dataset.track === trackName);
+        });
+        if (trackName === 'splash') {
+          playGreenStarFanfare();
+          return;
+        }
+        const notes = MUSIC_NOTES[trackName] || MUSIC_NOTES.lobby;
+        notes.forEach((n, idx) => {
+          setTimeout(() => {
+            const wave = trackName === 'game' ? 'sawtooth' : 'triangle';
+            playTone(n, 0.14, wave, 0.075);
+          }, idx * 125);
+        });
+      } catch (e) {}
     }
 
-    /* मोबाइल ब्राउज़र में पहले टच/क्लिक पर ऑडियो अनलॉक और धुन शुरू */
-    function unlockAudioOnFirstGesture() {
-      const ctx = getAudioCtx();
-      if (ctx && ctx.state === 'suspended') {
-        ctx.resume().then(() => {
-          if (!document.getElementById('greenStarSplash').classList.contains('hidden')) {
-            playGreenStarFanfare();
-          }
-        }).catch(() => {});
-      } else if (!document.getElementById('greenStarSplash').classList.contains('hidden')) {
-        playGreenStarFanfare();
-      }
+    function finishSplashAndOpenAuth() {
+      if (splashFinished) return;
+      splashFinished = true;
+      const splashEl = document.getElementById('greenStarSplash');
+      const authEl = document.getElementById('authModal');
+      if (splashEl) splashEl.classList.add('hidden');
+      if (authEl) authEl.classList.remove('hidden');
     }
-    document.addEventListener('pointerdown', unlockAudioOnFirstGesture, { once: true });
-    document.addEventListener('touchstart', unlockAudioOnFirstGesture, { once: true });
 
     function trackTimer(id) {
       activeTimers.push(id);
@@ -2663,13 +2685,35 @@
       }
     });
 
-    document.getElementById('replaySplashMusicBtn').addEventListener('click', () => {
+    document.getElementById('replaySplashMusicBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
       playGreenStarFanfare();
+    });
+
+    document.getElementById('skipSplashBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      finishSplashAndOpenAuth();
+    });
+
+    document.getElementById('greenStarSplash').addEventListener('click', () => {
+      finishSplashAndOpenAuth();
     });
 
     document.querySelectorAll('#languageGrid .lang-btn').forEach((btn, i) => {
       btn.addEventListener('click', () => {
-        applyLanguageUI(btn.dataset.lang);
+        const code = btn.dataset.lang;
+        selectedLang = LANG_TEXTS[code] ? code : 'hi';
+        const t = LANG_TEXTS[selectedLang];
+        document.getElementById('authBrandTitle').textContent = t.brand;
+        document.getElementById('authSubtitle').textContent = t.authSub;
+        document.getElementById('langLabelText').textContent = t.langLabel;
+        document.getElementById('fbBtnLabel').textContent = t.fb;
+        document.getElementById('guestBtnLabel').textContent = t.guest;
+        document.getElementById('lobbyBrandTitle').textContent = t.brand;
+        document.getElementById('startPlayBtn').textContent = t.startBtn;
+        document.querySelectorAll('#languageGrid .lang-btn').forEach((b) => {
+          b.classList.toggle('active', b.dataset.lang === selectedLang);
+        });
         playOptionSelectMusic(523.25 + i * 35);
       });
     });
@@ -2861,15 +2905,12 @@
     });
 
     pushGuardHistory();
-    applyLanguageUI('hi');
     updateWhatsAppInvite();
     updateHeaderStats();
     playGreenStarFanfare();
 
-    setTimeout(() => {
-      document.getElementById('greenStarSplash').classList.add('hidden');
-      document.getElementById('authModal').classList.remove('hidden');
-    }, 2400);
+    setTimeout(finishSplashAndOpenAuth, 2200);
+    setTimeout(finishSplashAndOpenAuth, 4000);
   </script>
 </body>
 </html>
