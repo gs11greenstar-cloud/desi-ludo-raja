@@ -179,17 +179,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px;
+      padding: 12px;
       z-index: 80;
     }
 
     .auth-card {
       width: 100%;
-      max-width: 395px;
+      max-width: 400px;
       background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 65%, #1e40af 100%);
       border: 3px solid #fef08a;
       border-radius: 26px;
-      padding: 20px 16px 22px;
+      padding: 16px 14px 18px;
       text-align: center;
       box-shadow: 0 10px 0 #1e3a8a, 0 22px 46px rgba(15, 23, 42, 0.45);
       position: relative;
@@ -203,16 +203,16 @@
       left: -130%;
       width: 55%;
       height: 200%;
-      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.42) 50%, transparent 80%);
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
       transform: skewX(-20deg);
       animation: shineSweep 3.5s infinite ease-in-out;
       pointer-events: none;
     }
 
     .start-hero-board {
-      width: 148px;
-      height: 92px;
-      margin: 0 auto 8px;
+      width: 136px;
+      height: 84px;
+      margin: 0 auto 6px;
       border-radius: 14px;
       background: conic-gradient(
         var(--green) 0deg 90deg,
@@ -222,21 +222,21 @@
       );
       border: 3px solid #ffffff;
       transform: perspective(260px) rotateX(22deg);
-      box-shadow: 0 9px 0 #b45309, 0 16px 26px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 8px 0 #b45309, 0 14px 24px rgba(0, 0, 0, 0.32);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .start-hero-dice {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
       background: linear-gradient(145deg, #ffffff, #fef9c3);
       border: 2px solid #f59e0b;
       color: #e11d48;
       font-weight: 900;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -248,7 +248,7 @@
       background: linear-gradient(180deg, #fef9c3, #fbbf24 65%, #d97706);
       border: 2.5px solid #ffffff;
       border-radius: 18px;
-      padding: 6px 20px;
+      padding: 5px 18px;
       box-shadow: 0 5px 0 #92400e, 0 10px 20px rgba(0, 0, 0, 0.28);
       position: relative;
       overflow: hidden;
@@ -267,26 +267,81 @@
     }
 
     .start-brand-title {
-      font-size: 1.48rem;
+      font-size: 1.38rem;
       font-weight: 900;
       color: #0f172a;
     }
 
+    /* स्टार्ट स्क्रीन पर बड़ा-छोटा होने वाला एनीमेशन */
+    @keyframes optionPulse {
+      0% { transform: scale(0.965); }
+      50% { transform: scale(1.035); }
+      100% { transform: scale(0.965); }
+    }
+
+    .start-pulse-option {
+      animation: optionPulse 1.7s infinite ease-in-out;
+    }
+
+    .start-pulse-option:hover {
+      animation-play-state: paused;
+      transform: scale(1.05);
+    }
+
+    .lang-box {
+      margin-top: 10px;
+      background: rgba(23, 37, 84, 0.52);
+      border: 1.5px solid rgba(254, 240, 138, 0.85);
+      border-radius: 16px;
+      padding: 8px;
+    }
+
+    .lang-heading {
+      font-size: 0.76rem;
+      font-weight: 900;
+      color: #fef08a;
+      margin-bottom: 6px;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border: 1.5px solid rgba(254, 240, 138, 0.7);
+      border-radius: 10px;
+      padding: 5px 3px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      border-color: #ffffff;
+      box-shadow: 0 3px 0 #92400e;
+    }
+
     .fb-login-btn {
       width: 100%;
-      margin-top: 16px;
-      padding: 14px;
+      margin-top: 12px;
+      padding: 13px;
       border-radius: 16px;
       border: 2.5px solid #ffffff;
       background: linear-gradient(180deg, #3b82f6, #1d4ed8);
       color: #fff;
-      font-size: 1.04rem;
+      font-size: 1rem;
       font-weight: 900;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 8px;
       box-shadow: 0 6px 0 #1e3a8a, 0 10px 20px rgba(15, 23, 42, 0.35);
       position: relative;
       overflow: hidden;
@@ -306,19 +361,19 @@
 
     .guest-login-btn {
       width: 100%;
-      margin-top: 12px;
-      padding: 14px;
+      margin-top: 10px;
+      padding: 13px;
       border-radius: 16px;
       border: 2.5px solid #ffffff;
       background: linear-gradient(180deg, #fef08a, #f59e0b 70%, #d97706);
       color: #0f172a;
-      font-size: 1.04rem;
+      font-size: 1rem;
       font-weight: 900;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 8px;
       box-shadow: 0 6px 0 #92400e, 0 10px 20px rgba(15, 23, 42, 0.35);
       position: relative;
       overflow: hidden;
@@ -1336,27 +1391,41 @@
     <div class="gstar-sub">देसी लूडो राजा • रॉयल एडिशन</div>
   </div>
 
-  <!-- बड़ा, चमकता हुआ और आकर्षक स्टार्ट/लॉगिन कार्ड -->
+  <!-- बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड + भाषा विकल्प + बड़ा-छोटा एनीमेशन -->
   <div class="auth-overlay hidden" id="authModal">
     <div class="auth-card">
       <div class="start-hero-board">
         <div class="start-hero-dice">🎲</div>
       </div>
       <div class="start-brand-pill">
-        <div class="start-brand-title">👑 देसी लूडो राजा</div>
+        <div class="start-brand-title" id="authBrandTitle">👑 देसी लूडो राजा</div>
       </div>
-      <div style="font-size: 0.84rem; color: #fef9c3; font-weight: 800; margin-top: 8px;">
-        अपना लॉगिन चुनें और खेल शुरू करें
+      <div class="start-pulse-option" style="font-size: 0.82rem; color: #fef9c3; font-weight: 800; margin-top: 7px;" id="authSubtitle">
+        भाषा चुनें और खेलने का तरीका चुनें
       </div>
 
-      <button type="button" class="fb-login-btn" id="loginFacebookBtn">
+      <div class="lang-box">
+        <div class="lang-heading" id="langLabelText">🌐 भाषा चुनें / Select Language</div>
+        <div class="lang-grid" id="languageGrid">
+          <button type="button" class="lang-btn start-pulse-option active" data-lang="hi">हिन्दी</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="en">English</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="mr">मराठी</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="bn">বাংলা</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="ta">தமிழ்</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="te">తెలుగు</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="gu">ગુજરાતી</button>
+          <button type="button" class="lang-btn start-pulse-option" data-lang="kn">ಕನ್ನಡ</button>
+        </div>
+      </div>
+
+      <button type="button" class="fb-login-btn start-pulse-option" id="loginFacebookBtn">
         <span>📘</span>
-        <span>Continue with Facebook</span>
+        <span id="fbBtnLabel">Continue with Facebook</span>
       </button>
 
-      <button type="button" class="guest-login-btn" id="loginGuestBtn">
+      <button type="button" class="guest-login-btn start-pulse-option" id="loginGuestBtn">
         <span>👤</span>
-        <span>Play as Guest</span>
+        <span id="guestBtnLabel">Play as Guest</span>
       </button>
     </div>
   </div>
@@ -1404,7 +1473,7 @@
             <div class="mini-3d-dice" id="heroDiceFace">6</div>
           </div>
           <div class="lk-title-box">
-            <div class="lk-title-text">👑 देसी लूडो राजा</div>
+            <div class="lk-title-text" id="lobbyBrandTitle">👑 देसी लूडो राजा</div>
           </div>
           <div class="music-strip">
             <button type="button" class="music-chip active" data-track="splash">🎵 इंट्रो</button>
@@ -1572,6 +1641,89 @@
 
   <script>
     const GAME_URL = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
+    const LANG_TEXTS = {
+      hi: {
+        brand: '👑 देसी लूडो राजा',
+        authSub: 'भाषा चुनें और खेलने का तरीका चुनें',
+        langLabel: '🌐 भाषा चुनें / Select Language',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ अभी खेल शुरू करें',
+        fbReady: '📘 Facebook से लॉगिन हुआ!',
+        guestReady: '👤 Guest के रूप में तैयार!'
+      },
+      en: {
+        brand: '👑 Desi Ludo Raja',
+        authSub: 'Choose your language and sign-in option',
+        langLabel: '🌐 Select Language',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ Start Game Now',
+        fbReady: '📘 Logged in with Facebook!',
+        guestReady: '👤 Ready as Guest!'
+      },
+      mr: {
+        brand: '👑 देसी लुडो राजा',
+        authSub: 'भाषा निवडा आणि खेळण्याचा पर्याय निवडा',
+        langLabel: '🌐 भाषा निवडा',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ आता खेळ सुरू करा',
+        fbReady: '📘 Facebook वरून लॉगिन झाले!',
+        guestReady: '👤 Guest म्हणून तयार!'
+      },
+      bn: {
+        brand: '👑 দেশি লুডো রাজা',
+        authSub: 'ভাষা এবং খেলার ধরন বেছে নিন',
+        langLabel: '🌐 ভাষা নির্বাচন করুন',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ এখনই খেলা শুরু করুন',
+        fbReady: '📘 Facebook দিয়ে লগইন হয়েছে!',
+        guestReady: '👤 Guest হিসেবে প্রস্তুত!'
+      },
+      ta: {
+        brand: '👑 தேசி லுடோ ராஜா',
+        authSub: 'மொழி மற்றும் விளையாட்டு முறையைத் தேர்ந்தெடுக்கவும்',
+        langLabel: '🌐 மொழியைத் தேர்ந்தெடுக்கவும்',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ இப்போதே விளையாடத் தொடங்குங்கள்',
+        fbReady: '📘 Facebook மூலம் உள்நுழைந்தது!',
+        guestReady: '👤 Guest ஆக தயார்!'
+      },
+      te: {
+        brand: '👑 దేశీ లూడో రాజా',
+        authSub: 'భాష మరియు ఆడే విధానాన్ని ఎంచుకోండి',
+        langLabel: '🌐 భాషను ఎంచుకోండి',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ ఇప్పుడే ఆట ప్రారంభించండి',
+        fbReady: '📘 Facebook తో లాగిన్ అయ్యారు!',
+        guestReady: '👤 Guest గా సిద్ధంగా ఉన్నారు!'
+      },
+      gu: {
+        brand: '👑 દેસી લૂડો રાજા',
+        authSub: 'ભાષા અને રમવાનો વિકલ્પ પસંદ કરો',
+        langLabel: '🌐 ભાષા પસંદ કરો',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ હમણાં જ રમત શરૂ કરો',
+        fbReady: '📘 Facebook થી લોગિન થયું!',
+        guestReady: '👤 Guest તરીકે તૈયાર!'
+      },
+      kn: {
+        brand: '👑 ದೇಸಿ ಲೂಡೋ ರಾಜ',
+        authSub: 'ಭಾಷೆ ಮತ್ತು ಆಟದ ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ',
+        langLabel: '🌐 ಭಾಷೆಯನ್ನು ಆರಿಸಿ',
+        fb: 'Continue with Facebook',
+        guest: 'Play as Guest',
+        startBtn: '▶ ಈಗಲೇ ಆಟ ಪ್ರಾರಂಭಿಸಿ',
+        fbReady: '📘 Facebook ಮೂಲಕ ಲಾಗಿನ್ ಆಗಿದೆ!',
+        guestReady: '👤 Guest ಆಗಿ ಸಿದ್ಧವಾಗಿದೆ!'
+      }
+    };
+
     const TRACK = [
       [6,1],[6,2],[6,3],[6,4],[6,5],
       [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
@@ -1615,6 +1767,7 @@
     let gems = 50;
     let userName = 'You';
     let loginType = 'Guest';
+    let selectedLang = 'hi';
     let userCity = 'जबलपुर';
     let userState = 'मध्य प्रदेश';
     let selectedPlayersCount = 2;
@@ -1689,6 +1842,22 @@
           const wave = trackName === 'splash' ? 'triangle' : trackName === 'game' ? 'sawtooth' : 'sine';
           playTone(n, 0.14, wave, 0.055);
         }, idx * 145);
+      });
+    }
+
+    function applyLanguageUI(langCode) {
+      selectedLang = LANG_TEXTS[langCode] ? langCode : 'hi';
+      const t = LANG_TEXTS[selectedLang];
+      document.getElementById('authBrandTitle').textContent = t.brand;
+      document.getElementById('authSubtitle').textContent = t.authSub;
+      document.getElementById('langLabelText').textContent = t.langLabel;
+      document.getElementById('fbBtnLabel').textContent = t.fb;
+      document.getElementById('guestBtnLabel').textContent = t.guest;
+      document.getElementById('lobbyBrandTitle').textContent = t.brand;
+      document.getElementById('startPlayBtn').textContent = t.startBtn;
+
+      document.querySelectorAll('#languageGrid .lang-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === selectedLang);
       });
     }
 
@@ -2435,13 +2604,20 @@
       }
     });
 
+    document.querySelectorAll('#languageGrid .lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyLanguageUI(btn.dataset.lang);
+        playTone(580, 0.08, 'sine', 0.07);
+      });
+    });
+
     document.getElementById('loginFacebookBtn').addEventListener('click', () => {
       loginType = 'Facebook';
       userName = 'You';
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
       playTrackTheme('lobby');
-      document.getElementById('lobbyMsg').textContent = '📘 Facebook से लॉगिन हुआ!';
+      document.getElementById('lobbyMsg').textContent = LANG_TEXTS[selectedLang].fbReady;
     });
 
     document.getElementById('loginGuestBtn').addEventListener('click', () => {
@@ -2450,7 +2626,7 @@
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
       playTrackTheme('lobby');
-      document.getElementById('lobbyMsg').textContent = '👤 Guest के रूप में तैयार!';
+      document.getElementById('lobbyMsg').textContent = LANG_TEXTS[selectedLang].guestReady;
     });
 
     document.getElementById('navAuthBtn').addEventListener('click', () => {
@@ -2603,6 +2779,7 @@
     });
 
     pushGuardHistory();
+    applyLanguageUI('hi');
     updateWhatsAppInvite();
     updateHeaderStats();
     playTrackTheme('splash');
