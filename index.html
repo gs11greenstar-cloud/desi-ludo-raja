@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#2563eb" />
-  <title>देसी लूडो राजा</title>
+  <title>देसी लूडो राजा - Desi Ludo Raja</title>
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
   <style>
@@ -26,37 +26,46 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(180deg, #38bdf8 0%, #2563eb 45%, #1e3a8a 100%);
+      background:
+        repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.06) 0px,
+          rgba(255, 255, 255, 0.06) 24px,
+          transparent 24px,
+          transparent 48px
+        ),
+        linear-gradient(180deg, #38bdf8 0%, #2563eb 42%, #1d4ed8 78%, #1e3a8a 100%);
       color: #ffffff;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 8px;
+      padding: 6px;
+      overflow-x: hidden;
     }
 
     .app-wrap {
       width: 100%;
-      max-width: 440px;
+      max-width: 450px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
     }
 
     .hidden {
       display: none !important;
     }
 
-    /* लॉबी कार्ड */
+    /* लॉबी */
     .lobby-card {
-      background: rgba(15, 23, 42, 0.42);
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.92), rgba(30, 58, 138, 0.96));
       border: 2.5px solid var(--gold-light);
       border-radius: 22px;
-      padding: 16px 14px;
+      padding: 15px 13px;
       text-align: center;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 8px 0 #1e3a8a, 0 16px 30px rgba(15, 23, 42, 0.35);
     }
 
-    .brand-row {
+    .hero-banner {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,31 +73,48 @@
       margin-bottom: 10px;
     }
 
-    .brand-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      border: 2px solid var(--gold-light);
-      object-fit: cover;
-      background: #0f172a;
+    .hero-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 15px;
+      border: 2.5px solid var(--gold-light);
+      background: linear-gradient(145deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 0 #92400e;
+      overflow: hidden;
     }
 
-    .brand-title {
-      font-size: 1.35rem;
+    .hero-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title-pill {
+      background: linear-gradient(180deg, #fef9c3, #fbbf24 65%, #d97706);
+      border: 2px solid #ffffff;
+      border-radius: 15px;
+      padding: 6px 14px;
+      color: #0f172a;
+      font-size: 1.22rem;
       font-weight: 900;
-      color: var(--gold-light);
+      box-shadow: 0 4px 0 #92400e;
     }
 
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.48);
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.45);
       border: 2px solid var(--gold-light);
       border-radius: 14px;
-      padding: 8px 10px;
-      font-size: 0.85rem;
+      padding: 7px 10px;
+      font-size: 0.84rem;
       font-weight: 800;
     }
 
@@ -98,32 +124,34 @@
       border: 1.5px solid #ffffff;
       border-radius: 10px;
       padding: 5px 10px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 900;
       cursor: pointer;
+      box-shadow: 0 3px 0 #92400e;
     }
 
     .danger-btn {
-      background: #ef4444;
+      background: linear-gradient(180deg, #f43f5e, #e11d48);
       color: #ffffff;
       border: 1.5px solid #ffffff;
       border-radius: 10px;
       padding: 5px 10px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 3px 0 #881337;
     }
 
     .section-box {
-      margin-top: 10px;
-      background: rgba(30, 58, 138, 0.65);
-      border: 1.5px solid rgba(254, 240, 138, 0.75);
-      border-radius: 14px;
+      margin-top: 9px;
+      background: rgba(23, 37, 84, 0.65);
+      border: 1.5px solid rgba(254, 240, 138, 0.8);
+      border-radius: 15px;
       padding: 10px;
     }
 
     .section-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 900;
       color: var(--gold-light);
       margin-bottom: 6px;
@@ -137,12 +165,12 @@
     }
 
     .opt-btn {
-      background: rgba(15, 23, 42, 0.45);
+      background: rgba(37, 99, 235, 0.85);
       color: #ffffff;
-      border: 1.5px solid #93c5fd;
+      border: 1.5px solid #bfdbfe;
       border-radius: 10px;
       padding: 7px 4px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 800;
       cursor: pointer;
     }
@@ -151,14 +179,15 @@
       background: linear-gradient(180deg, #fef08a, #f59e0b);
       color: #0f172a;
       border-color: #ffffff;
+      box-shadow: 0 3px 0 #92400e;
     }
 
     .start-btn {
       width: 100%;
-      margin-top: 12px;
+      margin-top: 11px;
       padding: 13px;
-      border-radius: 15px;
-      border: 2px solid #ffffff;
+      border-radius: 16px;
+      border: 2.5px solid #ffffff;
       background: linear-gradient(180deg, #4ade80, #16a34a);
       color: #ffffff;
       font-size: 1.05rem;
@@ -167,7 +196,7 @@
       box-shadow: 0 5px 0 #166534;
     }
 
-    /* भाषा चुनने का मोडल */
+    /* भाषा मोडल */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -200,54 +229,103 @@
     #gameScreen:not(.hidden) {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
     }
 
     .seats-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 7px;
     }
 
     .seat-card {
       background: #ffffff;
       color: #0f172a;
-      border-radius: 12px;
-      padding: 8px 10px;
+      border-radius: 13px;
+      padding: 6px 8px;
       border: 2px solid #cbd5e1;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      opacity: 0.75;
+      gap: 6px;
+      opacity: 0.72;
+      transition: transform 0.15s ease;
     }
 
     .seat-card.active {
       opacity: 1;
       border-color: var(--gold);
       background: #fffbeb;
+      box-shadow: 0 0 14px rgba(251, 191, 36, 0.7);
     }
 
-    .dice-box {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      border: 2px solid #0f172a;
-      background: #ffffff;
-      color: #e11d48;
-      font-size: 1.2rem;
+    .seat-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      color: #ffffff;
       font-weight: 900;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      flex-shrink: 0;
     }
 
+    .dice-3d {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(145deg, #ffffff, #e2e8f0);
+      border: 2px solid #94a3b8;
+      box-shadow: 0 3px 0 #64748b;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      padding: 5px;
+      gap: 2px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .dice-3d.ready {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35), 0 3px 0 #b45309;
+      animation: dicePulse 0.8s infinite alternate;
+    }
+
+    .dice-3d.rolling {
+      border-color: #ef4444;
+      animation: diceSpin 0.22s infinite linear;
+    }
+
+    @keyframes dicePulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.07); }
+    }
+
+    @keyframes diceSpin {
+      0% { transform: rotate(0deg) scale(1.05); }
+      50% { transform: rotate(180deg) scale(1.15); }
+      100% { transform: rotate(360deg) scale(1.05); }
+    }
+
+    .pip {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .pip.on { background: #0f172a; }
+    .pip.red { background: #dc2626; }
+
     .board-wrap {
-      background: #1e3a8a;
-      padding: 6px;
+      background: #1d4ed8;
+      padding: 5px;
       border-radius: 16px;
-      border: 2px solid var(--gold-light);
+      border: 2.5px solid var(--gold-light);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
     }
 
     .board-15 {
@@ -262,7 +340,7 @@
     }
 
     .cell {
-      border: 0.5px solid #cbd5e1;
+      border: 0.5px solid #94a3b8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -274,13 +352,20 @@
     .bg-yellow { background: var(--yellow); }
     .bg-blue { background: var(--blue); }
 
+    .star-cell::after {
+      content: "★";
+      font-size: 0.78rem;
+      color: rgba(15, 23, 42, 0.45);
+      position: absolute;
+    }
+
     .yard {
-      padding: 14%;
+      padding: 13%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16%;
+      gap: 15%;
       place-items: center;
-      border: 1px solid #0f172a;
+      border: 1.5px solid #0f172a;
     }
 
     .yard-slot {
@@ -288,6 +373,7 @@
       aspect-ratio: 1 / 1;
       border-radius: 999px;
       background: #ffffff;
+      border: 2px solid rgba(15, 23, 42, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -302,50 +388,92 @@
         var(--blue) 180deg 270deg,
         var(--red) 270deg 360deg
       );
-      border: 1px solid #0f172a;
+      border: 1.5px solid #0f172a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.35rem;
+    }
+
+    .tokens-group {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      z-index: 3;
     }
 
     .token {
-      width: 82%;
-      height: 82%;
+      width: 84%;
+      height: 84%;
       border-radius: 999px;
       border: 2px solid #ffffff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.65);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.12s ease;
+    }
+
+    .tokens-group.multi .token {
+      width: 50%;
+      height: 50%;
+      border-width: 1.5px;
+    }
+
+    .token::after {
+      content: "";
+      width: 38%;
+      height: 38%;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .token.can-move {
       outline: 2.5px solid #0f172a;
-      transform: scale(1.15);
+      animation: tokenHop 0.55s infinite alternate;
       cursor: pointer;
+      z-index: 6;
+    }
+
+    @keyframes tokenHop {
+      from { transform: scale(0.96) translateY(0); }
+      to { transform: scale(1.18) translateY(-2px); }
     }
 
     .status-box {
-      background: rgba(15, 23, 42, 0.55);
-      border: 1.5px solid var(--gold-light);
+      background: rgba(30, 58, 138, 0.9);
+      border: 2px solid var(--gold-light);
       border-radius: 12px;
       padding: 8px 10px;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 800;
+      color: #fef9c3;
     }
   </style>
 </head>
 <body>
   <div class="app-wrap">
-    <!-- लॉबी स्क्रीन -->
+    <!-- लॉबी -->
     <div id="lobbyScreen" class="lobby-card">
-      <div class="brand-row">
-        <img src="icon-512.png" alt="देसी लूडो राजा" class="brand-icon" />
-        <div class="brand-title" id="lobbyTitle">👑 देसी लूडो राजा</div>
+      <div class="hero-banner">
+        <div class="hero-icon" id="lobbyIconBox">
+          <img src="icon-512.png" alt="देसी लूडो राजा" onerror="this.style.display='none'; this.parentElement.textContent='👑';" />
+        </div>
+        <div class="title-pill" id="lobbyTitle">👑 देसी लूडो राजा</div>
       </div>
 
       <div class="top-bar">
         <span>🪙 <strong id="coinsText">5000</strong></span>
-        <button type="button" class="pill-btn" id="lobbyLangBtn">🌐 भाषा</button>
+        <div style="display:flex;gap:6px;">
+          <button type="button" class="pill-btn" id="soundBtn">🔊</button>
+          <button type="button" class="pill-btn" id="lobbyLangBtn">🌐 भाषा</button>
+        </div>
       </div>
 
       <div class="section-box">
@@ -358,16 +486,15 @@
         </div>
       </div>
 
-      <div id="lobbyMsg" style="margin-top:8px;font-size:0.8rem;color:#fef08a;font-weight:700;min-height:16px;"></div>
-
       <button type="button" class="start-btn" id="startGameBtn">▶ खेल शुरू करें</button>
     </div>
 
-    <!-- गेमप्ले स्क्रीन -->
+    <!-- गेमप्ले -->
     <div id="gameScreen" class="hidden">
       <div class="top-bar">
         <span id="gameHeaderTitle">👑 देसी लूडो राजा</span>
         <div style="display:flex;gap:6px;">
+          <button type="button" class="pill-btn" id="gameSoundBtn">🔊</button>
           <button type="button" class="pill-btn" id="gameLangBtn">🌐 भाषा</button>
           <button type="button" class="danger-btn" id="exitGameBtn">बाहर</button>
         </div>
@@ -385,7 +512,7 @@
     </div>
   </div>
 
-  <!-- भाषा मोडल (पहली बार या भाषा बटन दबाने पर खुलता है) -->
+  <!-- भाषा मोडल -->
   <div class="modal-backdrop hidden" id="langModal">
     <div class="modal-card">
       <div style="font-size:1.05rem;font-weight:900;color:#fef08a;" id="langModalTitle">🌐 भाषा चुनें</div>
@@ -514,6 +641,16 @@
       [7,0],[6,0]
     ];
 
+    const SAFE_TRACK = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
+    const DICE_DOTS = {
+      1: [4],
+      2: [0, 8],
+      3: [0, 4, 8],
+      4: [0, 2, 6, 8],
+      5: [0, 2, 4, 6, 8],
+      6: [0, 2, 3, 5, 6, 8]
+    };
+
     const COLORS = [
       { id: 0, name: 'लाल', bg: 'bg-red', start: 0, lane: [[7,1],[7,2],[7,3],[7,4],[7,5]] },
       { id: 1, name: 'हरा', bg: 'bg-green', start: 13, lane: [[1,7],[2,7],[3,7],[4,7],[5,7]] },
@@ -525,8 +662,43 @@
     let hasLangSaved = Boolean(localStorage.getItem(LANG_KEY));
     let coins = 5000;
     let playerCount = 2;
-
+    let soundEnabled = true;
+    let isRolling = false;
+    let isStepping = false;
     let match = null;
+    let audioCtx = null;
+
+    function playSound(freq, dur = 0.09, wave = 'triangle', vol = 0.09) {
+      if (!soundEnabled) return;
+      try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+        if (!audioCtx) audioCtx = new Ctx();
+        if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = wave;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + dur);
+      } catch (e) {}
+    }
+
+    function playFanfare() {
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => {
+        setTimeout(() => playSound(f, 0.14, 'triangle', 0.1), idx * 90);
+      });
+    }
+
+    function syncSoundButtons() {
+      const icon = soundEnabled ? '🔊' : '🔇';
+      document.getElementById('soundBtn').textContent = icon;
+      document.getElementById('gameSoundBtn').textContent = icon;
+    }
 
     function loadPrefs() {
       try {
@@ -535,12 +707,14 @@
         const p = JSON.parse(raw);
         if (typeof p.coins === 'number') coins = p.coins;
         if ([1, 2, 3, 4].includes(Number(p.playerCount))) playerCount = Number(p.playerCount);
+        if (typeof p.soundEnabled === 'boolean') soundEnabled = p.soundEnabled;
       } catch (e) {}
+      syncSoundButtons();
     }
 
     function savePrefs() {
       try {
-        localStorage.setItem(PREFS_KEY, JSON.stringify({ coins, playerCount }));
+        localStorage.setItem(PREFS_KEY, JSON.stringify({ coins, playerCount, soundEnabled }));
       } catch (e) {}
     }
 
@@ -556,6 +730,8 @@
 
     function clearMatch() {
       match = null;
+      isRolling = false;
+      isStepping = false;
       try {
         localStorage.removeItem(MATCH_KEY);
       } catch (e) {}
@@ -609,6 +785,17 @@
       return false;
     }
 
+    function buildDiceHTML(val, ready, rolling) {
+      const active = new Set(DICE_DOTS[val] || DICE_DOTS[6]);
+      let pips = '';
+      for (let i = 0; i < 9; i++) {
+        const on = active.has(i);
+        const red = on && (val === 1 || val === 4);
+        pips += `<span class="pip ${on ? 'on' : ''} ${red ? 'red' : ''}"></span>`;
+      }
+      return `<div class="dice-3d ${ready ? 'ready' : ''} ${rolling ? 'rolling' : ''}">${pips}</div>`;
+    }
+
     function startNewMatch() {
       if (coins < 200) {
         coins = 5000;
@@ -616,6 +803,7 @@
       }
       coins -= 200;
       savePrefs();
+      playFanfare();
 
       const seats = playerCount === 1 ? [0] : playerCount === 2 ? [0, 2] : playerCount === 3 ? [0, 1, 2] : [0, 1, 2, 3];
       const players = seats.map((seatId, idx) => ({
@@ -629,8 +817,10 @@
         players,
         turn: 0,
         dice: 6,
-        phase: 'ROLL' // ROLL | MOVE | DONE
+        phase: 'ROLL'
       };
+      isRolling = false;
+      isStepping = false;
       saveMatch();
       showGame();
     }
@@ -642,51 +832,92 @@
     }
 
     function rollDice() {
-      if (!match || match.phase !== 'ROLL') return;
-      const val = Math.floor(Math.random() * 6) + 1;
-      match.dice = val;
-      const cur = match.players[match.turn];
-      const movable = cur.tokens.some((s) => canTokenMove(s, val));
+      if (!match || match.phase !== 'ROLL' || isRolling || isStepping) return;
+      isRolling = true;
+      let ticks = 0;
 
-      if (!movable) {
-        match.phase = 'ROLL';
-        match.turn = (match.turn + 1) % match.players.length;
-        saveMatch();
-        renderGame();
-        document.getElementById('statusText').textContent = `${cur.name}: ${val} (कोई चाल नहीं)`;
-        return;
-      }
+      const timer = setInterval(() => {
+        ticks += 1;
+        match.dice = Math.floor(Math.random() * 6) + 1;
+        playSound(280 + ticks * 50, 0.05, 'square', 0.05);
+        renderGame(true);
 
-      match.phase = 'MOVE';
-      saveMatch();
-      renderGame();
+        if (ticks >= 6) {
+          clearInterval(timer);
+          isRolling = false;
+          const finalVal = Math.floor(Math.random() * 6) + 1;
+          match.dice = finalVal;
+          playSound(finalVal === 6 ? 720 : 500, 0.12, 'triangle', 0.1);
 
-      if (cur.isBot) {
-        const idx = cur.tokens.findIndex((s) => canTokenMove(s, val));
-        if (idx >= 0) setTimeout(() => moveToken(idx), 350);
-      }
+          const cur = match.players[match.turn];
+          const movable = cur.tokens.some((s) => canTokenMove(s, finalVal));
+
+          if (!movable) {
+            match.phase = 'ROLL';
+            match.turn = (match.turn + 1) % match.players.length;
+            saveMatch();
+            renderGame();
+            document.getElementById('statusText').textContent = `${cur.name}: ${finalVal} (कोई चाल नहीं)`;
+            return;
+          }
+
+          match.phase = 'MOVE';
+          saveMatch();
+          renderGame();
+
+          if (cur.isBot) {
+            const idx = cur.tokens.findIndex((s) => canTokenMove(s, finalVal));
+            if (idx >= 0) setTimeout(() => moveToken(idx), 320);
+          }
+        }
+      }, 75);
     }
 
     function moveToken(tokenIdx) {
-      if (!match || match.phase !== 'MOVE') return;
+      if (!match || match.phase !== 'MOVE' || isStepping) return;
       const cur = match.players[match.turn];
-      const step = cur.tokens[tokenIdx];
-      if (!canTokenMove(step, match.dice)) return;
+      const startStep = cur.tokens[tokenIdx];
+      if (!canTokenMove(startStep, match.dice)) return;
 
-      cur.tokens[tokenIdx] = step === -1 ? 0 : step + match.dice;
+      isStepping = true;
+      const steps = startStep === -1 ? 1 : match.dice;
+      let count = 0;
 
-      // कटना चेक
-      const newStep = cur.tokens[tokenIdx];
-      if (newStep >= 0 && newStep <= 50) {
-        const absPos = (cur.start + newStep) % TRACK.length;
-        match.players.forEach((other, oIdx) => {
-          if (oIdx === match.turn) return;
-          other.tokens.forEach((os, otIdx) => {
-            if (os >= 0 && os <= 50 && (other.start + os) % TRACK.length === absPos) {
-              other.tokens[otIdx] = -1;
-            }
+      const stepTimer = setInterval(() => {
+        count += 1;
+        cur.tokens[tokenIdx] = cur.tokens[tokenIdx] === -1 ? 0 : cur.tokens[tokenIdx] + 1;
+        playSound(430 + count * 45, 0.06, 'sine', 0.08);
+        renderGame();
+
+        if (count >= steps) {
+          clearInterval(stepTimer);
+          isStepping = false;
+          finishMove(cur, tokenIdx);
+        }
+      }, 130);
+    }
+
+    function finishMove(cur, tokenIdx) {
+      const landedStep = cur.tokens[tokenIdx];
+      let captured = false;
+
+      if (landedStep >= 0 && landedStep <= 50) {
+        const absPos = (cur.start + landedStep) % TRACK.length;
+        if (!SAFE_TRACK.has(absPos)) {
+          match.players.forEach((other, oIdx) => {
+            if (oIdx === match.turn) return;
+            other.tokens.forEach((os, otIdx) => {
+              if (os >= 0 && os <= 50 && (other.start + os) % TRACK.length === absPos) {
+                other.tokens[otIdx] = -1;
+                captured = true;
+              }
+            });
           });
-        });
+        }
+      }
+
+      if (captured) {
+        playSound(240, 0.2, 'sawtooth', 0.1);
       }
 
       if (cur.tokens.every((s) => s === 56)) {
@@ -695,13 +926,14 @@
           coins += 500;
           savePrefs();
         }
+        playFanfare();
         clearMatch();
         renderGame();
-        document.getElementById('statusText').textContent = `🏆 ${cur.name} जीता!`;
+        document.getElementById('statusText').textContent = `🏆 ${cur.name} जीता! (+500 🪙)`;
         return;
       }
 
-      if (match.dice !== 6) {
+      if (match.dice !== 6 && !captured) {
         match.turn = (match.turn + 1) % match.players.length;
       }
       match.phase = 'ROLL';
@@ -709,7 +941,7 @@
       renderGame();
     }
 
-    function renderGame() {
+    function renderGame(rollingNow = false) {
       const t = UI_TEXT[lang] || UI_TEXT.hi;
       const topEl = document.getElementById('seatsTop');
       const botEl = document.getElementById('seatsBottom');
@@ -722,14 +954,18 @@
         const card = document.createElement('div');
         card.className = `seat-card ${isCur ? 'active' : ''}`;
         card.innerHTML = `
-          <div>
-            <div style="font-weight:900;font-size:0.85rem;">${p.name} (${p.name})</div>
-            <div style="font-size:0.72rem;color:#475569;font-weight:700;">घर: ${homeCnt}/4</div>
+          <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+            <div class="seat-badge ${p.bg}">${p.isBot ? '🤖' : '👑'}</div>
+            <div style="min-width:0;">
+              <div style="font-weight:900;font-size:0.83rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div>
+              <div style="font-size:0.7rem;color:#475569;font-weight:700;">${p.name} • घर ${homeCnt}/4</div>
+            </div>
           </div>
-          <div class="dice-box" title="Dice">${isCur ? match.dice : '🎲'}</div>
+          ${buildDiceHTML(isCur ? match.dice : 6, isCur && match.phase === 'ROLL' && !p.isBot && !rollingNow, isCur && rollingNow)}
         `;
-        if (isCur && match.phase === 'ROLL' && !p.isBot) {
-          card.querySelector('.dice-box').addEventListener('click', rollDice);
+        const dEl = card.querySelector('.dice-3d');
+        if (isCur && match.phase === 'ROLL' && !p.isBot && dEl) {
+          dEl.addEventListener('click', rollDice);
         }
         if (idx < 2) topEl.appendChild(card);
         else botEl.appendChild(card);
@@ -795,20 +1031,37 @@
           if ((r === 7 && c >= 9 && c <= 13) || (r === 8 && c === 13)) cell.classList.add('bg-yellow');
           if ((c === 7 && r >= 9 && r <= 13) || (r === 13 && c === 6)) cell.classList.add('bg-blue');
 
+          const isStar =
+            (r === 6 && c === 1) || (r === 2 && c === 6) ||
+            (r === 1 && c === 8) || (r === 6 && c === 12) ||
+            (r === 8 && c === 13) || (r === 12 && c === 8) ||
+            (r === 13 && c === 6) || (r === 8 && c === 2);
+          if (isStar) cell.classList.add('star-cell');
+
+          const cellTokens = [];
           match.players.forEach((p, pIdx) => {
             p.tokens.forEach((st, tIdx) => {
               const xy = getTokenCoords(p, st);
               if (xy && xy[0] === r && xy[1] === c) {
-                const tok = document.createElement('div');
-                tok.className = `token ${p.bg}`;
-                if (pIdx === match.turn && match.phase === 'MOVE' && !p.isBot && canTokenMove(st, match.dice)) {
-                  tok.classList.add('can-move');
-                  tok.addEventListener('click', () => moveToken(tIdx));
-                }
-                cell.appendChild(tok);
+                cellTokens.push({ p, pIdx, tIdx, st });
               }
             });
           });
+
+          if (cellTokens.length > 0) {
+            const grp = document.createElement('div');
+            grp.className = `tokens-group ${cellTokens.length > 1 ? 'multi' : ''}`;
+            cellTokens.forEach(({ p, pIdx, tIdx, st }) => {
+              const tok = document.createElement('div');
+              tok.className = `token ${p.bg}`;
+              if (pIdx === match.turn && match.phase === 'MOVE' && !p.isBot && canTokenMove(st, match.dice)) {
+                tok.classList.add('can-move');
+                tok.addEventListener('click', () => moveToken(tIdx));
+              }
+              grp.appendChild(tok);
+            });
+            cell.appendChild(grp);
+          }
 
           board.appendChild(cell);
         }
@@ -821,10 +1074,20 @@
           : `${cur.name} — ${t.rollPrompt}`;
     }
 
-    // इवेंट्स
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      syncSoundButtons();
+      savePrefs();
+      if (soundEnabled) playSound(620, 0.12, 'triangle', 0.09);
+    }
+
+    document.getElementById('soundBtn').addEventListener('click', toggleSound);
+    document.getElementById('gameSoundBtn').addEventListener('click', toggleSound);
+
     document.querySelectorAll('#langChoices .opt-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         lang = btn.dataset.lang;
+        playSound(540, 0.09, 'triangle', 0.08);
         applyLang();
       });
     });
@@ -834,6 +1097,7 @@
         localStorage.setItem(LANG_KEY, lang);
       } catch (e) {}
       hasLangSaved = true;
+      playSound(680, 0.12, 'triangle', 0.09);
       closeLangModal();
     });
 
@@ -844,6 +1108,7 @@
       btn.addEventListener('click', () => {
         playerCount = Number(btn.dataset.count);
         savePrefs();
+        playSound(500 + playerCount * 60, 0.08, 'triangle', 0.08);
         document.querySelectorAll('#playerCountGroup .opt-btn').forEach((b) => {
           b.classList.toggle('active', Number(b.dataset.count) === playerCount);
         });
@@ -857,13 +1122,11 @@
       showLobby();
     });
 
-    // रिफ़्रेश होने पर चालू मैच बिना बैक प्रॉम्प्ट के वहीं से जारी रहे
     window.addEventListener('beforeunload', () => {
       savePrefs();
       saveMatch();
     });
 
-    // इनिशियलाइज़ेशन
     loadPrefs();
     applyLang();
 
