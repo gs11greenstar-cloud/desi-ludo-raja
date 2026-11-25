@@ -55,7 +55,6 @@
       z-index: 2;
     }
 
-    /* शुरू में ब्राइट + यूनिक GREEN STAR स्पलैश */
     .green-star-splash {
       position: fixed;
       inset: 0;
@@ -70,7 +69,6 @@
       text-align: center;
       padding: 20px;
       overflow: hidden;
-      cursor: pointer;
     }
 
     .gstar-halo {
@@ -170,39 +168,19 @@
       font-weight: 800;
     }
 
-    .splash-actions {
-      margin-top: 14px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
     .splash-sound-btn {
+      margin-top: 12px;
       background: linear-gradient(180deg, #fef08a, #f59e0b);
       color: #0f172a;
       border: 2px solid #ffffff;
       border-radius: 999px;
-      padding: 7px 16px;
+      padding: 6px 16px;
       font-size: 0.78rem;
       font-weight: 900;
       cursor: pointer;
       box-shadow: 0 4px 0 #92400e;
     }
 
-    .splash-skip-btn {
-      background: linear-gradient(180deg, #4ade80, #16a34a);
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      border-radius: 999px;
-      padding: 7px 16px;
-      font-size: 0.78rem;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 4px 0 #166534;
-    }
-
-    /* बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड */
     .auth-overlay {
       position: fixed;
       inset: 0;
@@ -429,7 +407,6 @@
       55%, 100% { left: 165%; }
     }
 
-    /* टॉप हेडर */
     .lk-header {
       display: flex;
       align-items: center;
@@ -956,13 +933,6 @@
       border: 1.5px solid #ffffff;
     }
 
-    /* गेमप्ले स्क्रीन */
-    #gameScreen:not(.hidden) {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
     .game-top {
       background: rgba(30, 58, 138, 0.85);
       border: 2px solid #fef08a;
@@ -971,26 +941,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
       color: #fff;
       font-size: 0.82rem;
-    }
-
-    .game-top-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .lang-in-game-btn {
-      background: linear-gradient(180deg, #fef08a, #f59e0b);
-      color: #0f172a;
-      border: 1.5px solid #ffffff;
-      border-radius: 8px;
-      padding: 5px 9px;
-      font-weight: 900;
-      font-size: 0.74rem;
-      cursor: pointer;
     }
 
     .exit-btn {
@@ -1434,7 +1386,6 @@
   </style>
 </head>
 <body>
-  <!-- शुरू में ब्राइट + यूनिक GREEN STAR स्पलैश -->
   <div class="green-star-splash" id="greenStarSplash">
     <div class="gstar-halo">
       <div class="gstar-orbit"></div>
@@ -1444,13 +1395,9 @@
       <div class="gstar-title">⭐ GREEN STAR</div>
     </div>
     <div class="gstar-sub">देसी लूडो राजा • रॉयल मेलोडी एडिशन</div>
-    <div class="splash-actions">
-      <button type="button" class="splash-sound-btn" id="replaySplashMusicBtn">🎶 रॉयल धुन सुनें</button>
-      <button type="button" class="splash-skip-btn" id="skipSplashBtn">▶ आगे बढ़ें</button>
-    </div>
+    <button type="button" class="splash-sound-btn" id="replaySplashMusicBtn">🎶 रॉयल धुन सुनें</button>
   </div>
 
-  <!-- बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड + भाषा विकल्प + बड़ा-छोटा एनीमेशन -->
   <div class="auth-overlay hidden" id="authModal">
     <div class="auth-card">
       <div class="start-hero-board">
@@ -1490,7 +1437,6 @@
   </div>
 
   <div class="app-wrap">
-    <!-- टॉप हेडर -->
     <div class="lk-header">
       <div class="profile-pill" id="profilePill">
         <div class="avatar-box">
@@ -1517,7 +1463,6 @@
       </div>
     </div>
 
-    <!-- डैशबोर्ड / लॉबी -->
     <div id="lobbyScreen">
       <div class="arena-stage">
         <div class="side-rail">
@@ -1657,14 +1602,10 @@
       </div>
     </div>
 
-    <!-- गेमप्ले स्क्रीन -->
-    <div class="hidden" id="gameScreen">
+    <div class="hidden" id="gameScreen" style="display:flex;flex-direction:column;gap:7px;">
       <div class="game-top">
         <span id="matchTitle" style="font-weight:800;">देसी लूडो राजा</span>
-        <div class="game-top-actions">
-          <button type="button" class="lang-in-game-btn" id="gameLangBtn">🌐 भाषा</button>
-          <button type="button" class="exit-btn" id="leaveMatchBtn">← बाहर</button>
-        </div>
+        <button type="button" class="exit-btn" id="leaveMatchBtn">← बाहर</button>
       </div>
 
       <div class="players-pair" id="topSeats"></div>
@@ -1685,7 +1626,6 @@
       </div>
     </div>
 
-    <!-- बैक / ऐप एग्जिट चेतावनी मोडल -->
     <div class="warn-backdrop hidden" id="exitWarningModal">
       <div class="warn-card">
         <div style="font-size: 2rem;">🚪</div>
@@ -1702,10 +1642,15 @@
   </div>
 
   <script>
-    const GAME_URL = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
-    const STORAGE_LANG_KEY = 'desi_ludo_raja_lang_v1';
-    const STORAGE_PREFS_KEY = 'desi_ludo_raja_prefs_v1';
+    function showAuthFromSplash() {
+      const splash = document.getElementById('greenStarSplash');
+      const auth = document.getElementById('authModal');
+      if (splash) splash.classList.add('hidden');
+      if (auth) auth.classList.remove('hidden');
+    }
+    setTimeout(showAuthFromSplash, 2400);
 
+    const GAME_URL = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
     const LANG_TEXTS = {
       hi: {
         brand: '👑 देसी लूडो राजा',
@@ -1714,7 +1659,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ अभी खेल शुरू करें',
-        gameLangBtn: '🌐 भाषा',
         fbReady: '📘 Facebook से लॉगिन हुआ!',
         guestReady: '👤 Guest के रूप में तैयार!'
       },
@@ -1725,7 +1669,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ Start Game Now',
-        gameLangBtn: '🌐 Lang',
         fbReady: '📘 Logged in with Facebook!',
         guestReady: '👤 Ready as Guest!'
       },
@@ -1736,7 +1679,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ आता खेळ सुरू करा',
-        gameLangBtn: '🌐 भाषा',
         fbReady: '📘 Facebook वरून लॉगिन झाले!',
         guestReady: '👤 Guest म्हणून तयार!'
       },
@@ -1747,7 +1689,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ এখনই খেলা শুরু করুন',
-        gameLangBtn: '🌐 ভাষা',
         fbReady: '📘 Facebook দিয়ে লগইন হয়েছে!',
         guestReady: '👤 Guest হিসেবে প্রস্তুত!'
       },
@@ -1758,7 +1699,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ இப்போதே விளையாடத் தொடங்குங்கள்',
-        gameLangBtn: '🌐 மொழி',
         fbReady: '📘 Facebook மூலம் உள்நுழைந்தது!',
         guestReady: '👤 Guest ஆக தயார்!'
       },
@@ -1769,7 +1709,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ ఇప్పుడే ఆట ప్రారంభించండి',
-        gameLangBtn: '🌐 భాష',
         fbReady: '📘 Facebook తో లాగిన్ అయ్యారు!',
         guestReady: '👤 Guest గా సిద్ధంగా ఉన్నారు!'
       },
@@ -1780,7 +1719,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ હમણાં જ રમત શરૂ કરો',
-        gameLangBtn: '🌐 ભાષા',
         fbReady: '📘 Facebook થી લોગિન થયું!',
         guestReady: '👤 Guest તરીકે તૈયાર!'
       },
@@ -1791,7 +1729,6 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ ಈಗಲೇ ಆಟ ಪ್ರಾರಂಭಿಸಿ',
-        gameLangBtn: '🌐 ಭಾಷೆ',
         fbReady: '📘 Facebook ಮೂಲಕ ಲಾಗಿನ್ ಆಗಿದೆ!',
         guestReady: '👤 Guest ಆಗಿ ಸಿದ್ಧವಾಗಿದೆ!'
       }
@@ -1855,10 +1792,7 @@
     let gems = 50;
     let userName = 'You';
     let loginType = 'Guest';
-    let hasSavedLang = Boolean(localStorage.getItem(STORAGE_LANG_KEY));
-    let selectedLang = localStorage.getItem(STORAGE_LANG_KEY) || 'hi';
-    if (!LANG_TEXTS[selectedLang]) selectedLang = 'hi';
-
+    let selectedLang = 'hi';
     let userCity = 'जबलपुर';
     let userState = 'मध्य प्रदेश';
     let selectedPlayersCount = 2;
@@ -1869,8 +1803,6 @@
     let currentMusicTrack = 'splash';
     let soundOn = true;
     let seasonClaimed = false;
-    let splashFinished = false;
-    let suppressNextPopstateOnce = false;
 
     let players = [];
     let turnIdx = 0;
@@ -1889,107 +1821,15 @@
     let seatEmotions = {};
     let exitMode = 'TO_LOBBY';
 
-    function saveLanguageChoice(langCode) {
-      selectedLang = LANG_TEXTS[langCode] ? langCode : 'hi';
-      hasSavedLang = true;
-      try {
-        localStorage.setItem(STORAGE_LANG_KEY, selectedLang);
-      } catch (e) {}
-    }
-
-    function savePrefsState() {
-      try {
-        localStorage.setItem(STORAGE_PREFS_KEY, JSON.stringify({
-          coins,
-          gems,
-          userName,
-          loginType,
-          selectedLang,
-          userCity,
-          userState,
-          selectedPlayersCount,
-          selectedMode,
-          selectedTable,
-          roomCode,
-          activeLbScope,
-          soundOn,
-          seasonClaimed
-        }));
-      } catch (e) {}
-    }
-
-    function loadPrefsState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_PREFS_KEY);
-        if (!raw) return;
-        const p = JSON.parse(raw);
-        if (typeof p.coins === 'number') coins = p.coins;
-        if (typeof p.gems === 'number') gems = p.gems;
-        if (typeof p.userName === 'string' && p.userName.trim()) userName = p.userName;
-        if (typeof p.loginType === 'string' && p.loginType.trim()) loginType = p.loginType;
-        if (typeof p.selectedLang === 'string' && LANG_TEXTS[p.selectedLang] && !hasSavedLang) {
-          selectedLang = p.selectedLang;
-        }
-        if (typeof p.userCity === 'string' && p.userCity.trim()) userCity = p.userCity;
-        if (typeof p.userState === 'string' && p.userState.trim()) userState = p.userState;
-        if ([1, 2, 3, 4].includes(Number(p.selectedPlayersCount))) selectedPlayersCount = Number(p.selectedPlayersCount);
-        if (['bot', 'friend', 'pass'].includes(p.selectedMode)) selectedMode = p.selectedMode;
-        if (p.selectedTable && typeof p.selectedTable.entry === 'number' && typeof p.selectedTable.win === 'number') {
-          selectedTable = p.selectedTable;
-        }
-        if (typeof p.roomCode === 'string' && p.roomCode.trim()) roomCode = p.roomCode;
-        if (['friend', 'city', 'state'].includes(p.activeLbScope)) activeLbScope = p.activeLbScope;
-        if (typeof p.soundOn === 'boolean') soundOn = p.soundOn;
-        if (typeof p.seasonClaimed === 'boolean') seasonClaimed = p.seasonClaimed;
-      } catch (e) {}
-    }
-
-    function applyLanguageTexts() {
-      const t = LANG_TEXTS[selectedLang] || LANG_TEXTS.hi;
-      document.documentElement.lang = selectedLang;
-      document.getElementById('authBrandTitle').textContent = t.brand;
-      document.getElementById('authSubtitle').textContent = t.authSub;
-      document.getElementById('langLabelText').textContent = t.langLabel;
-      document.getElementById('fbBtnLabel').textContent = t.fb;
-      document.getElementById('guestBtnLabel').textContent = t.guest;
-      document.getElementById('startPlayBtn').textContent = t.startBtn;
-      document.getElementById('gameLangBtn').textContent = t.gameLangBtn;
-      document.querySelectorAll('#languageGrid .lang-btn').forEach((b) => {
-        b.classList.toggle('active', b.dataset.lang === selectedLang);
-      });
-    }
-
-    function syncLobbyControlsFromState() {
-      document.getElementById('cityInput').value = userCity;
-      document.getElementById('stateInput').value = userState;
-      document.getElementById('roomCodeDisplay').textContent = roomCode;
-      document.getElementById('countBadge').textContent = `${selectedPlayersCount} खिलाड़ी`;
-      document.getElementById('soundToggleBtn').textContent = soundOn ? '🔊' : '🔇';
-
-      document.querySelectorAll('#countButtons .mini-opt').forEach((btn) => {
-        btn.classList.toggle('active', Number(btn.dataset.count) === selectedPlayersCount);
-      });
-
-      document.querySelectorAll('.lk-card[data-mode]').forEach((card) => {
-        card.classList.toggle('selected-card', card.dataset.mode === selectedMode);
-      });
-
-      document.querySelectorAll('#lbTabs .lb-tab').forEach((tab) => {
-        tab.classList.toggle('active', tab.dataset.lb === activeLbScope);
-      });
-    }
-
     let audioCtx = null;
     function getAudioCtx() {
       if (!soundOn) return null;
       try {
-        const Ctx = window.AudioContext || window.webkitAudioContext;
-        if (!Ctx) return null;
         if (!audioCtx) {
-          audioCtx = new Ctx();
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (audioCtx.state === 'suspended') {
-          audioCtx.resume().catch(() => {});
+          audioCtx.resume();
         }
         return audioCtx;
       } catch (e) {
@@ -1998,9 +1838,9 @@
     }
 
     function playTone(freq, duration = 0.1, type = 'triangle', gainVal = 0.09) {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
       try {
-        const ctx = getAudioCtx();
-        if (!ctx) return;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = type;
@@ -2015,30 +1855,26 @@
     }
 
     function playOptionSelectMusic(baseFreq = 587.33) {
-      try {
-        if (!soundOn) return;
-        const chord = [baseFreq, baseFreq * 1.25, baseFreq * 1.5, baseFreq * 2];
-        chord.forEach((n, idx) => {
-          setTimeout(() => {
-            playTone(n, 0.13, 'triangle', 0.095);
-            playTone(n * 0.5, 0.13, 'sine', 0.055);
-          }, idx * 65);
-        });
-      } catch (e) {}
+      if (!soundOn) return;
+      const chord = [baseFreq, baseFreq * 1.25, baseFreq * 1.5, baseFreq * 2];
+      chord.forEach((n, idx) => {
+        setTimeout(() => {
+          playTone(n, 0.13, 'triangle', 0.095);
+          playTone(n * 0.5, 0.13, 'sine', 0.055);
+        }, idx * 65);
+      });
     }
 
     function playGreenStarFanfare() {
-      try {
-        if (!soundOn) return;
-        let delaySoFar = 0;
-        GREEN_STAR_MELODY.forEach((item) => {
-          setTimeout(() => {
-            playTone(item.f, item.d, 'triangle', 0.11);
-            playTone(item.f * 0.5, item.d, 'sine', 0.065);
-          }, delaySoFar);
-          delaySoFar += item.gap;
-        });
-      } catch (e) {}
+      if (!soundOn) return;
+      let delaySoFar = 0;
+      GREEN_STAR_MELODY.forEach((item) => {
+        setTimeout(() => {
+          playTone(item.f, item.d, 'triangle', 0.11);
+          playTone(item.f * 0.5, item.d, 'sine', 0.065);
+        }, delaySoFar);
+        delaySoFar += item.gap;
+      });
     }
 
     function playDiceSpinTick(stepNum) {
@@ -2046,37 +1882,53 @@
     }
 
     function playTrackTheme(trackName) {
-      try {
-        currentMusicTrack = trackName;
-        document.querySelectorAll('.music-chip').forEach((chip) => {
-          chip.classList.toggle('active', chip.dataset.track === trackName);
-        });
-        if (trackName === 'splash') {
-          playGreenStarFanfare();
-          return;
-        }
-        const notes = MUSIC_NOTES[trackName] || MUSIC_NOTES.lobby;
-        notes.forEach((n, idx) => {
-          setTimeout(() => {
-            const wave = trackName === 'game' ? 'sawtooth' : 'triangle';
-            playTone(n, 0.14, wave, 0.075);
-          }, idx * 125);
-        });
-      } catch (e) {}
+      currentMusicTrack = trackName;
+      document.querySelectorAll('.music-chip').forEach((chip) => {
+        chip.classList.toggle('active', chip.dataset.track === trackName);
+      });
+      if (trackName === 'splash') {
+        playGreenStarFanfare();
+        return;
+      }
+      const notes = MUSIC_NOTES[trackName] || MUSIC_NOTES.lobby;
+      notes.forEach((n, idx) => {
+        setTimeout(() => {
+          const wave = trackName === 'game' ? 'sawtooth' : 'triangle';
+          playTone(n, 0.14, wave, 0.075);
+        }, idx * 125);
+      });
     }
 
-    function finishSplashAndOpenAuth() {
-      if (splashFinished) return;
-      splashFinished = true;
-      const splashEl = document.getElementById('greenStarSplash');
-      const authEl = document.getElementById('authModal');
-      if (splashEl) splashEl.classList.add('hidden');
-      if (!hasSavedLang && authEl) {
-        authEl.classList.remove('hidden');
-      } else if (authEl) {
-        authEl.classList.add('hidden');
+    function applyLanguageUI(langCode) {
+      selectedLang = LANG_TEXTS[langCode] ? langCode : 'hi';
+      const t = LANG_TEXTS[selectedLang];
+      document.getElementById('authBrandTitle').textContent = t.brand;
+      document.getElementById('authSubtitle').textContent = t.authSub;
+      document.getElementById('langLabelText').textContent = t.langLabel;
+      document.getElementById('fbBtnLabel').textContent = t.fb;
+      document.getElementById('guestBtnLabel').textContent = t.guest;
+      document.getElementById('lobbyBrandTitle').textContent = t.brand;
+      document.getElementById('startPlayBtn').textContent = t.startBtn;
+
+      document.querySelectorAll('#languageGrid .lang-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === selectedLang);
+      });
+    }
+
+    function unlockAudioOnFirstGesture() {
+      const ctx = getAudioCtx();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume().then(() => {
+          if (!document.getElementById('greenStarSplash').classList.contains('hidden')) {
+            playGreenStarFanfare();
+          }
+        }).catch(() => {});
+      } else if (!document.getElementById('greenStarSplash').classList.contains('hidden')) {
+        playGreenStarFanfare();
       }
     }
+    document.addEventListener('pointerdown', unlockAudioOnFirstGesture, { once: true });
+    document.addEventListener('touchstart', unlockAudioOnFirstGesture, { once: true });
 
     function trackTimer(id) {
       activeTimers.push(id);
@@ -2182,7 +2034,6 @@
       document.getElementById('headerAuthTag').textContent = loginType;
       document.getElementById('avatarEmoji').textContent = loginType === 'Facebook' ? '📘' : '👑';
       renderLeaderboard();
-      savePrefsState();
     }
 
     function setStatus(text) {
@@ -2814,10 +2665,6 @@
     }
 
     window.addEventListener('popstate', () => {
-      if (suppressNextPopstateOnce) {
-        suppressNextPopstateOnce = false;
-        return;
-      }
       const isInGame = !document.getElementById('gameScreen').classList.contains('hidden');
       if (isInGame) {
         openExitModal('TO_LOBBY');
@@ -2826,35 +2673,13 @@
       }
     });
 
-    window.addEventListener('beforeunload', () => {
-      suppressNextPopstateOnce = true;
-      savePrefsState();
-    });
-
-    window.addEventListener('pagehide', () => {
-      suppressNextPopstateOnce = true;
-      savePrefsState();
-    });
-
-    document.getElementById('replaySplashMusicBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
+    document.getElementById('replaySplashMusicBtn').addEventListener('click', () => {
       playGreenStarFanfare();
-    });
-
-    document.getElementById('skipSplashBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      finishSplashAndOpenAuth();
-    });
-
-    document.getElementById('greenStarSplash').addEventListener('click', () => {
-      finishSplashAndOpenAuth();
     });
 
     document.querySelectorAll('#languageGrid .lang-btn').forEach((btn, i) => {
       btn.addEventListener('click', () => {
-        saveLanguageChoice(btn.dataset.lang);
-        applyLanguageTexts();
-        savePrefsState();
+        applyLanguageUI(btn.dataset.lang);
         playOptionSelectMusic(523.25 + i * 35);
       });
     });
@@ -2862,7 +2687,6 @@
     document.getElementById('loginFacebookBtn').addEventListener('click', () => {
       loginType = 'Facebook';
       userName = 'You';
-      saveLanguageChoice(selectedLang);
       playOptionSelectMusic(659.25);
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
@@ -2873,7 +2697,6 @@
     document.getElementById('loginGuestBtn').addEventListener('click', () => {
       loginType = 'Guest';
       userName = 'You';
-      saveLanguageChoice(selectedLang);
       playOptionSelectMusic(587.33);
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
@@ -2887,11 +2710,6 @@
     });
 
     document.getElementById('sideLangBtn').addEventListener('click', () => {
-      playOptionSelectMusic(523.25);
-      document.getElementById('authModal').classList.remove('hidden');
-    });
-
-    document.getElementById('gameLangBtn').addEventListener('click', () => {
       playOptionSelectMusic(523.25);
       document.getElementById('authModal').classList.remove('hidden');
     });
@@ -2952,7 +2770,6 @@
         document.querySelectorAll('.lk-card[data-mode]').forEach((c) => c.classList.remove('selected-card'));
         card.classList.add('selected-card');
         selectedMode = card.dataset.mode;
-        savePrefsState();
         playOptionSelectMusic(523.25 + idx * 55);
         document.getElementById('lobbyMsg').textContent = `मोड चुना गया: ${card.querySelector('.lk-card-title').textContent}`;
       });
@@ -2993,7 +2810,6 @@
     document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
       soundOn = !soundOn;
       e.target.textContent = soundOn ? '🔊' : '🔇';
-      savePrefsState();
       if (soundOn) playOptionSelectMusic(587.33);
     });
 
@@ -3003,7 +2819,6 @@
       document.getElementById('cityInput').value = userCity;
       document.getElementById('stateInput').value = userState;
       renderLeaderboard();
-      savePrefsState();
       playOptionSelectMusic(659.25);
       document.getElementById('lobbyMsg').textContent = `सेव हो गया: ${userCity}, ${userState}`;
     });
@@ -3014,7 +2829,6 @@
         tab.classList.add('active');
         activeLbScope = tab.dataset.lb;
         renderLeaderboard();
-        savePrefsState();
         playOptionSelectMusic(523.25 + i * 70);
       });
     });
@@ -3025,7 +2839,6 @@
         btn.classList.add('active');
         selectedPlayersCount = Number(btn.dataset.count);
         document.getElementById('countBadge').textContent = `${selectedPlayersCount} खिलाड़ी`;
-        savePrefsState();
         playOptionSelectMusic(440 + selectedPlayersCount * 95);
       });
     });
@@ -3034,7 +2847,6 @@
       roomCode = `RAJA-${Math.floor(1000 + Math.random() * 9000)}`;
       document.getElementById('roomCodeDisplay').textContent = roomCode;
       updateWhatsAppInvite();
-      savePrefsState();
       playOptionSelectMusic(587.33);
     });
 
@@ -3058,23 +2870,11 @@
       });
     });
 
-    try {
-      localStorage.removeItem('desi_ludo_raja_match_v1');
-    } catch (e) {}
-
-    document.getElementById('gameScreen').classList.add('hidden');
-    document.getElementById('lobbyScreen').classList.remove('hidden');
-
-    loadPrefsState();
-    applyLanguageTexts();
-    syncLobbyControlsFromState();
     pushGuardHistory();
+    applyLanguageUI('hi');
     updateWhatsAppInvite();
     updateHeaderStats();
     playGreenStarFanfare();
-
-    setTimeout(finishSplashAndOpenAuth, 2200);
-    setTimeout(finishSplashAndOpenAuth, 4000);
   </script>
 </body>
 </html>
