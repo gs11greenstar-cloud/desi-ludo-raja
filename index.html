@@ -60,7 +60,7 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 50% 35%, rgba(167, 243, 208, 0.45) 0%, rgba(16, 185, 129, 0.25) 38%, transparent 70%),
+        radial-gradient(circle at 50% 35%, rgba(167, 243, 208, 0.5) 0%, rgba(16, 185, 129, 0.28) 40%, transparent 72%),
         linear-gradient(160deg, #059669 0%, #0284c7 55%, #1d4ed8 100%);
       display: flex;
       flex-direction: column;
@@ -169,7 +169,20 @@
       font-weight: 800;
     }
 
-    /* बड़ा, चमकता हुआ और आकर्षक स्टार्ट/लॉगिन कार्ड */
+    .splash-sound-btn {
+      margin-top: 12px;
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      border: 2px solid #ffffff;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #92400e;
+    }
+
+    /* बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड */
     .auth-overlay {
       position: fixed;
       inset: 0;
@@ -181,11 +194,12 @@
       justify-content: center;
       padding: 12px;
       z-index: 80;
+      overflow-y: auto;
     }
 
     .auth-card {
       width: 100%;
-      max-width: 400px;
+      max-width: 404px;
       background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 65%, #1e40af 100%);
       border: 3px solid #fef08a;
       border-radius: 26px;
@@ -210,8 +224,8 @@
     }
 
     .start-hero-board {
-      width: 136px;
-      height: 84px;
+      width: 132px;
+      height: 80px;
       margin: 0 auto 6px;
       border-radius: 14px;
       background: conic-gradient(
@@ -272,7 +286,6 @@
       color: #0f172a;
     }
 
-    /* स्टार्ट स्क्रीन पर बड़ा-छोटा होने वाला एनीमेशन */
     @keyframes optionPulse {
       0% { transform: scale(0.965); }
       50% { transform: scale(1.035); }
@@ -290,14 +303,14 @@
 
     .lang-box {
       margin-top: 10px;
-      background: rgba(23, 37, 84, 0.52);
-      border: 1.5px solid rgba(254, 240, 138, 0.85);
+      background: rgba(23, 37, 84, 0.56);
+      border: 2px solid #fef08a;
       border-radius: 16px;
       padding: 8px;
     }
 
     .lang-heading {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 900;
       color: #fef08a;
       margin-bottom: 6px;
@@ -310,13 +323,13 @@
     }
 
     .lang-btn {
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.18);
       color: #ffffff;
-      border: 1.5px solid rgba(254, 240, 138, 0.7);
+      border: 1.5px solid #fef08a;
       border-radius: 10px;
-      padding: 5px 3px;
-      font-size: 0.72rem;
-      font-weight: 800;
+      padding: 6px 3px;
+      font-size: 0.73rem;
+      font-weight: 900;
       cursor: pointer;
     }
 
@@ -396,7 +409,7 @@
       55%, 100% { left: 165%; }
     }
 
-    /* टॉप हेडर (ब्राइट रॉयल ब्लू + गोल्ड) */
+    /* टॉप हेडर */
     .lk-header {
       display: flex;
       align-items: center;
@@ -469,7 +482,6 @@
       justify-content: center;
     }
 
-    /* सेंटर एरिना + साइड बटन */
     .arena-stage {
       display: grid;
       grid-template-columns: 44px 1fr 44px;
@@ -608,7 +620,6 @@
       border-color: #ffffff;
     }
 
-    /* ब्राइट ब्लू + गोल्ड गेम कार्ड्स */
     .lk-card {
       background: linear-gradient(180deg, #60a5fa 0%, #2563eb 55%, #1d4ed8 100%);
       border: 2.5px solid #fef08a;
@@ -1388,7 +1399,8 @@
     <div class="gstar-badge-plate">
       <div class="gstar-title">⭐ GREEN STAR</div>
     </div>
-    <div class="gstar-sub">देसी लूडो राजा • रॉयल एडिशन</div>
+    <div class="gstar-sub">देसी लूडो राजा • रॉयल मेलोडी एडिशन</div>
+    <button type="button" class="splash-sound-btn" id="replaySplashMusicBtn">🎶 रॉयल धुन सुनें</button>
   </div>
 
   <!-- बड़ा, चमकता हुआ स्टार्ट/लॉगिन कार्ड + भाषा विकल्प + बड़ा-छोटा एनीमेशन -->
@@ -1476,17 +1488,17 @@
             <div class="lk-title-text" id="lobbyBrandTitle">👑 देसी लूडो राजा</div>
           </div>
           <div class="music-strip">
-            <button type="button" class="music-chip active" data-track="splash">🎵 इंट्रो</button>
-            <button type="button" class="music-chip" data-track="lobby">🎶 लॉबी</button>
-            <button type="button" class="music-chip" data-track="game">🔥 गेमप्ले</button>
+            <button type="button" class="music-chip active" data-track="splash">🎶 रॉयल धुन</button>
+            <button type="button" class="music-chip" data-track="lobby">🎵 लॉबी धुन</button>
+            <button type="button" class="music-chip" data-track="game">🔥 गेमप्ले धुन</button>
           </div>
         </div>
 
         <div class="side-rail">
           <button type="button" class="side-orb" id="sideSpinBtn">🎡</button>
           <span class="side-orb-label">SPIN</span>
-          <button type="button" class="side-orb" id="sideFbBtn">📘</button>
-          <span class="side-orb-label">FB/GUEST</span>
+          <button type="button" class="side-orb" id="sideLangBtn">🌐</button>
+          <span class="side-orb-label">LANG</span>
         </div>
       </div>
 
@@ -1580,8 +1592,8 @@
           <span>HOME</span>
         </button>
         <button type="button" class="nav-btn" id="navAuthBtn">
-          <span>👤</span>
-          <span>FB/GUEST</span>
+          <span>🌐</span>
+          <span>LANG/FB</span>
         </button>
         <button type="button" class="nav-btn" id="navMusicBtn">
           <span>🎵</span>
@@ -1757,10 +1769,26 @@
       6: [0, 2, 3, 5, 6, 8]
     };
 
+    /* GREEN STAR की लंबी जोशीली मेलोडी और ट्रैक नोट्स */
+    const GREEN_STAR_MELODY = [
+      { f: 523.25, d: 0.14, gap: 110 },
+      { f: 659.25, d: 0.14, gap: 110 },
+      { f: 783.99, d: 0.16, gap: 120 },
+      { f: 1046.5, d: 0.22, gap: 150 },
+      { f: 880.0,  d: 0.14, gap: 110 },
+      { f: 783.99, d: 0.14, gap: 110 },
+      { f: 659.25, d: 0.16, gap: 125 },
+      { f: 783.99, d: 0.15, gap: 115 },
+      { f: 987.77, d: 0.16, gap: 120 },
+      { f: 1046.5, d: 0.28, gap: 170 },
+      { f: 783.99, d: 0.16, gap: 120 },
+      { f: 1046.5, d: 0.36, gap: 0 }
+    ];
+
     const MUSIC_NOTES = {
-      splash: [523.25, 659.25, 783.99, 1046.5],
-      lobby: [392.0, 440.0, 523.25, 440.0],
-      game: [329.63, 392.0, 493.88, 587.33]
+      splash: GREEN_STAR_MELODY.map((x) => x.f),
+      lobby: [523.25, 587.33, 659.25, 783.99, 659.25, 880.0, 783.99, 1046.5],
+      game: [440.0, 554.37, 659.25, 880.0, 659.25, 783.99, 659.25, 554.37]
     };
 
     let coins = 5000;
@@ -1803,14 +1831,16 @@
         if (!audioCtx) {
           audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
-        if (audioCtx.state === 'suspended') audioCtx.resume();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
         return audioCtx;
       } catch (e) {
         return null;
       }
     }
 
-    function playTone(freq, duration = 0.08, type = 'sine', gainVal = 0.08) {
+    function playTone(freq, duration = 0.1, type = 'triangle', gainVal = 0.09) {
       const ctx = getAudioCtx();
       if (!ctx) return;
       try {
@@ -1827,8 +1857,33 @@
       } catch (e) {}
     }
 
+    /* किसी भी ऑप्शन (Friend, Bot, Language आदि) चुनने पर मधुर मेलोडी */
+    function playOptionSelectMusic(baseFreq = 587.33) {
+      if (!soundOn) return;
+      const chord = [baseFreq, baseFreq * 1.25, baseFreq * 1.5, baseFreq * 2];
+      chord.forEach((n, idx) => {
+        setTimeout(() => {
+          playTone(n, 0.13, 'triangle', 0.095);
+          playTone(n * 0.5, 0.13, 'sine', 0.055);
+        }, idx * 65);
+      });
+    }
+
+    /* GREEN STAR स्क्रीन की शानदार रॉयल मेलोडी */
+    function playGreenStarFanfare() {
+      if (!soundOn) return;
+      let delaySoFar = 0;
+      GREEN_STAR_MELODY.forEach((item) => {
+        setTimeout(() => {
+          playTone(item.f, item.d, 'triangle', 0.11);
+          playTone(item.f * 0.5, item.d, 'sine', 0.065);
+        }, delaySoFar);
+        delaySoFar += item.gap;
+      });
+    }
+
     function playDiceSpinTick(stepNum) {
-      playTone(280 + stepNum * 55, 0.055, 'square', 0.05);
+      playTone(280 + stepNum * 55, 0.055, 'square', 0.055);
     }
 
     function playTrackTheme(trackName) {
@@ -1836,30 +1891,34 @@
       document.querySelectorAll('.music-chip').forEach((chip) => {
         chip.classList.toggle('active', chip.dataset.track === trackName);
       });
+      if (trackName === 'splash') {
+        playGreenStarFanfare();
+        return;
+      }
       const notes = MUSIC_NOTES[trackName] || MUSIC_NOTES.lobby;
       notes.forEach((n, idx) => {
         setTimeout(() => {
-          const wave = trackName === 'splash' ? 'triangle' : trackName === 'game' ? 'sawtooth' : 'sine';
-          playTone(n, 0.14, wave, 0.055);
-        }, idx * 145);
+          const wave = trackName === 'game' ? 'sawtooth' : 'triangle';
+          playTone(n, 0.14, wave, 0.075);
+        }, idx * 125);
       });
     }
 
-    function applyLanguageUI(langCode) {
-      selectedLang = LANG_TEXTS[langCode] ? langCode : 'hi';
-      const t = LANG_TEXTS[selectedLang];
-      document.getElementById('authBrandTitle').textContent = t.brand;
-      document.getElementById('authSubtitle').textContent = t.authSub;
-      document.getElementById('langLabelText').textContent = t.langLabel;
-      document.getElementById('fbBtnLabel').textContent = t.fb;
-      document.getElementById('guestBtnLabel').textContent = t.guest;
-      document.getElementById('lobbyBrandTitle').textContent = t.brand;
-      document.getElementById('startPlayBtn').textContent = t.startBtn;
-
-      document.querySelectorAll('#languageGrid .lang-btn').forEach((btn) => {
-        btn.classList.toggle('active', btn.dataset.lang === selectedLang);
-      });
+    /* मोबाइल ब्राउज़र में पहले टच/क्लिक पर ऑडियो अनलॉक और धुन शुरू */
+    function unlockAudioOnFirstGesture() {
+      const ctx = getAudioCtx();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume().then(() => {
+          if (!document.getElementById('greenStarSplash').classList.contains('hidden')) {
+            playGreenStarFanfare();
+          }
+        }).catch(() => {});
+      } else if (!document.getElementById('greenStarSplash').classList.contains('hidden')) {
+        playGreenStarFanfare();
+      }
     }
+    document.addEventListener('pointerdown', unlockAudioOnFirstGesture, { once: true });
+    document.addEventListener('touchstart', unlockAudioOnFirstGesture, { once: true });
 
     function trackTimer(id) {
       activeTimers.push(id);
@@ -2604,16 +2663,21 @@
       }
     });
 
-    document.querySelectorAll('#languageGrid .lang-btn').forEach((btn) => {
+    document.getElementById('replaySplashMusicBtn').addEventListener('click', () => {
+      playGreenStarFanfare();
+    });
+
+    document.querySelectorAll('#languageGrid .lang-btn').forEach((btn, i) => {
       btn.addEventListener('click', () => {
         applyLanguageUI(btn.dataset.lang);
-        playTone(580, 0.08, 'sine', 0.07);
+        playOptionSelectMusic(523.25 + i * 35);
       });
     });
 
     document.getElementById('loginFacebookBtn').addEventListener('click', () => {
       loginType = 'Facebook';
       userName = 'You';
+      playOptionSelectMusic(659.25);
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
       playTrackTheme('lobby');
@@ -2623,6 +2687,7 @@
     document.getElementById('loginGuestBtn').addEventListener('click', () => {
       loginType = 'Guest';
       userName = 'You';
+      playOptionSelectMusic(587.33);
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
       playTrackTheme('lobby');
@@ -2630,14 +2695,17 @@
     });
 
     document.getElementById('navAuthBtn').addEventListener('click', () => {
+      playOptionSelectMusic(523.25);
       document.getElementById('authModal').classList.remove('hidden');
     });
 
-    document.getElementById('sideFbBtn').addEventListener('click', () => {
+    document.getElementById('sideLangBtn').addEventListener('click', () => {
+      playOptionSelectMusic(523.25);
       document.getElementById('authModal').classList.remove('hidden');
     });
 
     document.getElementById('profilePill').addEventListener('click', () => {
+      playOptionSelectMusic(523.25);
       document.getElementById('authModal').classList.remove('hidden');
     });
 
@@ -2647,29 +2715,32 @@
       const bonus = roll * 100;
       coins += bonus;
       updateHeaderStats();
-      playTone(620, 0.14, 'triangle', 0.09);
+      playOptionSelectMusic(480 + roll * 65);
       document.getElementById('lobbyMsg').textContent = `🎡 स्पिन में ${roll} आया! +${bonus} कॉइन्स मिले!`;
     });
 
     document.getElementById('sideGiftBtn').addEventListener('click', () => {
       gems += 10;
       updateHeaderStats();
+      playOptionSelectMusic(783.99);
       document.getElementById('lobbyMsg').textContent = '🎁 GREEN STAR गिफ्ट: +10 जेम्स!';
     });
 
     document.getElementById('sideRulesBtn').addEventListener('click', () => {
+      playOptionSelectMusic(523.25);
       document.getElementById('lobbyMsg').textContent = '6 आने पर गोटी बाहर आती है • कटने पर गोटी रोते हुए वापस जाती है!';
     });
 
     document.getElementById('seasonClaimBtn').addEventListener('click', () => {
       if (seasonClaimed) {
+        playTone(392.0, 0.12, 'sine', 0.08);
         document.getElementById('lobbyMsg').textContent = '⭐ आज का GREEN STAR क्लेम पहले ही लिया जा चुका है!';
         return;
       }
       seasonClaimed = true;
       coins += 1000;
       updateHeaderStats();
-      playTone(760, 0.18, 'triangle', 0.1);
+      playGreenStarFanfare();
       document.getElementById('lobbyMsg').textContent = '⭐ +1000 कॉइन्स क्लेम हो गए!';
     });
 
@@ -2684,11 +2755,12 @@
       document.getElementById('lobbyMsg').textContent = `🎵 म्यूज़िक बदला: ${next.toUpperCase()}`;
     });
 
-    document.querySelectorAll('.lk-card[data-mode]').forEach((card) => {
+    document.querySelectorAll('.lk-card[data-mode]').forEach((card, idx) => {
       card.addEventListener('click', () => {
         document.querySelectorAll('.lk-card[data-mode]').forEach((c) => c.classList.remove('selected-card'));
         card.classList.add('selected-card');
         selectedMode = card.dataset.mode;
+        playOptionSelectMusic(523.25 + idx * 55);
         document.getElementById('lobbyMsg').textContent = `मोड चुना गया: ${card.querySelector('.lk-card-title').textContent}`;
       });
     });
@@ -2707,24 +2779,28 @@
     document.getElementById('navLbBtn').addEventListener('click', () => {
       document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
       document.getElementById('navLbBtn').classList.add('active');
+      playOptionSelectMusic(659.25);
       document.getElementById('tabSection').scrollIntoView({ behavior: 'smooth' });
     });
 
     document.getElementById('addBonusBtn').addEventListener('click', () => {
       coins += 500;
       updateHeaderStats();
+      playOptionSelectMusic(659.25);
       document.getElementById('lobbyMsg').textContent = '🎉 +500 कॉइन्स जुड़ गए!';
     });
 
     document.getElementById('addGemsBtn').addEventListener('click', () => {
       gems += 25;
       updateHeaderStats();
+      playOptionSelectMusic(783.99);
       document.getElementById('lobbyMsg').textContent = '💎 +25 जेम्स जुड़ गए!';
     });
 
     document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
       soundOn = !soundOn;
       e.target.textContent = soundOn ? '🔊' : '🔇';
+      if (soundOn) playOptionSelectMusic(587.33);
     });
 
     document.getElementById('saveLocBtn').addEventListener('click', () => {
@@ -2733,15 +2809,17 @@
       document.getElementById('cityInput').value = userCity;
       document.getElementById('stateInput').value = userState;
       renderLeaderboard();
+      playOptionSelectMusic(659.25);
       document.getElementById('lobbyMsg').textContent = `सेव हो गया: ${userCity}, ${userState}`;
     });
 
-    document.querySelectorAll('#lbTabs .lb-tab').forEach((tab) => {
+    document.querySelectorAll('#lbTabs .lb-tab').forEach((tab, i) => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('#lbTabs .lb-tab').forEach((t) => t.classList.remove('active'));
         tab.classList.add('active');
         activeLbScope = tab.dataset.lb;
         renderLeaderboard();
+        playOptionSelectMusic(523.25 + i * 70);
       });
     });
 
@@ -2751,6 +2829,7 @@
         btn.classList.add('active');
         selectedPlayersCount = Number(btn.dataset.count);
         document.getElementById('countBadge').textContent = `${selectedPlayersCount} खिलाड़ी`;
+        playOptionSelectMusic(440 + selectedPlayersCount * 95);
       });
     });
 
@@ -2758,22 +2837,25 @@
       roomCode = `RAJA-${Math.floor(1000 + Math.random() * 9000)}`;
       document.getElementById('roomCodeDisplay').textContent = roomCode;
       updateWhatsAppInvite();
+      playOptionSelectMusic(587.33);
     });
 
     document.getElementById('copyRoomBtn').addEventListener('click', () => {
       if (navigator.clipboard) navigator.clipboard.writeText(roomCode).catch(() => {});
+      playOptionSelectMusic(659.25);
       document.getElementById('lobbyMsg').textContent = `कोड कॉपी हुआ: ${roomCode}`;
     });
 
     document.getElementById('startPlayBtn').addEventListener('click', launchMatch);
 
-    document.querySelectorAll('.emote-chip').forEach((btn) => {
+    document.querySelectorAll('.emote-chip').forEach((btn, idx) => {
       btn.addEventListener('click', () => {
         const cur = players[turnIdx];
         if (cur) {
           const emoMatch = btn.dataset.msg.match(/^(🔥|😈|😭|🥳)/);
           if (emoMatch) showSeatEmotion(cur.seatId, emoMatch[1]);
         }
+        playOptionSelectMusic(523.25 + idx * 80);
         setStatus(`${cur ? cur.name : userName}: ${btn.dataset.msg}`);
       });
     });
@@ -2782,12 +2864,12 @@
     applyLanguageUI('hi');
     updateWhatsAppInvite();
     updateHeaderStats();
-    playTrackTheme('splash');
+    playGreenStarFanfare();
 
     setTimeout(() => {
       document.getElementById('greenStarSplash').classList.add('hidden');
       document.getElementById('authModal').classList.remove('hidden');
-    }, 1500);
+    }, 2400);
   </script>
 </body>
 </html>
