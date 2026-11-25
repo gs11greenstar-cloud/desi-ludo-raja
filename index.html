@@ -965,8 +965,26 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 6px;
       color: #fff;
       font-size: 0.82rem;
+    }
+
+    .game-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-in-game-btn {
+      background: linear-gradient(180deg, #fef08a, #f59e0b);
+      color: #0f172a;
+      border: 1.5px solid #ffffff;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-weight: 900;
+      font-size: 0.74rem;
+      cursor: pointer;
     }
 
     .exit-btn {
@@ -1637,7 +1655,10 @@
     <div class="hidden" id="gameScreen" style="display:flex;flex-direction:column;gap:7px;">
       <div class="game-top">
         <span id="matchTitle" style="font-weight:800;">देसी लूडो राजा</span>
-        <button type="button" class="exit-btn" id="leaveMatchBtn">← बाहर</button>
+        <div class="game-top-actions">
+          <button type="button" class="lang-in-game-btn" id="gameLangBtn">🌐 भाषा</button>
+          <button type="button" class="exit-btn" id="leaveMatchBtn">← बाहर</button>
+        </div>
       </div>
 
       <div class="players-pair" id="topSeats"></div>
@@ -1676,6 +1697,10 @@
 
   <script>
     const GAME_URL = 'https://gs11greenstar-cloud.github.io/desi-ludo-raja/';
+    const STORAGE_LANG_KEY = 'desi_ludo_raja_lang_v1';
+    const STORAGE_PREFS_KEY = 'desi_ludo_raja_prefs_v1';
+    const STORAGE_MATCH_KEY = 'desi_ludo_raja_match_v1';
+
     const LANG_TEXTS = {
       hi: {
         brand: '👑 देसी लूडो राजा',
@@ -1684,6 +1709,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ अभी खेल शुरू करें',
+        gameLangBtn: '🌐 भाषा',
         fbReady: '📘 Facebook से लॉगिन हुआ!',
         guestReady: '👤 Guest के रूप में तैयार!'
       },
@@ -1694,6 +1720,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ Start Game Now',
+        gameLangBtn: '🌐 Lang',
         fbReady: '📘 Logged in with Facebook!',
         guestReady: '👤 Ready as Guest!'
       },
@@ -1704,6 +1731,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ आता खेळ सुरू करा',
+        gameLangBtn: '🌐 भाषा',
         fbReady: '📘 Facebook वरून लॉगिन झाले!',
         guestReady: '👤 Guest म्हणून तयार!'
       },
@@ -1714,6 +1742,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ এখনই খেলা শুরু করুন',
+        gameLangBtn: '🌐 ভাষা',
         fbReady: '📘 Facebook দিয়ে লগইন হয়েছে!',
         guestReady: '👤 Guest হিসেবে প্রস্তুত!'
       },
@@ -1724,6 +1753,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ இப்போதே விளையாடத் தொடங்குங்கள்',
+        gameLangBtn: '🌐 மொழி',
         fbReady: '📘 Facebook மூலம் உள்நுழைந்தது!',
         guestReady: '👤 Guest ஆக தயார்!'
       },
@@ -1734,6 +1764,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ ఇప్పుడే ఆట ప్రారంభించండి',
+        gameLangBtn: '🌐 భాష',
         fbReady: '📘 Facebook తో లాగిన్ అయ్యారు!',
         guestReady: '👤 Guest గా సిద్ధంగా ఉన్నారు!'
       },
@@ -1744,6 +1775,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ હમણાં જ રમત શરૂ કરો',
+        gameLangBtn: '🌐 ભાષા',
         fbReady: '📘 Facebook થી લોગિન થયું!',
         guestReady: '👤 Guest તરીકે તૈયાર!'
       },
@@ -1754,6 +1786,7 @@
         fb: 'Continue with Facebook',
         guest: 'Play as Guest',
         startBtn: '▶ ಈಗಲೇ ಆಟ ಪ್ರಾರಂಭಿಸಿ',
+        gameLangBtn: '🌐 ಭಾಷೆ',
         fbReady: '📘 Facebook ಮೂಲಕ ಲಾಗಿನ್ ಆಗಿದೆ!',
         guestReady: '👤 Guest ಆಗಿ ಸಿದ್ಧವಾಗಿದೆ!'
       }
@@ -1817,7 +1850,10 @@
     let gems = 50;
     let userName = 'You';
     let loginType = 'Guest';
-    let selectedLang = 'hi';
+    let hasSavedLang = Boolean(localStorage.getItem(STORAGE_LANG_KEY));
+    let selectedLang = localStorage.getItem(STORAGE_LANG_KEY) || 'hi';
+    if (!LANG_TEXTS[selectedLang]) selectedLang = 'hi';
+
     let userCity = 'जबलपुर';
     let userState = 'मध्य प्रदेश';
     let selectedPlayersCount = 2;
@@ -1829,6 +1865,7 @@
     let soundOn = true;
     let seasonClaimed = false;
     let splashFinished = false;
+    let suppressNextPopstateOnce = false;
 
     let players = [];
     let turnIdx = 0;
@@ -1846,6 +1883,180 @@
     let scaredPawnsSet = new Set();
     let seatEmotions = {};
     let exitMode = 'TO_LOBBY';
+
+    function saveLanguageChoice(langCode) {
+      selectedLang = LANG_TEXTS[langCode] ? langCode : 'hi';
+      hasSavedLang = true;
+      try {
+        localStorage.setItem(STORAGE_LANG_KEY, selectedLang);
+      } catch (e) {}
+    }
+
+    function savePrefsState() {
+      try {
+        localStorage.setItem(STORAGE_PREFS_KEY, JSON.stringify({
+          coins,
+          gems,
+          userName,
+          loginType,
+          selectedLang,
+          userCity,
+          userState,
+          selectedPlayersCount,
+          selectedMode,
+          selectedTable,
+          roomCode,
+          activeLbScope,
+          soundOn,
+          seasonClaimed
+        }));
+      } catch (e) {}
+    }
+
+    function loadPrefsState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_PREFS_KEY);
+        if (!raw) return;
+        const p = JSON.parse(raw);
+        if (typeof p.coins === 'number') coins = p.coins;
+        if (typeof p.gems === 'number') gems = p.gems;
+        if (typeof p.userName === 'string' && p.userName.trim()) userName = p.userName;
+        if (typeof p.loginType === 'string' && p.loginType.trim()) loginType = p.loginType;
+        if (typeof p.selectedLang === 'string' && LANG_TEXTS[p.selectedLang] && !hasSavedLang) {
+          selectedLang = p.selectedLang;
+        }
+        if (typeof p.userCity === 'string' && p.userCity.trim()) userCity = p.userCity;
+        if (typeof p.userState === 'string' && p.userState.trim()) userState = p.userState;
+        if ([1, 2, 3, 4].includes(Number(p.selectedPlayersCount))) selectedPlayersCount = Number(p.selectedPlayersCount);
+        if (['bot', 'friend', 'pass'].includes(p.selectedMode)) selectedMode = p.selectedMode;
+        if (p.selectedTable && typeof p.selectedTable.entry === 'number' && typeof p.selectedTable.win === 'number') {
+          selectedTable = p.selectedTable;
+        }
+        if (typeof p.roomCode === 'string' && p.roomCode.trim()) roomCode = p.roomCode;
+        if (['friend', 'city', 'state'].includes(p.activeLbScope)) activeLbScope = p.activeLbScope;
+        if (typeof p.soundOn === 'boolean') soundOn = p.soundOn;
+        if (typeof p.seasonClaimed === 'boolean') seasonClaimed = p.seasonClaimed;
+      } catch (e) {}
+    }
+
+    function clearSavedMatchState() {
+      try {
+        localStorage.removeItem(STORAGE_MATCH_KEY);
+      } catch (e) {}
+    }
+
+    function saveActiveMatchState() {
+      try {
+        const isInGame = !document.getElementById('gameScreen').classList.contains('hidden');
+        if (!isInGame || !Array.isArray(players) || players.length === 0 || state === 'FINISHED') {
+          return;
+        }
+        const safeState = (state === 'ROLLING' || state === 'ANIMATING' || state === 'RETREATING')
+          ? 'WAIT_ROLL'
+          : state;
+        localStorage.setItem(STORAGE_MATCH_KEY, JSON.stringify({
+          players,
+          turnIdx,
+          diceVal,
+          playerDiceValues,
+          state: safeState,
+          consecutiveSixes,
+          selectedMode,
+          selectedPlayersCount,
+          selectedTable
+        }));
+      } catch (e) {}
+    }
+
+    function restoreSavedMatchIfAny() {
+      try {
+        const raw = localStorage.getItem(STORAGE_MATCH_KEY);
+        if (!raw) return false;
+        const saved = JSON.parse(raw);
+        if (!saved || !Array.isArray(saved.players) || saved.players.length === 0 || saved.state === 'FINISHED') {
+          return false;
+        }
+
+        players = saved.players;
+        turnIdx = Math.min(Math.max(0, Number(saved.turnIdx) || 0), players.length - 1);
+        diceVal = Number(saved.diceVal) || 6;
+        playerDiceValues = saved.playerDiceValues && typeof saved.playerDiceValues === 'object'
+          ? saved.playerDiceValues
+          : {};
+        players.forEach((pl) => {
+          if (!playerDiceValues[pl.seatId]) playerDiceValues[pl.seatId] = 6;
+        });
+        consecutiveSixes = Number(saved.consecutiveSixes) || 0;
+        if (['bot', 'friend', 'pass'].includes(saved.selectedMode)) selectedMode = saved.selectedMode;
+        if ([1, 2, 3, 4].includes(Number(saved.selectedPlayersCount))) selectedPlayersCount = Number(saved.selectedPlayersCount);
+        if (saved.selectedTable && typeof saved.selectedTable.entry === 'number') selectedTable = saved.selectedTable;
+
+        const restoredState = ['WAIT_ROLL', 'WAIT_MOVE'].includes(saved.state) ? saved.state : 'WAIT_ROLL';
+        state = restoredState;
+
+        const modeNames = {
+          bot: '🤖 Com',
+          friend: '🤝 Friends',
+          pass: '📱 Pass N Play'
+        };
+        document.getElementById('matchTitle').textContent =
+          `${modeNames[selectedMode] || '👑 गेम'} • ${selectedPlayersCount} खिलाड़ी`;
+
+        document.getElementById('lobbyScreen').classList.add('hidden');
+        document.getElementById('gameScreen').classList.remove('hidden');
+
+        renderSeats();
+        renderBoard();
+
+        const cur = players[turnIdx];
+        if (cur && isAutoBotTurn(selectedMode, cur) && state === 'WAIT_ROLL') {
+          setStatus(`${cur.name} का डाइस उछलकर घूम रहा है...`);
+          trackTimer(setTimeout(() => triggerDiceRoll(), 650));
+        } else if (cur && state === 'WAIT_MOVE') {
+          setStatus(`${cur.name} का ${diceVal} आया — चमकती गोटी चुनें`);
+        } else if (cur) {
+          setStatus(`${cur.name} की बारी — अपने डाइस पर टैप करें`);
+        }
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function applyLanguageTexts() {
+      const t = LANG_TEXTS[selectedLang] || LANG_TEXTS.hi;
+      document.documentElement.lang = selectedLang;
+      document.getElementById('authBrandTitle').textContent = t.brand;
+      document.getElementById('authSubtitle').textContent = t.authSub;
+      document.getElementById('langLabelText').textContent = t.langLabel;
+      document.getElementById('fbBtnLabel').textContent = t.fb;
+      document.getElementById('guestBtnLabel').textContent = t.guest;
+      document.getElementById('startPlayBtn').textContent = t.startBtn;
+      document.getElementById('gameLangBtn').textContent = t.gameLangBtn;
+      document.querySelectorAll('#languageGrid .lang-btn').forEach((b) => {
+        b.classList.toggle('active', b.dataset.lang === selectedLang);
+      });
+    }
+
+    function syncLobbyControlsFromState() {
+      document.getElementById('cityInput').value = userCity;
+      document.getElementById('stateInput').value = userState;
+      document.getElementById('roomCodeDisplay').textContent = roomCode;
+      document.getElementById('countBadge').textContent = `${selectedPlayersCount} खिलाड़ी`;
+      document.getElementById('soundToggleBtn').textContent = soundOn ? '🔊' : '🔇';
+
+      document.querySelectorAll('#countButtons .mini-opt').forEach((btn) => {
+        btn.classList.toggle('active', Number(btn.dataset.count) === selectedPlayersCount);
+      });
+
+      document.querySelectorAll('.lk-card[data-mode]').forEach((card) => {
+        card.classList.toggle('selected-card', card.dataset.mode === selectedMode);
+      });
+
+      document.querySelectorAll('#lbTabs .lb-tab').forEach((tab) => {
+        tab.classList.toggle('active', tab.dataset.lb === activeLbScope);
+      });
+    }
 
     let audioCtx = null;
     function getAudioCtx() {
@@ -1939,7 +2150,11 @@
       const splashEl = document.getElementById('greenStarSplash');
       const authEl = document.getElementById('authModal');
       if (splashEl) splashEl.classList.add('hidden');
-      if (authEl) authEl.classList.remove('hidden');
+      if (!hasSavedLang && authEl) {
+        authEl.classList.remove('hidden');
+      } else if (authEl) {
+        authEl.classList.add('hidden');
+      }
     }
 
     function trackTimer(id) {
@@ -2046,6 +2261,7 @@
       document.getElementById('headerAuthTag').textContent = loginType;
       document.getElementById('avatarEmoji').textContent = loginType === 'Facebook' ? '📘' : '👑';
       renderLeaderboard();
+      savePrefsState();
     }
 
     function setStatus(text) {
@@ -2338,6 +2554,7 @@
       state = 'WAIT_ROLL';
       renderSeats();
       renderBoard();
+      saveActiveMatchState();
 
       const cur = players[turnIdx];
       if (!cur) return;
@@ -2400,6 +2617,7 @@
           state = 'WAIT_MOVE';
           renderSeats();
           renderBoard();
+          saveActiveMatchState();
 
           if (cur.isBot) {
             const chosen = pickBestBotPawn(cur, validPawns, finalRoll);
@@ -2558,6 +2776,7 @@
       const afterMoveCheck = () => {
         if (p.pawns.every((s) => s === 56)) {
           state = 'FINISHED';
+          clearSavedMatchState();
           if (!p.isBot) {
             coins += selectedTable.win;
             updateHeaderStats();
@@ -2655,12 +2874,14 @@
     function confirmExitModal() {
       document.getElementById('exitWarningModal').classList.add('hidden');
       if (exitMode === 'CLOSE_APP') {
+        saveActiveMatchState();
         clearAllTimers();
         try {
           window.close();
         } catch (e) {}
         document.getElementById('lobbyMsg').textContent = 'ऐप बंद करने के लिए फ़ोन का होम बटन दबाएं।';
       } else {
+        clearSavedMatchState();
         clearAllTimers();
         steppingPawn = null;
         shadowCellKey = null;
@@ -2677,12 +2898,28 @@
     }
 
     window.addEventListener('popstate', () => {
+      if (suppressNextPopstateOnce) {
+        suppressNextPopstateOnce = false;
+        return;
+      }
       const isInGame = !document.getElementById('gameScreen').classList.contains('hidden');
       if (isInGame) {
         openExitModal('TO_LOBBY');
       } else {
         openExitModal('CLOSE_APP');
       }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      suppressNextPopstateOnce = true;
+      saveActiveMatchState();
+      savePrefsState();
+    });
+
+    window.addEventListener('pagehide', () => {
+      suppressNextPopstateOnce = true;
+      saveActiveMatchState();
+      savePrefsState();
     });
 
     document.getElementById('replaySplashMusicBtn').addEventListener('click', (e) => {
@@ -2701,19 +2938,9 @@
 
     document.querySelectorAll('#languageGrid .lang-btn').forEach((btn, i) => {
       btn.addEventListener('click', () => {
-        const code = btn.dataset.lang;
-        selectedLang = LANG_TEXTS[code] ? code : 'hi';
-        const t = LANG_TEXTS[selectedLang];
-        document.getElementById('authBrandTitle').textContent = t.brand;
-        document.getElementById('authSubtitle').textContent = t.authSub;
-        document.getElementById('langLabelText').textContent = t.langLabel;
-        document.getElementById('fbBtnLabel').textContent = t.fb;
-        document.getElementById('guestBtnLabel').textContent = t.guest;
-        document.getElementById('lobbyBrandTitle').textContent = t.brand;
-        document.getElementById('startPlayBtn').textContent = t.startBtn;
-        document.querySelectorAll('#languageGrid .lang-btn').forEach((b) => {
-          b.classList.toggle('active', b.dataset.lang === selectedLang);
-        });
+        saveLanguageChoice(btn.dataset.lang);
+        applyLanguageTexts();
+        savePrefsState();
         playOptionSelectMusic(523.25 + i * 35);
       });
     });
@@ -2721,6 +2948,7 @@
     document.getElementById('loginFacebookBtn').addEventListener('click', () => {
       loginType = 'Facebook';
       userName = 'You';
+      saveLanguageChoice(selectedLang);
       playOptionSelectMusic(659.25);
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
@@ -2731,6 +2959,7 @@
     document.getElementById('loginGuestBtn').addEventListener('click', () => {
       loginType = 'Guest';
       userName = 'You';
+      saveLanguageChoice(selectedLang);
       playOptionSelectMusic(587.33);
       document.getElementById('authModal').classList.add('hidden');
       updateHeaderStats();
@@ -2744,6 +2973,11 @@
     });
 
     document.getElementById('sideLangBtn').addEventListener('click', () => {
+      playOptionSelectMusic(523.25);
+      document.getElementById('authModal').classList.remove('hidden');
+    });
+
+    document.getElementById('gameLangBtn').addEventListener('click', () => {
       playOptionSelectMusic(523.25);
       document.getElementById('authModal').classList.remove('hidden');
     });
@@ -2804,6 +3038,7 @@
         document.querySelectorAll('.lk-card[data-mode]').forEach((c) => c.classList.remove('selected-card'));
         card.classList.add('selected-card');
         selectedMode = card.dataset.mode;
+        savePrefsState();
         playOptionSelectMusic(523.25 + idx * 55);
         document.getElementById('lobbyMsg').textContent = `मोड चुना गया: ${card.querySelector('.lk-card-title').textContent}`;
       });
@@ -2844,6 +3079,7 @@
     document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
       soundOn = !soundOn;
       e.target.textContent = soundOn ? '🔊' : '🔇';
+      savePrefsState();
       if (soundOn) playOptionSelectMusic(587.33);
     });
 
@@ -2853,6 +3089,7 @@
       document.getElementById('cityInput').value = userCity;
       document.getElementById('stateInput').value = userState;
       renderLeaderboard();
+      savePrefsState();
       playOptionSelectMusic(659.25);
       document.getElementById('lobbyMsg').textContent = `सेव हो गया: ${userCity}, ${userState}`;
     });
@@ -2863,6 +3100,7 @@
         tab.classList.add('active');
         activeLbScope = tab.dataset.lb;
         renderLeaderboard();
+        savePrefsState();
         playOptionSelectMusic(523.25 + i * 70);
       });
     });
@@ -2873,6 +3111,7 @@
         btn.classList.add('active');
         selectedPlayersCount = Number(btn.dataset.count);
         document.getElementById('countBadge').textContent = `${selectedPlayersCount} खिलाड़ी`;
+        savePrefsState();
         playOptionSelectMusic(440 + selectedPlayersCount * 95);
       });
     });
@@ -2881,6 +3120,7 @@
       roomCode = `RAJA-${Math.floor(1000 + Math.random() * 9000)}`;
       document.getElementById('roomCodeDisplay').textContent = roomCode;
       updateWhatsAppInvite();
+      savePrefsState();
       playOptionSelectMusic(587.33);
     });
 
@@ -2904,13 +3144,23 @@
       });
     });
 
+    loadPrefsState();
+    applyLanguageTexts();
+    syncLobbyControlsFromState();
     pushGuardHistory();
     updateWhatsAppInvite();
     updateHeaderStats();
     playGreenStarFanfare();
 
-    setTimeout(finishSplashAndOpenAuth, 2200);
-    setTimeout(finishSplashAndOpenAuth, 4000);
+    const restoredMatch = restoreSavedMatchIfAny();
+    if (restoredMatch) {
+      splashFinished = true;
+      document.getElementById('greenStarSplash').classList.add('hidden');
+      document.getElementById('authModal').classList.add('hidden');
+    } else {
+      setTimeout(finishSplashAndOpenAuth, 2200);
+      setTimeout(finishSplashAndOpenAuth, 4000);
+    }
   </script>
 </body>
 </html>
