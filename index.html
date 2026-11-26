@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#2563eb" />
   <title>देसी लूडो राजा - Desi Ludo Raja</title>
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
   <link rel="apple-touch-icon" href="icon-512.png" />
   <style>
@@ -17,7 +18,7 @@
       --blue: #2563eb;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -55,7 +56,6 @@
       display: none !important;
     }
 
-    /* लॉबी */
     .lobby-card {
       background: linear-gradient(180deg, rgba(37, 99, 235, 0.92), rgba(30, 58, 138, 0.96));
       border: 2.5px solid var(--gold-light);
@@ -196,7 +196,6 @@
       box-shadow: 0 5px 0 #166534;
     }
 
-    /* भाषा मोडल */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -225,7 +224,6 @@
       margin: 10px 0 12px;
     }
 
-    /* गेमप्ले */
     #gameScreen:not(.hidden) {
       display: flex;
       flex-direction: column;
@@ -459,7 +457,6 @@
 </head>
 <body>
   <div class="app-wrap">
-    <!-- लॉबी -->
     <div id="lobbyScreen" class="lobby-card">
       <div class="hero-banner">
         <div class="hero-icon" id="lobbyIconBox">
@@ -489,7 +486,6 @@
       <button type="button" class="start-btn" id="startGameBtn">▶ खेल शुरू करें</button>
     </div>
 
-    <!-- गेमप्ले -->
     <div id="gameScreen" class="hidden">
       <div class="top-bar">
         <span id="gameHeaderTitle">👑 देसी लूडो राजा</span>
@@ -512,7 +508,6 @@
     </div>
   </div>
 
-  <!-- भाषा मोडल -->
   <div class="modal-backdrop hidden" id="langModal">
     <div class="modal-card">
       <div style="font-size:1.05rem;font-weight:900;color:#fef08a;" id="langModalTitle">🌐 भाषा चुनें</div>
@@ -535,95 +530,25 @@
     const PREFS_KEY = 'dlr_prefs_v1';
     const MATCH_KEY = 'dlr_active_match_v1';
 
+    function storageGet(key) {
+      try { return window.localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function storageSet(key, val) {
+      try { window.localStorage.setItem(key, val); } catch (e) {}
+    }
+    function storageRemove(key) {
+      try { window.localStorage.removeItem(key); } catch (e) {}
+    }
+
     const UI_TEXT = {
-      hi: {
-        title: '👑 देसी लूडो राजा',
-        players: 'खिलाड़ी संख्या',
-        start: '▶ खेल शुरू करें',
-        langBtn: '🌐 भाषा',
-        exitBtn: 'बाहर',
-        modalTitle: '🌐 भाषा चुनें',
-        saveBtn: 'सेव करें',
-        rollPrompt: 'डाइस पर टैप करें',
-        movePrompt: 'चमकती गोटी चुनें'
-      },
-      en: {
-        title: '👑 Desi Ludo Raja',
-        players: 'Players',
-        start: '▶ Start Game',
-        langBtn: '🌐 Lang',
-        exitBtn: 'Exit',
-        modalTitle: '🌐 Select Language',
-        saveBtn: 'Save',
-        rollPrompt: 'Tap the dice',
-        movePrompt: 'Select a highlighted token'
-      },
-      mr: {
-        title: '👑 देसी लुडो राजा',
-        players: 'खेळाडू संख्या',
-        start: '▶ खेळ सुरू करा',
-        langBtn: '🌐 भाषा',
-        exitBtn: 'बाहेर',
-        modalTitle: '🌐 भाषा निवडा',
-        saveBtn: 'जतन करा',
-        rollPrompt: 'फासा दाबा',
-        movePrompt: 'गोटी निवडा'
-      },
-      bn: {
-        title: '👑 দেশি লুডো রাজা',
-        players: 'খেলোয়াড়',
-        start: '▶ খেলা শুরু করুন',
-        langBtn: '🌐 ভাষা',
-        exitBtn: 'বাহির',
-        modalTitle: '🌐 ভাষা নির্বাচন করুন',
-        saveBtn: 'সংরক্ষণ করুন',
-        rollPrompt: 'ডাইস ট্যাপ করুন',
-        movePrompt: 'গুটি নির্বাচন করুন'
-      },
-      ta: {
-        title: '👑 தேசி லுடோ ராஜா',
-        players: 'வீரர்கள்',
-        start: '▶ விளையாடத் தொடங்கு',
-        langBtn: '🌐 மொழி',
-        exitBtn: 'வெளியேறு',
-        modalTitle: '🌐 மொழியைத் தேர்ந்தெடுக்கவும்',
-        saveBtn: 'சேமிக்கவும்',
-        rollPrompt: 'பகடையைத் தட்டவும்',
-        movePrompt: 'காயைத் தேர்ந்தெடுக்கவும்'
-      },
-      te: {
-        title: '👑 దేశీ లూడో రాజా',
-        players: 'ఆటగాళ్లు',
-        start: '▶ ఆట ప్రారంభించండి',
-        langBtn: '🌐 భాష',
-        exitBtn: 'నిష్క్రమించు',
-        modalTitle: '🌐 భాషను ఎంచుకోండి',
-        saveBtn: 'సేవ్ చేయండి',
-        rollPrompt: 'పాచికను తాకండి',
-        movePrompt: 'పావును ఎంచుకోండి'
-      },
-      gu: {
-        title: '👑 દેસી લૂડો રાજા',
-        players: 'ખેલાડીઓ',
-        start: '▶ રમત શરૂ કરો',
-        langBtn: '🌐 ભાષા',
-        exitBtn: 'બહાર',
-        modalTitle: '🌐 ભાષા પસંદ કરો',
-        saveBtn: 'સાચવો',
-        rollPrompt: 'પાસો દબાવો',
-        movePrompt: 'કૂકરી પસંદ કરો'
-      },
-      kn: {
-        title: '👑 ದೇಸಿ ಲೂಡೋ ರಾಜ',
-        players: 'ಆಟಗಾರರು',
-        start: '▶ ಆಟ ಪ್ರಾರಂಭಿಸಿ',
-        langBtn: '🌐 ಭಾಷೆ',
-        exitBtn: 'ಹೊರಗೆ',
-        modalTitle: '🌐 ಭಾಷೆಯನ್ನು ಆರಿಸಿ',
-        saveBtn: 'ಉಳಿಸಿ',
-        rollPrompt: 'ದಾಳವನ್ನು ಒತ್ತಿ',
-        movePrompt: 'ಕಾಯಿಯನ್ನು ಆರಿಸಿ'
-      }
+      hi: { title: '👑 देसी लूडो राजा', players: 'खिलाड़ी संख्या', start: '▶ खेल शुरू करें', langBtn: '🌐 भाषा', exitBtn: 'बाहर', modalTitle: '🌐 भाषा चुनें', saveBtn: 'सेव करें', rollPrompt: 'डाइस पर टैप करें', movePrompt: 'चमकती गोटी चुनें' },
+      en: { title: '👑 Desi Ludo Raja', players: 'Players', start: '▶ Start Game', langBtn: '🌐 Lang', exitBtn: 'Exit', modalTitle: '🌐 Select Language', saveBtn: 'Save', rollPrompt: 'Tap the dice', movePrompt: 'Select a highlighted token' },
+      mr: { title: '👑 देसी लुडो राजा', players: 'खेळाडू संख्या', start: '▶ खेळ सुरू करा', langBtn: '🌐 भाषा', exitBtn: 'बाहेर', modalTitle: '🌐 भाषा निवडा', saveBtn: 'जतन करा', rollPrompt: 'फासा दाबा', movePrompt: 'गोटी निवडा' },
+      bn: { title: '👑 দেশি লুডো রাজা', players: 'খেলোয়াড়', start: '▶ খেলা শুরু করুন', langBtn: '🌐 ভাষা', exitBtn: 'বাহির', modalTitle: '🌐 ভাষা নির্বাচন করুন', saveBtn: 'সংরক্ষণ করুন', rollPrompt: 'ডাইস ট্যাপ করুন', movePrompt: 'গুটি নির্বাচন করুন' },
+      ta: { title: '👑 தேசி லுடோ ராஜா', players: 'வீரர்கள்', start: '▶ விளையாடத் தொடங்கு', langBtn: '🌐 மொழி', exitBtn: 'வெளியேறு', modalTitle: '🌐 மொழியைத் தேர்ந்தெடுக்கவும்', saveBtn: 'சேமிக்கவும்', rollPrompt: 'பகடையைத் தட்டவும்', movePrompt: 'காயைத் தேர்ந்தெடுக்கவும்' },
+      te: { title: '👑 దేశీ లూడో రాజా', players: 'ఆటగాళ్లు', start: '▶ ఆట ప్రారంభించండి', langBtn: '🌐 భాష', exitBtn: 'నిష్క్రమించు', modalTitle: '🌐 భాషను ఎంచుకోండి', saveBtn: 'సేవ్ చేయండి', rollPrompt: 'పాచికను తాకండి', movePrompt: 'పావును ఎంచుకోండి' },
+      gu: { title: '👑 દેસી લૂડો રાજા', players: 'ખેલાડીઓ', start: '▶ રમત શરૂ કરો', langBtn: '🌐 ભાષા', exitBtn: 'બહાર', modalTitle: '🌐 ભાષા પસંદ કરો', saveBtn: 'સાચવો', rollPrompt: 'પાસો દબાવો', movePrompt: 'કૂકરી પસંદ કરો' },
+      kn: { title: '👑 ದೇಸಿ ಲೂಡೋ ರಾಜ', players: 'ಆಟಗಾರರು', start: '▶ ಆಟ ಪ್ರಾರಂಭಿಸಿ', langBtn: '🌐 ಭಾಷೆ', exitBtn: 'ಹೊರಗೆ', modalTitle: '🌐 ಭಾಷೆಯನ್ನು ಆರಿಸಿ', saveBtn: 'ಉಳಿಸಿ', rollPrompt: 'ದಾಳವನ್ನು ಒತ್ತಿ', movePrompt: 'ಕಾಯಿಯನ್ನು ಆರಿಸಿ' }
     };
 
     const TRACK = [
@@ -658,8 +583,8 @@
       { id: 3, name: 'नीला', bg: 'bg-blue', start: 39, lane: [[13,7],[12,7],[11,7],[10,7],[9,7]] }
     ];
 
-    let lang = localStorage.getItem(LANG_KEY) || 'hi';
-    let hasLangSaved = Boolean(localStorage.getItem(LANG_KEY));
+    let lang = storageGet(LANG_KEY) || 'hi';
+    let hasLangSaved = Boolean(storageGet(LANG_KEY));
     let coins = 5000;
     let playerCount = 2;
     let soundEnabled = true;
@@ -702,7 +627,7 @@
 
     function loadPrefs() {
       try {
-        const raw = localStorage.getItem(PREFS_KEY);
+        const raw = storageGet(PREFS_KEY);
         if (!raw) return;
         const p = JSON.parse(raw);
         if (typeof p.coins === 'number') coins = p.coins;
@@ -713,28 +638,22 @@
     }
 
     function savePrefs() {
-      try {
-        localStorage.setItem(PREFS_KEY, JSON.stringify({ coins, playerCount, soundEnabled }));
-      } catch (e) {}
+      storageSet(PREFS_KEY, JSON.stringify({ coins, playerCount, soundEnabled }));
     }
 
     function saveMatch() {
-      try {
-        if (!match) {
-          localStorage.removeItem(MATCH_KEY);
-          return;
-        }
-        localStorage.setItem(MATCH_KEY, JSON.stringify(match));
-      } catch (e) {}
+      if (!match) {
+        storageRemove(MATCH_KEY);
+        return;
+      }
+      storageSet(MATCH_KEY, JSON.stringify(match));
     }
 
     function clearMatch() {
       match = null;
       isRolling = false;
       isStepping = false;
-      try {
-        localStorage.removeItem(MATCH_KEY);
-      } catch (e) {}
+      storageRemove(MATCH_KEY);
     }
 
     function applyLang() {
@@ -857,7 +776,7 @@
             match.turn = (match.turn + 1) % match.players.length;
             saveMatch();
             renderGame();
-            document.getElementById('statusText').textContent = `${cur.name}: ${finalVal} (कोई चाल नहीं)`;
+            document.getElementById('statusText').textContent = `${cur.name}: ${finalVal}`;
             return;
           }
 
@@ -929,7 +848,7 @@
         playFanfare();
         clearMatch();
         renderGame();
-        document.getElementById('statusText').textContent = `🏆 ${cur.name} जीता! (+500 🪙)`;
+        document.getElementById('statusText').textContent = `🏆 ${cur.name} (+500 🪙)`;
         return;
       }
 
@@ -958,7 +877,7 @@
             <div class="seat-badge ${p.bg}">${p.isBot ? '🤖' : '👑'}</div>
             <div style="min-width:0;">
               <div style="font-weight:900;font-size:0.83rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div>
-              <div style="font-size:0.7rem;color:#475569;font-weight:700;">${p.name} • घर ${homeCnt}/4</div>
+              <div style="font-size:0.7rem;color:#475569;font-weight:700;">${p.name} • ${homeCnt}/4</div>
             </div>
           </div>
           ${buildDiceHTML(isCur ? match.dice : 6, isCur && match.phase === 'ROLL' && !p.isBot && !rollingNow, isCur && rollingNow)}
@@ -1093,9 +1012,7 @@
     });
 
     document.getElementById('saveLangBtn').addEventListener('click', () => {
-      try {
-        localStorage.setItem(LANG_KEY, lang);
-      } catch (e) {}
+      storageSet(LANG_KEY, lang);
       hasLangSaved = true;
       playSound(680, 0.12, 'triangle', 0.09);
       closeLangModal();
@@ -1131,7 +1048,7 @@
     applyLang();
 
     try {
-      const savedMatchRaw = localStorage.getItem(MATCH_KEY);
+      const savedMatchRaw = storageGet(MATCH_KEY);
       if (savedMatchRaw) {
         const parsed = JSON.parse(savedMatchRaw);
         if (parsed && Array.isArray(parsed.players) && parsed.phase !== 'DONE') {
