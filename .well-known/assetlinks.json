@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.gs11greenstar_cloud.twa",
+        "sha256_cert_fingerprints": ["A3:F1:EA:E1:8A:16:3F:E2:A3:A8:22:D5:7C:1B:5E:11:8D:2E:CD:DE:E1:2A:34:B5:8F:45:70:5A:B5:25:E6:3E"]
+      }
+    }]
