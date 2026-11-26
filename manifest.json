@@ -1,0 +1,19 @@
+{
+  "name": "देसी लूडो राजा",
+  "short_name": "देसी लूडो राजा",
+  "description": "देसी लूडो राजा - Desi Ludo Raja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2563eb",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
