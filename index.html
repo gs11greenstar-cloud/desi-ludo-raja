@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#1e0b6e" />
+<meta name="theme-color" content="#090326" />
 <style>
   :root {
-    --gold-1: #fff9b0;
-    --gold-2: #ffcc00;
-    --gold-3: #ff6f00;
+    --neon-cyan: #00f5ff;
+    --neon-pink: #ff007f;
+    --neon-lime: #39ff14;
+    --neon-yellow: #ffe600;
+    --neon-purple: #b517ff;
 
     --red: #ff1744;
     --green: #00e676;
@@ -30,7 +32,7 @@
     min-height: 100dvh;
     width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-    background: #120645;
+    background: #06021c;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -75,7 +77,7 @@
   .pop-pill-2  { animation: popFloatMicro 1.9s ease-in-out 0.3s infinite; }
   .pop-pill-3  { animation: popFloatMicro 1.9s ease-in-out 0.6s infinite; }
 
-  /* ================= GREEN STAR VIBRANT INTRO ================= */
+  /* ================= GREEN STAR INTRO ================= */
   #greenStarSplash {
     position: fixed;
     inset: 0;
@@ -87,8 +89,8 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 42%, rgba(0, 230, 118, 0.48), transparent 56%),
-      linear-gradient(160deg, #3b0ca3 0%, #1d0663 60%, #0d0236 100%);
+      radial-gradient(circle at 50% 42%, rgba(0, 245, 255, 0.35), transparent 56%),
+      linear-gradient(160deg, #1b0552 0%, #0b022b 60%, #050117 100%);
     transition: opacity 0.28s ease, transform 0.28s ease;
   }
 
@@ -113,7 +115,7 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(255, 234, 0, 0.34) 0deg 10deg,
+      rgba(0, 245, 255, 0.34) 0deg 10deg,
       transparent 10deg 30deg
     );
     -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
@@ -129,7 +131,7 @@
   .star-sparkle {
     position: absolute;
     font-size: 16px;
-    color: var(--yellow);
+    color: var(--neon-cyan);
     animation: sparkleOrbit 1.7s ease-in-out infinite alternate;
   }
 
@@ -147,7 +149,7 @@
     height: 126px;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 12px 22px rgba(0, 230, 118, 0.6));
+    filter: drop-shadow(0 0 18px rgba(57, 255, 20, 0.75));
     animation: starSpringIn 0.75s cubic-bezier(0.2, 1.35, 0.35, 1) forwards, starFloat 2s ease-in-out 0.75s infinite alternate;
   }
 
@@ -167,29 +169,29 @@
     font-size: 27px;
     font-weight: 950;
     letter-spacing: 0.5px;
-    background: linear-gradient(180deg, #ffffff 0%, #fff59d 48%, #00e676 100%);
+    background: linear-gradient(180deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-lime) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.65));
+    filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.55));
   }
 
   .splash-sub {
     margin: 0 0 16px;
     font-size: 12px;
     font-weight: 800;
-    color: #fff9c4;
+    color: #e0f7fa;
   }
 
   .splash-skip-btn {
-    border: 2px solid #ffffff;
+    border: 2px solid var(--neon-cyan);
     border-radius: 999px;
     padding: 9px 24px;
-    background: linear-gradient(180deg, #00e676, #00a152);
-    color: #06210e;
+    background: linear-gradient(180deg, #00e676, #009688);
+    color: #031f18;
     font-size: 13px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 6px 0 #005c2e, 0 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 16px rgba(0, 245, 255, 0.65), 0 5px 0 #004d40;
   }
 
   .shine-box {
@@ -207,7 +209,7 @@
     background: linear-gradient(
       115deg,
       transparent 20%,
-      rgba(255, 255, 255, 0.42) 50%,
+      rgba(255, 255, 255, 0.45) 50%,
       transparent 80%
     );
     transform: skewX(-18deg);
@@ -221,7 +223,7 @@
     100% { left: 160%; }
   }
 
-  /* ================= RICH MULTI-LAYER STUDIO BACKGROUND ================= */
+  /* ================= NEON / NEO CYBER-GLOW BACKGROUND (START SCREEN) ================= */
   #startScreen {
     flex: 1;
     display: flex;
@@ -229,12 +231,12 @@
     justify-content: space-between;
     position: relative;
     background:
-      linear-gradient(125deg, rgba(255, 234, 0, 0.14) 0%, transparent 32%, rgba(0, 230, 118, 0.14) 68%, transparent 100%),
-      radial-gradient(circle at 15% 12%, rgba(255, 23, 68, 0.36), transparent 44%),
-      radial-gradient(circle at 86% 18%, rgba(0, 176, 255, 0.36), transparent 46%),
-      radial-gradient(circle at 50% 62%, rgba(213, 0, 249, 0.24), transparent 54%),
-      radial-gradient(circle at 75% 88%, rgba(0, 230, 118, 0.24), transparent 48%),
-      linear-gradient(168deg, #320f99 0%, #1b0763 52%, #0b0233 100%);
+      radial-gradient(circle at 12% 14%, rgba(255, 0, 127, 0.42), transparent 44%),
+      radial-gradient(circle at 88% 18%, rgba(0, 245, 255, 0.44), transparent 46%),
+      radial-gradient(circle at 50% 56%, rgba(181, 23, 255, 0.34), transparent 55%),
+      radial-gradient(circle at 22% 88%, rgba(57, 255, 20, 0.28), transparent 46%),
+      radial-gradient(circle at 85% 86%, rgba(255, 230, 0, 0.26), transparent 45%),
+      linear-gradient(170deg, #160442 0%, #090226 55%, #040114 100%);
   }
 
   #startScreen::before {
@@ -242,14 +244,10 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.18;
     background-image:
-      linear-gradient(45deg, rgba(255, 234, 0, 0.28) 25%, transparent 25%),
-      linear-gradient(-45deg, rgba(0, 229, 255, 0.26) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, rgba(255, 23, 68, 0.22) 75%),
-      linear-gradient(-45deg, transparent 75%, rgba(0, 230, 118, 0.22) 75%);
-    background-size: 32px 32px;
-    background-position: 0 0, 0 16px, 16px -16px, -16px 0;
+      linear-gradient(to right, rgba(0, 245, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 0, 127, 0.12) 1px, transparent 1px);
+    background-size: 26px 26px;
   }
 
   #startScreen > * {
@@ -257,16 +255,16 @@
     z-index: 1;
   }
 
-  /* Bright Glossy Top HUD */
+  /* Neon Top HUD */
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5px;
     padding: 8px 9px;
-    background: linear-gradient(180deg, #4318b8 0%, #240b73 100%);
-    border-bottom: 2px solid var(--gold-2);
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(180deg, rgba(28, 7, 79, 0.95), rgba(11, 3, 38, 0.98));
+    border-bottom: 2px solid var(--neon-cyan);
+    box-shadow: 0 4px 18px rgba(0, 245, 255, 0.28);
   }
 
   .user-chip {
@@ -275,11 +273,11 @@
     gap: 6px;
     padding: 3px 9px 3px 3px;
     border-radius: 13px;
-    background: linear-gradient(180deg, #ff9100, #e65100);
-    border: 1.8px solid #fff9b0;
+    background: linear-gradient(180deg, #ff007f, #9c0052);
+    border: 1.8px solid var(--neon-cyan);
     cursor: pointer;
     flex-shrink: 0;
-    box-shadow: 0 3px 0 #8d2f00;
+    box-shadow: 0 0 12px rgba(255, 0, 127, 0.55);
   }
 
   .avatar-circle {
@@ -287,7 +285,7 @@
     height: 32px;
     border-radius: 10px;
     border: 1.8px solid #ffffff;
-    background: linear-gradient(145deg, #ff1744, #aa00ff);
+    background: linear-gradient(145deg, #00f5ff, #651fff);
     display: grid;
     place-items: center;
     font-size: 16px;
@@ -315,12 +313,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: #ffffff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   }
 
   .user-edit {
     font-size: 8.5px;
-    color: #fff9b0;
+    color: var(--neon-cyan);
     font-weight: 900;
   }
 
@@ -337,12 +334,12 @@
     gap: 3px;
     padding: 4px 7px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #1b0754, #0c022e);
-    border: 1.6px solid var(--gold-2);
+    background: rgba(9, 3, 36, 0.92);
+    border: 1.6px solid var(--neon-cyan);
     font-size: 10px;
     font-weight: 950;
-    color: #fff59d;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    color: var(--neon-yellow);
+    box-shadow: 0 0 8px rgba(0, 245, 255, 0.25);
   }
 
   .plus-mini {
@@ -350,7 +347,7 @@
     height: 16px;
     border: 1px solid #fff;
     border-radius: 999px;
-    background: linear-gradient(180deg, #00e676, #00a152);
+    background: linear-gradient(180deg, var(--neon-lime), #00b248);
     color: #03210e;
     font-weight: 950;
     font-size: 11px;
@@ -364,24 +361,24 @@
     height: 29px;
     padding: 0 7px;
     border-radius: 9px;
-    border: 1.5px solid #fff9b0;
-    background: linear-gradient(180deg, #00b0ff, #0066cc);
+    border: 1.5px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #651fff, #2c088c);
     color: #ffffff;
     font-size: 11px;
     font-weight: 950;
     cursor: pointer;
     display: grid;
     place-items: center;
-    box-shadow: 0 3px 0 #003a75;
+    box-shadow: 0 0 10px rgba(181, 23, 255, 0.45);
   }
 
   .lang-select {
     height: 29px;
     max-width: 82px;
     border-radius: 9px;
-    border: 1.5px solid #fff9b0;
-    background: #1d0763;
-    color: #ffea00;
+    border: 1.5px solid var(--neon-pink);
+    background: #0c032e;
+    color: var(--neon-cyan);
     font-size: 9.5px;
     font-weight: 900;
     padding: 0 4px;
@@ -416,26 +413,26 @@
   }
 
   .pack-badge {
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    background: linear-gradient(180deg, #ffea00, #ff3d00);
     border: 1.8px solid #ffffff;
     border-radius: 11px;
     padding: 5px 9px;
     font-size: 10px;
     font-weight: 950;
     color: #1f0600;
-    box-shadow: 0 4px 0 #993d00, 0 6px 12px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 14px rgba(255, 234, 0, 0.55), 0 4px 0 #992200;
     cursor: pointer;
   }
 
   .free-perk-btn {
-    background: linear-gradient(180deg, #00e676, #00a152);
+    background: linear-gradient(180deg, #00f5ff, #0091ea);
     border: 1.8px solid #ffffff;
     border-radius: 11px;
     padding: 5px 9px;
     font-size: 10px;
     font-weight: 950;
-    color: #03210e;
-    box-shadow: 0 4px 0 #00572b, 0 6px 12px rgba(0, 0, 0, 0.45);
+    color: #03192e;
+    box-shadow: 0 0 14px rgba(0, 245, 255, 0.55), 0 4px 0 #004c8c;
     cursor: pointer;
   }
 
@@ -449,7 +446,7 @@
   .royal-crown-svg {
     width: 48px;
     height: 29px;
-    filter: drop-shadow(0 3px 10px rgba(255, 234, 0, 0.75));
+    filter: drop-shadow(0 0 12px rgba(255, 230, 0, 0.85));
   }
 
   .hero-logo-txt {
@@ -457,10 +454,10 @@
     font-size: 27px;
     font-weight: 950;
     letter-spacing: 0.4px;
-    background: linear-gradient(180deg, #ffffff 0%, #fff59d 45%, #ffab00 100%);
+    background: linear-gradient(180deg, #ffffff 0%, var(--neon-cyan) 46%, var(--neon-pink) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5));
   }
 
   .hero-en-badge {
@@ -468,15 +465,15 @@
     font-weight: 950;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #00e676;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+    color: var(--neon-lime);
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.65);
     margin-top: 1px;
   }
 
   .hero-tagline {
     margin: 3px 0 6px;
     font-size: 10px;
-    color: #fff9c4;
+    color: #e0f7fa;
     font-weight: 800;
   }
 
@@ -494,10 +491,10 @@
     width: 108px;
     height: 52px;
     background: #ffffff;
-    border: 2.5px solid var(--yellow);
+    border: 2.5px solid var(--neon-cyan);
     border-radius: 9px;
     transform: perspective(260px) rotateX(24deg);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.45), 0 8px 18px rgba(0, 0, 0, 0.7);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -517,16 +514,16 @@
     width: 40px;
     height: 40px;
     border-radius: 11px;
-    background: linear-gradient(155deg, #ffffff, #e3f2fd);
-    border: 2.5px solid var(--yellow);
+    background: linear-gradient(155deg, #ffffff, #e0f7fa);
+    border: 2.5px solid var(--neon-cyan);
     color: #0f172a;
     display: grid;
     place-items: center;
     padding: 4px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 14px rgba(0, 245, 255, 0.6), 0 6px 14px rgba(0, 0, 0, 0.65);
   }
 
-  /* ================= BHADKILE POP-UP MODE BUTTONS ================= */
+  /* ================= NEON POP-UP MODE BUTTONS ================= */
   .modes-wrap {
     padding: 4px 10px 4px;
     display: flex;
@@ -559,30 +556,30 @@
 
   .tile-online {
     border-radius: 17px;
-    border: 2.2px solid #fff9b0;
-    background: linear-gradient(160deg, #ffca28 0%, #ff3d00 100%);
-    box-shadow: 0 6px 0 #9e2200, 0 10px 20px rgba(255, 61, 0, 0.45);
+    border: 2.2px solid var(--neon-yellow);
+    background: linear-gradient(160deg, #ff9100 0%, #ff1744 100%);
+    box-shadow: 0 0 16px rgba(255, 145, 0, 0.55), 0 6px 0 #8a0c24;
   }
 
   .tile-team {
     border-radius: 17px;
-    border: 2.2px solid #ccff90;
-    background: linear-gradient(160deg, #00e676 0%, #00a152 100%);
-    box-shadow: 0 6px 0 #00572b, 0 10px 20px rgba(0, 230, 118, 0.42);
+    border: 2.2px solid var(--neon-lime);
+    background: linear-gradient(160deg, #00e676 0%, #00897b 100%);
+    box-shadow: 0 0 16px rgba(57, 255, 20, 0.45), 0 6px 0 #004d40;
   }
 
   .tile-friends {
     border-radius: 17px;
-    border: 2.2px solid #ffc1e3;
-    background: linear-gradient(160deg, #ff1744 0%, #c51162 100%);
-    box-shadow: 0 6px 0 #7a0036, 0 10px 20px rgba(255, 23, 68, 0.45);
+    border: 2.2px solid var(--neon-cyan);
+    background: linear-gradient(160deg, #ff007f 0%, #8e006d 100%);
+    box-shadow: 0 0 16px rgba(255, 0, 127, 0.55), 0 6px 0 #4d003b;
   }
 
   .tile-computer {
     border-radius: 17px;
-    border: 2.2px solid #b3e5fc;
-    background: linear-gradient(160deg, #00e5ff 0%, #0066ff 100%);
-    box-shadow: 0 6px 0 #003580, 0 10px 20px rgba(0, 176, 255, 0.45);
+    border: 2.2px solid var(--neon-cyan);
+    background: linear-gradient(160deg, #00e5ff 0%, #0055ff 100%);
+    box-shadow: 0 0 16px rgba(0, 245, 255, 0.55), 0 6px 0 #002980;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -592,9 +589,9 @@
 
   .tile-pass {
     border-radius: 17px;
-    border: 2.2px solid #f3e5f5;
-    background: linear-gradient(160deg, #d500f9 0%, #651fff 100%);
-    box-shadow: 0 6px 0 #370099, 0 10px 20px rgba(213, 0, 249, 0.45);
+    border: 2.2px solid #ea80fc;
+    background: linear-gradient(160deg, #d500f9 0%, #5200cc 100%);
+    box-shadow: 0 0 16px rgba(213, 0, 249, 0.55), 0 6px 0 #290066;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -607,7 +604,7 @@
     height: 36px;
     margin: 0 auto;
     border-radius: 11px;
-    background: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.25);
     border: 1.5px solid #ffffff;
     display: grid;
     place-items: center;
@@ -620,7 +617,7 @@
     font-weight: 950;
     letter-spacing: 0.4px;
     color: #ffffff;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.55);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
     margin-top: 5px;
   }
 
@@ -633,13 +630,12 @@
   .tile-tag {
     font-size: 9.5px;
     font-weight: 950;
-    color: #140538;
+    color: #090226;
     background: #ffffff;
     border-radius: 999px;
     display: inline-block;
     padding: 2px 8px;
     margin-top: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   }
 
   /* ================= TOURNAMENT, DAILY BONUS & CLAIM ================= */
@@ -654,40 +650,40 @@
   .tourney-pill {
     flex: 1;
     border-radius: 13px;
-    border: 2px solid #fff9b0;
-    background: linear-gradient(180deg, #2979ff 0%, #1a237e 100%);
+    border: 2px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #1e88e5 0%, #0d1b66 100%);
     padding: 9px 10px;
     text-align: center;
     font-size: 11px;
     font-weight: 950;
     color: #ffffff;
     cursor: pointer;
-    box-shadow: 0 4px 0 #0d124a, 0 8px 16px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.35), 0 4px 0 #070e38;
   }
 
   .daily-pill {
     border-radius: 13px;
     border: 2px solid #ffffff;
-    background: linear-gradient(180deg, #00e5ff 0%, #0091ea 100%);
+    background: linear-gradient(180deg, var(--neon-cyan) 0%, #0088cc 100%);
     padding: 9px 10px;
     font-size: 11px;
     font-weight: 950;
-    color: #031a2e;
+    color: #031826;
     cursor: pointer;
-    box-shadow: 0 4px 0 #004c8c, 0 8px 16px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.45), 0 4px 0 #004466;
     white-space: nowrap;
   }
 
   .season-claim-btn {
     border-radius: 13px;
     border: 2px solid #ffffff;
-    background: linear-gradient(180deg, #ffea00 0%, #ff6d00 100%);
+    background: linear-gradient(180deg, var(--neon-yellow) 0%, #ff6d00 100%);
     padding: 9px 12px;
     font-size: 11px;
     font-weight: 950;
     color: #1f0600;
     cursor: pointer;
-    box-shadow: 0 4px 0 #993d00, 0 8px 16px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 12px rgba(255, 230, 0, 0.45), 0 4px 0 #8c3800;
     white-space: nowrap;
   }
 
@@ -696,50 +692,50 @@
     margin: 3px 10px 5px;
     padding: 8px 9px;
     border-radius: 14px;
-    background: linear-gradient(180deg, #32128f, #180652);
-    border: 1.8px solid var(--gold-2);
+    background: linear-gradient(180deg, rgba(31, 8, 84, 0.95), rgba(10, 3, 36, 0.98));
+    border: 1.8px solid var(--neon-pink);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
     flex-wrap: wrap;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 14px rgba(255, 0, 127, 0.28);
   }
 
   .wa-btn {
     border: 1.5px solid #ffffff;
     border-radius: 9px;
     padding: 5px 9px;
-    background: linear-gradient(180deg, #00e676, #00a152);
+    background: linear-gradient(180deg, #00e676, #009688);
     color: #03210e;
     font-size: 10px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 3px 0 #00572b;
+    box-shadow: 0 3px 0 #004d40;
   }
 
   .other-btn {
     border: 1.5px solid #ffffff;
     border-radius: 9px;
     padding: 5px 9px;
-    background: linear-gradient(180deg, #00b0ff, #0066cc);
+    background: linear-gradient(180deg, #00e5ff, #0066cc);
     color: #fff;
     font-size: 10px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 3px 0 #003a75;
+    box-shadow: 0 3px 0 #003366;
   }
 
   .vid-reward-btn {
     border: 1.5px solid #ffffff;
     border-radius: 9px;
     padding: 5px 9px;
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    background: linear-gradient(180deg, var(--neon-yellow), #ff6d00);
     color: #1f0600;
     font-size: 10px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 3px 0 #993d00;
+    box-shadow: 0 3px 0 #8c3800;
   }
 
   .rec-btn {
@@ -767,7 +763,7 @@
     border: 1.5px solid #fff;
     border-radius: 999px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #7c4dff, #4527a0);
+    background: linear-gradient(180deg, #b517ff, #5200cc);
     color: #fff;
     font-size: 10px;
     font-weight: 950;
@@ -781,24 +777,24 @@
   .status-mini {
     font-size: 10px;
     font-weight: 950;
-    color: #ffea00;
+    color: var(--neon-cyan);
   }
 
   /* ================= BOTTOM NAVIGATION BAR ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #3c16a8 0%, #1a0657 100%);
-    border-top: 2px solid var(--gold-2);
+    background: linear-gradient(180deg, #240769 0%, #0b022b 100%);
+    border-top: 2px solid var(--neon-cyan);
     padding: 5px 4px 7px;
     gap: 3px;
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 -4px 18px rgba(0, 245, 255, 0.25);
   }
 
   .nav-tab {
     border: 1.5px solid transparent;
     background: transparent;
-    color: #e1bee7;
+    color: #b2ebf2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -818,13 +814,13 @@
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    background: linear-gradient(180deg, var(--neon-cyan), #0088cc);
     border-color: #ffffff;
-    color: #1f0600;
-    box-shadow: 0 3px 0 #993d00;
+    color: #041826;
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.65);
   }
 
-  /* ================= GAME SCREEN WITH RICH BACKDROP & BIG DICE/BOARD ================= */
+  /* ================= GAME SCREEN WITH NEON BACKDROP & TOSSED DICE ================= */
   #gameScreen {
     display: none;
     flex: 1;
@@ -834,11 +830,10 @@
     gap: 4px;
     position: relative;
     background:
-      linear-gradient(130deg, rgba(255, 234, 0, 0.14) 0%, transparent 35%, rgba(0, 229, 255, 0.15) 70%, transparent 100%),
-      radial-gradient(circle at 18% 16%, rgba(255, 23, 68, 0.34), transparent 45%),
-      radial-gradient(circle at 84% 22%, rgba(0, 230, 118, 0.34), transparent 46%),
-      radial-gradient(circle at 50% 82%, rgba(213, 0, 249, 0.28), transparent 52%),
-      linear-gradient(165deg, #320f99 0%, #19085c 58%, #0b0233 100%);
+      radial-gradient(circle at 15% 15%, rgba(0, 245, 255, 0.34), transparent 45%),
+      radial-gradient(circle at 86% 20%, rgba(255, 0, 127, 0.34), transparent 46%),
+      radial-gradient(circle at 50% 82%, rgba(57, 255, 20, 0.24), transparent 52%),
+      linear-gradient(168deg, #160442 0%, #090226 58%, #040114 100%);
   }
 
   #gameScreen::before {
@@ -846,11 +841,10 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.14;
     background-image:
-      linear-gradient(45deg, rgba(255, 234, 0, 0.25) 25%, transparent 25%),
-      linear-gradient(-45deg, rgba(0, 229, 255, 0.24) 25%, transparent 25%);
-    background-size: 32px 32px;
+      linear-gradient(to right, rgba(0, 245, 255, 0.11) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 0, 127, 0.11) 1px, transparent 1px);
+    background-size: 26px 26px;
   }
 
   #gameScreen > * {
@@ -862,8 +856,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(180deg, #3c16a8, #1d0763);
-    border: 1.8px solid var(--gold-2);
+    background: linear-gradient(180deg, #240769, #0c022e);
+    border: 1.8px solid var(--neon-cyan);
     border-radius: 12px;
     padding: 5px 8px;
     gap: 4px;
@@ -872,7 +866,7 @@
   .game-logo {
     font-size: 13px;
     font-weight: 950;
-    color: #ffea00;
+    color: var(--neon-cyan);
   }
 
   .header-actions {
@@ -882,10 +876,10 @@
   }
 
   .mini-btn {
-    border: 1.5px solid #fff9b0;
+    border: 1.5px solid var(--neon-cyan);
     border-radius: 8px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #00b0ff, #0066cc);
+    background: linear-gradient(180deg, #651fff, #2c088c);
     color: #fff;
     font-size: 11px;
     font-weight: 950;
@@ -893,7 +887,8 @@
   }
 
   .mini-exit {
-    background: linear-gradient(180deg, #ff1744, #b71c1c);
+    border-color: #ff80ab;
+    background: linear-gradient(180deg, #ff1744, #9e0028);
   }
 
   .seat-row {
@@ -904,23 +899,23 @@
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, #4318b8, #1e0866);
-    border: 2px solid rgba(255, 255, 255, 0.45);
+    background: linear-gradient(180deg, #240769, #0d0230);
+    border: 2px solid rgba(0, 245, 255, 0.38);
     border-radius: 14px;
     padding: 5px 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
-    opacity: 0.84;
+    opacity: 0.85;
     transition: all 0.15s ease;
   }
 
   .seat-pod.pod-active {
     opacity: 1;
-    border-color: #ffea00;
-    background: linear-gradient(180deg, #6200ea, #290b85);
-    box-shadow: 0 0 18px rgba(255, 234, 0, 0.85);
+    border-color: var(--neon-cyan);
+    background: linear-gradient(180deg, #4a00e0, #16044d);
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.72);
   }
 
   .pod-name {
@@ -933,48 +928,69 @@
 
   .pod-home {
     font-size: 10.5px;
-    color: #ffea00;
+    color: var(--neon-lime);
     font-weight: 900;
   }
 
+  /* BIGGER 56x56 DICE WITH MID-AIR TOSSED ARC ANIMATION */
   .pod-dice-big {
     width: 56px;
     height: 56px;
     flex-shrink: 0;
     border-radius: 14px;
-    border: 2.6px solid #ffea00;
-    background: linear-gradient(145deg, #ffffff, #e3f2fd);
-    box-shadow: 0 5px 0 #1a237e, 0 10px 18px rgba(0, 0, 0, 0.55);
+    border: 2.6px solid var(--neon-cyan);
+    background: linear-gradient(145deg, #ffffff, #e0f7fa);
+    box-shadow: 0 0 14px rgba(0, 245, 255, 0.55), 0 5px 0 #1a237e;
     display: grid;
     place-items: center;
     cursor: pointer;
     padding: 5px;
+    position: relative;
+    z-index: 10;
   }
 
   .seat-pod.pod-active .pod-dice-big:not(:disabled) {
-    animation: dicePopReady 0.9s ease-in-out infinite alternate;
+    animation: diceReadyHop 0.85s ease-in-out infinite alternate;
   }
 
-  @keyframes dicePopReady {
+  @keyframes diceReadyHop {
     from { transform: translateY(0px) scale(1); }
-    to   { transform: translateY(-4px) scale(1.07); }
+    to   { transform: translateY(-4px) scale(1.06); }
   }
 
   .seat-pod:not(.pod-active) .pod-dice-big {
     background: linear-gradient(145deg, #cfd8dc, #90a4ae);
-    border-color: rgba(255, 255, 255, 0.55);
+    border-color: rgba(255, 255, 255, 0.45);
     box-shadow: 0 3px 0 #37474f;
     opacity: 0.78;
   }
 
-  .pod-dice-big.rolling {
-    animation: diceSpinBig 0.2s linear infinite !important;
+  /* TOSSED / THROWN IN AIR ARC ("kisi ne uchhala ho") */
+  .pod-dice-big.tossing {
+    animation: dieThrownArc 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
   }
 
-  @keyframes diceSpinBig {
-    0% { transform: rotate(0deg) scale(1.08); }
-    50% { transform: rotate(20deg) scale(1.22); }
-    100% { transform: rotate(-20deg) scale(1.08); }
+  @keyframes dieThrownArc {
+    0% {
+      transform: translate(0px, 0px) rotate(0deg) scale(1);
+      box-shadow: 0 5px 0 #1a237e, 0 8px 14px rgba(0, 0, 0, 0.5);
+    }
+    28% {
+      transform: translate(12px, -24px) rotate(135deg) scale(1.32);
+      box-shadow: 0 0 24px rgba(0, 245, 255, 0.95), 0 28px 20px rgba(0, 0, 0, 0.75);
+    }
+    58% {
+      transform: translate(-10px, -28px) rotate(265deg) scale(1.36);
+      box-shadow: 0 0 26px rgba(255, 0, 127, 0.9), 0 32px 22px rgba(0, 0, 0, 0.75);
+    }
+    82% {
+      transform: translate(3px, 4px) rotate(350deg) scale(0.95);
+      box-shadow: 0 2px 0 #1a237e, 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+    100% {
+      transform: translate(0px, -3px) rotate(360deg) scale(1.04);
+      box-shadow: 0 0 16px rgba(57, 255, 20, 0.8), 0 6px 12px rgba(0, 0, 0, 0.55);
+    }
   }
 
   .pip-grid {
@@ -1001,8 +1017,8 @@
   }
 
   .reaction-ribbon {
-    background: linear-gradient(180deg, #32128f, #180652);
-    border: 1.6px solid var(--gold-2);
+    background: linear-gradient(180deg, #240769, #0c022e);
+    border: 1.6px solid var(--neon-pink);
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -1021,7 +1037,7 @@
     flex: 1;
     font-size: 11px;
     font-weight: 900;
-    color: #fff9c4;
+    color: #e0f7fa;
     text-align: left;
   }
 
@@ -1030,18 +1046,18 @@
     font-weight: 950;
     padding: 2px 8px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #00e676, #00a152);
+    background: linear-gradient(180deg, var(--neon-cyan), #0088cc);
     border: 1.2px solid #ffffff;
-    color: #03210e;
+    color: #031926;
     white-space: nowrap;
   }
 
   .board-stage {
     width: 100%;
-    background: linear-gradient(135deg, #ffea00, #00e676, #00b0ff, #ff1744);
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink), var(--neon-lime), var(--neon-yellow));
     padding: 3px;
     border-radius: 10px;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 0 22px rgba(0, 245, 255, 0.45), 0 10px 26px rgba(0, 0, 0, 0.75);
     position: relative;
   }
 
@@ -1116,7 +1132,6 @@
     pointer-events: none;
   }
 
-  /* SLEEK BALANCED TEARDROP-GEM GOTI (NOT TOO BIG OR UGLY) */
   .gem-goti {
     position: absolute;
     width: 6.6%;
@@ -1172,19 +1187,19 @@
 
   .status-banner {
     text-align: center;
-    background: linear-gradient(180deg, #32128f, #180652);
-    border: 1.8px solid var(--gold-2);
+    background: linear-gradient(180deg, #240769, #0c022e);
+    border: 1.8px solid var(--neon-cyan);
     border-radius: 12px;
     padding: 6px 10px;
     font-size: 12px;
     font-weight: 950;
-    color: #ffea00;
+    color: var(--neon-yellow);
   }
 
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(8, 2, 34, 0.82);
+    background: rgba(5, 1, 22, 0.85);
     backdrop-filter: blur(4px);
     display: none;
     align-items: center;
@@ -1200,12 +1215,12 @@
   .modal-card {
     width: 100%;
     max-width: 360px;
-    background: linear-gradient(180deg, #3c16a8 0%, #190754 100%);
-    border: 2.5px solid #ffea00;
+    background: linear-gradient(180deg, #240769 0%, #0b022b 100%);
+    border: 2.5px solid var(--neon-cyan);
     border-radius: 18px;
     padding: 16px;
     text-align: center;
-    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 24px rgba(0, 245, 255, 0.45), 0 18px 38px rgba(0, 0, 0, 0.75);
   }
 
   .count-picker-grid {
@@ -1219,11 +1234,11 @@
     border: 2px solid #ffffff;
     border-radius: 13px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #00e676, #00a152);
-    color: #03210e;
+    background: linear-gradient(180deg, var(--neon-cyan), #0077cc);
+    color: #031826;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 4px 0 #00572b;
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.45), 0 4px 0 #003b66;
     animation: popFloatMicro 1.8s ease-in-out infinite;
   }
 
@@ -1237,7 +1252,7 @@
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #03210e;
+    color: #031826;
   }
 
   .lb-list {
@@ -1256,8 +1271,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #140545;
-    border: 1.5px solid rgba(255, 234, 0, 0.55);
+    background: #090226;
+    border: 1.5px solid rgba(0, 245, 255, 0.55);
     border-radius: 11px;
     padding: 7px 10px;
     font-size: 11px;
@@ -1265,12 +1280,12 @@
   }
 
   .lb-city {
-    color: #80d8ff;
+    color: var(--neon-cyan);
     font-size: 9.5px;
   }
 
   .lb-coins {
-    color: #ffea00;
+    color: var(--neon-yellow);
   }
 
   .modal-btns {
@@ -1291,8 +1306,8 @@
   }
 
   .m-gold {
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
-    color: #1f0600;
+    background: linear-gradient(180deg, var(--neon-cyan), #0077cc);
+    color: #031826;
   }
 
   .m-danger {
@@ -1301,7 +1316,7 @@
   }
 
   .m-dark {
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.2);
     color: #fff;
   }
 
@@ -1340,7 +1355,7 @@
       <polygon
         points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
         fill="url(#gStarGem)"
-        stroke="#ffea00"
+        stroke="#00f5ff"
         stroke-width="4"
         stroke-linejoin="round"
       />
@@ -1351,12 +1366,12 @@
     </svg>
   </div>
   <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • रिच स्टूडियो बैकड्रॉप व स्लीक जेम गोटियां</div>
+  <div class="splash-sub">देसी लूडो राजा • निऑन बैकग्राउंड व हवा में उछलता डाइस</div>
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">आगे बढ़ें ▶</button>
 </div>
 
 <div class="shell">
-  <!-- BHADKILA POP-UP START SCREEN WITH RICH STUDIO BACKDROP -->
+  <!-- NEON START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
       <div class="user-chip shine-box" onclick="openDpDialog()">
@@ -1509,7 +1524,7 @@
     </nav>
   </section>
 
-  <!-- GAME SCREEN WITH RICH BACKDROP, BIG BOARD, BIG DICE & SLEEK GOTI -->
+  <!-- NEON GAME SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
       <span class="game-logo">👑 देसी लूडो राजा</span>
@@ -1525,8 +1540,8 @@
 
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
-      <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का बड़ा डाइस दबाएं</span>
-      <span id="fxBadge" class="fx-pill">💎 SLEEK GEM</span>
+      <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का बड़ा डाइस उछालें</span>
+      <span id="fxBadge" class="fx-pill">⚡ NEON ARC</span>
     </div>
 
     <div class="board-stage shine-box">
@@ -1573,7 +1588,7 @@
 
     <div id="bottomDiceRow" class="seat-row"></div>
 
-    <div id="boardMsg" class="status-banner">अपनी सीट के बड़े डाइस पर टैप करें</div>
+    <div id="boardMsg" class="status-banner">अपनी सीट के बड़े डाइस को उछालने के लिए टैप करें</div>
   </section>
 </div>
 
@@ -1581,8 +1596,8 @@
 
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
-    <h3 id="dialogTitle" style="margin:0 0 6px; color:#ffea00; font-size:15px;">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:12px; color:#fff9c4;"></p>
+    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--neon-cyan); font-size:15px;">सूचना</h3>
+    <p id="dialogText" style="margin:0; font-size:12px; color:#e0f7fa;"></p>
     <div id="playerCountGrid" class="count-picker-grid" style="display:none;"></div>
     <ul id="dialogList" class="lb-list" style="display:none;"></ul>
     <div id="dialogBtns" class="modal-btns">
@@ -1593,7 +1608,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_sleek_gem_v12";
+  const STORAGE_KEY = "dlr_neon_toss_v13";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1855,7 +1870,6 @@
     return `<div class="pip-grid">${dots}</div>`;
   }
 
-  /* ================= SLEEK CURVED TEARDROP-GEM GOTI SVG ================= */
   const GOTI_SHADES = {
     red:    { hi: "#ff9e80", base: "#ff1744", lo: "#880e4f", gem: "#ffffff" },
     green:  { hi: "#b9f6ca", base: "#00e676", lo: "#00692c", gem: "#ffffff" },
@@ -1875,18 +1889,12 @@
             <stop offset="100%" stop-color="${s.lo}"/>
           </radialGradient>
         </defs>
-        <!-- Soft Ground Shadow -->
         <ellipse cx="30" cy="70" rx="20" ry="4.5" fill="rgba(0,0,0,0.52)"/>
-        <!-- Sleek Gold Rim Base -->
         <ellipse cx="30" cy="65" rx="18.5" ry="4.8" fill="#ffcc00" stroke="#181818" stroke-width="2"/>
-        <!-- Smooth Curved Teardrop Body -->
         <path d="M13 64 C13 48, 22 36, 23 26 L37 26 C38 36, 47 48, 47 64 Z"
               fill="url(#${gid})" stroke="#181818" stroke-width="2.1" stroke-linejoin="round"/>
-        <!-- Glossy Dome Head -->
         <circle cx="30" cy="17" r="11.5" fill="url(#${gid})" stroke="#181818" stroke-width="2.1"/>
-        <!-- Center Jewel Dot -->
         <circle cx="30" cy="17" r="4.2" fill="${s.gem}" opacity="0.88"/>
-        <!-- Crisp Specular Highlight -->
         <ellipse cx="25.5" cy="13" rx="2.6" ry="1.5" transform="rotate(-25 25.5 13)" fill="rgba(255,255,255,0.9)"/>
       </svg>
     `;
@@ -1920,9 +1928,10 @@
   }
 
   function sfxDice() {
-    playNote(340, 0.05, "square", 0.05, 0);
-    playNote(480, 0.05, "square", 0.05, 0.05);
-    playNote(620, 0.07, "triangle", 0.07, 0.10);
+    playNote(320, 0.05, "square", 0.05, 0);
+    playNote(540, 0.06, "triangle", 0.07, 0.07);
+    playNote(740, 0.07, "triangle", 0.07, 0.16);
+    playNote(420, 0.06, "sine", 0.06, 0.28);
   }
 
   function sfxStep(backwards = false) {
@@ -2363,8 +2372,8 @@
     document.getElementById("cornerBotLabel").textContent = "You";
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
-    setReaction("😊", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस दबाएं`);
-    triggerFx("💎 SLEEK GEM");
+    setReaction("🎲", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस उछालें`);
+    triggerFx("⚡ NEON ARC");
     startBgMusic();
     renderSeatDicePods();
     drawBoard();
@@ -2405,7 +2414,7 @@
     return step + val <= 56;
   }
 
-  function buildPodElement(color, rollingColor) {
+  function buildPodElement(color, tossingColor) {
     const isTurn = color === activeColor();
     const homeCnt = match.pieces[color].filter(x => x === 56).length;
 
@@ -2419,7 +2428,7 @@
     `;
 
     const diceBtn = document.createElement("button");
-    diceBtn.className = `pod-dice-big ${rollingColor === color ? "rolling" : ""}`;
+    diceBtn.className = `pod-dice-big ${tossingColor === color ? "tossing" : ""}`;
     diceBtn.innerHTML = buildPippedDiceHtml(match.diceValues[color]);
     diceBtn.disabled = !isTurn || match.hasRolled || match.busy || isBotColor(color);
     diceBtn.onclick = () => rollPlayerDice(color, false);
@@ -2429,7 +2438,7 @@
     return pod;
   }
 
-  function renderSeatDicePods(rollingColor = null) {
+  function renderSeatDicePods(tossingColor = null) {
     const topRow = document.getElementById("topDiceRow");
     const botRow = document.getElementById("bottomDiceRow");
     topRow.innerHTML = "";
@@ -2438,8 +2447,8 @@
     const topColors = match.seats.filter(c => c === "red" || c === "green");
     const botColors = match.seats.filter(c => c === "blue" || c === "yellow");
 
-    topColors.forEach(c => topRow.appendChild(buildPodElement(c, rollingColor)));
-    botColors.forEach(c => botRow.appendChild(buildPodElement(c, rollingColor)));
+    topColors.forEach(c => topRow.appendChild(buildPodElement(c, tossingColor)));
+    botColors.forEach(c => botRow.appendChild(buildPodElement(c, tossingColor)));
 
     topRow.style.display = topColors.length ? "grid" : "none";
     botRow.style.display = botColors.length ? "grid" : "none";
@@ -2451,6 +2460,7 @@
 
     match.busy = true;
     sfxDice();
+    setReaction("🌪️", `${seatTitle(color)} ने डाइस हवा में उछाला!`);
     renderSeatDicePods(color);
 
     const val = Math.floor(Math.random() * 6) + 1;
@@ -2476,7 +2486,7 @@
       } else {
         refreshBoardBanner(val, false, false);
       }
-    }, 240);
+    }, 420);
   }
 
   function checkNearDanger(moverColor, targetStep) {
@@ -2625,7 +2635,7 @@
     } else if (val) {
       el.textContent = `${label} ने ${val} चला — चमकती गोटी चुनें`;
     } else {
-      el.textContent = `${label} की बारी — ${label} का बड़ा डाइस दबाएं`;
+      el.textContent = `${label} की बारी — ${label} का बड़ा डाइस उछालें`;
     }
   }
 
