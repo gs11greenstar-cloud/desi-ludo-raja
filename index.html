@@ -5,19 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#1545c9" />
+<meta name="theme-color" content="#0b1026" />
 <style>
   :root {
-    --gold-1: #fff6a8;
-    --gold-2: #ffc400;
-    --gold-3: #e67e00;
-    --royal-1: #1e5bff;
-    --royal-2: #0f329e;
-    --royal-3: #071954;
-    --red: #ff2e4c;
-    --green: #00d26a;
-    --yellow: #ffd60a;
-    --blue: #1982fc;
+    --bg-base: #080c1c;
+    --bg-elev: #111833;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-hi: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --ink: #f8fafc;
+    --ink-muted: #9fb0d6;
+
+    --aurora-cyan: #00f5d4;
+    --aurora-mint: #00e5a0;
+    --aurora-violet: #9b5de5;
+    --aurora-pink: #f15bb5;
+    --aurora-amber: #ffb703;
+    --aurora-coral: #ff595e;
+    --aurora-sky: #38bdf8;
+
+    --red: #ff3b5c;
+    --green: #00d68f;
+    --yellow: #ffd13b;
+    --blue: #298dff;
   }
 
   * {
@@ -32,8 +42,8 @@
     min-height: 100dvh;
     width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-    background: #061445;
-    color: #ffffff;
+    background: var(--bg-base);
+    color: var(--ink);
     display: flex;
     justify-content: center;
     overflow-x: hidden;
@@ -48,7 +58,7 @@
     position: relative;
   }
 
-  /* ================= GREEN STAR PRO INTRO ================= */
+  /* ================= GREEN STAR AURORA INTRO ================= */
   #greenStarSplash {
     position: fixed;
     inset: 0;
@@ -60,21 +70,22 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 42%, rgba(0, 255, 136, 0.36), transparent 56%),
-      linear-gradient(165deg, #1b56eb 0%, #0b267a 65%, #05113a 100%);
-    transition: opacity 0.32s ease, transform 0.32s ease;
+      radial-gradient(circle at 28% 24%, rgba(0, 245, 212, 0.24), transparent 50%),
+      radial-gradient(circle at 76% 72%, rgba(155, 93, 229, 0.28), transparent 52%),
+      linear-gradient(160deg, #0c1229 0%, #070a17 100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   #greenStarSplash.hide-splash {
     opacity: 0;
-    transform: scale(1.04);
+    transform: scale(1.03);
     pointer-events: none;
   }
 
   .star-stage {
     position: relative;
-    width: 176px;
-    height: 176px;
+    width: 170px;
+    height: 170px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,12 +97,12 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(185, 246, 202, 0.32) 0deg 10deg,
-      transparent 10deg 30deg
+      rgba(0, 245, 212, 0.22) 0deg 8deg,
+      transparent 8deg 30deg
     );
     -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
     mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
-    animation: raysSpin 6.5s linear infinite;
+    animation: raysSpin 7s linear infinite;
   }
 
   @keyframes raysSpin {
@@ -101,32 +112,32 @@
 
   .star-sparkle {
     position: absolute;
-    font-size: 15px;
-    color: var(--gold-1);
+    font-size: 14px;
+    color: var(--aurora-cyan);
     animation: sparkleOrbit 1.9s ease-in-out infinite alternate;
   }
 
   .sp-1 { top: 14px; right: 24px; animation-delay: 0s; }
-  .sp-2 { bottom: 18px; left: 22px; animation-delay: 0.4s; }
-  .sp-3 { top: 26px; left: 20px; font-size: 12px; animation-delay: 0.8s; }
+  .sp-2 { bottom: 18px; left: 22px; color: var(--aurora-pink); animation-delay: 0.4s; }
+  .sp-3 { top: 26px; left: 20px; font-size: 12px; color: var(--aurora-amber); animation-delay: 0.8s; }
 
   @keyframes sparkleOrbit {
-    from { transform: scale(0.8) rotate(-12deg); opacity: 0.55; }
-    to   { transform: scale(1.22) rotate(14deg); opacity: 1; }
+    from { transform: scale(0.82) rotate(-10deg); opacity: 0.55; }
+    to   { transform: scale(1.2) rotate(12deg); opacity: 1; }
   }
 
   .green-star-hero {
-    width: 124px;
-    height: 124px;
+    width: 118px;
+    height: 118px;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 12px 20px rgba(0, 230, 118, 0.45));
-    animation: starSpringIn 0.8s cubic-bezier(0.2, 1.3, 0.35, 1) forwards, starFloat 2.3s ease-in-out 0.8s infinite alternate;
+    filter: drop-shadow(0 12px 24px rgba(0, 245, 212, 0.35));
+    animation: starSpringIn 0.78s cubic-bezier(0.2, 1.3, 0.35, 1) forwards, starFloat 2.3s ease-in-out 0.78s infinite alternate;
   }
 
   @keyframes starSpringIn {
-    0%   { transform: scale(0.2) rotate(-55deg); opacity: 0; }
-    72%  { transform: scale(1.1) rotate(8deg); opacity: 1; }
+    0%   { transform: scale(0.25) rotate(-50deg); opacity: 0; }
+    72%  { transform: scale(1.08) rotate(6deg); opacity: 1; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
   }
 
@@ -136,36 +147,34 @@
   }
 
   .splash-title {
-    margin: 8px 0 4px;
-    font-size: 26px;
-    font-weight: 950;
-    letter-spacing: 0.5px;
-    background: linear-gradient(180deg, #ffffff 0%, #b9f6ca 52%, #00e676 100%);
+    margin: 10px 0 4px;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    background: linear-gradient(90deg, #00f5d4, #9b5de5, #f15bb5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
   }
 
   .splash-sub {
     margin: 0 0 16px;
     font-size: 12px;
-    font-weight: 700;
-    color: #e0f2fe;
+    font-weight: 600;
+    color: var(--ink-muted);
   }
 
   .splash-skip-btn {
-    border: 1.5px solid var(--gold-1);
+    border: 1px solid rgba(0, 245, 212, 0.55);
     border-radius: 999px;
-    padding: 8px 22px;
-    background: linear-gradient(180deg, #00e676, #00897b);
+    padding: 9px 24px;
+    background: linear-gradient(135deg, rgba(0, 245, 212, 0.24), rgba(155, 93, 229, 0.26));
+    backdrop-filter: blur(10px);
     color: #fff;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
   }
 
-  /* Gloss Sweep */
   .shine-box {
     position: relative;
     overflow: hidden;
@@ -176,51 +185,39 @@
     position: absolute;
     top: -40%;
     left: -135%;
-    width: 48%;
+    width: 44%;
     height: 180%;
     background: linear-gradient(
       115deg,
       transparent 20%,
-      rgba(255, 255, 255, 0.34) 50%,
+      rgba(255, 255, 255, 0.22) 50%,
       transparent 80%
     );
     transform: skewX(-18deg);
-    animation: shineSweep 3.8s infinite ease-in-out;
+    animation: shineSweep 4.4s infinite ease-in-out;
     pointer-events: none;
   }
 
   @keyframes shineSweep {
     0%   { left: -135%; }
-    36%  { left: 160%; }
+    35%  { left: 160%; }
     100% { left: 160%; }
   }
 
-  /* ================= VIBRANT ROYAL INDIAN START SCREEN ================= */
+  /* ================= FRESH MODERN AURORA LOBBY ================= */
   #startScreen {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 10px 12px 12px;
+    gap: 9px;
     position: relative;
     background:
-      radial-gradient(circle at 22% 14%, rgba(0, 229, 255, 0.25), transparent 46%),
-      radial-gradient(circle at 82% 18%, rgba(255, 196, 0, 0.24), transparent 48%),
-      radial-gradient(circle at 50% 82%, rgba(0, 230, 118, 0.16), transparent 52%),
-      linear-gradient(168deg, #2563eb 0%, #11349e 50%, #07184d 100%);
-  }
-
-  #startScreen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.14;
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(255, 246, 168, 0.65) 1px, transparent 0),
-      linear-gradient(45deg, rgba(255, 224, 130, 0.18) 25%, transparent 25%, transparent 75%, rgba(255, 224, 130, 0.18) 75%),
-      linear-gradient(-45deg, rgba(255, 224, 130, 0.18) 25%, transparent 25%, transparent 75%, rgba(255, 224, 130, 0.18) 75%);
-    background-size: 28px 28px, 36px 36px, 36px 36px;
-    background-position: 0 0, 0 0, 18px 18px;
+      radial-gradient(circle at 12% 10%, rgba(0, 245, 212, 0.18), transparent 44%),
+      radial-gradient(circle at 88% 16%, rgba(155, 93, 229, 0.22), transparent 48%),
+      radial-gradient(circle at 50% 88%, rgba(241, 91, 181, 0.14), transparent 52%),
+      linear-gradient(180deg, #0b1026 0%, #070b1a 100%);
   }
 
   #startScreen > * {
@@ -228,26 +225,28 @@
     z-index: 1;
   }
 
-  /* Top HUD */
+  /* Floating Glass Top Pill Bar */
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 5px;
-    padding: 8px 9px;
-    background: linear-gradient(180deg, rgba(23, 62, 175, 0.96), rgba(9, 25, 82, 0.98));
-    border-bottom: 1.5px solid rgba(255, 230, 128, 0.55);
-    box-shadow: 0 4px 14px rgba(0, 10, 46, 0.45);
+    gap: 6px;
+    padding: 7px 9px;
+    border-radius: 18px;
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
   }
 
   .user-chip {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 3px 8px 3px 3px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 196, 0, 0.12));
-    border: 1.2px solid rgba(255, 246, 168, 0.7);
+    gap: 7px;
+    padding: 3px 9px 3px 3px;
+    border-radius: 14px;
+    background: var(--glass-hi);
+    border: 1px solid rgba(0, 245, 212, 0.35);
     cursor: pointer;
     flex-shrink: 0;
   }
@@ -255,12 +254,12 @@
   .avatar-circle {
     width: 32px;
     height: 32px;
-    border-radius: 9px;
-    border: 1.5px solid var(--gold-1);
-    background: linear-gradient(145deg, #ff9800, #e65100);
+    border-radius: 11px;
+    border: 1.5px solid var(--aurora-cyan);
+    background: linear-gradient(135deg, #9b5de5, #f15bb5);
     display: grid;
     place-items: center;
-    font-size: 16px;
+    font-size: 15px;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -274,23 +273,23 @@
   .user-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.12;
+    line-height: 1.15;
   }
 
   .user-name {
     font-size: 10.5px;
-    font-weight: 900;
+    font-weight: 800;
     max-width: 58px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #ffffff;
+    color: var(--ink);
   }
 
   .user-edit {
     font-size: 8.5px;
-    color: var(--gold-1);
-    font-weight: 800;
+    color: var(--aurora-cyan);
+    font-weight: 700;
   }
 
   .hud-right {
@@ -304,23 +303,22 @@
     display: flex;
     align-items: center;
     gap: 3px;
-    padding: 3px 6px;
+    padding: 4px 7px;
     border-radius: 999px;
-    background: linear-gradient(180deg, rgba(10, 28, 88, 0.92), rgba(5, 15, 50, 0.96));
-    border: 1.2px solid rgba(255, 230, 128, 0.68);
+    background: rgba(8, 12, 28, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     font-size: 10px;
-    font-weight: 900;
-    color: var(--gold-1);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-weight: 800;
+    color: var(--aurora-amber);
   }
 
   .plus-mini {
     width: 15px;
     height: 15px;
     border: none;
-    border-radius: 5px;
-    background: linear-gradient(180deg, #4ade80, #059669);
-    color: #fff;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #00f5d4, #00bbf9);
+    color: #061021;
     font-weight: 900;
     font-size: 10.5px;
     cursor: pointer;
@@ -331,37 +329,42 @@
 
   .hud-icon-btn {
     height: 28px;
-    padding: 0 6px;
-    border-radius: 8px;
-    border: 1.2px solid rgba(255, 230, 128, 0.65);
-    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
-    color: #ffffff;
+    padding: 0 7px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-hi);
+    color: var(--ink);
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
     display: grid;
     place-items: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
 
   .lang-select {
     height: 28px;
-    max-width: 82px;
-    border-radius: 8px;
-    border: 1.2px solid rgba(255, 230, 128, 0.68);
-    background: #0a1e61;
-    color: var(--gold-1);
+    max-width: 80px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: var(--bg-elev);
+    color: var(--aurora-cyan);
     font-size: 9.5px;
-    font-weight: 800;
-    padding: 0 4px;
+    font-weight: 700;
+    padding: 0 5px;
     cursor: pointer;
   }
 
-  /* ================= ROYAL BRAND HEADER & QUICK BADGES ================= */
+  /* ================= MODERN AURORA HERO BANNER ================= */
   .hero-showcase {
     position: relative;
     text-align: center;
-    padding: 8px 10px 4px;
+    padding: 12px 12px 10px;
+    border-radius: 22px;
+    background:
+      linear-gradient(135deg, rgba(0, 245, 212, 0.11), rgba(155, 93, 229, 0.13) 55%, rgba(241, 91, 181, 0.09));
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
   }
 
   .side-badges {
@@ -385,26 +388,24 @@
   }
 
   .pack-badge {
-    background: linear-gradient(180deg, #ffd54f, #f57c00);
-    border: 1.3px solid var(--gold-1);
-    border-radius: 9px;
-    padding: 4px 8px;
+    background: rgba(255, 183, 3, 0.16);
+    border: 1px solid rgba(255, 183, 3, 0.5);
+    border-radius: 999px;
+    padding: 4px 9px;
     font-size: 9.5px;
-    font-weight: 950;
-    color: #210b00;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    font-weight: 800;
+    color: var(--aurora-amber);
     cursor: pointer;
   }
 
   .free-perk-btn {
-    background: linear-gradient(180deg, #00e676, #00897b);
-    border: 1.3px solid #d1fae5;
-    border-radius: 9px;
-    padding: 4px 8px;
+    background: rgba(0, 245, 212, 0.16);
+    border: 1px solid rgba(0, 245, 212, 0.5);
+    border-radius: 999px;
+    padding: 4px 9px;
     font-size: 9.5px;
-    font-weight: 950;
-    color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    font-weight: 800;
+    color: var(--aurora-cyan);
     cursor: pointer;
   }
 
@@ -412,46 +413,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 2px;
   }
 
   .royal-crown-svg {
-    width: 46px;
-    height: 28px;
-    filter: drop-shadow(0 3px 8px rgba(255, 196, 0, 0.55));
+    width: 40px;
+    height: 24px;
+    filter: drop-shadow(0 0 10px rgba(0, 245, 212, 0.45));
   }
 
   .hero-logo-txt {
-    margin: 1px 0 0;
-    font-size: 26px;
-    font-weight: 950;
+    margin: 2px 0 0;
+    font-size: 25px;
+    font-weight: 900;
     letter-spacing: 0.4px;
-    background: linear-gradient(180deg, #ffffff 0%, #fff59d 46%, #ffab00 100%);
+    background: linear-gradient(90deg, #ffffff 0%, #00f5d4 48%, #c084fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.55));
   }
 
   .hero-en-badge {
-    font-size: 9.5px;
-    font-weight: 900;
-    letter-spacing: 1.8px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: #ffe082;
-    margin-top: 1px;
+    color: var(--aurora-cyan);
+    margin-top: 2px;
   }
 
   .hero-tagline {
-    margin: 3px 0 6px;
+    margin: 4px 0 8px;
     font-size: 10px;
-    color: #e0f2fe;
-    font-weight: 700;
+    color: var(--ink-muted);
+    font-weight: 600;
   }
 
   .hero-3d-stage {
     margin: 0 auto;
-    width: 210px;
-    height: 62px;
+    width: 200px;
+    height: 56px;
     position: relative;
     display: flex;
     align-items: center;
@@ -460,22 +459,21 @@
 
   .mini-tilted-board {
     width: 104px;
-    height: 52px;
-    background: #ffffff;
-    border: 2px solid var(--gold-1);
-    border-radius: 8px;
-    transform: perspective(260px) rotateX(24deg);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+    height: 46px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.28);
+    border-radius: 12px;
+    transform: perspective(260px) rotateX(22deg);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     overflow: hidden;
   }
 
-  .mt-r { background: #ff2e4c; }
-  .mt-g { background: #00d26a; }
-  .mt-b { background: #1982fc; }
-  .mt-y { background: #ffd60a; }
+  .mt-r { background: rgba(255, 59, 92, 0.78); }
+  .mt-g { background: rgba(0, 214, 143, 0.78); }
+  .mt-b { background: rgba(41, 141, 255, 0.78); }
+  .mt-y { background: rgba(255, 209, 59, 0.78); }
 
   .hero-3d-dice {
     position: absolute;
@@ -484,19 +482,18 @@
     transform: translateX(-50%);
     width: 36px;
     height: 36px;
-    border-radius: 10px;
-    background: linear-gradient(155deg, #ffffff, #dbeafe);
-    border: 2px solid var(--gold-1);
-    color: #0f172a;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    border: 1.5px solid var(--aurora-cyan);
+    color: #090d1f;
     display: grid;
     place-items: center;
     padding: 4px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
   }
 
-  /* ================= 5 VIBRANT DISTINCT MODE CARDS ================= */
+  /* ================= ASYMMETRIC BENTO MODE CARDS ================= */
   .modes-wrap {
-    padding: 4px 10px 4px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -510,87 +507,82 @@
 
   .grid-2 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 8px;
   }
 
   .mode-tile {
-    padding: 11px 7px;
+    padding: 12px 8px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    backdrop-filter: blur(12px);
+    transition: transform 0.13s ease, border-color 0.13s ease;
     position: relative;
   }
 
   .mode-tile:active {
-    transform: translateY(2px) scale(0.99);
+    transform: scale(0.98);
   }
 
   .tile-online {
-    border-radius: 15px;
-    border: 1.8px solid var(--gold-1);
-    background: linear-gradient(155deg, #ffb300 0%, #ff5722 100%);
-    box-shadow: 0 6px 16px rgba(255, 87, 34, 0.38), inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+    border-radius: 20px 12px 20px 12px;
+    border: 1px solid rgba(0, 245, 212, 0.45);
+    background: linear-gradient(155deg, rgba(0, 245, 212, 0.18), rgba(14, 116, 144, 0.22));
   }
 
   .tile-team {
-    border-radius: 15px;
-    border: 1.8px solid #b9f6ca;
-    background: linear-gradient(155deg, #00e676 0%, #009688 100%);
-    box-shadow: 0 6px 16px rgba(0, 150, 136, 0.38), inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+    border-radius: 12px 20px 12px 20px;
+    border: 1px solid rgba(155, 93, 229, 0.5);
+    background: linear-gradient(155deg, rgba(155, 93, 229, 0.22), rgba(88, 28, 135, 0.24));
   }
 
   .tile-friends {
-    border-radius: 15px;
-    border: 1.8px solid #ffc1e3;
-    background: linear-gradient(155deg, #ff4081 0%, #c2185b 100%);
-    box-shadow: 0 6px 16px rgba(194, 24, 91, 0.38), inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+    border-radius: 20px 12px 20px 12px;
+    border: 1px solid rgba(241, 91, 181, 0.48);
+    background: linear-gradient(155deg, rgba(241, 91, 181, 0.2), rgba(157, 23, 77, 0.24));
   }
 
   .tile-computer {
-    border-radius: 15px;
-    border: 1.8px solid #b3e5fc;
-    background: linear-gradient(155deg, #00b0ff 0%, #1565c0 100%);
-    box-shadow: 0 6px 16px rgba(21, 101, 192, 0.38), inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    background: linear-gradient(155deg, rgba(56, 189, 248, 0.18), rgba(30, 64, 175, 0.25));
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 11px 9px;
+    justify-content: flex-start;
+    gap: 9px;
+    padding: 12px 11px;
   }
 
   .tile-pass {
-    border-radius: 15px;
-    border: 1.8px solid #e1bee7;
-    background: linear-gradient(155deg, #aa00ff 0%, #6200ea 100%);
-    box-shadow: 0 6px 16px rgba(98, 0, 234, 0.38), inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 183, 3, 0.45);
+    background: linear-gradient(155deg, rgba(255, 183, 3, 0.18), rgba(180, 83, 9, 0.22));
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8px;
-    padding: 11px 9px;
+    padding: 12px 10px;
   }
 
   .tile-emblem {
     width: 34px;
     height: 34px;
     margin: 0 auto;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.22);
-    border: 1.2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     display: grid;
     place-items: center;
-    font-size: 18px;
+    font-size: 17px;
     flex-shrink: 0;
   }
 
   .tile-title {
-    font-size: 11.5px;
-    font-weight: 950;
+    font-size: 11px;
+    font-weight: 850;
     letter-spacing: 0.3px;
-    color: #ffffff;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
-    margin-top: 5px;
+    color: var(--ink);
+    margin-top: 6px;
   }
 
   .tile-computer .tile-title,
@@ -601,120 +593,116 @@
 
   .tile-tag {
     font-size: 9px;
-    font-weight: 850;
-    color: #091b54;
-    background: rgba(255, 255, 255, 0.92);
+    font-weight: 700;
+    color: var(--ink-muted);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 999px;
     display: inline-block;
     padding: 2px 7px;
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
-  /* ================= TOURNAMENT, DAILY BONUS & CLAIM ================= */
+  /* ================= TOURNAMENT, DAILY & CLAIM ROW ================= */
   .tournament-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 7px;
-    padding: 2px 10px;
   }
 
   .tourney-pill {
     flex: 1;
-    border-radius: 11px;
-    border: 1.5px solid var(--gold-1);
-    background: linear-gradient(180deg, #2979ff 0%, #0d47a1 100%);
-    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(155, 93, 229, 0.5);
+    background: linear-gradient(90deg, rgba(155, 93, 229, 0.22), rgba(0, 245, 212, 0.16));
+    backdrop-filter: blur(10px);
+    padding: 8px 11px;
     text-align: center;
-    font-size: 11px;
-    font-weight: 900;
-    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--ink);
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(13, 71, 161, 0.45);
   }
 
   .daily-pill {
-    border-radius: 11px;
-    border: 1.5px solid #80deea;
-    background: linear-gradient(180deg, #00bcd4 0%, #00838f 100%);
-    padding: 8px 10px;
-    font-size: 10.5px;
-    font-weight: 900;
-    color: #ffffff;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 245, 212, 0.45);
+    background: rgba(0, 245, 212, 0.14);
+    padding: 8px 11px;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--aurora-cyan);
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 131, 143, 0.45);
     white-space: nowrap;
   }
 
   .season-claim-btn {
-    border-radius: 11px;
-    border: 1.5px solid var(--gold-1);
-    background: linear-gradient(180deg, #ffd54f 0%, #f57c00 100%);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 183, 3, 0.55);
+    background: linear-gradient(135deg, rgba(255, 183, 3, 0.26), rgba(241, 91, 181, 0.22));
     padding: 8px 12px;
-    font-size: 11px;
-    font-weight: 950;
-    color: #210b00;
+    font-size: 10.5px;
+    font-weight: 850;
+    color: var(--aurora-amber);
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(245, 124, 0, 0.42);
     white-space: nowrap;
   }
 
-  /* ================= UTILITY, VIDEO REWARD, SHARE & VOICE BAR ================= */
+  /* ================= GLASS UTILITY BAR ================= */
   .utility-bar {
-    margin: 3px 10px 5px;
-    padding: 7px 9px;
-    border-radius: 12px;
-    background: linear-gradient(180deg, rgba(16, 44, 128, 0.94), rgba(7, 20, 68, 0.98));
-    border: 1.3px solid rgba(255, 230, 128, 0.55);
+    padding: 8px 10px;
+    border-radius: 18px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
     flex-wrap: wrap;
-    box-shadow: 0 4px 12px rgba(0, 8, 36, 0.4);
   }
 
   .wa-btn {
-    border: 1.2px solid #b9f6ca;
-    border-radius: 8px;
-    padding: 5px 8px;
-    background: linear-gradient(180deg, #00e676, #00897b);
-    color: #fff;
+    border: 1px solid rgba(0, 214, 143, 0.45);
+    border-radius: 999px;
+    padding: 5px 10px;
+    background: rgba(0, 214, 143, 0.16);
+    color: #6ee7b7;
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
   }
 
   .other-btn {
-    border: 1.2px solid #bbdefb;
-    border-radius: 8px;
-    padding: 5px 8px;
-    background: linear-gradient(180deg, #448aff, #1565c0);
-    color: #fff;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 999px;
+    padding: 5px 10px;
+    background: rgba(56, 189, 248, 0.16);
+    color: #7dd3fc;
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
   }
 
   .vid-reward-btn {
-    border: 1.2px solid var(--gold-1);
-    border-radius: 8px;
-    padding: 5px 8px;
-    background: linear-gradient(180deg, #ffca28, #ef6c00);
-    color: #210b00;
+    border: 1px solid rgba(255, 183, 3, 0.5);
+    border-radius: 999px;
+    padding: 5px 10px;
+    background: rgba(255, 183, 3, 0.16);
+    color: var(--aurora-amber);
     font-size: 10px;
-    font-weight: 950;
+    font-weight: 850;
     cursor: pointer;
   }
 
   .rec-btn {
-    border: 1.2px solid #ffcdd2;
+    border: 1px solid rgba(255, 59, 92, 0.55);
     border-radius: 999px;
-    padding: 4px 9px;
-    background: linear-gradient(180deg, #ff5252, #c62828);
-    color: #fff;
+    padding: 4px 10px;
+    background: rgba(255, 59, 92, 0.2);
+    color: #fda4af;
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
   }
 
@@ -728,51 +716,53 @@
   }
 
   .play-voice-btn {
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--glass-border);
     border-radius: 999px;
     padding: 4px 8px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: var(--glass-hi);
+    color: var(--ink);
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
   }
 
   .play-voice-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.35;
   }
 
   .status-mini {
     font-size: 9.5px;
-    font-weight: 900;
-    color: var(--gold-1);
+    font-weight: 800;
+    color: var(--aurora-cyan);
   }
 
-  /* ================= VIBRANT BOTTOM NAVIGATION BAR ================= */
+  /* ================= FLOATING GLASS BOTTOM DOCK ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #1b4fd8 0%, #091d63 100%);
-    border-top: 1.5px solid rgba(255, 230, 128, 0.6);
-    padding: 5px 4px 7px;
-    gap: 2px;
-    box-shadow: 0 -4px 16px rgba(0, 8, 36, 0.5);
+    background: rgba(17, 24, 51, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 22px;
+    padding: 5px;
+    gap: 3px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
   }
 
   .nav-tab {
-    border: 1px solid transparent;
+    border: none;
     background: transparent;
-    color: #cfe4ff;
+    color: var(--ink-muted);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2px;
     font-size: 9px;
-    font-weight: 850;
+    font-weight: 800;
     cursor: pointer;
-    padding: 4px 2px;
-    border-radius: 10px;
+    padding: 5px 2px;
+    border-radius: 16px;
     transition: all 0.15s ease;
   }
 
@@ -782,62 +772,64 @@
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #4fc3f7, #1565c0);
-    border-color: var(--gold-1);
+    background: linear-gradient(135deg, rgba(0, 245, 212, 0.22), rgba(155, 93, 229, 0.24));
     color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(0, 245, 212, 0.45);
   }
 
-  /* ================= GAME SCREEN & BIG 3D DICE + GEM GOTI ================= */
+  /* ================= MODERN AURORA GAME SCREEN ================= */
   #gameScreen {
     display: none;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding: 6px 8px 10px;
-    gap: 5px;
+    padding: 8px 10px 12px;
+    gap: 6px;
     background:
-      radial-gradient(circle at 20% 18%, rgba(0, 230, 118, 0.28), transparent 45%),
-      radial-gradient(circle at 82% 80%, rgba(255, 213, 79, 0.28), transparent 45%),
-      linear-gradient(160deg, #2563eb 0%, #11349e 58%, #07184d 100%);
+      radial-gradient(circle at 18% 15%, rgba(0, 245, 212, 0.16), transparent 45%),
+      radial-gradient(circle at 84% 82%, rgba(155, 93, 229, 0.2), transparent 48%),
+      linear-gradient(180deg, #0b1026 0%, #070b1a 100%);
   }
 
   .game-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(9, 26, 78, 0.92);
-    border: 1.5px solid rgba(255, 245, 157, 0.6);
-    border-radius: 12px;
-    padding: 5px 8px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 6px 10px;
     gap: 4px;
   }
 
   .game-logo {
-    font-size: 12.5px;
-    font-weight: 950;
-    color: var(--gold-1);
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--aurora-cyan);
   }
 
   .header-actions {
     display: flex;
-    gap: 4px;
+    gap: 5px;
     align-items: center;
   }
 
   .mini-btn {
-    border: 1px solid var(--gold-1);
-    border-radius: 8px;
-    padding: 4px 7px;
-    background: linear-gradient(180deg, #42a5f5, #1565c0);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 4px 8px;
+    background: var(--glass-hi);
     color: #fff;
     font-size: 10.5px;
-    font-weight: 850;
+    font-weight: 800;
     cursor: pointer;
   }
 
   .mini-exit {
-    background: linear-gradient(180deg, #ff5252, #c62828);
+    background: rgba(255, 59, 92, 0.22);
+    border-color: rgba(255, 59, 92, 0.5);
+    color: #fda4af;
   }
 
   .seat-row {
@@ -847,27 +839,28 @@
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, rgba(28, 76, 196, 0.96), rgba(11, 34, 102, 0.98));
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    border-radius: 13px;
-    padding: 6px 8px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 6px 9px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
-    opacity: 0.8;
+    opacity: 0.72;
     transition: all 0.15s ease;
   }
 
   .seat-pod.pod-active {
     opacity: 1;
-    border-color: var(--gold-1);
-    box-shadow: 0 0 14px rgba(255, 243, 161, 0.72);
+    border-color: var(--aurora-cyan);
+    box-shadow: 0 0 18px rgba(0, 245, 212, 0.25);
   }
 
   .pod-name {
     font-size: 11px;
-    font-weight: 950;
+    font-weight: 850;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -875,18 +868,18 @@
 
   .pod-home {
     font-size: 10px;
-    color: var(--gold-1);
-    font-weight: 850;
+    color: var(--aurora-amber);
+    font-weight: 800;
   }
 
   .pod-dice-big {
     width: 48px;
     height: 48px;
     flex-shrink: 0;
-    border-radius: 12px;
-    border: 2.2px solid var(--gold-1);
-    background: linear-gradient(145deg, #ffffff, #dbeafe);
-    box-shadow: 0 5px 0 #1e3a8a, 0 8px 14px rgba(0, 0, 0, 0.45);
+    border-radius: 14px;
+    border: 2px solid var(--aurora-cyan);
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    box-shadow: 0 4px 0 #4c1d95, 0 8px 16px rgba(0, 0, 0, 0.45);
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -895,9 +888,9 @@
 
   .seat-pod:not(.pod-active) .pod-dice-big {
     background: linear-gradient(145deg, #cbd5e1, #94a3b8);
-    border-color: rgba(255, 255, 255, 0.45);
+    border-color: rgba(255, 255, 255, 0.35);
     box-shadow: 0 3px 0 #334155;
-    opacity: 0.72;
+    opacity: 0.68;
   }
 
   .pod-dice-big.rolling {
@@ -924,20 +917,20 @@
     height: 7px;
     border-radius: 50%;
     background: #0f172a;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45);
   }
 
   .pip-dot.pip-red {
     width: 9px;
     height: 9px;
-    background: #dc2626;
+    background: #e11d48;
   }
 
   .reaction-ribbon {
-    background: rgba(9, 26, 78, 0.92);
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
-    border-radius: 11px;
-    padding: 5px 9px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -953,27 +946,27 @@
   .reaction-text {
     flex: 1;
     font-size: 11px;
-    font-weight: 850;
-    color: var(--gold-1);
+    font-weight: 800;
+    color: var(--ink);
     text-align: left;
   }
 
   .fx-pill {
     font-size: 10px;
-    font-weight: 900;
-    padding: 2px 7px;
+    font-weight: 800;
+    padding: 2px 8px;
     border-radius: 999px;
-    background: rgba(0, 230, 118, 0.25);
-    border: 1px solid #b9f6ca;
-    color: #fff;
+    background: rgba(0, 245, 212, 0.16);
+    border: 1px solid rgba(0, 245, 212, 0.45);
+    color: var(--aurora-cyan);
     white-space: nowrap;
   }
 
   .board-stage {
-    background: linear-gradient(135deg, var(--gold-1), #00e676, #4fc3f7, #ffd54f);
-    padding: 4px;
-    border-radius: 11px;
-    box-shadow: 0 10px 26px rgba(0, 15, 58, 0.58);
+    background: linear-gradient(135deg, rgba(0, 245, 212, 0.65), rgba(155, 93, 229, 0.65), rgba(241, 91, 181, 0.65));
+    padding: 3px;
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
     position: relative;
   }
 
@@ -981,8 +974,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1.5px solid #222;
-    border-radius: 7px;
+    border-radius: 15px;
     overflow: hidden;
     background: #fff;
   }
@@ -998,25 +990,25 @@
   }
 
   .sq {
-    border: 0.5px solid #888;
+    border: 0.5px solid #94a3b8;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     font-size: 11.5px;
     font-weight: 900;
-    color: #444;
+    color: #334155;
   }
 
-  .sq-red { background: var(--red); border-color: rgba(0, 0, 0, 0.15); color: #fff; }
-  .sq-green { background: var(--green); border-color: rgba(0, 0, 0, 0.15); color: #fff; }
-  .sq-yellow { background: var(--yellow); border-color: rgba(0, 0, 0, 0.15); color: #222; }
-  .sq-blue { background: var(--blue); border-color: rgba(0, 0, 0, 0.15); color: #fff; }
+  .sq-red { background: var(--red); border-color: rgba(0, 0, 0, 0.14); color: #fff; }
+  .sq-green { background: var(--green); border-color: rgba(0, 0, 0, 0.14); color: #fff; }
+  .sq-yellow { background: var(--yellow); border-color: rgba(0, 0, 0, 0.14); color: #1e293b; }
+  .sq-blue { background: var(--blue); border-color: rgba(0, 0, 0, 0.14); color: #fff; }
   .sq-white { background: #ffffff; }
 
   .sq-fx-flash {
-    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 14px #00e676;
-    filter: brightness(1.2);
+    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 14px var(--aurora-cyan);
+    filter: brightness(1.18);
   }
 
   .board-overlay-svg {
@@ -1031,7 +1023,7 @@
   .yard-corner-title {
     position: absolute;
     font-size: 11.5px;
-    font-weight: 950;
+    font-weight: 900;
     color: #ffffff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
     z-index: 3;
@@ -1076,7 +1068,7 @@
 
   .gem-goti.can-pick {
     animation: gotiLift 0.52s infinite alternate;
-    filter: drop-shadow(0 0 8px var(--gold-1)) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
+    filter: drop-shadow(0 0 8px var(--aurora-cyan)) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
   }
 
   @keyframes gotiLift {
@@ -1103,20 +1095,21 @@
 
   .status-banner {
     text-align: center;
-    background: rgba(9, 26, 78, 0.92);
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
-    border-radius: 11px;
-    padding: 6px 10px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 7px 10px;
     font-size: 11.5px;
-    font-weight: 900;
-    color: var(--gold-1);
+    font-weight: 850;
+    color: var(--aurora-cyan);
   }
 
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(4, 12, 38, 0.78);
-    backdrop-filter: blur(4px);
+    background: rgba(4, 7, 18, 0.78);
+    backdrop-filter: blur(8px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -1131,12 +1124,12 @@
   .modal-card {
     width: 100%;
     max-width: 355px;
-    background: linear-gradient(180deg, #1d4fd8 0%, #091b52 100%);
-    border: 2px solid var(--gold-1);
-    border-radius: 16px;
-    padding: 15px;
+    background: linear-gradient(165deg, #161f40 0%, #0b1024 100%);
+    border: 1px solid rgba(0, 245, 212, 0.42);
+    border-radius: 22px;
+    padding: 16px;
     text-align: center;
-    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.65);
   }
 
   .count-picker-grid {
@@ -1147,27 +1140,27 @@
   }
 
   .cnt-choice-btn {
-    border: 1.5px solid var(--gold-1);
-    border-radius: 12px;
+    border: 1px solid rgba(0, 245, 212, 0.5);
+    border-radius: 14px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #00e676, #00897b);
+    background: linear-gradient(155deg, rgba(0, 245, 212, 0.22), rgba(155, 93, 229, 0.24));
     color: #fff;
-    font-weight: 950;
+    font-weight: 900;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
   }
 
   .cnt-choice-num {
     display: block;
     font-size: 18px;
     line-height: 1.1;
+    color: var(--aurora-cyan);
   }
 
   .cnt-choice-sub {
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #e8fff2;
+    color: var(--ink-muted);
   }
 
   .lb-list {
@@ -1186,21 +1179,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(5, 16, 52, 0.85);
-    border: 1px solid rgba(255, 224, 130, 0.45);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
     padding: 7px 10px;
     font-size: 11px;
-    font-weight: 850;
+    font-weight: 800;
   }
 
   .lb-city {
-    color: #90caf9;
+    color: var(--ink-muted);
     font-size: 9.5px;
   }
 
   .lb-coins {
-    color: var(--gold-1);
+    color: var(--aurora-amber);
   }
 
   .modal-btns {
@@ -1213,46 +1206,46 @@
 
   .m-btn {
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 8px 14px;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 850;
     cursor: pointer;
   }
 
   .m-gold {
-    background: linear-gradient(180deg, #fff59d, #ffb300);
-    color: #210b00;
+    background: linear-gradient(135deg, #00f5d4, #00bbf9);
+    color: #061021;
   }
 
   .m-danger {
-    background: linear-gradient(180deg, #ff5252, #c62828);
+    background: linear-gradient(135deg, #ff3b5c, #be123c);
     color: #fff;
   }
 
   .m-dark {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
   }
 
   @media (max-width: 375px) {
     .hero-logo-txt { font-size: 22px; }
-    .mode-tile { padding: 9px 5px; }
-    .tile-emblem { width: 30px; height: 30px; font-size: 16px; }
+    .mode-tile { padding: 10px 6px; }
+    .tile-emblem { width: 30px; height: 30px; font-size: 15px; }
     .tile-title { font-size: 10.5px; }
-    .curr-pill { padding: 3px 5px; font-size: 9.5px; }
+    .curr-pill { padding: 3px 6px; font-size: 9.5px; }
   }
 
   @media (min-height: 780px) {
-    .hero-3d-stage { height: 74px; }
+    .hero-3d-stage { height: 68px; }
     .modes-wrap { gap: 10px; }
-    .mode-tile { padding: 13px 8px; }
+    .mode-tile { padding: 14px 8px; }
   }
 </style>
 </head>
 <body>
 
-<!-- PRO GREEN STAR INTRO -->
+<!-- AURORA GREEN STAR INTRO -->
 <div id="greenStarSplash" onclick="dismissSplash()">
   <div class="star-stage">
     <div class="star-rays"></div>
@@ -1262,16 +1255,16 @@
     <svg class="green-star-hero" viewBox="0 0 120 120">
       <defs>
         <radialGradient id="gStarGem" cx="38%" cy="30%" r="72%">
-          <stop offset="0%" stop-color="#e8fff2"/>
-          <stop offset="42%" stop-color="#00e676"/>
-          <stop offset="100%" stop-color="#00692c"/>
+          <stop offset="0%" stop-color="#e8fffb"/>
+          <stop offset="45%" stop-color="#00f5d4"/>
+          <stop offset="100%" stop-color="#0f766e"/>
         </radialGradient>
       </defs>
       <polygon
         points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
         fill="url(#gStarGem)"
-        stroke="#fff59d"
-        stroke-width="4"
+        stroke="#ffffff"
+        stroke-width="3.5"
         stroke-linejoin="round"
       />
       <polygon
@@ -1280,17 +1273,17 @@
       />
     </svg>
   </div>
-  <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • रॉयल इंडियन लॉबी व 3D जेम गोटियां</div>
+  <div class="splash-title">✦ GREEN STAR ✦</div>
+  <div class="splash-sub">देसी लूडो राजा • ऑरोरा ग्लास लॉबी व 3D जेम गोटियां</div>
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">आगे बढ़ें ▶</button>
 </div>
 
 <div class="shell">
-  <!-- VIBRANT ROYAL INDIAN START SCREEN -->
+  <!-- MODERN AURORA BENTO START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
       <div class="user-chip shine-box" onclick="openDpDialog()">
-        <div id="userAvatar" class="avatar-circle">👑</div>
+        <div id="userAvatar" class="avatar-circle">✦</div>
         <div class="user-text">
           <span id="userNameText" class="user-name">राजा खिलाड़ी</span>
           <span class="user-edit">DP बदलें</span>
@@ -1310,7 +1303,7 @@
           <button class="plus-mini" onclick="event.stopPropagation(); addCoins(250);">+</button>
         </div>
 
-        <button class="hud-icon-btn" onclick="replayGreenStarSplash()" title="Green Star Intro">⭐</button>
+        <button class="hud-icon-btn" onclick="replayGreenStarSplash()" title="Green Star Intro">✦</button>
         <button class="hud-icon-btn" onclick="openLeaderboard()" title="Leaderboard">🏆</button>
         <select id="langSelect" class="lang-select" onchange="onLangChange(this.value)">
           <option value="hi">हिंदी (MP)</option>
@@ -1330,7 +1323,7 @@
     <div class="hero-showcase">
       <div class="side-badges">
         <div class="pack-badge shine-box" onclick="addCoins(500)">🪙 +500</div>
-        <div class="pack-badge shine-box" onclick="openLeaderboard()">👑 LIVE</div>
+        <div class="pack-badge shine-box" onclick="openLeaderboard()">⚡ LIVE</div>
       </div>
 
       <div class="right-badges">
@@ -1341,18 +1334,18 @@
       <div class="royal-logo-wrap">
         <svg class="royal-crown-svg" viewBox="0 0 80 44">
           <defs>
-            <linearGradient id="royalGold" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#fff8c4"/>
-              <stop offset="50%" stop-color="#ffc400"/>
-              <stop offset="100%" stop-color="#e66a00"/>
+            <linearGradient id="auroraCrown" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00f5d4"/>
+              <stop offset="55%" stop-color="#9b5de5"/>
+              <stop offset="100%" stop-color="#f15bb5"/>
             </linearGradient>
           </defs>
           <path d="M8 34 L4 13 L24 23 L40 7 L56 23 L76 13 L72 34 Z"
-                fill="url(#royalGold)" stroke="#fff6a8" stroke-width="2" stroke-linejoin="round"/>
-          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9800" stroke="#fff6a8" stroke-width="1.4"/>
-          <circle cx="40" cy="24" r="4" fill="#ff2e4c"/>
-          <circle cx="22" cy="27" r="3" fill="#00e676"/>
-          <circle cx="58" cy="27" r="3" fill="#2979ff"/>
+                fill="url(#auroraCrown)" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="10" y="34" width="60" height="5.5" rx="2.8" fill="rgba(255,255,255,0.25)" stroke="#00f5d4" stroke-width="1.2"/>
+          <circle cx="40" cy="24" r="3.8" fill="#ffb703"/>
+          <circle cx="22" cy="27" r="2.8" fill="#00f5d4"/>
+          <circle cx="58" cy="27" r="2.8" fill="#f15bb5"/>
         </svg>
         <h1 id="brandTitle" class="hero-logo-txt">देसी लूडो राजा</h1>
         <div class="hero-en-badge">DESI LUDO RAJA</div>
@@ -1442,7 +1435,7 @@
   <!-- GAME BOARD SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
-      <span class="game-logo">👑 देसी लूडो राजा</span>
+      <span class="game-logo">✦ देसी लूडो राजा</span>
       <div class="header-actions">
         <button class="mini-btn" onclick="openLeaderboard()">🏆</button>
         <button class="mini-btn" onclick="startVoice3s()">🎙️ 3s</button>
@@ -1456,7 +1449,7 @@
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
       <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का बड़ा डाइस दबाएं</span>
-      <span id="fxBadge" class="fx-pill">✨ GEM FX</span>
+      <span id="fxBadge" class="fx-pill">✦ AURORA FX</span>
     </div>
 
     <div class="board-stage shine-box">
@@ -1464,34 +1457,34 @@
         <div id="ludoGrid15" class="ludo-15"></div>
 
         <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
-          <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
-          <circle cx="220" cy="220" r="52" fill="#e53935"/>
-          <circle cx="380" cy="220" r="52" fill="#e53935"/>
-          <circle cx="220" cy="380" r="52" fill="#e53935"/>
-          <circle cx="380" cy="380" r="52" fill="#e53935"/>
+          <rect x="100" y="100" width="400" height="400" rx="22" fill="#ffffff" stroke="#e11d48" stroke-width="10"/>
+          <circle cx="220" cy="220" r="52" fill="#ff3b5c"/>
+          <circle cx="380" cy="220" r="52" fill="#ff3b5c"/>
+          <circle cx="220" cy="380" r="52" fill="#ff3b5c"/>
+          <circle cx="380" cy="380" r="52" fill="#ff3b5c"/>
 
-          <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#1b5e20" stroke-width="10"/>
-          <circle cx="1120" cy="220" r="52" fill="#00b248"/>
-          <circle cx="1280" cy="220" r="52" fill="#00b248"/>
-          <circle cx="1120" cy="380" r="52" fill="#00b248"/>
-          <circle cx="1280" cy="380" r="52" fill="#00b248"/>
+          <rect x="1000" y="100" width="400" height="400" rx="22" fill="#ffffff" stroke="#059669" stroke-width="10"/>
+          <circle cx="1120" cy="220" r="52" fill="#00d68f"/>
+          <circle cx="1280" cy="220" r="52" fill="#00d68f"/>
+          <circle cx="1120" cy="380" r="52" fill="#00d68f"/>
+          <circle cx="1280" cy="380" r="52" fill="#00d68f"/>
 
-          <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#0d47a1" stroke-width="10"/>
-          <circle cx="220" cy="1120" r="52" fill="#1e88e5"/>
-          <circle cx="380" cy="1120" r="52" fill="#1e88e5"/>
-          <circle cx="220" cy="1280" r="52" fill="#1e88e5"/>
-          <circle cx="380" cy="1280" r="52" fill="#1e88e5"/>
+          <rect x="100" y="1000" width="400" height="400" rx="22" fill="#ffffff" stroke="#1d4ed8" stroke-width="10"/>
+          <circle cx="220" cy="1120" r="52" fill="#298dff"/>
+          <circle cx="380" cy="1120" r="52" fill="#298dff"/>
+          <circle cx="220" cy="1280" r="52" fill="#298dff"/>
+          <circle cx="380" cy="1280" r="52" fill="#298dff"/>
 
-          <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#f57f17" stroke-width="10"/>
-          <circle cx="1120" cy="1120" r="52" fill="#fdd835"/>
-          <circle cx="1280" cy="1120" r="52" fill="#fdd835"/>
-          <circle cx="1120" cy="1280" r="52" fill="#fdd835"/>
-          <circle cx="1280" cy="1280" r="52" fill="#fdd835"/>
+          <rect x="1000" y="1000" width="400" height="400" rx="22" fill="#ffffff" stroke="#d97706" stroke-width="10"/>
+          <circle cx="1120" cy="1120" r="52" fill="#ffd13b"/>
+          <circle cx="1280" cy="1120" r="52" fill="#ffd13b"/>
+          <circle cx="1120" cy="1280" r="52" fill="#ffd13b"/>
+          <circle cx="1280" cy="1280" r="52" fill="#ffd13b"/>
 
-          <polygon points="600,600 900,600 750,750" fill="#00b248" stroke="#222" stroke-width="6"/>
-          <polygon points="900,600 900,900 750,750" fill="#fdd835" stroke="#222" stroke-width="6"/>
-          <polygon points="900,900 600,900 750,750" fill="#1e88e5" stroke="#222" stroke-width="6"/>
-          <polygon points="600,900 600,600 750,750" fill="#e53935" stroke="#222" stroke-width="6"/>
+          <polygon points="600,600 900,600 750,750" fill="#00d68f" stroke="#1e293b" stroke-width="6"/>
+          <polygon points="900,600 900,900 750,750" fill="#ffd13b" stroke="#1e293b" stroke-width="6"/>
+          <polygon points="900,900 600,900 750,750" fill="#298dff" stroke="#1e293b" stroke-width="6"/>
+          <polygon points="600,900 600,600 750,750" fill="#ff3b5c" stroke="#1e293b" stroke-width="6"/>
         </svg>
 
         <div id="cornerTopLabel" class="yard-corner-title title-tr">Computer</div>
@@ -1511,8 +1504,8 @@
 
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
-    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--gold-1); font-size:15px;">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:12px; color:#eef6ff;"></p>
+    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--aurora-cyan); font-size:15px;">सूचना</h3>
+    <p id="dialogText" style="margin:0; font-size:12px; color:#e2e8f0;"></p>
     <div id="playerCountGrid" class="count-picker-grid" style="display:none;"></div>
     <ul id="dialogList" class="lb-list" style="display:none;"></ul>
     <div id="dialogBtns" class="modal-btns">
@@ -1523,7 +1516,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_gem_pro_v9";
+  const STORAGE_KEY = "dlr_aurora_glass_v10";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1707,7 +1700,6 @@
     return I18N[profile.lang] || I18N.hi;
   }
 
-  /* ================= CALL / BACKGROUND AUTO-MUTE HANDLER ================= */
   function pauseGameAudioForCallOrBg() {
     appInBackground = true;
     stopBgMusic();
@@ -1738,14 +1730,13 @@
     if (!document.hidden) resumeGameAudioFromBg();
   });
 
-  /* ================= GREEN STAR INTRO CONTROL ================= */
   function dismissSplash() {
     clearTimeout(splashTimer);
     const el = document.getElementById("greenStarSplash");
     el.classList.add("hide-splash");
     setTimeout(() => {
       el.style.display = "none";
-    }, 340);
+    }, 320);
   }
 
   function replayGreenStarSplash() {
@@ -1760,7 +1751,6 @@
 
   splashTimer = setTimeout(dismissSplash, 2000);
 
-  /* ================= 3D PIPPED DICE RENDERER ================= */
   const PIP_MAP = {
     1: [4],
     2: [2, 6],
@@ -1788,12 +1778,11 @@
     return `<div class="pip-grid">${dots}</div>`;
   }
 
-  /* ================= SCULPTED 3D GEM-DOMED GOTI SVG ================= */
   const GOTI_SHADES = {
-    red:    { hi: "#ff9e80", base: "#e53935", lo: "#7f0000", gem: "#ffebee" },
-    green:  { hi: "#b9f6ca", base: "#00c853", lo: "#004d1a", gem: "#e8fff2" },
-    blue:   { hi: "#84ffff", base: "#1e88e5", lo: "#003c71", gem: "#e3f2fd" },
-    yellow: { hi: "#ffff8d", base: "#fdd835", lo: "#b28704", gem: "#fffde7" }
+    red:    { hi: "#ff9e80", base: "#ff3b5c", lo: "#881337", gem: "#ffe4e6" },
+    green:  { hi: "#a7f3d0", base: "#00d68f", lo: "#065f46", gem: "#ecfdf5" },
+    blue:   { hi: "#bae6fd", base: "#298dff", lo: "#1e3a8a", gem: "#eff6ff" },
+    yellow: { hi: "#fef08a", base: "#ffd13b", lo: "#92400e", gem: "#fefce8" }
   };
 
   function buildGemGotiSvg(color, idx) {
@@ -1820,7 +1809,6 @@
     `;
   }
 
-  /* ================= MUSIC, SOUND & SPECIAL FX ================= */
   function ensureAudio() {
     if (!profile.sound || appInBackground || document.hidden) return null;
     if (!audioCtx) {
@@ -1934,7 +1922,6 @@
     }
   }
 
-  /* ================= START SCREEN, 1-2-3-4 SELECTOR & MENUS ================= */
   function syncStartView() {
     const txt = t();
     document.getElementById("gemsText").textContent = profile.gems.toLocaleString("en-IN");
@@ -1948,7 +1935,7 @@
     document.getElementById("boardSoundBtn").textContent = ico;
 
     const av = document.getElementById("userAvatar");
-    av.innerHTML = profile.dp ? `<img src="${profile.dp}" alt="DP" />` : "👑";
+    av.innerHTML = profile.dp ? `<img src="${profile.dp}" alt="DP" />` : "✦";
 
     document.getElementById("brandTitle").textContent = txt.title;
     document.getElementById("brandSub").textContent = txt.sub;
@@ -2094,13 +2081,13 @@
 
   function inviteWhatsApp() {
     const msg = encodeURIComponent(
-      `👑 देसी लूडो राजा में आओ! 1–2–3–4 खिलाड़ी लूडो खेलते हैं: ${location.href}`
+      `✦ देसी लूडो राजा में आओ! 1–2–3–4 खिलाड़ी लूडो खेलते हैं: ${location.href}`
     );
     window.open(`https://wa.me/?text=${msg}`, "_blank", "noopener");
   }
 
   async function inviteOther() {
-    const shareText = `👑 देसी लूडो राजा खेलें! ${location.href}`;
+    const shareText = `✦ देसी लूडो राजा खेलें! ${location.href}`;
     if (navigator.share) {
       try {
         await navigator.share({ title: "देसी लूडो राजा", text: shareText, url: location.href });
@@ -2226,7 +2213,6 @@
     setLobbyNote("वॉयस...");
   }
 
-  /* ================= EXIT WARNING ================= */
   function requestExitWarning() {
     resetModalParts();
     const txt = t();
@@ -2254,7 +2240,6 @@
     }
   });
 
-  /* ================= GAME ENGINE ================= */
   function launchGameWithCount(modeKey, count) {
     Object.values(match.tokenReactions).forEach(r => r.timer && clearTimeout(r.timer));
 
@@ -2295,7 +2280,7 @@
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
     setReaction("😊", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस दबाएं`);
-    triggerFx("✨ GEM FX");
+    triggerFx("✦ AURORA FX");
     startBgMusic();
     renderSeatDicePods();
     drawBoard();
