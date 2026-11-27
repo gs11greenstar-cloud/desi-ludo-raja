@@ -5,11 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#00c853" />
+<meta name="theme-color" content="#0d2b7a" />
 <style>
   :root {
-    --gold-1: #fff59d;
-    --gold-2: #ffb300;
+    --gold-1: #fff3a1;
+    --gold-2: #f5b727;
+    --gold-3: #b87300;
+    --royal-bg-1: #163fa8;
+    --royal-bg-2: #0c2469;
+    --royal-bg-3: #06133b;
+    --card-surface: rgba(11, 31, 89, 0.82);
     --red: #e53935;
     --green: #00b248;
     --yellow: #fdd835;
@@ -22,17 +27,17 @@
     user-select: none;
   }
 
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
     min-height: 100dvh;
+    width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-    background:
-      radial-gradient(circle at 20% 12%, rgba(0, 230, 118, 0.36), transparent 46%),
-      radial-gradient(circle at 82% 18%, rgba(255, 193, 7, 0.34), transparent 46%),
-      linear-gradient(160deg, #1b4fd8 0%, #102f8c 55%, #091b54 100%);
-    color: #fff;
+    background: var(--royal-bg-3);
+    color: #ffffff;
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
   }
 
   .shell {
@@ -56,20 +61,21 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 44%, rgba(0, 255, 136, 0.42), rgba(16, 78, 184, 0.92) 72%, #081844 100%);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+      radial-gradient(circle at 50% 42%, rgba(0, 230, 118, 0.28), transparent 55%),
+      linear-gradient(165deg, #11348c 0%, #091c52 65%, #040d29 100%);
+    transition: opacity 0.32s ease, transform 0.32s ease;
   }
 
   #greenStarSplash.hide-splash {
     opacity: 0;
-    transform: scale(1.05);
+    transform: scale(1.04);
     pointer-events: none;
   }
 
   .star-stage {
     position: relative;
-    width: 190px;
-    height: 190px;
+    width: 176px;
+    height: 176px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,12 +87,12 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(185, 246, 202, 0.34) 0deg 12deg,
-      transparent 12deg 30deg
+      rgba(255, 243, 161, 0.22) 0deg 10deg,
+      transparent 10deg 30deg
     );
-    -webkit-mask-image: radial-gradient(circle, transparent 26%, black 52%, transparent 74%);
-    mask-image: radial-gradient(circle, transparent 26%, black 52%, transparent 74%);
-    animation: raysSpin 5.5s linear infinite;
+    -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
+    mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
+    animation: raysSpin 7s linear infinite;
   }
 
   @keyframes raysSpin {
@@ -96,71 +102,71 @@
 
   .star-sparkle {
     position: absolute;
-    font-size: 16px;
-    color: #fff59d;
-    animation: sparkleOrbit 1.8s ease-in-out infinite alternate;
+    font-size: 14px;
+    color: var(--gold-1);
+    animation: sparkleOrbit 2s ease-in-out infinite alternate;
   }
 
   .sp-1 { top: 14px; right: 24px; animation-delay: 0s; }
-  .sp-2 { bottom: 20px; left: 22px; animation-delay: 0.35s; }
-  .sp-3 { top: 28px; left: 20px; font-size: 13px; animation-delay: 0.7s; }
+  .sp-2 { bottom: 18px; left: 22px; animation-delay: 0.4s; }
+  .sp-3 { top: 26px; left: 20px; font-size: 12px; animation-delay: 0.8s; }
 
   @keyframes sparkleOrbit {
-    from { transform: scale(0.75) rotate(-15deg); opacity: 0.55; }
-    to   { transform: scale(1.25) rotate(18deg); opacity: 1; }
+    from { transform: scale(0.8) rotate(-12deg); opacity: 0.5; }
+    to   { transform: scale(1.18) rotate(14deg); opacity: 1; }
   }
 
   .green-star-hero {
-    width: 132px;
-    height: 132px;
+    width: 122px;
+    height: 122px;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 14px 22px rgba(0, 35, 18, 0.72)) drop-shadow(0 0 18px rgba(0, 230, 118, 0.75));
-    animation: starSpringIn 0.85s cubic-bezier(0.2, 1.35, 0.35, 1) forwards, starFloat 2.2s ease-in-out 0.85s infinite alternate;
+    filter: drop-shadow(0 12px 18px rgba(0, 20, 12, 0.65));
+    animation: starSpringIn 0.8s cubic-bezier(0.2, 1.3, 0.35, 1) forwards, starFloat 2.4s ease-in-out 0.8s infinite alternate;
   }
 
   @keyframes starSpringIn {
-    0%   { transform: scale(0.15) rotate(-65deg); opacity: 0; }
-    70%  { transform: scale(1.14) rotate(10deg); opacity: 1; }
+    0%   { transform: scale(0.2) rotate(-55deg); opacity: 0; }
+    72%  { transform: scale(1.1) rotate(8deg); opacity: 1; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
   }
 
   @keyframes starFloat {
-    from { transform: translateY(0px) scale(1); }
-    to   { transform: translateY(-6px) scale(1.04); }
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-5px); }
   }
 
   .splash-title {
     margin: 8px 0 4px;
-    font-size: 28px;
-    font-weight: 950;
-    letter-spacing: 0.6px;
-    background: linear-gradient(180deg, #ffffff, #b9f6ca 55%, #00e676 100%);
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff3a1 55%, #f5b727 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
   }
 
   .splash-sub {
     margin: 0 0 16px;
-    font-size: 12.5px;
-    font-weight: 800;
-    color: #e8fff2;
+    font-size: 12px;
+    font-weight: 700;
+    color: #dbeafe;
   }
 
   .splash-skip-btn {
-    border: 2px solid #fff59d;
+    border: 1.5px solid rgba(255, 243, 161, 0.85);
     border-radius: 999px;
     padding: 8px 22px;
-    background: linear-gradient(180deg, #00e676, #00897b);
+    background: linear-gradient(180deg, #1d56d8, #0d2b7a);
     color: #fff;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.42);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.38);
   }
 
-  /* Glossy Shine Sweep */
+  /* Subtle Gloss Sweep */
   .shine-box {
     position: relative;
     overflow: hidden;
@@ -169,48 +175,70 @@
   .shine-box::after {
     content: "";
     position: absolute;
-    top: -45%;
-    left: -130%;
-    width: 56%;
-    height: 190%;
+    top: -40%;
+    left: -135%;
+    width: 48%;
+    height: 180%;
     background: linear-gradient(
       115deg,
-      transparent 18%,
-      rgba(255, 255, 255, 0.48) 50%,
-      transparent 82%
+      transparent 20%,
+      rgba(255, 255, 255, 0.24) 50%,
+      transparent 80%
     );
     transform: skewX(-18deg);
-    animation: shineSweep 3.1s infinite ease-in-out;
+    animation: shineSweep 4.2s infinite ease-in-out;
     pointer-events: none;
   }
 
   @keyframes shineSweep {
-    0%   { left: -130%; }
-    42%  { left: 155%; }
-    100% { left: 155%; }
+    0%   { left: -135%; }
+    35%  { left: 160%; }
+    100% { left: 160%; }
   }
 
-  /* ================= JEWEL ARCADE START SCREEN ================= */
+  /* ================= ROYAL INDIAN START SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
     background:
-      radial-gradient(circle at 14% 12%, rgba(0, 230, 118, 0.35), transparent 42%),
-      radial-gradient(circle at 86% 14%, rgba(255, 179, 0, 0.34), transparent 42%),
-      linear-gradient(165deg, #1d57e8 0%, #1339a8 52%, #0b2169 100%);
+      radial-gradient(circle at 50% 18%, rgba(45, 112, 255, 0.32), transparent 58%),
+      radial-gradient(circle at 50% 85%, rgba(245, 183, 39, 0.12), transparent 52%),
+      linear-gradient(170deg, var(--royal-bg-1) 0%, var(--royal-bg-2) 52%, var(--royal-bg-3) 100%);
   }
 
+  /* Subtle Royal Indian Geometric Lattice Overlay */
+  #startScreen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.14;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 224, 130, 0.55) 1px, transparent 0),
+      linear-gradient(45deg, rgba(255, 224, 130, 0.16) 25%, transparent 25%, transparent 75%, rgba(255, 224, 130, 0.16) 75%),
+      linear-gradient(-45deg, rgba(255, 224, 130, 0.16) 25%, transparent 25%, transparent 75%, rgba(255, 224, 130, 0.16) 75%);
+    background-size: 28px 28px, 36px 36px, 36px 36px;
+    background-position: 0 0, 0 0, 18px 18px;
+  }
+
+  #startScreen > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Top Compact HUD */
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5px;
     padding: 8px 9px;
-    background: linear-gradient(180deg, rgba(22, 68, 184, 0.96), rgba(11, 35, 108, 0.98));
-    border-bottom: 2px solid rgba(255, 245, 157, 0.65);
-    box-shadow: 0 4px 12px rgba(0, 15, 60, 0.38);
+    background: linear-gradient(180deg, rgba(16, 44, 122, 0.95), rgba(7, 20, 64, 0.98));
+    border-bottom: 1.5px solid rgba(255, 224, 130, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 8, 36, 0.45);
   }
 
   .user-chip {
@@ -218,21 +246,22 @@
     align-items: center;
     gap: 6px;
     padding: 3px 8px 3px 3px;
-    border-radius: 13px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1.5px solid var(--gold-1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 224, 130, 0.55);
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   .avatar-circle {
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    border: 2px solid var(--gold-1);
-    background: linear-gradient(135deg, #00e676, #00897b);
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    border: 1.5px solid var(--gold-1);
+    background: linear-gradient(145deg, #2b6cb0, #1a365d);
     display: grid;
     place-items: center;
-    font-size: 17px;
+    font-size: 16px;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -246,29 +275,30 @@
   .user-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
+    line-height: 1.12;
   }
 
   .user-name {
-    font-size: 11px;
-    font-weight: 900;
-    max-width: 60px;
+    font-size: 10.5px;
+    font-weight: 800;
+    max-width: 58px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #fff;
   }
 
   .user-edit {
-    font-size: 9px;
+    font-size: 8.5px;
     color: var(--gold-1);
-    font-weight: 800;
+    font-weight: 700;
   }
 
   .hud-right {
     display: flex;
     align-items: center;
     gap: 4px;
-    flex-wrap: nowrap;
+    min-width: 0;
   }
 
   .curr-pill {
@@ -277,62 +307,76 @@
     gap: 3px;
     padding: 3px 6px;
     border-radius: 999px;
-    background: rgba(7, 22, 74, 0.9);
-    border: 1.5px solid var(--gold-1);
-    font-size: 10.5px;
-    font-weight: 900;
+    background: rgba(5, 16, 52, 0.88);
+    border: 1px solid rgba(255, 224, 130, 0.5);
+    font-size: 10px;
+    font-weight: 800;
     color: var(--gold-1);
   }
 
   .plus-mini {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(180deg, #69f0ae, #00b248);
+    background: linear-gradient(180deg, #34d399, #059669);
     color: #fff;
     font-weight: 900;
-    font-size: 11px;
+    font-size: 10.5px;
     cursor: pointer;
     line-height: 1;
+    display: grid;
+    place-items: center;
   }
 
   .hud-icon-btn {
-    height: 30px;
-    padding: 0 7px;
-    border-radius: 9px;
-    border: 1.5px solid #fff59d;
-    background: linear-gradient(180deg, #42a5f5, #1565c0);
-    color: #fff;
+    height: 28px;
+    padding: 0 6px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 224, 130, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gold-1);
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 800;
     cursor: pointer;
+    display: grid;
+    place-items: center;
   }
 
   .lang-select {
-    height: 30px;
-    max-width: 90px;
-    border-radius: 9px;
-    border: 1.5px solid var(--gold-1);
-    background: #0c2670;
+    height: 28px;
+    max-width: 82px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 224, 130, 0.55);
+    background: #08194a;
     color: var(--gold-1);
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 9.5px;
+    font-weight: 700;
     padding: 0 4px;
     cursor: pointer;
   }
 
-  /* Hero Showcase */
+  /* ================= ROYAL BRAND HEADER & QUICK BADGES ================= */
   .hero-showcase {
     position: relative;
     text-align: center;
-    padding: 6px 10px 4px;
+    padding: 8px 10px 4px;
   }
 
   .side-badges {
     position: absolute;
-    left: 8px;
-    top: 8px;
+    left: 10px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .right-badges {
+    position: absolute;
+    right: 10px;
+    top: 10px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -340,66 +384,77 @@
   }
 
   .pack-badge {
-    background: linear-gradient(180deg, #ffe066, #f57c00);
-    border: 1.5px solid #fff9c4;
-    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255, 224, 130, 0.22), rgba(180, 115, 0, 0.35));
+    border: 1px solid rgba(255, 224, 130, 0.65);
+    border-radius: 9px;
     padding: 4px 8px;
-    font-size: 10px;
-    font-weight: 950;
-    color: #210900;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    font-size: 9.5px;
+    font-weight: 800;
+    color: var(--gold-1);
+    box-shadow: 0 4px 10px rgba(0, 6, 28, 0.35);
     cursor: pointer;
-  }
-
-  .right-badges {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 2;
+    backdrop-filter: blur(4px);
   }
 
   .free-perk-btn {
-    background: linear-gradient(180deg, #00e676, #00897b);
-    border: 1.5px solid #e8fff2;
-    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.28), rgba(4, 120, 87, 0.42));
+    border: 1px solid rgba(110, 231, 183, 0.65);
+    border-radius: 9px;
     padding: 4px 8px;
     font-size: 9.5px;
-    font-weight: 950;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    font-weight: 800;
+    color: #d1fae5;
+    box-shadow: 0 4px 10px rgba(0, 6, 28, 0.35);
     cursor: pointer;
+    backdrop-filter: blur(4px);
   }
 
-  .crown-emblem {
-    font-size: 24px;
-    line-height: 1;
-    filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.45));
+  /* Unique Royal Indian Crown + Emblem */
+  .royal-logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+  }
+
+  .royal-crown-svg {
+    width: 44px;
+    height: 26px;
+    filter: drop-shadow(0 3px 6px rgba(245, 183, 39, 0.45));
   }
 
   .hero-logo-txt {
-    margin: 2px 0 0;
-    font-size: 27px;
-    font-weight: 950;
-    background: linear-gradient(180deg, #ffffff 0%, #fff176 52%, #ff9100 100%);
+    margin: 1px 0 0;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff3a1 48%, #f5b727 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 0 #4d1f00);
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.55));
+  }
+
+  .hero-en-badge {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #fcd34d;
+    margin-top: 1px;
   }
 
   .hero-tagline {
-    margin: 2px 0 6px;
-    font-size: 10.5px;
-    color: #e3f2fd;
-    font-weight: 800;
+    margin: 3px 0 6px;
+    font-size: 10px;
+    color: #cbd5e1;
+    font-weight: 600;
   }
 
+  /* Clean Emblem Showcase */
   .hero-3d-stage {
     margin: 0 auto;
-    width: 248px;
-    height: 82px;
+    width: 210px;
+    height: 62px;
     position: relative;
     display: flex;
     align-items: center;
@@ -407,13 +462,13 @@
   }
 
   .mini-tilted-board {
-    width: 120px;
-    height: 62px;
-    background: #fff;
-    border: 2px solid #fff59d;
+    width: 104px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid var(--gold-1);
     border-radius: 8px;
-    transform: perspective(260px) rotateX(28deg);
-    box-shadow: 0 9px 16px rgba(0, 0, 0, 0.45);
+    transform: perspective(260px) rotateX(24deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -430,20 +485,19 @@
     top: 2px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 11px;
-    background: linear-gradient(145deg, #ffffff, #dce9ff);
-    border: 2.2px solid #fff59d;
-    color: #0b2254;
-    font-size: 20px;
-    font-weight: 950;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(155deg, #ffffff, #e2e8f0);
+    border: 2px solid var(--gold-1);
+    color: #0f172a;
     display: grid;
     place-items: center;
+    padding: 4px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45);
   }
 
-  /* ================= 5 DISTINCT MODE CARDS ================= */
+  /* ================= 5 DISTINCT MODERN MODE CARDS ================= */
   .modes-wrap {
     padding: 4px 10px 4px;
     display: flex;
@@ -454,89 +508,93 @@
   .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
+    gap: 8px;
   }
 
   .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 9px;
+    gap: 8px;
   }
 
   .mode-tile {
-    padding: 12px 6px;
+    padding: 11px 7px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.08s ease;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    position: relative;
   }
 
   .mode-tile:active {
-    transform: translateY(3px);
+    transform: translateY(2px) scale(0.99);
   }
 
+  /* Distinct color palette, shape & elevation per mode */
   .tile-online {
-    border-radius: 20px 20px 12px 12px;
-    border: 2.2px solid #fff59d;
-    background: linear-gradient(160deg, #ffa726, #ef6c00);
-    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
+    border-radius: 14px;
+    border: 1.5px solid rgba(255, 224, 130, 0.7);
+    background: linear-gradient(155deg, #f59e0b 0%, #c2410c 100%);
+    box-shadow: 0 6px 16px rgba(194, 65, 12, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   }
 
   .tile-team {
-    border-radius: 12px 12px 22px 22px;
-    border: 2.2px solid #b9f6ca;
-    background: linear-gradient(160deg, #00e676, #00897b);
-    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
+    border-radius: 14px;
+    border: 1.5px solid rgba(110, 231, 183, 0.7);
+    background: linear-gradient(155deg, #10b981 0%, #047857 100%);
+    box-shadow: 0 6px 16px rgba(4, 120, 87, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   }
 
   .tile-friends {
-    border-radius: 18px 8px 18px 8px;
-    border: 2.2px solid #ffc1e3;
-    background: linear-gradient(160deg, #ff5252, #c2185b);
-    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
+    border-radius: 14px;
+    border: 1.5px solid rgba(253, 164, 175, 0.7);
+    background: linear-gradient(155deg, #f43f5e 0%, #9d174d 100%);
+    box-shadow: 0 6px 16px rgba(157, 23, 77, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   }
 
   .tile-computer {
-    border-radius: 10px 22px 10px 22px;
-    border: 2.2px solid #b3e5fc;
-    background: linear-gradient(150deg, #29b6f6, #0277bd);
-    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
+    border-radius: 14px;
+    border: 1.5px solid rgba(125, 211, 252, 0.7);
+    background: linear-gradient(155deg, #0ea5e9 0%, #1d4ed8 100%);
+    box-shadow: 0 6px 16px rgba(29, 78, 216, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 13px 8px;
+    padding: 11px 9px;
   }
 
   .tile-pass {
-    border-radius: 22px 10px 22px 10px;
-    border: 2.2px solid #ffe082;
-    background: linear-gradient(150deg, #ffd54f, #7b1fa2);
-    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
+    border-radius: 14px;
+    border: 1.5px solid rgba(216, 180, 254, 0.75);
+    background: linear-gradient(155deg, #8b5cf6 0%, #5b21b6 100%);
+    box-shadow: 0 6px 16px rgba(91, 33, 182, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 13px 8px;
+    padding: 11px 9px;
   }
 
   .tile-emblem {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     margin: 0 auto;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.22);
-    border: 1.5px solid rgba(255, 255, 255, 0.72);
+    border-radius: 10px;
+    background: rgba(8, 18, 54, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     display: grid;
     place-items: center;
-    font-size: 20px;
+    font-size: 18px;
     flex-shrink: 0;
   }
 
   .tile-title {
-    font-size: 12.5px;
-    font-weight: 950;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
-    margin-top: 4px;
+    font-size: 11.5px;
+    font-weight: 900;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    margin-top: 5px;
   }
 
   .tile-computer .tile-title,
@@ -546,153 +604,192 @@
   }
 
   .tile-tag {
-    font-size: 9.5px;
-    font-weight: 900;
-    color: #091d52;
-    background: rgba(255, 255, 255, 0.9);
+    font-size: 9px;
+    font-weight: 700;
+    color: #f8fafc;
+    background: rgba(7, 16, 48, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 999px;
     display: inline-block;
-    padding: 2px 8px;
+    padding: 2px 7px;
     margin-top: 3px;
   }
 
+  /* ================= TOURNAMENT, DAILY BONUS & CLAIM ================= */
   .tournament-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    padding: 0 10px;
+    gap: 7px;
+    padding: 2px 10px;
   }
 
   .tourney-pill {
     flex: 1;
-    border-radius: 12px;
-    border: 2px solid #fff59d;
-    background: linear-gradient(180deg, #29b6f6, #0277bd);
-    padding: 7px 8px;
+    border-radius: 11px;
+    border: 1.5px solid rgba(255, 224, 130, 0.65);
+    background: linear-gradient(180deg, rgba(26, 68, 178, 0.92), rgba(11, 29, 86, 0.96));
+    padding: 8px 10px;
     text-align: center;
-    font-size: 11.5px;
-    font-weight: 950;
-    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold-1);
     cursor: pointer;
-    box-shadow: 0 4px 0 #071b4d;
+    box-shadow: 0 4px 12px rgba(0, 8, 36, 0.4);
+  }
+
+  .daily-pill {
+    border-radius: 11px;
+    border: 1.5px solid rgba(125, 211, 252, 0.65);
+    background: linear-gradient(180deg, rgba(14, 116, 144, 0.85), rgba(12, 74, 110, 0.95));
+    padding: 8px 10px;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #e0f2fe;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 8, 36, 0.4);
+    white-space: nowrap;
   }
 
   .season-claim-btn {
-    border-radius: 12px;
-    border: 2px solid #fff9c4;
-    background: linear-gradient(180deg, #ffe066, #f57c00);
-    padding: 7px 13px;
-    font-size: 11.5px;
-    font-weight: 950;
-    color: #241000;
+    border-radius: 11px;
+    border: 1.5px solid var(--gold-1);
+    background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 900;
+    color: #1e1000;
     cursor: pointer;
-    box-shadow: 0 4px 0 #662900;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+    white-space: nowrap;
   }
 
+  /* ================= UTILITY, VIDEO REWARD, SHARE & VOICE BAR ================= */
   .utility-bar {
-    margin: 4px 10px;
+    margin: 3px 10px 5px;
     padding: 7px 9px;
-    border-radius: 13px;
-    background: rgba(9, 26, 78, 0.9);
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    border-radius: 12px;
+    background: rgba(7, 20, 62, 0.88);
+    border: 1px solid rgba(255, 224, 130, 0.35);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
     flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0, 6, 28, 0.35);
   }
 
   .wa-btn {
-    border: 1.5px solid #e8fff2;
+    border: 1px solid rgba(167, 243, 208, 0.6);
     border-radius: 8px;
-    padding: 4px 9px;
-    background: linear-gradient(180deg, #25d366, #128c7e);
+    padding: 5px 8px;
+    background: linear-gradient(180deg, #16a34a, #15803d);
     color: #fff;
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 800;
     cursor: pointer;
   }
 
   .other-btn {
-    border: 1.5px solid #fff59d;
+    border: 1px solid rgba(147, 197, 253, 0.6);
     border-radius: 8px;
-    padding: 4px 9px;
-    background: linear-gradient(180deg, #42a5f5, #1565c0);
+    padding: 5px 8px;
+    background: linear-gradient(180deg, #2563eb, #1d4ed8);
     color: #fff;
-    font-size: 10.5px;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .vid-reward-btn {
+    border: 1px solid rgba(255, 224, 130, 0.7);
+    border-radius: 8px;
+    padding: 5px 8px;
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.28), rgba(180, 83, 9, 0.45));
+    color: var(--gold-1);
+    font-size: 10px;
     font-weight: 800;
     cursor: pointer;
   }
 
   .rec-btn {
-    border: 1.5px solid #fff59d;
+    border: 1px solid rgba(254, 202, 202, 0.65);
     border-radius: 999px;
-    padding: 4px 10px;
-    background: linear-gradient(180deg, #ff5252, #c62828);
+    padding: 4px 9px;
+    background: linear-gradient(180deg, #ef4444, #b91c1c);
     color: #fff;
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 800;
     cursor: pointer;
   }
 
   .rec-btn.active-rec {
-    animation: pulseRec 0.65s infinite alternate;
+    animation: pulseRec 0.7s infinite alternate;
   }
 
   @keyframes pulseRec {
     from { transform: scale(1); }
-    to   { transform: scale(1.06); }
+    to   { transform: scale(1.05); }
   }
 
   .play-voice-btn {
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 999px;
-    padding: 4px 9px;
-    background: rgba(255, 255, 255, 0.22);
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.14);
     color: #fff;
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 800;
     cursor: pointer;
   }
 
   .play-voice-btn:disabled {
-    opacity: 0.45;
+    opacity: 0.4;
   }
 
   .status-mini {
-    font-size: 10px;
-    font-weight: 900;
+    font-size: 9.5px;
+    font-weight: 800;
     color: var(--gold-1);
   }
 
+  /* ================= MODERN BOTTOM NAVIGATION BAR ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #1648bd, #0a2266);
-    border-top: 2px solid rgba(255, 245, 157, 0.6);
-    padding: 4px 2px 5px;
+    background: linear-gradient(180deg, rgba(14, 38, 108, 0.97), rgba(6, 16, 52, 0.99));
+    border-top: 1.5px solid rgba(255, 224, 130, 0.4);
+    padding: 5px 4px 7px;
+    gap: 2px;
+    box-shadow: 0 -4px 16px rgba(0, 6, 28, 0.5);
   }
 
   .nav-tab {
-    border: none;
+    border: 1px solid transparent;
     background: transparent;
-    color: #dceeff;
+    color: #94a3b8;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2px;
-    font-size: 9.5px;
-    font-weight: 900;
+    font-size: 9px;
+    font-weight: 800;
     cursor: pointer;
-    padding: 3px 2px;
-    border-radius: 9px;
+    padding: 4px 2px;
+    border-radius: 10px;
+    transition: all 0.15s ease;
+  }
+
+  .nav-tab span:first-child {
+    font-size: 14px;
+    line-height: 1.1;
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #4fc3f7, #1565c0);
-    color: #fff;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    background: linear-gradient(180deg, rgba(255, 224, 130, 0.2), rgba(245, 183, 39, 0.12));
+    border-color: rgba(255, 224, 130, 0.55);
+    color: var(--gold-1);
   }
 
   /* ================= GAME SCREEN & BIG 3D DICE + GEM GOTI ================= */
@@ -704,9 +801,9 @@
     padding: 6px 8px 10px;
     gap: 5px;
     background:
-      radial-gradient(circle at 20% 18%, rgba(0, 230, 118, 0.32), transparent 45%),
-      radial-gradient(circle at 82% 80%, rgba(255, 213, 79, 0.32), transparent 45%),
-      linear-gradient(160deg, #1b4fd8 0%, #102f8c 58%, #091b54 100%);
+      radial-gradient(circle at 20% 18%, rgba(0, 230, 118, 0.24), transparent 45%),
+      radial-gradient(circle at 82% 80%, rgba(255, 213, 79, 0.24), transparent 45%),
+      linear-gradient(160deg, var(--royal-bg-1) 0%, var(--royal-bg-2) 58%, var(--royal-bg-3) 100%);
   }
 
   .game-header {
@@ -714,7 +811,7 @@
     align-items: center;
     justify-content: space-between;
     background: rgba(9, 26, 78, 0.92);
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    border: 1.5px solid rgba(255, 245, 157, 0.5);
     border-radius: 12px;
     padding: 5px 8px;
     gap: 4px;
@@ -722,7 +819,7 @@
 
   .game-logo {
     font-size: 12.5px;
-    font-weight: 950;
+    font-weight: 900;
     color: var(--gold-1);
   }
 
@@ -733,10 +830,10 @@
   }
 
   .mini-btn {
-    border: 1px solid #fff59d;
+    border: 1px solid rgba(255, 245, 157, 0.75);
     border-radius: 8px;
     padding: 4px 7px;
-    background: linear-gradient(180deg, #42a5f5, #1565c0);
+    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -744,7 +841,7 @@
   }
 
   .mini-exit {
-    background: linear-gradient(180deg, #ef5350, #c62828);
+    background: linear-gradient(180deg, #ef4444, #b91c1c);
   }
 
   .seat-row {
@@ -755,7 +852,7 @@
 
   .seat-pod {
     background: linear-gradient(180deg, rgba(24, 68, 178, 0.95), rgba(11, 34, 102, 0.98));
-    border: 2px solid rgba(255, 255, 255, 0.32);
+    border: 2px solid rgba(255, 255, 255, 0.28);
     border-radius: 13px;
     padding: 6px 8px;
     display: flex;
@@ -768,13 +865,13 @@
 
   .seat-pod.pod-active {
     opacity: 1;
-    border-color: #fff59d;
-    box-shadow: 0 0 14px rgba(255, 245, 157, 0.7);
+    border-color: var(--gold-1);
+    box-shadow: 0 0 14px rgba(255, 243, 161, 0.65);
   }
 
   .pod-name {
     font-size: 11px;
-    font-weight: 950;
+    font-weight: 900;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -786,13 +883,12 @@
     font-weight: 800;
   }
 
-  /* Bigger 3D Pipped Dice Box */
   .pod-dice-big {
     width: 48px;
     height: 48px;
     flex-shrink: 0;
     border-radius: 12px;
-    border: 2.4px solid #fff59d;
+    border: 2.2px solid var(--gold-1);
     background: linear-gradient(145deg, #ffffff, #dbeafe);
     box-shadow: 0 5px 0 #1e3a8a, 0 8px 14px rgba(0, 0, 0, 0.45);
     display: grid;
@@ -843,7 +939,7 @@
 
   .reaction-ribbon {
     background: rgba(9, 26, 78, 0.92);
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    border: 1.5px solid rgba(255, 245, 157, 0.5);
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -868,20 +964,20 @@
 
   .fx-pill {
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 800;
     padding: 2px 7px;
     border-radius: 999px;
-    background: rgba(0, 230, 118, 0.25);
+    background: rgba(0, 230, 118, 0.22);
     border: 1px solid #b9f6ca;
     color: #fff;
     white-space: nowrap;
   }
 
   .board-stage {
-    background: linear-gradient(135deg, #fff59d, #00e676, #4fc3f7, #ffd54f);
+    background: linear-gradient(135deg, var(--gold-1), #00e676, #4fc3f7, #ffd54f);
     padding: 4px;
     border-radius: 11px;
-    box-shadow: 0 10px 26px rgba(0, 15, 58, 0.58), 0 0 18px rgba(105, 240, 174, 0.42);
+    box-shadow: 0 10px 26px rgba(0, 15, 58, 0.58);
     position: relative;
   }
 
@@ -939,7 +1035,7 @@
   .yard-corner-title {
     position: absolute;
     font-size: 11.5px;
-    font-weight: 950;
+    font-weight: 900;
     color: #ffffff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
     z-index: 3;
@@ -956,7 +1052,6 @@
     pointer-events: none;
   }
 
-  /* Sculpted 3D Gem-Domed Ludo Goti */
   .gem-goti {
     position: absolute;
     width: 7.8%;
@@ -985,7 +1080,7 @@
 
   .gem-goti.can-pick {
     animation: gotiLift 0.52s infinite alternate;
-    filter: drop-shadow(0 0 8px #fff59d) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
+    filter: drop-shadow(0 0 8px var(--gold-1)) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
   }
 
   @keyframes gotiLift {
@@ -1013,18 +1108,19 @@
   .status-banner {
     text-align: center;
     background: rgba(9, 26, 78, 0.92);
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    border: 1.5px solid rgba(255, 245, 157, 0.5);
     border-radius: 11px;
     padding: 6px 10px;
     font-size: 11.5px;
-    font-weight: 900;
+    font-weight: 800;
     color: var(--gold-1);
   }
 
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(5, 15, 48, 0.74);
+    background: rgba(4, 12, 38, 0.78);
+    backdrop-filter: blur(4px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -1039,12 +1135,12 @@
   .modal-card {
     width: 100%;
     max-width: 355px;
-    background: linear-gradient(180deg, #1d54b8, #0b2466);
-    border: 2.2px solid #fff59d;
+    background: linear-gradient(180deg, #183f9e 0%, #091b52 100%);
+    border: 1.5px solid rgba(255, 224, 130, 0.7);
     border-radius: 16px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
   }
 
   .count-picker-grid {
@@ -1055,14 +1151,14 @@
   }
 
   .cnt-choice-btn {
-    border: 2px solid #fff59d;
+    border: 1.5px solid rgba(255, 224, 130, 0.75);
     border-radius: 12px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #69f0ae, #00a844);
+    background: linear-gradient(180deg, #10b981, #047857);
     color: #fff;
-    font-weight: 950;
+    font-weight: 900;
     cursor: pointer;
-    box-shadow: 0 4px 0 #072c6b;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
   }
 
   .cnt-choice-num {
@@ -1075,7 +1171,7 @@
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #e8fff2;
+    color: #d1fae5;
   }
 
   .lb-list {
@@ -1094,17 +1190,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(7, 22, 74, 0.8);
-    border: 1px solid rgba(255, 245, 157, 0.45);
+    background: rgba(5, 16, 52, 0.85);
+    border: 1px solid rgba(255, 224, 130, 0.35);
     border-radius: 10px;
-    padding: 6px 9px;
-    font-size: 11.5px;
+    padding: 7px 10px;
+    font-size: 11px;
     font-weight: 800;
   }
 
   .lb-city {
-    color: #90caf9;
-    font-size: 10px;
+    color: #93c5fd;
+    font-size: 9.5px;
   }
 
   .lb-coins {
@@ -1129,18 +1225,33 @@
   }
 
   .m-gold {
-    background: linear-gradient(180deg, #fff59d, #ffb300);
-    color: #261200;
+    background: linear-gradient(180deg, #fde68a, #f59e0b);
+    color: #1e1000;
   }
 
   .m-danger {
-    background: linear-gradient(180deg, #ff5252, #c62828);
+    background: linear-gradient(180deg, #ef4444, #b91c1c);
     color: #fff;
   }
 
   .m-dark {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.16);
     color: #fff;
+  }
+
+  /* Responsive Tuning for Compact & Tall Android Screens */
+  @media (max-width: 375px) {
+    .hero-logo-txt { font-size: 22px; }
+    .mode-tile { padding: 9px 5px; }
+    .tile-emblem { width: 30px; height: 30px; font-size: 16px; }
+    .tile-title { font-size: 10.5px; }
+    .curr-pill { padding: 3px 5px; font-size: 9.5px; }
+  }
+
+  @media (min-height: 780px) {
+    .hero-3d-stage { height: 74px; }
+    .modes-wrap { gap: 10px; }
+    .mode-tile { padding: 13px 8px; }
   }
 </style>
 </head>
@@ -1175,12 +1286,12 @@
     </svg>
   </div>
   <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • 3D जेम गोटियां व बड़ा डाइस</div>
+  <div class="splash-sub">देसी लूडो राजा • रॉयल इंडियन लॉबी व 3D जेम गोटियां</div>
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">आगे बढ़ें ▶</button>
 </div>
 
 <div class="shell">
-  <!-- START SCREEN -->
+  <!-- ROYAL INDIAN START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
       <div class="user-chip shine-box" onclick="openDpDialog()">
@@ -1205,7 +1316,7 @@
         </div>
 
         <button class="hud-icon-btn" onclick="replayGreenStarSplash()" title="Green Star Intro">⭐</button>
-        <button class="hud-icon-btn" onclick="openLeaderboard()">🏆</button>
+        <button class="hud-icon-btn" onclick="openLeaderboard()" title="Leaderboard">🏆</button>
         <select id="langSelect" class="lang-select" onchange="onLangChange(this.value)">
           <option value="hi">हिंदी (MP)</option>
           <option value="en">English (IN)</option>
@@ -1232,8 +1343,27 @@
         <div class="free-perk-btn shine-box" onclick="openCoinTableDialog()">🎯 TABLE</div>
       </div>
 
-      <div class="crown-emblem">👑</div>
-      <h1 id="brandTitle" class="hero-logo-txt">देसी लूडो राजा</h1>
+      <div class="royal-logo-wrap">
+        <!-- Original Royal Indian Crown SVG -->
+        <svg class="royal-crown-svg" viewBox="0 0 80 44">
+          <defs>
+            <linearGradient id="royalGold" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fff7b2"/>
+              <stop offset="50%" stop-color="#f5b727"/>
+              <stop offset="100%" stop-color="#b46900"/>
+            </linearGradient>
+          </defs>
+          <path d="M8 34 L4 13 L24 23 L40 7 L56 23 L76 13 L72 34 Z"
+                fill="url(#royalGold)" stroke="#fff3a1" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="10" y="34" width="60" height="6" rx="3" fill="#d97706" stroke="#fff3a1" stroke-width="1.4"/>
+          <circle cx="40" cy="24" r="4" fill="#ef4444"/>
+          <circle cx="22" cy="27" r="3" fill="#10b981"/>
+          <circle cx="58" cy="27" r="3" fill="#3b82f6"/>
+        </svg>
+        <h1 id="brandTitle" class="hero-logo-txt">देसी लूडो राजा</h1>
+        <div class="hero-en-badge">DESI LUDO RAJA</div>
+      </div>
+
       <div id="brandSub" class="hero-tagline">1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • कॉल पर ऑटो-म्यूट</div>
 
       <div class="hero-3d-stage">
@@ -1256,7 +1386,7 @@
         </div>
 
         <div class="mode-tile tile-team shine-box" onclick="openPlayerCountSelector('team', 'TEAM UP')">
-          <div class="tile-emblem">⚔️</div>
+          <div class="tile-emblem">🛡️</div>
           <div id="mTeam" class="tile-title">TEAM UP</div>
           <div class="tile-tag">1–4 Players</div>
         </div>
@@ -1289,13 +1419,15 @@
 
     <div class="tournament-row">
       <div class="tourney-pill shine-box" onclick="openCoinTableDialog()">🏆 TOURNAMENT & COIN TABLE</div>
+      <button class="daily-pill shine-box" onclick="claimDailyBonus()">☀️ DAILY</button>
       <button class="season-claim-btn shine-box" onclick="addCoins(300)">🎁 CLAIM</button>
     </div>
 
     <div class="utility-bar">
-      <div style="display:flex; gap:5px; align-items:center;">
+      <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
         <button class="wa-btn shine-box" onclick="inviteWhatsApp()">WhatsApp</button>
         <button class="other-btn shine-box" onclick="inviteOther()">Other</button>
+        <button class="vid-reward-btn shine-box" onclick="watchVideoReward()">🎬 +300</button>
       </div>
       <div style="display:flex; gap:5px; align-items:center;">
         <button id="recBtn" class="rec-btn" onclick="startVoice3s()">🎙️ 3s</button>
@@ -1397,7 +1529,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_gem_pro_v7";
+  const STORAGE_KEY = "dlr_gem_pro_v8";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1619,7 +1751,7 @@
     el.classList.add("hide-splash");
     setTimeout(() => {
       el.style.display = "none";
-    }, 360);
+    }, 340);
   }
 
   function replayGreenStarSplash() {
@@ -1832,6 +1964,16 @@
     document.getElementById("mBot").textContent = txt.bot;
     document.getElementById("mPass").textContent = txt.pass;
     setLobbyNote(txt.ready);
+  }
+
+  function claimDailyBonus() {
+    addCoins(200);
+    setLobbyNote("डेली बोनस +200!");
+  }
+
+  function watchVideoReward() {
+    addCoins(300);
+    setLobbyNote("रिवॉर्ड +300!");
   }
 
   function openPlayerCountSelector(modeKey, modeLabel) {
