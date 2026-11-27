@@ -23,7 +23,7 @@
     --red: #e53935;
     --green: #2e7d32;
     --blue: #1e88e5;
-    --yellow: #fbc02d;
+    --yellow: #fdd835;
   }
 
   * {
@@ -60,7 +60,7 @@
     position: relative;
   }
 
-  /* START / LOBBY SCREEN */
+  /* ================= START / LOBBY SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
@@ -255,13 +255,8 @@
     box-shadow: 0 1px 0 #092154, 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
-  .card-gold {
-    background: linear-gradient(180deg, var(--card-amber-1), var(--card-amber-2));
-  }
-
-  .card-blue {
-    background: linear-gradient(180deg, var(--card-blue-1), var(--card-blue-2));
-  }
+  .card-gold { background: linear-gradient(180deg, var(--card-amber-1), var(--card-amber-2)); }
+  .card-blue { background: linear-gradient(180deg, var(--card-blue-1), var(--card-blue-2)); }
 
   .tag-pill {
     position: absolute;
@@ -277,25 +272,9 @@
     white-space: nowrap;
   }
 
-  .card-icon {
-    font-size: 25px;
-    margin-top: 6px;
-    line-height: 1.1;
-  }
-
-  .card-label {
-    margin-top: 6px;
-    font-size: 12px;
-    font-weight: 900;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-  }
-
-  .card-sub {
-    margin-top: 2px;
-    font-size: 10px;
-    color: #eef6ff;
-    font-weight: 600;
-  }
+  .card-icon { font-size: 25px; margin-top: 6px; line-height: 1.1; }
+  .card-label { margin-top: 6px; font-size: 12px; font-weight: 900; text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4); }
+  .card-sub { margin-top: 2px; font-size: 10px; color: #eef6ff; font-weight: 600; }
 
   .extra-strip {
     margin: 4px 14px 8px;
@@ -322,22 +301,10 @@
     white-space: nowrap;
   }
 
-  .voice-btn.recording {
-    animation: pulse 0.8s infinite alternate;
-  }
+  .voice-btn.recording { animation: pulse 0.8s infinite alternate; }
+  @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
 
-  @keyframes pulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-  }
-
-  .status-msg {
-    font-size: 11px;
-    color: var(--gold-light);
-    font-weight: 600;
-    flex: 1;
-    text-align: right;
-  }
+  .status-msg { font-size: 11px; color: var(--gold-light); font-weight: 600; flex: 1; text-align: right; }
 
   .bottom-nav {
     position: fixed;
@@ -368,103 +335,61 @@
     cursor: pointer;
   }
 
-  .nav-item.active {
-    color: var(--gold-light);
-    background: rgba(255, 215, 79, 0.12);
-  }
+  .nav-item.active { color: var(--gold-light); background: rgba(255, 215, 79, 0.12); }
+  .nav-emoji { font-size: 18px; }
 
-  .nav-emoji {
-    font-size: 18px;
-  }
-
-  /* GAME BOARD SCREEN */
+  /* ================= CRYSTAL CLEAR BOARD SCREEN ================= */
   #gameScreen {
     display: none;
     flex: 1;
     flex-direction: column;
-    padding: 10px 12px 18px;
-    gap: 10px;
+    justify-content: space-between;
+    padding: 8px 8px 12px;
+    background:
+      radial-gradient(circle at center, rgba(16, 68, 128, 0.85), rgba(8, 32, 72, 0.96)),
+      linear-gradient(180deg, #12498a, #09224a);
   }
 
   .game-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(6, 22, 60, 0.65);
+    background: rgba(6, 22, 60, 0.72);
     border: 1.5px solid rgba(255, 232, 117, 0.45);
-    border-radius: 14px;
-    padding: 8px 10px;
+    border-radius: 12px;
+    padding: 6px 10px;
     gap: 6px;
   }
 
-  .game-brand {
-    font-weight: 900;
-    font-size: 14px;
-    color: var(--gold-light);
-  }
-
-  .game-controls {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
+  .game-brand { font-weight: 900; font-size: 14px; color: var(--gold-light); }
+  .game-controls { display: flex; gap: 6px; align-items: center; }
 
   .small-btn {
     border: 1px solid rgba(255, 232, 117, 0.5);
-    border-radius: 10px;
-    padding: 6px 10px;
+    border-radius: 9px;
+    padding: 5px 9px;
     font-size: 12px;
     font-weight: 800;
     color: #fff;
     background: linear-gradient(180deg, #2d7af0, #16479e);
     cursor: pointer;
   }
+  .exit-btn { background: linear-gradient(180deg, #ef4444, #991b1b); }
 
-  .exit-btn {
-    background: linear-gradient(180deg, #ef4444, #991b1b);
-  }
-
-  .turn-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .player-box {
-    background: rgba(8, 28, 74, 0.78);
-    border: 2px solid rgba(255, 255, 255, 0.22);
-    border-radius: 14px;
-    padding: 8px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .player-box.active-turn {
-    border-color: var(--gold-light);
-    box-shadow: 0 0 12px rgba(255, 232, 117, 0.35);
-  }
-
-  .dice-box {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: #fff;
-    color: #111;
-    font-weight: 900;
-    font-size: 20px;
-    display: grid;
-    place-items: center;
-    border: 2px solid var(--gold-mid);
-    cursor: pointer;
+  /* Board Container */
+  .board-wrapper {
+    position: relative;
+    width: 100%;
+    margin: auto 0;
   }
 
   .board-frame {
-    background: #fff;
-    padding: 6px;
-    border-radius: 16px;
-    border: 3px solid var(--gold-light);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    background: #ffffff;
+    padding: 3px;
+    border-radius: 10px;
+    border: 3px solid #e0a800;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+    position: relative;
   }
 
   .ludo-grid {
@@ -473,53 +398,236 @@
     grid-template-rows: repeat(15, 1fr);
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1.5px solid #222;
+    border: 1px solid #333;
     position: relative;
+    background: #fff;
   }
 
   .cell {
-    border: 0.5px solid rgba(0, 0, 0, 0.18);
+    border: 0.5px solid #8a8a8a;
     display: grid;
     place-items: center;
     position: relative;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #444;
   }
 
-  .c-red { background: var(--red); }
-  .c-green { background: var(--green); }
-  .c-blue { background: var(--blue); }
-  .c-yellow { background: var(--yellow); }
-  .c-white { background: #ffffff; color: #333; }
+  .c-red { background: var(--red); border-color: rgba(0,0,0,0.12); }
+  .c-green { background: var(--green); border-color: rgba(0,0,0,0.12); }
+  .c-blue { background: var(--blue); border-color: rgba(0,0,0,0.12); }
+  .c-yellow { background: var(--yellow); border-color: rgba(0,0,0,0.12); }
+  .c-white { background: #ffffff; }
 
-  .token {
-    width: 76%;
-    height: 76%;
+  /* White Inner Yard Boxes with 4 Colored Circles (Just like Reference Image) */
+  .yard-inner {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.25);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    padding: 8%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .yard-red    { top: 6.66%; left: 6.66%; width: 26.66%; height: 26.66%; }
+  .yard-green  { top: 6.66%; right: 6.66%; width: 26.66%; height: 26.66%; }
+  .yard-blue   { bottom: 6.66%; left: 6.66%; width: 26.66%; height: 26.66%; }
+  .yard-yellow { bottom: 6.66%; right: 6.66%; width: 26.66%; height: 26.66%; }
+
+  .yard-spot {
+    width: 66%;
+    height: 66%;
     border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
-    cursor: pointer;
-    z-index: 2;
   }
+  .spot-red { background: var(--red); }
+  .spot-green { background: var(--green); }
+  .spot-blue { background: var(--blue); }
+  .spot-yellow { background: var(--yellow); }
 
-  .token.t-red { background: #c62828; }
-  .token.t-yellow { background: #f9a825; }
-  .token.t-green { background: #2e7d32; }
-  .token.t-blue { background: #1565c0; }
-
-  .token.movable {
-    outline: 2.5px solid #fff;
-    transform: scale(1.12);
-    z-index: 4;
-  }
-
-  .prompt-bar {
-    background: linear-gradient(180deg, #1b4ea8, #0d2761);
-    border: 1.5px solid var(--gold-light);
-    border-radius: 12px;
-    padding: 10px;
-    text-align: center;
-    font-weight: 800;
+  /* Board Corner Labels (You / Computer) */
+  .yard-label {
+    position: absolute;
     font-size: 13px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .lbl-top-right { top: 0.6%; right: 8%; }
+  .lbl-bot-left  { bottom: 0.6%; left: 14%; }
+
+  /* Classic 4-Triangle Center Home */
+  .home-center-triangles {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 20%;
+    height: 20%;
+    z-index: 2;
+    pointer-events: none;
+    background: conic-gradient(
+      from -45deg,
+      var(--green) 0deg 90deg,
+      var(--yellow) 90deg 180deg,
+      var(--blue) 180deg 270deg,
+      var(--red) 270deg 360deg
+    );
+    border: 1px solid #333;
+  }
+
+  /* High-Visibility 3D Pin Tokens */
+  .token-pin {
+    width: 112%;
+    height: 132%;
+    margin-top: -36%;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 2px solid #1b1b1b;
+    box-shadow: -2px 3px 5px rgba(0, 0, 0, 0.55);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 6;
+    position: relative;
+    transition: transform 0.14s ease;
+  }
+
+  .token-pin::after {
+    content: "";
+    width: 46%;
+    height: 46%;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid #222;
+  }
+
+  .pin-blue   { background: radial-gradient(circle at 35% 35%, #6ec6ff, #0277bd); }
+  .pin-green  { background: radial-gradient(circle at 35% 35%, #81c784, #1b5e20); }
+  .pin-red    { background: radial-gradient(circle at 35% 35%, #ff8a80, #b71c1c); }
+  .pin-yellow { background: radial-gradient(circle at 35% 35%, #fff59d, #f57f17); }
+
+  .token-pin.movable {
+    animation: bouncePin 0.55s infinite alternate;
+    outline: 2.5px solid #ffe875;
+    z-index: 10;
+  }
+
+  @keyframes bouncePin {
+    from { transform: rotate(-45deg) scale(1.04); }
+    to   { transform: rotate(-45deg) scale(1.22) translate(2px, -2px); }
+  }
+
+  .star-icon {
+    font-size: 14px;
+    color: #555;
+    line-height: 1;
+  }
+
+  .arrow-icon {
+    font-size: 12px;
+    color: #444;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  /* Bottom Dock Bar (You - Big Dice - Com) */
+  .bottom-dock {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .dock-player {
+    height: 54px;
+    background: linear-gradient(180deg, #1b5bb8, #0f3675);
+    border: 2.5px solid #d4af37;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+    opacity: 0.72;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+
+  .dock-player.active {
+    opacity: 1;
+    border-color: #fff176;
+    box-shadow: 0 0 14px rgba(255, 241, 118, 0.55);
+  }
+
+  .dock-name {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffd54f;
+    text-shadow: 0 2px 0 #1b1b1b;
+  }
+
+  .dock-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.16);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+  }
+
+  .center-dice-box {
+    width: 68px;
+    height: 64px;
+    border-radius: 14px;
+    border: 3px solid #ffe082;
+    background: linear-gradient(180deg, #4fc3f7, #0288d1);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.55);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .center-dice-box.green-turn {
+    background: linear-gradient(180deg, #81c784, #2e7d32);
+  }
+
+  .dice-face {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 6px;
+    place-items: center;
+  }
+
+  .pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1e88e5;
+  }
+  .pip.red-pip { background: #e53935; }
+  .pip.green-pip { background: #2e7d32; }
+
+  .prompt-strip {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--gold-light);
+    margin-top: 4px;
+    min-height: 18px;
   }
 
   /* MODAL */
@@ -533,10 +641,7 @@
     padding: 16px;
     z-index: 50;
   }
-
-  .modal-backdrop.open {
-    display: flex;
-  }
+  .modal-backdrop.open { display: flex; }
 
   .modal-box {
     width: 100%;
@@ -548,37 +653,16 @@
     text-align: center;
   }
 
-  .modal-actions {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 14px;
-  }
-
-  .action-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 8px 14px;
-    font-weight: 800;
-    font-size: 12px;
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    background: linear-gradient(180deg, var(--gold-light), var(--gold-mid));
-    color: #2b1400;
-  }
-
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.16);
-    color: #fff;
-  }
+  .modal-actions { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
+  .action-btn { border: none; border-radius: 10px; padding: 8px 14px; font-weight: 800; font-size: 12px; cursor: pointer; }
+  .btn-primary { background: linear-gradient(180deg, var(--gold-light), var(--gold-mid)); color: #2b1400; }
+  .btn-secondary { background: rgba(255, 255, 255, 0.16); color: #fff; }
 </style>
 </head>
 <body>
 
 <div class="app-shell">
-  <!-- START / LOBBY SCREEN -->
+  <!-- ================= START / LOBBY SCREEN ================= -->
   <section id="startScreen">
     <header class="top-bar">
       <div class="profile-pill" onclick="openDpModal()">
@@ -603,7 +687,7 @@
     <div class="hero">
       <div class="crown-badge">👑</div>
       <h1 id="mainTitle" class="game-title">देसी लूडो राजा</h1>
-      <p id="subTitle" class="game-subtitle">15×15 बोर्ड • पास एंड प्ले • देसी अंदाज़</p>
+      <p id="subTitle" class="game-subtitle">क्लियर बोर्ड • 3D गोटी • पास एंड प्ले</p>
     </div>
 
     <main class="modes-wrap">
@@ -617,8 +701,8 @@
 
         <div class="gloss-card card-gold" onclick="startMode('bot', 2)">
           <div class="card-icon">🤖</div>
-          <div class="card-label">VS BOT</div>
-          <div class="card-sub">कंप्यूटर के साथ</div>
+          <div class="card-label">COMPUTER</div>
+          <div class="card-sub">बॉट के साथ</div>
         </div>
 
         <div class="gloss-card card-gold" onclick="openRoomModal()">
@@ -632,13 +716,13 @@
         <div class="gloss-card card-blue" onclick="startMode('bot', 2)">
           <div class="card-icon">⚡</div>
           <div class="card-label">QUICK BOT</div>
-          <div class="card-sub">तुरंत मैच</div>
+          <div class="card-sub">You vs Com</div>
         </div>
 
         <div class="gloss-card card-blue" onclick="startMode('pass', 2)">
           <div class="card-icon">📱</div>
-          <div class="card-label">2P PASS PLAY</div>
-          <div class="card-sub">दो खिलाड़ी</div>
+          <div class="card-label">PASS N PLAY</div>
+          <div class="card-sub">2 खिलाड़ी</div>
         </div>
       </div>
     </main>
@@ -669,40 +753,42 @@
     </nav>
   </section>
 
-  <!-- 15x15 GAME BOARD SCREEN -->
+  <!-- ================= CRYSTAL CLEAR 15x15 BOARD SCREEN ================= -->
   <section id="gameScreen">
     <div class="game-top">
       <div class="game-brand">👑 देसी लूडो राजा</div>
       <div class="game-controls">
+        <button class="small-btn" onclick="record3SecVoice()">🎙️ 3s</button>
         <button class="small-btn" onclick="toggleLang()">हिं/EN</button>
         <button id="gameSoundBtn" class="small-btn" onclick="toggleSound()">🔊</button>
         <button class="small-btn exit-btn" onclick="exitToStart()">बाहर</button>
       </div>
     </div>
 
-    <div class="turn-strip">
-      <div id="p1Box" class="player-box active-turn">
-        <div>
-          <div id="p1Name" style="font-weight:800; font-size:13px;">You (Red)</div>
-          <div id="p1HomeCount" style="font-size:11px; color:#ffd028;">Home: 0/4</div>
-        </div>
-        <div id="p1Dice" class="dice-box" onclick="rollDice()">🎲</div>
-      </div>
-
-      <div id="p2Box" class="player-box">
-        <div>
-          <div id="p2Name" style="font-weight:800; font-size:13px;">P2 (Yellow)</div>
-          <div id="p2HomeCount" style="font-size:11px; color:#ffd028;">Home: 0/4</div>
-        </div>
-        <div id="p2Dice" class="dice-box" onclick="rollDice()">🎲</div>
+    <div class="board-wrapper">
+      <div class="board-frame">
+        <div id="ludoGrid" class="ludo-grid"></div>
       </div>
     </div>
 
-    <div class="board-frame">
-      <div id="ludoGrid" class="ludo-grid"></div>
-    </div>
+    <div>
+      <div class="bottom-dock">
+        <div id="youDock" class="dock-player active">
+          <div class="dock-badge">🔵</div>
+          <span class="dock-name" id="youDockLabel">You</span>
+        </div>
 
-    <div id="gamePrompt" class="prompt-bar">डाइस पर टैप करें</div>
+        <div id="centerDiceBtn" class="center-dice-box" onclick="rollDice()">
+          <div id="diceFace" class="dice-face"></div>
+        </div>
+
+        <div id="comDock" class="dock-player">
+          <span class="dock-name" id="comDockLabel">Com</span>
+          <div class="dock-badge">🟢</div>
+        </div>
+      </div>
+      <div id="gamePrompt" class="prompt-strip">You — डाइस पर टैप करें</div>
+    </div>
   </section>
 </div>
 
@@ -720,7 +806,7 @@
 </div>
 
 <script>
-  const STATE_KEY = "desi_ludo_raja_state_v2";
+  const STATE_KEY = "desi_ludo_raja_state_v3";
   let appState = JSON.parse(localStorage.getItem(STATE_KEY) || "null") || {
     coins: 2500,
     dpDataUrl: "",
@@ -734,7 +820,7 @@
   let lastVoiceUrl = null;
   let voiceTimer = null;
 
-  // 52-cell perimeter path on 15x15 grid
+  // 52-cell clockwise perimeter track on 15x15 grid
   const MAIN_PATH = [
     [6,1],[6,2],[6,3],[6,4],[6,5],
     [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
@@ -750,21 +836,34 @@
     [7,0],[6,0]
   ];
 
+  // Safe star cells + entry squares
   const SAFE_INDEXES = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
+
+  // Yard circle coordinates (exact alignment inside white inner boxes)
   const YARD_COORDS = {
-    red: [[2,2],[2,3],[3,2],[3,3]],
-    green: [[2,11],[2,12],[3,11],[3,12]],
+    red:    [[2,2],[2,3],[3,2],[3,3]],
+    green:  [[2,11],[2,12],[3,11],[3,12]],
     yellow: [[11,11],[11,12],[12,11],[12,12]],
-    blue: [[11,2],[11,3],[12,2],[12,3]]
+    blue:   [[11,2],[11,3],[12,2],[12,3]]
+  };
+
+  // Player seat offsets on MAIN_PATH (Blue bottom-left vs Green top-right just like reference!)
+  const START_OFFSET = {
+    red: 0,
+    green: 13,
+    yellow: 26,
+    blue: 39
   };
 
   let game = {
     mode: "bot",
-    players: ["red", "yellow"],
+    players: ["blue", "green"],
     turnIdx: 0,
-    dice: null,
+    dice: 3,
     rolled: false,
     tokens: {
+      blue: [-1, -1, -1, -1],
+      green: [-1, -1, -1, -1],
       red: [-1, -1, -1, -1],
       yellow: [-1, -1, -1, -1]
     }
@@ -803,13 +902,13 @@
     const isEn = appState.lang === "en";
     document.getElementById("mainTitle").textContent = isEn ? "DESI LUDO RAJA" : "देसी लूडो राजा";
     document.getElementById("subTitle").textContent = isEn
-      ? "15×15 Board • Pass & Play • Desi Style"
-      : "15×15 बोर्ड • पास एंड प्ले • देसी अंदाज़";
+      ? "Clear Board • 3D Pins • Pass & Play"
+      : "क्लियर बोर्ड • 3D गोटी • पास एंड प्ले";
   }
 
   function openDpModal() {
     document.getElementById("modalTitle").textContent = "कस्टम DP सेट करें";
-    document.getElementById("modalBody").textContent = "अपनी फोटो चुनें (अपने आप 128×128 में सेव होगी):";
+    document.getElementById("modalBody").textContent = "अपनी फोटो चुनें (128×128 में सेव होगी):";
     const btn = document.getElementById("modalConfirmBtn");
     btn.textContent = "फ़ोटो चुनें";
     btn.onclick = () => {
@@ -933,24 +1032,49 @@
     setStatus("वॉयस रिएक्शन चल रही है...");
   }
 
-  /* BOARD LOGIC */
+  /* ================= BOARD & DICE RENDERING ================= */
+  function renderDiceFace(num, color = "blue") {
+    const face = document.getElementById("diceFace");
+    const box = document.getElementById("centerDiceBtn");
+    box.classList.toggle("green-turn", color === "green" || color === "red");
+
+    const pipClass = color === "green" ? "pip green-pip" : color === "red" ? "pip red-pip" : "pip";
+    const patterns = {
+      1: [4],
+      2: [2, 6],
+      3: [2, 4, 6],
+      4: [0, 2, 6, 8],
+      5: [0, 2, 4, 6, 8],
+      6: [0, 2, 3, 5, 6, 8]
+    };
+    const activeSet = new Set(patterns[num || 3]);
+    face.innerHTML = "";
+    for (let i = 0; i < 9; i++) {
+      const dot = document.createElement("span");
+      if (activeSet.has(i)) dot.className = pipClass;
+      face.appendChild(dot);
+    }
+  }
+
   function startMode(mode, count) {
     game = {
       mode,
-      players: count === 4 ? ["red", "green", "yellow", "blue"] : ["red", "yellow"],
+      players: count === 4 ? ["blue", "red", "green", "yellow"] : ["blue", "green"],
       turnIdx: 0,
-      dice: null,
+      dice: 3,
       rolled: false,
       tokens: {
-        red: [-1, -1, -1, -1],
-        yellow: [-1, -1, -1, -1],
+        blue: [-1, -1, -1, -1],
         green: [-1, -1, -1, -1],
-        blue: [-1, -1, -1, -1]
+        red: [-1, -1, -1, -1],
+        yellow: [-1, -1, -1, -1]
       }
     };
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
-    document.getElementById("p2Name").textContent = mode === "bot" ? "Bot (Yellow)" : "P2 (Yellow)";
+    document.getElementById("youDockLabel").textContent = "You";
+    document.getElementById("comDockLabel").textContent = mode === "bot" ? "Com" : "P2";
+    renderDiceFace(3, "blue");
     renderBoard();
     updatePrompt();
   }
@@ -964,12 +1088,8 @@
     return game.players[game.turnIdx];
   }
 
-  function startOffset(color) {
-    return { red: 0, green: 13, yellow: 26, blue: 39 }[color];
-  }
-
   function canMoveToken(color, stepVal, dice) {
-    if (stepVal === 56) return false; // already home
+    if (stepVal === 56) return false;
     if (stepVal === -1) return dice === 6;
     return stepVal + dice <= 56;
   }
@@ -977,12 +1097,18 @@
   function rollDice() {
     const color = currentColor();
     if (game.rolled) return;
-    if (game.mode === "bot" && color === "yellow") return;
+    if (game.mode === "bot" && color === "green") return;
 
+    executeRoll();
+  }
+
+  function executeRoll() {
+    const color = currentColor();
     const val = Math.floor(Math.random() * 6) + 1;
     game.dice = val;
     game.rolled = true;
     playTone(620, 0.08);
+    renderDiceFace(val, color);
 
     const movableIndexes = game.tokens[color]
       .map((pos, idx) => (canMoveToken(color, pos, val) ? idx : -1))
@@ -993,8 +1119,8 @@
     if (movableIndexes.length === 0) {
       updatePrompt(val, true);
       setTimeout(nextTurn, 750);
-    } else if (game.mode === "bot" && color === "yellow") {
-      setTimeout(() => moveToken("yellow", movableIndexes[0]), 550);
+    } else if (game.mode === "bot" && color === "green") {
+      setTimeout(() => moveToken("green", movableIndexes[0]), 550);
     } else {
       updatePrompt(val, false);
     }
@@ -1006,21 +1132,37 @@
     if (!canMoveToken(color, cur, game.dice)) return;
 
     playTone(780, 0.1);
-    if (cur === -1 && game.dice === 6) {
-      game.tokens[color][idx] = 0;
-    } else {
-      game.tokens[color][idx] = cur + game.dice;
+    const nextStep = cur === -1 && game.dice === 6 ? 0 : cur + game.dice;
+    game.tokens[color][idx] = nextStep;
+
+    // Capture opponent token if landing on non-safe track square
+    if (nextStep >= 0 && nextStep <= 50) {
+      const landedGlobal = (START_OFFSET[color] + nextStep) % 52;
+      if (!SAFE_INDEXES.has(landedGlobal)) {
+        game.players.forEach(opp => {
+          if (opp === color) return;
+          game.tokens[opp] = game.tokens[opp].map(oppStep => {
+            if (oppStep >= 0 && oppStep <= 50) {
+              const oppGlobal = (START_OFFSET[opp] + oppStep) % 52;
+              if (oppGlobal === landedGlobal) {
+                playTone(320, 0.16);
+                return -1; // send back to yard
+              }
+            }
+            return oppStep;
+          });
+        });
+      }
     }
 
     const bonusTurn = game.dice === 6;
     game.rolled = false;
-    game.dice = null;
 
     if (game.tokens[color].every(p => p === 56)) {
       appState.coins += 100;
       saveAppState();
       renderStartUI();
-      alert(`${color.toUpperCase()} जीत गया! +100 कॉइन्स`);
+      alert(`${color === "blue" ? "You" : color.toUpperCase()} जीत गया! +100 कॉइन्स`);
       exitToStart();
       return;
     }
@@ -1030,8 +1172,8 @@
     } else {
       renderBoard();
       updatePrompt();
-      if (game.mode === "bot" && currentColor() === "yellow") {
-        setTimeout(rollDice, 600);
+      if (game.mode === "bot" && currentColor() === "green") {
+        setTimeout(executeRoll, 600);
       }
     }
   }
@@ -1039,34 +1181,35 @@
   function nextTurn() {
     game.turnIdx = (game.turnIdx + 1) % game.players.length;
     game.rolled = false;
-    game.dice = null;
+    renderDiceFace(game.dice, currentColor());
     renderBoard();
     updatePrompt();
-    if (game.mode === "bot" && currentColor() === "yellow") {
-      setTimeout(rollDice, 650);
+    if (game.mode === "bot" && currentColor() === "green") {
+      setTimeout(executeRoll, 650);
     }
   }
 
-  function updatePrompt(rolledVal = null, noMove = false) {
-    const c = currentColor().toUpperCase();
-    const isEn = appState.lang === "en";
-    const p1Home = game.tokens.red.filter(x => x === 56).length;
-    const p2Home = game.tokens.yellow.filter(x => x === 56).length;
-    document.getElementById("p1HomeCount").textContent = `Home: ${p1Home}/4`;
-    document.getElementById("p2HomeCount").textContent = `Home: ${p2Home}/4`;
-    document.getElementById("p1Box").classList.toggle("active-turn", currentColor() === "red");
-    document.getElementById("p2Box").classList.toggle("active-turn", currentColor() === "yellow");
+  function seatLabel(color) {
+    if (color === "blue") return "You";
+    if (color === "green") return game.mode === "bot" ? "Computer" : "P2";
+    return color.toUpperCase();
+  }
 
-    document.getElementById("p1Dice").textContent = game.dice && currentColor() === "red" ? game.dice : "🎲";
-    document.getElementById("p2Dice").textContent = game.dice && currentColor() === "yellow" ? game.dice : "🎲";
+  function updatePrompt(rolledVal = null, noMove = false) {
+    const c = currentColor();
+    const label = seatLabel(c);
+    const isEn = appState.lang === "en";
+
+    document.getElementById("youDock").classList.toggle("active", c === "blue");
+    document.getElementById("comDock").classList.toggle("active", c !== "blue");
 
     const el = document.getElementById("gamePrompt");
     if (noMove) {
-      el.textContent = isEn ? `${c} rolled ${rolledVal} — no valid move` : `${c} ने ${rolledVal} फेंका — चाल नहीं`;
+      el.textContent = isEn ? `${label} rolled ${rolledVal} — no valid move` : `${label} ने ${rolledVal} फेंका — कोई चाल नहीं`;
     } else if (rolledVal) {
-      el.textContent = isEn ? `${c} rolled ${rolledVal} — tap a token` : `${c} ने ${rolledVal} फेंका — गोटी चुनें`;
+      el.textContent = isEn ? `${label} rolled ${rolledVal} — tap glowing pin` : `${label} ने ${rolledVal} फेंका — चमकती गोटी चुनें`;
     } else {
-      el.textContent = isEn ? `${c} — tap dice to roll` : `${c} — डाइस पर टैप करें`;
+      el.textContent = isEn ? `${label} — tap center dice` : `${label} — बीच वाले डाइस पर टैप करें`;
     }
   }
 
@@ -1079,7 +1222,7 @@
       if (color === "green") return [1 + homeStep, 7];
       if (color === "blue") return [13 - homeStep, 7];
     }
-    const globalIdx = (startOffset(color) + stepVal) % MAIN_PATH.length;
+    const globalIdx = (START_OFFSET[color] + stepVal) % 52;
     return MAIN_PATH[globalIdx];
   }
 
@@ -1095,44 +1238,48 @@
       })
     );
 
-    // Bases
+    // 4 Corner Bases
     for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) cellMatrix[r][c].className = "cell c-red";
     for (let r = 0; r < 6; r++) for (let c = 9; c < 15; c++) cellMatrix[r][c].className = "cell c-green";
     for (let r = 9; r < 15; r++) for (let c = 0; c < 6; c++) cellMatrix[r][c].className = "cell c-blue";
     for (let r = 9; r < 15; r++) for (let c = 9; c < 15; c++) cellMatrix[r][c].className = "cell c-yellow";
 
-    // Home stretch & center
+    // Colored Start Squares + Home Lanes
+    cellMatrix[6][1].className = "cell c-red";
     for (let c = 1; c <= 5; c++) cellMatrix[7][c].className = "cell c-red";
-    for (let c = 9; c <= 13; c++) cellMatrix[7][c].className = "cell c-yellow";
+
+    cellMatrix[1][8].className = "cell c-green";
     for (let r = 1; r <= 5; r++) cellMatrix[r][7].className = "cell c-green";
+
+    cellMatrix[8][13].className = "cell c-yellow";
+    for (let c = 9; c <= 13; c++) cellMatrix[7][c].className = "cell c-yellow";
+
+    cellMatrix[13][6].className = "cell c-blue";
     for (let r = 9; r <= 13; r++) cellMatrix[r][7].className = "cell c-blue";
 
-    MAIN_PATH.forEach(([r, c], idx) => {
-      if (SAFE_INDEXES.has(idx)) {
-        cellMatrix[r][c].textContent = "★";
-      }
+    // Entry Arrows & Stars (Exact match with reference board)
+    cellMatrix[7][0].innerHTML = `<span class="arrow-icon">→</span>`;
+    cellMatrix[0][7].innerHTML = `<span class="arrow-icon">↓</span>`;
+    cellMatrix[7][14].innerHTML = `<span class="arrow-icon">←</span>`;
+    cellMatrix[14][7].innerHTML = `<span class="arrow-icon">↑</span>`;
+
+    [[2,6],[6,12],[12,8],[8,2]].forEach(([r, c]) => {
+      cellMatrix[r][c].innerHTML = `<span class="star-icon">☆</span>`;
     });
 
-    for (let r = 6; r <= 8; r++) {
-      for (let c = 6; c <= 8; c++) {
-        cellMatrix[r][c].style.background = "#ffd54f";
-      }
-    }
-    cellMatrix[7][7].textContent = "👑";
-
-    // Place tokens
+    // Place 3D Pin Tokens
     game.players.forEach(color => {
       game.tokens[color].forEach((stepVal, idx) => {
         const coord = stepVal === -1 ? YARD_COORDS[color][idx] : tokenCoord(color, stepVal);
         if (!coord) return;
         const [r, c] = coord;
-        const tok = document.createElement("div");
-        tok.className = `token t-${color}`;
+        const pin = document.createElement("div");
+        pin.className = `token-pin pin-${color}`;
         if (color === currentColor() && movableIndexes.includes(idx)) {
-          tok.classList.add("movable");
+          pin.classList.add("movable");
         }
-        tok.onclick = () => moveToken(color, idx);
-        cellMatrix[r][c].appendChild(tok);
+        pin.onclick = () => moveToken(color, idx);
+        cellMatrix[r][c].appendChild(pin);
       });
     });
 
@@ -1141,6 +1288,40 @@
         grid.appendChild(cellMatrix[r][c]);
       }
     }
+
+    // Add White Inner Yard Boxes with 4 Spots
+    const yards = [
+      { cls: "yard-red", spot: "spot-red" },
+      { cls: "yard-green", spot: "spot-green" },
+      { cls: "yard-blue", spot: "spot-blue" },
+      { cls: "yard-yellow", spot: "spot-yellow" }
+    ];
+    yards.forEach(y => {
+      const box = document.createElement("div");
+      box.className = `yard-inner ${y.cls}`;
+      for (let i = 0; i < 4; i++) {
+        const s = document.createElement("div");
+        s.className = `yard-spot ${y.spot}`;
+        box.appendChild(s);
+      }
+      grid.appendChild(box);
+    });
+
+    // 4-Triangle Center Home
+    const centerHome = document.createElement("div");
+    centerHome.className = "home-center-triangles";
+    grid.appendChild(centerHome);
+
+    // Corner Labels (Computer & You)
+    const lblTop = document.createElement("div");
+    lblTop.className = "yard-label lbl-top-right";
+    lblTop.textContent = game.mode === "bot" ? "Computer" : "P2";
+    grid.appendChild(lblTop);
+
+    const lblBot = document.createElement("div");
+    lblBot.className = "yard-label lbl-bot-left";
+    lblBot.textContent = "You";
+    grid.appendChild(lblBot);
   }
 
   renderStartUI();
