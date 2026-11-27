@@ -5,16 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#ff4081" />
+<meta name="theme-color" content="#00c853" />
 <style>
   :root {
     --gold-1: #fff59d;
     --gold-2: #ffb300;
-    --red: #ff2e55;
-    --green: #00c853;
-    --yellow: #ffd600;
-    --blue: #00b0ff;
-    --panel: rgba(26, 14, 68, 0.86);
+    --red: #e53935;
+    --green: #00b248;
+    --yellow: #fdd835;
+    --blue: #1e88e5;
   }
 
   * {
@@ -28,10 +27,9 @@
     min-height: 100dvh;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
     background:
-      radial-gradient(circle at 15% 10%, rgba(255, 64, 129, 0.55), transparent 45%),
-      radial-gradient(circle at 85% 15%, rgba(0, 229, 255, 0.5), transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(255, 214, 0, 0.42), transparent 50%),
-      linear-gradient(155deg, #5e17eb 0%, #8c1bab 48%, #1e1b6b 100%);
+      radial-gradient(circle at 20% 12%, rgba(0, 230, 118, 0.36), transparent 46%),
+      radial-gradient(circle at 82% 18%, rgba(255, 193, 7, 0.34), transparent 46%),
+      linear-gradient(160deg, #1b4fd8 0%, #102f8c 55%, #091b54 100%);
     color: #fff;
     display: flex;
     justify-content: center;
@@ -46,7 +44,7 @@
     position: relative;
   }
 
-  /* ================= GREEN STAR INTRO SPLASH ================= */
+  /* ================= GREEN STAR PRO INTRO ================= */
   #greenStarSplash {
     position: fixed;
     inset: 0;
@@ -58,83 +56,111 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 42%, rgba(0, 255, 136, 0.55), rgba(0, 200, 83, 0.25) 38%, rgba(49, 16, 112, 0.94) 84%),
-      linear-gradient(145deg, #00e676, #651fff 68%, #d500f9);
+      radial-gradient(circle at 50% 44%, rgba(0, 255, 136, 0.42), rgba(16, 78, 184, 0.92) 72%, #081844 100%);
     transition: opacity 0.35s ease, transform 0.35s ease;
   }
 
   #greenStarSplash.hide-splash {
     opacity: 0;
-    transform: scale(1.06);
+    transform: scale(1.05);
     pointer-events: none;
   }
 
-  .star-aura {
+  .star-stage {
     position: relative;
-    width: 156px;
-    height: 156px;
+    width: 190px;
+    height: 190px;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 16px 26px rgba(0, 25, 15, 0.65));
   }
 
-  .star-ring-glow {
+  .star-rays {
     position: absolute;
-    inset: 6px;
+    inset: 0;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(185, 246, 202, 0.8) 0%, rgba(0, 230, 118, 0.25) 60%, transparent 75%);
-    animation: starPulse 1.3s ease-in-out infinite alternate;
+    background: repeating-conic-gradient(
+      from 0deg,
+      rgba(185, 246, 202, 0.34) 0deg 12deg,
+      transparent 12deg 30deg
+    );
+    -webkit-mask-image: radial-gradient(circle, transparent 26%, black 52%, transparent 74%);
+    mask-image: radial-gradient(circle, transparent 26%, black 52%, transparent 74%);
+    animation: raysSpin 5.5s linear infinite;
   }
 
-  @keyframes starPulse {
-    from { transform: scale(0.92); opacity: 0.78; }
-    to   { transform: scale(1.13); opacity: 1; }
+  @keyframes raysSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 
-  .green-star-svg {
+  .star-sparkle {
+    position: absolute;
+    font-size: 16px;
+    color: #fff59d;
+    animation: sparkleOrbit 1.8s ease-in-out infinite alternate;
+  }
+
+  .sp-1 { top: 14px; right: 24px; animation-delay: 0s; }
+  .sp-2 { bottom: 20px; left: 22px; animation-delay: 0.35s; }
+  .sp-3 { top: 28px; left: 20px; font-size: 13px; animation-delay: 0.7s; }
+
+  @keyframes sparkleOrbit {
+    from { transform: scale(0.75) rotate(-15deg); opacity: 0.55; }
+    to   { transform: scale(1.25) rotate(18deg); opacity: 1; }
+  }
+
+  .green-star-hero {
     width: 132px;
     height: 132px;
     position: relative;
     z-index: 2;
-    animation: starPopSpin 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    filter: drop-shadow(0 14px 22px rgba(0, 35, 18, 0.72)) drop-shadow(0 0 18px rgba(0, 230, 118, 0.75));
+    animation: starSpringIn 0.85s cubic-bezier(0.2, 1.35, 0.35, 1) forwards, starFloat 2.2s ease-in-out 0.85s infinite alternate;
   }
 
-  @keyframes starPopSpin {
-    0%   { transform: scale(0.25) rotate(-35deg); opacity: 0.2; }
-    65%  { transform: scale(1.12) rotate(8deg); opacity: 1; }
+  @keyframes starSpringIn {
+    0%   { transform: scale(0.15) rotate(-65deg); opacity: 0; }
+    70%  { transform: scale(1.14) rotate(10deg); opacity: 1; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
   }
 
+  @keyframes starFloat {
+    from { transform: translateY(0px) scale(1); }
+    to   { transform: translateY(-6px) scale(1.04); }
+  }
+
   .splash-title {
-    margin: 12px 0 4px;
+    margin: 8px 0 4px;
     font-size: 28px;
     font-weight: 950;
-    color: #ffffff;
-    text-shadow: 0 4px 12px rgba(0, 45, 22, 0.7), 0 0 18px rgba(105, 240, 174, 0.85);
+    letter-spacing: 0.6px;
+    background: linear-gradient(180deg, #ffffff, #b9f6ca 55%, #00e676 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.55));
   }
 
   .splash-sub {
     margin: 0 0 16px;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 800;
     color: #e8fff2;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
   }
 
   .splash-skip-btn {
     border: 2px solid #fff59d;
     border-radius: 999px;
-    padding: 8px 20px;
+    padding: 8px 22px;
     background: linear-gradient(180deg, #00e676, #00897b);
     color: #fff;
     font-size: 12px;
     font-weight: 900;
     cursor: pointer;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.42);
   }
 
-  /* Glossy Shine Sweep Effect */
+  /* Glossy Shine Sweep */
   .shine-box {
     position: relative;
     overflow: hidden;
@@ -150,11 +176,11 @@
     background: linear-gradient(
       115deg,
       transparent 18%,
-      rgba(255, 255, 255, 0.52) 50%,
+      rgba(255, 255, 255, 0.48) 50%,
       transparent 82%
     );
     transform: skewX(-18deg);
-    animation: shineSweep 3s infinite ease-in-out;
+    animation: shineSweep 3.1s infinite ease-in-out;
     pointer-events: none;
   }
 
@@ -164,17 +190,16 @@
     100% { left: 155%; }
   }
 
-  /* ================= VIBRANT CARNIVAL START SCREEN ================= */
+  /* ================= JEWEL ARCADE START SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background:
-      radial-gradient(circle at 12% 14%, rgba(0, 230, 118, 0.48), transparent 40%),
-      radial-gradient(circle at 88% 12%, rgba(255, 64, 129, 0.52), transparent 42%),
-      radial-gradient(circle at 50% 55%, rgba(0, 229, 255, 0.38), transparent 55%),
-      linear-gradient(165deg, #6200ea 0%, #aa00ff 48%, #283593 100%);
+      radial-gradient(circle at 14% 12%, rgba(0, 230, 118, 0.35), transparent 42%),
+      radial-gradient(circle at 86% 14%, rgba(255, 179, 0, 0.34), transparent 42%),
+      linear-gradient(165deg, #1d57e8 0%, #1339a8 52%, #0b2169 100%);
   }
 
   .top-hud {
@@ -183,9 +208,9 @@
     justify-content: space-between;
     gap: 5px;
     padding: 8px 9px;
-    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.92), rgba(26, 35, 126, 0.95));
-    border-bottom: 2px solid #fff59d;
-    box-shadow: 0 4px 12px rgba(20, 0, 50, 0.38);
+    background: linear-gradient(180deg, rgba(22, 68, 184, 0.96), rgba(11, 35, 108, 0.98));
+    border-bottom: 2px solid rgba(255, 245, 157, 0.65);
+    box-shadow: 0 4px 12px rgba(0, 15, 60, 0.38);
   }
 
   .user-chip {
@@ -194,9 +219,8 @@
     gap: 6px;
     padding: 3px 8px 3px 3px;
     border-radius: 13px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.08));
+    background: rgba(255, 255, 255, 0.14);
     border: 1.5px solid var(--gold-1);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
     cursor: pointer;
   }
 
@@ -205,7 +229,7 @@
     height: 35px;
     border-radius: 10px;
     border: 2px solid var(--gold-1);
-    background: linear-gradient(135deg, #ff4081, #ff9100);
+    background: linear-gradient(135deg, #00e676, #00897b);
     display: grid;
     place-items: center;
     font-size: 17px;
@@ -253,7 +277,7 @@
     gap: 3px;
     padding: 3px 6px;
     border-radius: 999px;
-    background: rgba(24, 9, 58, 0.85);
+    background: rgba(7, 22, 74, 0.9);
     border: 1.5px solid var(--gold-1);
     font-size: 10.5px;
     font-weight: 900;
@@ -278,7 +302,7 @@
     padding: 0 7px;
     border-radius: 9px;
     border: 1.5px solid #fff59d;
-    background: linear-gradient(180deg, #ff6e40, #d84315);
+    background: linear-gradient(180deg, #42a5f5, #1565c0);
     color: #fff;
     font-size: 11px;
     font-weight: 900;
@@ -290,7 +314,7 @@
     max-width: 90px;
     border-radius: 9px;
     border: 1.5px solid var(--gold-1);
-    background: #311b92;
+    background: #0c2670;
     color: var(--gold-1);
     font-size: 10px;
     font-weight: 800;
@@ -316,7 +340,7 @@
   }
 
   .pack-badge {
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    background: linear-gradient(180deg, #ffe066, #f57c00);
     border: 1.5px solid #fff9c4;
     border-radius: 10px;
     padding: 4px 8px;
@@ -338,8 +362,8 @@
   }
 
   .free-perk-btn {
-    background: linear-gradient(180deg, #00e5ff, #0091ea);
-    border: 1.5px solid #e0f7fa;
+    background: linear-gradient(180deg, #00e676, #00897b);
+    border: 1.5px solid #e8fff2;
     border-radius: 10px;
     padding: 4px 8px;
     font-size: 9.5px;
@@ -359,16 +383,16 @@
     margin: 2px 0 0;
     font-size: 27px;
     font-weight: 950;
-    background: linear-gradient(180deg, #ffffff 0%, #fff176 50%, #ff9100 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #fff176 52%, #ff9100 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 0 #4a0e3d);
+    filter: drop-shadow(0 3px 0 #4d1f00);
   }
 
   .hero-tagline {
     margin: 2px 0 6px;
     font-size: 10.5px;
-    color: #fff3e0;
+    color: #e3f2fd;
     font-weight: 800;
   }
 
@@ -396,67 +420,30 @@
     overflow: hidden;
   }
 
-  .mt-r { background: #ff2e55; }
-  .mt-g { background: #00c853; }
-  .mt-b { background: #00b0ff; }
-  .mt-y { background: #ffd600; }
-
-  .hero-pawn {
-    position: absolute;
-    width: 30px;
-    height: 38px;
-    bottom: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.45));
-  }
-
-  .hp-head {
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    border: 1.5px solid #222;
-    box-shadow: inset 1.5px 1.5px 2.5px rgba(255, 255, 255, 0.85);
-  }
-
-  .hp-cone {
-    width: 0;
-    height: 0;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
-    border-bottom: 19px solid currentColor;
-    margin-top: -3px;
-  }
-
-  .hp-blue { left: 14px; color: #00b0ff; }
-  .hp-blue .hp-head { background: radial-gradient(circle at 35% 30%, #b3e5fc, #0277bd); }
-
-  .hp-red { left: 48px; bottom: 20px; color: #ff2e55; transform: scale(0.84); }
-  .hp-red .hp-head { background: radial-gradient(circle at 35% 30%, #ff8a80, #c62828); }
-
-  .hp-yellow { right: 14px; color: #ffd600; }
-  .hp-yellow .hp-head { background: radial-gradient(circle at 35% 30%, #fff9c4, #f57f17); }
+  .mt-r { background: #e53935; }
+  .mt-g { background: #00b248; }
+  .mt-b { background: #1e88e5; }
+  .mt-y { background: #fdd835; }
 
   .hero-3d-dice {
     position: absolute;
-    top: 4px;
+    top: 2px;
     left: 50%;
     transform: translateX(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 9px;
-    background: linear-gradient(145deg, #ffffff, #ffe082);
-    border: 2px solid #ff4081;
-    color: #311b92;
-    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: linear-gradient(145deg, #ffffff, #dce9ff);
+    border: 2.2px solid #fff59d;
+    color: #0b2254;
+    font-size: 20px;
     font-weight: 950;
     display: grid;
     place-items: center;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.42);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45);
   }
 
-  /* ================= 5 UNIQUE DESIGN MODE CARDS ================= */
+  /* ================= 5 DISTINCT MODE CARDS ================= */
   .modes-wrap {
     padding: 4px 10px 4px;
     display: flex;
@@ -476,48 +463,43 @@
     gap: 9px;
   }
 
-  .unique-card {
+  .mode-tile {
     padding: 12px 6px;
     text-align: center;
     cursor: pointer;
-    position: relative;
     transition: transform 0.08s ease;
   }
 
-  .unique-card:active {
+  .mode-tile:active {
     transform: translateY(3px);
   }
 
-  /* Option 1: ONLINE — Sunburst Orange-Coral Pill-Top */
-  .opt-online {
-    border-radius: 22px 22px 12px 12px;
-    border: 2.5px solid #fff59d;
-    background: linear-gradient(155deg, #ff9100 0%, #ff3d00 55%, #dd2c00 100%);
-    box-shadow: 0 5px 0 #7f1d00, 0 10px 18px rgba(0, 0, 0, 0.35);
+  .tile-online {
+    border-radius: 20px 20px 12px 12px;
+    border: 2.2px solid #fff59d;
+    background: linear-gradient(160deg, #ffa726, #ef6c00);
+    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
   }
 
-  /* Option 2: TEAM UP — Emerald-Teal Shield Cut */
-  .opt-team {
-    border-radius: 12px 12px 24px 24px;
-    border: 2.5px solid #b9f6ca;
-    background: linear-gradient(155deg, #00e676 0%, #00bfa5 55%, #00695c 100%);
-    box-shadow: 0 5px 0 #003d33, 0 10px 18px rgba(0, 0, 0, 0.35);
+  .tile-team {
+    border-radius: 12px 12px 22px 22px;
+    border: 2.2px solid #b9f6ca;
+    background: linear-gradient(160deg, #00e676, #00897b);
+    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
   }
 
-  /* Option 3: FRIENDS — Neon Rose-Magenta Ticket */
-  .opt-friends {
-    border-radius: 20px 8px 20px 8px;
-    border: 2.5px solid #ffc1e3;
-    background: linear-gradient(155deg, #ff4081 0%, #f50057 55%, #ad1457 100%);
-    box-shadow: 0 5px 0 #6a0032, 0 10px 18px rgba(0, 0, 0, 0.35);
+  .tile-friends {
+    border-radius: 18px 8px 18px 8px;
+    border: 2.2px solid #ffc1e3;
+    background: linear-gradient(160deg, #ff5252, #c2185b);
+    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
   }
 
-  /* Option 4: COMPUTER — Electric Cyan-Turquoise Cyber Pod */
-  .opt-computer {
-    border-radius: 10px 24px 10px 24px;
-    border: 2.5px solid #b2ebf2;
-    background: linear-gradient(145deg, #00e5ff 0%, #0091ea 55%, #01579b 100%);
-    box-shadow: 0 5px 0 #002f6c, 0 10px 18px rgba(0, 0, 0, 0.35);
+  .tile-computer {
+    border-radius: 10px 22px 10px 22px;
+    border: 2.2px solid #b3e5fc;
+    background: linear-gradient(150deg, #29b6f6, #0277bd);
+    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -525,12 +507,11 @@
     padding: 13px 8px;
   }
 
-  /* Option 5: PASS N PLAY — Royal Gold-Violet Arena Pod */
-  .opt-pass {
-    border-radius: 24px 10px 24px 10px;
-    border: 2.5px solid #ffe57f;
-    background: linear-gradient(145deg, #ffd740 0%, #ff6f00 52%, #6a1b9a 100%);
-    box-shadow: 0 5px 0 #38006b, 0 10px 18px rgba(0, 0, 0, 0.35);
+  .tile-pass {
+    border-radius: 22px 10px 22px 10px;
+    border: 2.2px solid #ffe082;
+    background: linear-gradient(150deg, #ffd54f, #7b1fa2);
+    box-shadow: 0 5px 0 #0a2366, 0 10px 18px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -538,38 +519,36 @@
     padding: 13px 8px;
   }
 
-  .badge-ring {
+  .tile-emblem {
     width: 38px;
     height: 38px;
     margin: 0 auto;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.24);
-    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.22);
+    border: 1.5px solid rgba(255, 255, 255, 0.72);
     display: grid;
     place-items: center;
     font-size: 20px;
-    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 3px 6px rgba(0, 0, 0, 0.28);
     flex-shrink: 0;
   }
 
-  .card-title-big {
+  .tile-title {
     font-size: 12.5px;
     font-weight: 950;
-    letter-spacing: 0.2px;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.38);
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
     margin-top: 4px;
   }
 
-  .opt-computer .card-title-big,
-  .opt-pass .card-title-big {
+  .tile-computer .tile-title,
+  .tile-pass .tile-title {
     margin-top: 0;
     text-align: left;
   }
 
-  .card-sub-pill {
+  .tile-tag {
     font-size: 9.5px;
     font-weight: 900;
-    color: #1f0a3d;
+    color: #091d52;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 999px;
     display: inline-block;
@@ -577,7 +556,6 @@
     margin-top: 3px;
   }
 
-  /* Tournament & Season Claim Strip */
   .tournament-row {
     display: flex;
     align-items: center;
@@ -588,37 +566,36 @@
 
   .tourney-pill {
     flex: 1;
-    border-radius: 13px;
+    border-radius: 12px;
     border: 2px solid #fff59d;
-    background: linear-gradient(90deg, #ff4081, #7c4dff, #00b0ff);
+    background: linear-gradient(180deg, #29b6f6, #0277bd);
     padding: 7px 8px;
     text-align: center;
     font-size: 11.5px;
     font-weight: 950;
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 4px 0 #260e69;
+    box-shadow: 0 4px 0 #071b4d;
   }
 
   .season-claim-btn {
-    border-radius: 13px;
+    border-radius: 12px;
     border: 2px solid #fff9c4;
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    background: linear-gradient(180deg, #ffe066, #f57c00);
     padding: 7px 13px;
     font-size: 11.5px;
     font-weight: 950;
     color: #241000;
     cursor: pointer;
-    box-shadow: 0 4px 0 #7a3200;
+    box-shadow: 0 4px 0 #662900;
   }
 
-  /* Invite + 3s Voice Bar */
   .utility-bar {
     margin: 4px 10px;
     padding: 7px 9px;
     border-radius: 13px;
-    background: linear-gradient(90deg, rgba(69, 26, 138, 0.92), rgba(136, 14, 79, 0.9));
-    border: 1.5px solid rgba(255, 245, 157, 0.65);
+    background: rgba(9, 26, 78, 0.9);
+    border: 1.5px solid rgba(255, 245, 157, 0.55);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -630,7 +607,7 @@
     border: 1.5px solid #e8fff2;
     border-radius: 8px;
     padding: 4px 9px;
-    background: linear-gradient(180deg, #00e676, #00897b);
+    background: linear-gradient(180deg, #25d366, #128c7e);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -641,7 +618,7 @@
     border: 1.5px solid #fff59d;
     border-radius: 8px;
     padding: 4px 9px;
-    background: linear-gradient(180deg, #00b0ff, #1565c0);
+    background: linear-gradient(180deg, #42a5f5, #1565c0);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -672,7 +649,7 @@
     border: none;
     border-radius: 999px;
     padding: 4px 9px;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.22);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -689,19 +666,18 @@
     color: var(--gold-1);
   }
 
-  /* Bottom Navigation */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(90deg, #4a148c, #880e4f, #1a237e);
-    border-top: 2px solid #fff59d;
+    background: linear-gradient(180deg, #1648bd, #0a2266);
+    border-top: 2px solid rgba(255, 245, 157, 0.6);
     padding: 4px 2px 5px;
   }
 
   .nav-tab {
     border: none;
     background: transparent;
-    color: #fce4ec;
+    color: #dceeff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -714,12 +690,12 @@
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #ff80ab, #ad1457);
+    background: linear-gradient(180deg, #4fc3f7, #1565c0);
     color: #fff;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
   }
 
-  /* ================= GAME SCREEN & VIBRANT BOARD BACKDROP ================= */
+  /* ================= GAME SCREEN & BIG 3D DICE + GEM GOTI ================= */
   #gameScreen {
     display: none;
     flex: 1;
@@ -728,18 +704,17 @@
     padding: 6px 8px 10px;
     gap: 5px;
     background:
-      radial-gradient(circle at 18% 18%, rgba(255, 64, 129, 0.44), transparent 45%),
-      radial-gradient(circle at 82% 80%, rgba(0, 229, 255, 0.42), transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(255, 214, 0, 0.25), rgba(45, 18, 108, 0.95) 80%),
-      linear-gradient(155deg, #5e17eb, #8c1bab, #1e1b6b);
+      radial-gradient(circle at 20% 18%, rgba(0, 230, 118, 0.32), transparent 45%),
+      radial-gradient(circle at 82% 80%, rgba(255, 213, 79, 0.32), transparent 45%),
+      linear-gradient(160deg, #1b4fd8 0%, #102f8c 58%, #091b54 100%);
   }
 
   .game-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.92));
-    border: 1.5px solid #fff59d;
+    background: rgba(9, 26, 78, 0.92);
+    border: 1.5px solid rgba(255, 245, 157, 0.55);
     border-radius: 12px;
     padding: 5px 8px;
     gap: 4px;
@@ -761,7 +736,7 @@
     border: 1px solid #fff59d;
     border-radius: 8px;
     padding: 4px 7px;
-    background: linear-gradient(180deg, #ff6e40, #d84315);
+    background: linear-gradient(180deg, #42a5f5, #1565c0);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -769,24 +744,24 @@
   }
 
   .mini-exit {
-    background: linear-gradient(180deg, #ff1744, #b71c1c);
+    background: linear-gradient(180deg, #ef5350, #c62828);
   }
 
   .seat-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-    gap: 6px;
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    gap: 7px;
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, rgba(81, 45, 168, 0.94), rgba(49, 27, 146, 0.96));
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    border-radius: 12px;
-    padding: 5px 7px;
+    background: linear-gradient(180deg, rgba(24, 68, 178, 0.95), rgba(11, 34, 102, 0.98));
+    border: 2px solid rgba(255, 255, 255, 0.32);
+    border-radius: 13px;
+    padding: 6px 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 5px;
+    gap: 6px;
     opacity: 0.78;
     transition: all 0.15s ease;
   }
@@ -794,11 +769,11 @@
   .seat-pod.pod-active {
     opacity: 1;
     border-color: #fff59d;
-    box-shadow: 0 0 14px rgba(255, 245, 157, 0.72);
+    box-shadow: 0 0 14px rgba(255, 245, 157, 0.7);
   }
 
   .pod-name {
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 950;
     white-space: nowrap;
     overflow: hidden;
@@ -806,45 +781,69 @@
   }
 
   .pod-home {
-    font-size: 9.5px;
+    font-size: 10px;
     color: var(--gold-1);
     font-weight: 800;
   }
 
-  .pod-dice {
-    width: 36px;
-    height: 36px;
+  /* Bigger 3D Pipped Dice Box */
+  .pod-dice-big {
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
-    border-radius: 10px;
-    border: 2px solid #fff59d;
-    background: #311b92;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 950;
+    border-radius: 12px;
+    border: 2.4px solid #fff59d;
+    background: linear-gradient(145deg, #ffffff, #dbeafe);
+    box-shadow: 0 5px 0 #1e3a8a, 0 8px 14px rgba(0, 0, 0, 0.45);
     display: grid;
     place-items: center;
     cursor: pointer;
+    padding: 4px;
   }
 
-  .seat-pod.pod-active .pod-dice {
-    background: linear-gradient(180deg, #ffffff, #fff9c4);
-    color: #311b92;
-    box-shadow: 0 0 10px rgba(255, 245, 157, 0.85);
+  .seat-pod:not(.pod-active) .pod-dice-big {
+    background: linear-gradient(145deg, #cbd5e1, #94a3b8);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 3px 0 #334155;
+    opacity: 0.72;
   }
 
-  .pod-dice.rolling {
-    animation: diceSpin 0.25s linear infinite;
+  .pod-dice-big.rolling {
+    animation: diceSpinBig 0.22s linear infinite;
   }
 
-  @keyframes diceSpin {
-    0% { transform: rotate(0deg) scale(1.05); }
-    50% { transform: rotate(16deg) scale(1.15); }
-    100% { transform: rotate(-16deg) scale(1.05); }
+  @keyframes diceSpinBig {
+    0% { transform: rotate(0deg) scale(1.06); }
+    50% { transform: rotate(18deg) scale(1.18); }
+    100% { transform: rotate(-18deg) scale(1.06); }
+  }
+
+  .pip-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+  }
+
+  .pip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0f172a;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  }
+
+  .pip-dot.pip-red {
+    width: 9px;
+    height: 9px;
+    background: #dc2626;
   }
 
   .reaction-ribbon {
-    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.94));
-    border: 1.5px solid #fff59d;
+    background: rgba(9, 26, 78, 0.92);
+    border: 1.5px solid rgba(255, 245, 157, 0.55);
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -872,18 +871,17 @@
     font-weight: 900;
     padding: 2px 7px;
     border-radius: 999px;
-    background: rgba(0, 230, 118, 0.28);
+    background: rgba(0, 230, 118, 0.25);
     border: 1px solid #b9f6ca;
     color: #fff;
     white-space: nowrap;
   }
 
-  /* Board Stage with Rainbow Royal Frame */
   .board-stage {
-    background: linear-gradient(135deg, #ff4081, #ffd600, #00e676, #00b0ff);
+    background: linear-gradient(135deg, #fff59d, #00e676, #4fc3f7, #ffd54f);
     padding: 4px;
     border-radius: 11px;
-    box-shadow: 0 10px 26px rgba(24, 5, 68, 0.58), 0 0 18px rgba(255, 214, 0, 0.45);
+    box-shadow: 0 10px 26px rgba(0, 15, 58, 0.58), 0 0 18px rgba(105, 240, 174, 0.42);
     position: relative;
   }
 
@@ -925,7 +923,7 @@
   .sq-white { background: #ffffff; }
 
   .sq-fx-flash {
-    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 14px #ffd600;
+    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 14px #00e676;
     filter: brightness(1.2);
   }
 
@@ -958,8 +956,8 @@
     pointer-events: none;
   }
 
-  /* ================= 3D ROYAL CROWNED PAWN GOTI ================= */
-  .royal-pawn {
+  /* Sculpted 3D Gem-Domed Ludo Goti */
+  .gem-goti {
     position: absolute;
     width: 7.8%;
     height: 9.8%;
@@ -969,30 +967,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.62));
     transition: left 0.11s linear, top 0.11s linear, transform 0.11s ease;
   }
 
-  .royal-pawn svg {
+  .gem-goti svg {
     width: 100%;
     height: 100%;
     overflow: visible;
   }
 
-  .royal-pawn.is-moving {
+  .gem-goti.is-moving {
     transform: translate(-50%, -94%) scale(1.24);
     z-index: 9;
-    filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.78));
+    filter: drop-shadow(0 9px 9px rgba(0, 0, 0, 0.8));
   }
 
-  .royal-pawn.can-pick {
-    animation: royalHop 0.55s infinite alternate;
-    filter: drop-shadow(0 0 8px #fff59d) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.65));
+  .gem-goti.can-pick {
+    animation: gotiLift 0.52s infinite alternate;
+    filter: drop-shadow(0 0 8px #fff59d) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
   }
 
-  @keyframes royalHop {
+  @keyframes gotiLift {
     from { transform: translate(-50%, -76%) scale(1); }
-    to   { transform: translate(-50%, -88%) scale(1.16); }
+    to   { transform: translate(-50%, -89%) scale(1.16); }
   }
 
   .pin-emo-tag {
@@ -1014,8 +1012,8 @@
 
   .status-banner {
     text-align: center;
-    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.94));
-    border: 1.5px solid #fff59d;
+    background: rgba(9, 26, 78, 0.92);
+    border: 1.5px solid rgba(255, 245, 157, 0.55);
     border-radius: 11px;
     padding: 6px 10px;
     font-size: 11.5px;
@@ -1023,11 +1021,10 @@
     color: var(--gold-1);
   }
 
-  /* MODAL & 1-2-3-4 PLAYER PICKER */
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(24, 6, 58, 0.74);
+    background: rgba(5, 15, 48, 0.74);
     display: none;
     align-items: center;
     justify-content: center;
@@ -1042,9 +1039,9 @@
   .modal-card {
     width: 100%;
     max-width: 355px;
-    background: linear-gradient(165deg, #6a1b9a, #ad1457, #283593);
+    background: linear-gradient(180deg, #1d54b8, #0b2466);
     border: 2.2px solid #fff59d;
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 15px;
     text-align: center;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
@@ -1061,11 +1058,11 @@
     border: 2px solid #fff59d;
     border-radius: 12px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
-    color: #210900;
+    background: linear-gradient(180deg, #69f0ae, #00a844);
+    color: #fff;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 4px 0 #5c1900;
+    box-shadow: 0 4px 0 #072c6b;
   }
 
   .cnt-choice-num {
@@ -1078,7 +1075,7 @@
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #3d1200;
+    color: #e8fff2;
   }
 
   .lb-list {
@@ -1097,7 +1094,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(26, 10, 62, 0.8);
+    background: rgba(7, 22, 74, 0.8);
     border: 1px solid rgba(255, 245, 157, 0.45);
     border-radius: 10px;
     padding: 6px 9px;
@@ -1106,7 +1103,7 @@
   }
 
   .lb-city {
-    color: #80deea;
+    color: #90caf9;
     font-size: 10px;
   }
 
@@ -1142,36 +1139,43 @@
   }
 
   .m-dark {
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.2);
     color: #fff;
   }
 </style>
 </head>
 <body>
 
-<!-- GREEN STAR INTRO SPLASH -->
+<!-- PRO GREEN STAR INTRO -->
 <div id="greenStarSplash" onclick="dismissSplash()">
-  <div class="star-aura">
-    <div class="star-ring-glow"></div>
-    <svg class="green-star-svg" viewBox="0 0 120 120">
+  <div class="star-stage">
+    <div class="star-rays"></div>
+    <span class="star-sparkle sp-1">✦</span>
+    <span class="star-sparkle sp-2">✦</span>
+    <span class="star-sparkle sp-3">✧</span>
+    <svg class="green-star-hero" viewBox="0 0 120 120">
       <defs>
-        <linearGradient id="gStarGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#b9f6ca"/>
-          <stop offset="48%" stop-color="#00e676"/>
-          <stop offset="100%" stop-color="#007e33"/>
-        </linearGradient>
+        <radialGradient id="gStarGem" cx="38%" cy="30%" r="72%">
+          <stop offset="0%" stop-color="#e8fff2"/>
+          <stop offset="42%" stop-color="#00e676"/>
+          <stop offset="100%" stop-color="#00692c"/>
+        </radialGradient>
       </defs>
       <polygon
-        points="60,8 75,41 112,45 84,70 92,107 60,88 28,107 36,70 8,45 45,41"
-        fill="url(#gStarGrad)"
+        points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
+        fill="url(#gStarGem)"
         stroke="#fff59d"
         stroke-width="4"
         stroke-linejoin="round"
       />
+      <polygon
+        points="60,24 69,45 92,48 75,64 80,87 60,75 40,87 45,64 28,48 51,45"
+        fill="rgba(255,255,255,0.22)"
+      />
     </svg>
   </div>
   <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • शाइन, शैडो व स्पेशल FX</div>
+  <div class="splash-sub">देसी लूडो राजा • 3D जेम गोटियां व बड़ा डाइस</div>
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">आगे बढ़ें ▶</button>
 </div>
 
@@ -1230,70 +1234,54 @@
 
       <div class="crown-emblem">👑</div>
       <h1 id="brandTitle" class="hero-logo-txt">देसी लूडो राजा</h1>
-      <div id="brandSub" class="hero-tagline">1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • सिंगल गोटी खुद चले</div>
+      <div id="brandSub" class="hero-tagline">1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • कॉल पर ऑटो-म्यूट</div>
 
       <div class="hero-3d-stage">
-        <div class="hero-pawn hp-blue">
-          <span class="hp-head"></span>
-          <span class="hp-cone"></span>
-        </div>
-        <div class="hero-pawn hp-red">
-          <span class="hp-head"></span>
-          <span class="hp-cone"></span>
-        </div>
-
         <div class="mini-tilted-board">
           <div class="mt-r"></div>
           <div class="mt-g"></div>
           <div class="mt-b"></div>
           <div class="mt-y"></div>
         </div>
-
-        <div class="hero-3d-dice shine-box">🎲</div>
-
-        <div class="hero-pawn hp-yellow">
-          <span class="hp-head"></span>
-          <span class="hp-cone"></span>
-        </div>
+        <div id="heroDiceFace" class="hero-3d-dice shine-box"></div>
       </div>
     </div>
 
-    <!-- 5 Unique Design Mode Cards -->
     <main class="modes-wrap">
       <div class="grid-3">
-        <div class="unique-card opt-online shine-box" onclick="openPlayerCountSelector('online', 'ONLINE')">
-          <div class="badge-ring">🌐</div>
-          <div id="mOnline" class="card-title-big">ONLINE</div>
-          <div class="card-sub-pill">1–4 Players</div>
+        <div class="mode-tile tile-online shine-box" onclick="openPlayerCountSelector('online', 'ONLINE')">
+          <div class="tile-emblem">🌐</div>
+          <div id="mOnline" class="tile-title">ONLINE</div>
+          <div class="tile-tag">1–4 Players</div>
         </div>
 
-        <div class="unique-card opt-team shine-box" onclick="openPlayerCountSelector('team', 'TEAM UP')">
-          <div class="badge-ring">⚔️</div>
-          <div id="mTeam" class="card-title-big">TEAM UP</div>
-          <div class="card-sub-pill">1–4 Players</div>
+        <div class="mode-tile tile-team shine-box" onclick="openPlayerCountSelector('team', 'TEAM UP')">
+          <div class="tile-emblem">⚔️</div>
+          <div id="mTeam" class="tile-title">TEAM UP</div>
+          <div class="tile-tag">1–4 Players</div>
         </div>
 
-        <div class="unique-card opt-friends shine-box" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
-          <div class="badge-ring">🤝</div>
-          <div id="mFriends" class="card-title-big">FRIENDS</div>
-          <div class="card-sub-pill">1–4 Players</div>
+        <div class="mode-tile tile-friends shine-box" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
+          <div class="tile-emblem">🤝</div>
+          <div id="mFriends" class="tile-title">FRIENDS</div>
+          <div class="tile-tag">1–4 Players</div>
         </div>
       </div>
 
       <div class="grid-2">
-        <div class="unique-card opt-computer shine-box" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
-          <div class="badge-ring">🤖</div>
+        <div class="mode-tile tile-computer shine-box" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
+          <div class="tile-emblem">🤖</div>
           <div>
-            <div id="mBot" class="card-title-big">COMPUTER</div>
-            <div class="card-sub-pill">1–4 Seat Setup</div>
+            <div id="mBot" class="tile-title">COMPUTER</div>
+            <div class="tile-tag">1–4 Seat Setup</div>
           </div>
         </div>
 
-        <div class="unique-card opt-pass shine-box" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
-          <div class="badge-ring">🎲</div>
+        <div class="mode-tile tile-pass shine-box" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
+          <div class="tile-emblem">🎲</div>
           <div>
-            <div id="mPass" class="card-title-big">PASS N PLAY</div>
-            <div class="card-sub-pill">1–4 Seat Setup</div>
+            <div id="mPass" class="tile-title">PASS N PLAY</div>
+            <div class="tile-tag">1–4 Seat Setup</div>
           </div>
         </div>
       </div>
@@ -1341,8 +1329,8 @@
 
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
-      <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का डाइस दबाएं</span>
-      <span id="fxBadge" class="fx-pill">✨ SHINE FX</span>
+      <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का बड़ा डाइस दबाएं</span>
+      <span id="fxBadge" class="fx-pill">✨ GEM FX</span>
     </div>
 
     <div class="board-stage shine-box">
@@ -1351,33 +1339,33 @@
 
         <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
           <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
-          <circle cx="220" cy="220" r="52" fill="#ff2e55"/>
-          <circle cx="380" cy="220" r="52" fill="#ff2e55"/>
-          <circle cx="220" cy="380" r="52" fill="#ff2e55"/>
-          <circle cx="380" cy="380" r="52" fill="#ff2e55"/>
+          <circle cx="220" cy="220" r="52" fill="#e53935"/>
+          <circle cx="380" cy="220" r="52" fill="#e53935"/>
+          <circle cx="220" cy="380" r="52" fill="#e53935"/>
+          <circle cx="380" cy="380" r="52" fill="#e53935"/>
 
           <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#1b5e20" stroke-width="10"/>
-          <circle cx="1120" cy="220" r="52" fill="#00c853"/>
-          <circle cx="1280" cy="220" r="52" fill="#00c853"/>
-          <circle cx="1120" cy="380" r="52" fill="#00c853"/>
-          <circle cx="1280" cy="380" r="52" fill="#00c853"/>
+          <circle cx="1120" cy="220" r="52" fill="#00b248"/>
+          <circle cx="1280" cy="220" r="52" fill="#00b248"/>
+          <circle cx="1120" cy="380" r="52" fill="#00b248"/>
+          <circle cx="1280" cy="380" r="52" fill="#00b248"/>
 
           <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#0d47a1" stroke-width="10"/>
-          <circle cx="220" cy="1120" r="52" fill="#00b0ff"/>
-          <circle cx="380" cy="1120" r="52" fill="#00b0ff"/>
-          <circle cx="220" cy="1280" r="52" fill="#00b0ff"/>
-          <circle cx="380" cy="1280" r="52" fill="#00b0ff"/>
+          <circle cx="220" cy="1120" r="52" fill="#1e88e5"/>
+          <circle cx="380" cy="1120" r="52" fill="#1e88e5"/>
+          <circle cx="220" cy="1280" r="52" fill="#1e88e5"/>
+          <circle cx="380" cy="1280" r="52" fill="#1e88e5"/>
 
           <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#f57f17" stroke-width="10"/>
-          <circle cx="1120" cy="1120" r="52" fill="#ffd600"/>
-          <circle cx="1280" cy="1120" r="52" fill="#ffd600"/>
-          <circle cx="1120" cy="1280" r="52" fill="#ffd600"/>
-          <circle cx="1280" cy="1280" r="52" fill="#ffd600"/>
+          <circle cx="1120" cy="1120" r="52" fill="#fdd835"/>
+          <circle cx="1280" cy="1120" r="52" fill="#fdd835"/>
+          <circle cx="1120" cy="1280" r="52" fill="#fdd835"/>
+          <circle cx="1280" cy="1280" r="52" fill="#fdd835"/>
 
-          <polygon points="600,600 900,600 750,750" fill="#00c853" stroke="#222" stroke-width="6"/>
-          <polygon points="900,600 900,900 750,750" fill="#ffd600" stroke="#222" stroke-width="6"/>
-          <polygon points="900,900 600,900 750,750" fill="#00b0ff" stroke="#222" stroke-width="6"/>
-          <polygon points="600,900 600,600 750,750" fill="#ff2e55" stroke="#222" stroke-width="6"/>
+          <polygon points="600,600 900,600 750,750" fill="#00b248" stroke="#222" stroke-width="6"/>
+          <polygon points="900,600 900,900 750,750" fill="#fdd835" stroke="#222" stroke-width="6"/>
+          <polygon points="900,900 600,900 750,750" fill="#1e88e5" stroke="#222" stroke-width="6"/>
+          <polygon points="600,900 600,600 750,750" fill="#e53935" stroke="#222" stroke-width="6"/>
         </svg>
 
         <div id="cornerTopLabel" class="yard-corner-title title-tr">Computer</div>
@@ -1389,7 +1377,7 @@
 
     <div id="bottomDiceRow" class="seat-row"></div>
 
-    <div id="boardMsg" class="status-banner">अपनी सीट के डाइस पर टैप करें</div>
+    <div id="boardMsg" class="status-banner">अपनी सीट के बड़े डाइस पर टैप करें</div>
   </section>
 </div>
 
@@ -1409,7 +1397,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_royal_carnival_v6";
+  const STORAGE_KEY = "dlr_gem_pro_v7";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1572,7 +1560,7 @@
     seats: ["blue", "green"],
     botColors: new Set(["green"]),
     turn: 0,
-    diceValues: { red: "🎲", green: "🎲", yellow: "🎲", blue: "🎲" },
+    diceValues: { red: 6, green: 6, yellow: 6, blue: 6 },
     hasRolled: false,
     busy: false,
     fxCell: null,
@@ -1641,10 +1629,70 @@
     el.classList.remove("hide-splash");
     sfxOutKhushi();
     clearTimeout(splashTimer);
-    splashTimer = setTimeout(dismissSplash, 1900);
+    splashTimer = setTimeout(dismissSplash, 2000);
   }
 
-  splashTimer = setTimeout(dismissSplash, 1900);
+  splashTimer = setTimeout(dismissSplash, 2000);
+
+  /* ================= 3D PIPPED DICE RENDERER ================= */
+  const PIP_MAP = {
+    1: [4],
+    2: [2, 6],
+    3: [2, 4, 6],
+    4: [0, 2, 6, 8],
+    5: [0, 2, 4, 6, 8],
+    6: [0, 2, 3, 5, 6, 8]
+  };
+
+  function buildPippedDiceHtml(numVal) {
+    const n = Number(numVal);
+    if (!PIP_MAP[n]) {
+      return `<span style="font-size:18px;font-weight:950;color:#0f172a;">${numVal}</span>`;
+    }
+    const active = new Set(PIP_MAP[n]);
+    let dots = "";
+    for (let i = 0; i < 9; i++) {
+      if (active.has(i)) {
+        const cls = n === 1 || n === 6 ? "pip-dot pip-red" : "pip-dot";
+        dots += `<span class="${cls}"></span>`;
+      } else {
+        dots += `<span></span>`;
+      }
+    }
+    return `<div class="pip-grid">${dots}</div>`;
+  }
+
+  /* ================= SCULPTED 3D GEM-DOMED GOTI SVG ================= */
+  const GOTI_SHADES = {
+    red:    { hi: "#ff9e80", base: "#e53935", lo: "#7f0000", gem: "#ffebee" },
+    green:  { hi: "#b9f6ca", base: "#00c853", lo: "#004d1a", gem: "#e8fff2" },
+    blue:   { hi: "#84ffff", base: "#1e88e5", lo: "#003c71", gem: "#e3f2fd" },
+    yellow: { hi: "#ffff8d", base: "#fdd835", lo: "#b28704", gem: "#fffde7" }
+  };
+
+  function buildGemGotiSvg(color, idx) {
+    const s = GOTI_SHADES[color];
+    const gid = `gg_${color}_${idx}`;
+    return `
+      <svg viewBox="0 0 64 80">
+        <defs>
+          <radialGradient id="${gid}" cx="35%" cy="26%" r="72%">
+            <stop offset="0%" stop-color="${s.hi}"/>
+            <stop offset="52%" stop-color="${s.base}"/>
+            <stop offset="100%" stop-color="${s.lo}"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="32" cy="73" rx="22" ry="5.5" fill="rgba(0,0,0,0.52)"/>
+        <path d="M12 68 C12 54, 21 43, 25 35 L39 35 C43 43, 52 54, 52 68 Z"
+              fill="url(#${gid})" stroke="#141414" stroke-width="2.6" stroke-linejoin="round"/>
+        <ellipse cx="32" cy="68" rx="19.5" ry="4.5" fill="#fff59d" stroke="#141414" stroke-width="2"/>
+        <rect x="21" y="31" width="22" height="5.5" rx="2.7" fill="#ffd600" stroke="#141414" stroke-width="1.8"/>
+        <circle cx="32" cy="20" r="14" fill="url(#${gid})" stroke="#141414" stroke-width="2.6"/>
+        <circle cx="32" cy="20" r="6" fill="${s.gem}" stroke="#141414" stroke-width="1.5"/>
+        <ellipse cx="26.5" cy="15.5" rx="3.4" ry="2" transform="rotate(-24 26.5 15.5)" fill="rgba(255,255,255,0.88)"/>
+      </svg>
+    `;
+  }
 
   /* ================= MUSIC, SOUND & SPECIAL FX ================= */
   function ensureAudio() {
@@ -1767,6 +1815,7 @@
     document.getElementById("coinsText").textContent = profile.coins.toLocaleString("en-IN");
     document.getElementById("userNameText").textContent = profile.name;
     document.getElementById("langSelect").value = profile.lang;
+    document.getElementById("heroDiceFace").innerHTML = buildPippedDiceHtml(6);
 
     const ico = profile.sound ? "🔊" : "🔇";
     document.getElementById("startSoundBtn").textContent = ico;
@@ -2069,38 +2118,6 @@
     }
   });
 
-  /* ================= ROYAL 3D CROWNED PAWN SVG BUILDER ================= */
-  const PAWN_PALETTE = {
-    red:    { top: "#ff8a80", mid: "#ff2e55", dark: "#9a0026" },
-    green:  { top: "#b9f6ca", mid: "#00c853", dark: "#005b25" },
-    blue:   { top: "#84ffff", mid: "#00b0ff", dark: "#004c8c" },
-    yellow: { top: "#ffff8d", mid: "#ffd600", dark: "#c79100" }
-  };
-
-  function buildRoyalPawnSvg(color, idx) {
-    const p = PAWN_PALETTE[color];
-    const gid = `pg_${color}_${idx}`;
-    return `
-      <svg viewBox="0 0 64 80">
-        <defs>
-          <radialGradient id="${gid}" cx="35%" cy="28%" r="72%">
-            <stop offset="0%" stop-color="${p.top}"/>
-            <stop offset="55%" stop-color="${p.mid}"/>
-            <stop offset="100%" stop-color="${p.dark}"/>
-          </radialGradient>
-        </defs>
-        <ellipse cx="32" cy="73" rx="22" ry="5.5" fill="rgba(0,0,0,0.48)"/>
-        <path d="M13 68 C13 55, 22 44, 26 36 L38 36 C42 44, 51 55, 51 68 Z"
-              fill="url(#${gid})" stroke="#1d122b" stroke-width="2.6" stroke-linejoin="round"/>
-        <ellipse cx="32" cy="68" rx="19" ry="4.5" fill="#fff59d" stroke="#1d122b" stroke-width="2"/>
-        <rect x="22" y="32" width="20" height="5" rx="2.5" fill="#ffd600" stroke="#1d122b" stroke-width="1.8"/>
-        <circle cx="32" cy="21" r="13" fill="url(#${gid})" stroke="#1d122b" stroke-width="2.6"/>
-        <path d="M24 10 L27 4 L32 8 L37 4 L40 10 Z" fill="#ffd600" stroke="#1d122b" stroke-width="1.5" stroke-linejoin="round"/>
-        <ellipse cx="27" cy="17" rx="3.4" ry="2" transform="rotate(-25 27 17)" fill="rgba(255,255,255,0.85)"/>
-      </svg>
-    `;
-  }
-
   /* ================= GAME ENGINE ================= */
   function launchGameWithCount(modeKey, count) {
     Object.values(match.tokenReactions).forEach(r => r.timer && clearTimeout(r.timer));
@@ -2124,7 +2141,7 @@
       seats: seatColors,
       botColors: botSet,
       turn: 0,
-      diceValues: { red: "🎲", green: "🎲", yellow: "🎲", blue: "🎲" },
+      diceValues: { red: 6, green: 6, yellow: 6, blue: 6 },
       hasRolled: false,
       busy: false,
       fxCell: null,
@@ -2141,8 +2158,8 @@
     document.getElementById("cornerBotLabel").textContent = "You";
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
-    setReaction("😊", `${count}-प्लेयर मोड शुरू! अपनी सीट का डाइस दबाएं`);
-    triggerFx("✨ SHINE FX");
+    setReaction("😊", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस दबाएं`);
+    triggerFx("✨ GEM FX");
     startBgMusic();
     renderSeatDicePods();
     drawBoard();
@@ -2197,8 +2214,8 @@
     `;
 
     const diceBtn = document.createElement("button");
-    diceBtn.className = `pod-dice ${rollingColor === color ? "rolling" : ""}`;
-    diceBtn.textContent = match.diceValues[color];
+    diceBtn.className = `pod-dice-big ${rollingColor === color ? "rolling" : ""}`;
+    diceBtn.innerHTML = buildPippedDiceHtml(match.diceValues[color]);
     diceBtn.disabled = !isTurn || match.hasRolled || match.busy || isBotColor(color);
     diceBtn.onclick = () => rollPlayerDice(color, false);
 
@@ -2233,7 +2250,7 @@
 
     const val = Math.floor(Math.random() * 6) + 1;
     setTimeout(() => {
-      match.diceValues[color] = String(val);
+      match.diceValues[color] = val;
       match.hasRolled = true;
       match.busy = false;
 
@@ -2403,7 +2420,7 @@
     } else if (val) {
       el.textContent = `${label} ने ${val} चला — चमकती गोटी चुनें`;
     } else {
-      el.textContent = `${label} की बारी — ${label} का डाइस दबाएं`;
+      el.textContent = `${label} की बारी — ${label} का बड़ा डाइस दबाएं`;
     }
   }
 
@@ -2488,28 +2505,28 @@
     match.seats.forEach(col => {
       match.pieces[col].forEach((step, idx) => {
         const pos = piecePctPosition(col, step, idx);
-        const pawn = document.createElement("div");
-        pawn.className = `royal-pawn p-${col}`;
-        pawn.style.left = `${pos.left}%`;
-        pawn.style.top = `${pos.top}%`;
+        const goti = document.createElement("div");
+        goti.className = `gem-goti p-${col}`;
+        goti.style.left = `${pos.left}%`;
+        goti.style.top = `${pos.top}%`;
 
         const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
         const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
-        if (canPick) pawn.classList.add("can-pick");
-        if (isMoving) pawn.classList.add("is-moving");
+        if (canPick) goti.classList.add("can-pick");
+        if (isMoving) goti.classList.add("is-moving");
 
-        pawn.innerHTML = buildRoyalPawnSvg(col, idx);
+        goti.innerHTML = buildGemGotiSvg(col, idx);
 
         const emoInfo = match.tokenReactions[`${col}-${idx}`];
         if (emoInfo) {
           const tag = document.createElement("span");
           tag.className = "pin-emo-tag";
           tag.textContent = emoInfo.emoji;
-          pawn.appendChild(tag);
+          goti.appendChild(tag);
         }
 
-        pawn.onclick = () => executeStepMove(col, idx);
-        tokensLayer.appendChild(pawn);
+        goti.onclick = () => executeStepMove(col, idx);
+        tokensLayer.appendChild(goti);
       });
     });
   }
