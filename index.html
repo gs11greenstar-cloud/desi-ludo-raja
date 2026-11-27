@@ -1,1071 +1,1149 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#2563eb" />
-  <title>देसी लूडो राजा - Desi Ludo Raja</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
-  <link rel="apple-touch-icon" href="icon-512.png" />
-  <style>
-    :root {
-      --gold: #fbbf24;
-      --gold-light: #fef08a;
-      --red: #e11d48;
-      --green: #16a34a;
-      --yellow: #eab308;
-      --blue: #2563eb;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>देसी लूडो राजा — Desi Ludo Raja</title>
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#1348a8" />
+<style>
+  :root {
+    --bg-top: #1d6fe8;
+    --bg-mid: #1348a8;
+    --bg-bot: #0b2663;
+    --gold-light: #ffe875;
+    --gold-mid: #f7a600;
+    --gold-dark: #b85c00;
+    --card-blue-1: #3996ff;
+    --card-blue-2: #1656c4;
+    --card-amber-1: #ffbe2e;
+    --card-amber-2: #e06d00;
+    --nav-bg: #0b245c;
+    --text-white: #ffffff;
+    --red: #e53935;
+    --green: #2e7d32;
+    --blue: #1e88e5;
+    --yellow: #fbc02d;
+  }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background:
-        repeating-linear-gradient(
-          45deg,
-          rgba(255, 255, 255, 0.06) 0px,
-          rgba(255, 255, 255, 0.06) 24px,
-          transparent 24px,
-          transparent 48px
-        ),
-        linear-gradient(180deg, #38bdf8 0%, #2563eb 42%, #1d4ed8 78%, #1e3a8a 100%);
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 6px;
-      overflow-x: hidden;
-    }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 14px,
+        transparent 14px,
+        transparent 28px
+      ),
+      linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 52%, var(--bg-bot) 100%);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
 
-    .app-wrap {
-      width: 100%;
-      max-width: 450px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
+  .app-shell {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
 
-    .hidden {
-      display: none !important;
-    }
+  /* START / LOBBY SCREEN */
+  #startScreen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 74px;
+  }
 
-    .lobby-card {
-      background: linear-gradient(180deg, rgba(37, 99, 235, 0.92), rgba(30, 58, 138, 0.96));
-      border: 2.5px solid var(--gold-light);
-      border-radius: 22px;
-      padding: 15px 13px;
-      text-align: center;
-      box-shadow: 0 8px 0 #1e3a8a, 0 16px 30px rgba(15, 23, 42, 0.35);
-    }
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(6, 22, 60, 0.55);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 232, 117, 0.25);
+  }
 
-    .hero-banner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+  .profile-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.28);
+    padding: 4px 10px 4px 4px;
+    border-radius: 999px;
+    border: 1.5px solid var(--gold-light);
+    cursor: pointer;
+  }
 
-    .hero-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 15px;
-      border: 2.5px solid var(--gold-light);
-      background: linear-gradient(145deg, #fef08a, #f59e0b);
-      color: #0f172a;
-      font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 0 #92400e;
-      overflow: hidden;
-    }
+  .dp-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold-mid);
+    background: #1b3b7a;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    overflow: hidden;
+  }
 
-    .hero-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  .dp-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 
-    .title-pill {
-      background: linear-gradient(180deg, #fef9c3, #fbbf24 65%, #d97706);
-      border: 2px solid #ffffff;
-      border-radius: 15px;
-      padding: 6px 14px;
-      color: #0f172a;
-      font-size: 1.22rem;
-      font-weight: 900;
-      box-shadow: 0 4px 0 #92400e;
-    }
+  .dp-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
 
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      background: rgba(15, 23, 42, 0.45);
-      border: 2px solid var(--gold-light);
-      border-radius: 14px;
-      padding: 7px 10px;
-      font-size: 0.84rem;
-      font-weight: 800;
-    }
+  .dp-name {
+    font-size: 12px;
+    font-weight: 700;
+    max-width: 78px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .pill-btn {
-      background: linear-gradient(180deg, #fef08a, #f59e0b);
-      color: #0f172a;
-      border: 1.5px solid #ffffff;
-      border-radius: 10px;
-      padding: 5px 10px;
-      font-size: 0.76rem;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 3px 0 #92400e;
-    }
+  .dp-sub {
+    font-size: 10px;
+    color: var(--gold-light);
+  }
 
-    .danger-btn {
-      background: linear-gradient(180deg, #f43f5e, #e11d48);
-      color: #ffffff;
-      border: 1.5px solid #ffffff;
-      border-radius: 10px;
-      padding: 5px 10px;
-      font-size: 0.76rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 3px 0 #881337;
-    }
+  .wallet-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 
-    .section-box {
-      margin-top: 9px;
-      background: rgba(23, 37, 84, 0.65);
-      border: 1.5px solid rgba(254, 240, 138, 0.8);
-      border-radius: 15px;
-      padding: 10px;
-    }
+  .coin-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(180deg, #102a63, #08183b);
+    border: 1.5px solid var(--gold-mid);
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--gold-light);
+  }
 
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 900;
-      color: var(--gold-light);
-      margin-bottom: 6px;
-      display: block;
-    }
+  .plus-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(180deg, #6ef23b, #289e00);
+    color: #fff;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+  }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-    }
+  .icon-btn {
+    height: 34px;
+    min-width: 34px;
+    padding: 0 8px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255, 232, 117, 0.5);
+    background: linear-gradient(180deg, #2d7af0, #16479e);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .opt-btn {
-      background: rgba(37, 99, 235, 0.85);
-      color: #ffffff;
-      border: 1.5px solid #bfdbfe;
-      border-radius: 10px;
-      padding: 7px 4px;
-      font-size: 0.76rem;
-      font-weight: 800;
-      cursor: pointer;
-    }
+  .hero {
+    text-align: center;
+    padding: 10px 16px 4px;
+  }
 
-    .opt-btn.active {
-      background: linear-gradient(180deg, #fef08a, #f59e0b);
-      color: #0f172a;
-      border-color: #ffffff;
-      box-shadow: 0 3px 0 #92400e;
-    }
+  .crown-badge {
+    font-size: 28px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
+  }
 
-    .start-btn {
-      width: 100%;
-      margin-top: 11px;
-      padding: 13px;
-      border-radius: 16px;
-      border: 2.5px solid #ffffff;
-      background: linear-gradient(180deg, #4ade80, #16a34a);
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 5px 0 #166534;
-    }
+  .game-title {
+    margin: 2px 0 0;
+    font-size: 30px;
+    font-weight: 900;
+    background: linear-gradient(180deg, #fff6b3 0%, #ffd028 52%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 0 #6e2f00) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+  }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px;
-      z-index: 50;
-    }
+  .game-subtitle {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #cde3ff;
+    font-weight: 600;
+  }
 
-    .modal-card {
-      width: 100%;
-      max-width: 360px;
-      background: linear-gradient(180deg, #2563eb, #1e3a8a);
-      border: 2.5px solid var(--gold-light);
-      border-radius: 20px;
-      padding: 16px;
-      text-align: center;
-    }
+  .modes-wrap {
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .lang-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 7px;
-      margin: 10px 0 12px;
-    }
+  .mode-row-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
 
-    #gameScreen:not(.hidden) {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
+  .mode-row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 
-    .seats-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 7px;
-    }
+  .gloss-card {
+    position: relative;
+    border: 2px solid var(--gold-light);
+    border-radius: 16px;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #092154, 0 10px 18px rgba(0, 0, 0, 0.35);
+    transition: transform 0.08s ease;
+    overflow: hidden;
+  }
 
-    .seat-card {
-      background: #ffffff;
-      color: #0f172a;
-      border-radius: 13px;
-      padding: 6px 8px;
-      border: 2px solid #cbd5e1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      opacity: 0.72;
-      transition: transform 0.15s ease;
-    }
+  .gloss-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 6%;
+    right: 6%;
+    height: 44%;
+    border-radius: 0 0 50% 50%;
+    background: rgba(255, 255, 255, 0.24);
+    pointer-events: none;
+  }
 
-    .seat-card.active {
-      opacity: 1;
-      border-color: var(--gold);
-      background: #fffbeb;
-      box-shadow: 0 0 14px rgba(251, 191, 36, 0.7);
-    }
+  .gloss-card:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #092154, 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
 
-    .seat-badge {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+  .card-gold {
+    background: linear-gradient(180deg, var(--card-amber-1), var(--card-amber-2));
+  }
 
-    .dice-3d {
-      width: 44px;
-      height: 44px;
-      border-radius: 11px;
-      background: linear-gradient(145deg, #ffffff, #e2e8f0);
-      border: 2px solid #94a3b8;
-      box-shadow: 0 3px 0 #64748b;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      padding: 5px;
-      gap: 2px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
+  .card-blue {
+    background: linear-gradient(180deg, var(--card-blue-1), var(--card-blue-2));
+  }
 
-    .dice-3d.ready {
-      border-color: #f59e0b;
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35), 0 3px 0 #b45309;
-      animation: dicePulse 0.8s infinite alternate;
-    }
+  .tag-pill {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e11d48;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
 
-    .dice-3d.rolling {
-      border-color: #ef4444;
-      animation: diceSpin 0.22s infinite linear;
-    }
+  .card-icon {
+    font-size: 25px;
+    margin-top: 6px;
+    line-height: 1.1;
+  }
 
-    @keyframes dicePulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.07); }
-    }
+  .card-label {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 900;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  }
 
-    @keyframes diceSpin {
-      0% { transform: rotate(0deg) scale(1.05); }
-      50% { transform: rotate(180deg) scale(1.15); }
-      100% { transform: rotate(360deg) scale(1.05); }
-    }
+  .card-sub {
+    margin-top: 2px;
+    font-size: 10px;
+    color: #eef6ff;
+    font-weight: 600;
+  }
 
-    .pip {
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      background: transparent;
-    }
+  .extra-strip {
+    margin: 4px 14px 8px;
+    background: rgba(8, 28, 74, 0.75);
+    border: 1.5px solid rgba(255, 215, 79, 0.45);
+    border-radius: 14px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
 
-    .pip.on { background: #0f172a; }
-    .pip.red { background: #dc2626; }
+  .voice-btn {
+    border: 1.5px solid #fff099;
+    background: linear-gradient(180deg, #ff5e62, #b91c1c);
+    color: #fff;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
-    .board-wrap {
-      background: #1d4ed8;
-      padding: 5px;
-      border-radius: 16px;
-      border: 2.5px solid var(--gold-light);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
-    }
+  .voice-btn.recording {
+    animation: pulse 0.8s infinite alternate;
+  }
 
-    .board-15 {
-      aspect-ratio: 1 / 1;
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(15, 1fr);
-      grid-template-rows: repeat(15, 1fr);
-      background: #ffffff;
-      border-radius: 10px;
-      overflow: hidden;
-    }
+  @keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
 
-    .cell {
-      border: 0.5px solid #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+  .status-msg {
+    font-size: 11px;
+    color: var(--gold-light);
+    font-weight: 600;
+    flex: 1;
+    text-align: right;
+  }
 
-    .bg-red { background: var(--red); }
-    .bg-green { background: var(--green); }
-    .bg-yellow { background: var(--yellow); }
-    .bg-blue { background: var(--blue); }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 62px;
+    background: linear-gradient(180deg, #13398c, var(--nav-bg));
+    border-top: 2px solid var(--gold-mid);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    z-index: 20;
+  }
 
-    .star-cell::after {
-      content: "★";
-      font-size: 0.78rem;
-      color: rgba(15, 23, 42, 0.45);
-      position: absolute;
-    }
+  .nav-item {
+    border: none;
+    background: transparent;
+    color: #9ec0f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+  }
 
-    .yard {
-      padding: 13%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15%;
-      place-items: center;
-      border: 1.5px solid #0f172a;
-    }
+  .nav-item.active {
+    color: var(--gold-light);
+    background: rgba(255, 215, 79, 0.12);
+  }
 
-    .yard-slot {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 2px solid rgba(15, 23, 42, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  .nav-emoji {
+    font-size: 18px;
+  }
 
-    .center-home {
-      grid-column: 7 / span 3;
-      grid-row: 7 / span 3;
-      background: conic-gradient(
-        var(--green) 0deg 90deg,
-        var(--yellow) 90deg 180deg,
-        var(--blue) 180deg 270deg,
-        var(--red) 270deg 360deg
-      );
-      border: 1.5px solid #0f172a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-    }
+  /* GAME BOARD SCREEN */
+  #gameScreen {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    padding: 10px 12px 18px;
+    gap: 10px;
+  }
 
-    .tokens-group {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 1px;
-      z-index: 3;
-    }
+  .game-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(6, 22, 60, 0.65);
+    border: 1.5px solid rgba(255, 232, 117, 0.45);
+    border-radius: 14px;
+    padding: 8px 10px;
+    gap: 6px;
+  }
 
-    .token {
-      width: 84%;
-      height: 84%;
-      border-radius: 999px;
-      border: 2px solid #ffffff;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.65);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.12s ease;
-    }
+  .game-brand {
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--gold-light);
+  }
 
-    .tokens-group.multi .token {
-      width: 50%;
-      height: 50%;
-      border-width: 1.5px;
-    }
+  .game-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
 
-    .token::after {
-      content: "";
-      width: 38%;
-      height: 38%;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-    }
+  .small-btn {
+    border: 1px solid rgba(255, 232, 117, 0.5);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(180deg, #2d7af0, #16479e);
+    cursor: pointer;
+  }
 
-    .token.can-move {
-      outline: 2.5px solid #0f172a;
-      animation: tokenHop 0.55s infinite alternate;
-      cursor: pointer;
-      z-index: 6;
-    }
+  .exit-btn {
+    background: linear-gradient(180deg, #ef4444, #991b1b);
+  }
 
-    @keyframes tokenHop {
-      from { transform: scale(0.96) translateY(0); }
-      to { transform: scale(1.18) translateY(-2px); }
-    }
+  .turn-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
 
-    .status-box {
-      background: rgba(30, 58, 138, 0.9);
-      border: 2px solid var(--gold-light);
-      border-radius: 12px;
-      padding: 8px 10px;
-      text-align: center;
-      font-size: 0.84rem;
-      font-weight: 800;
-      color: #fef9c3;
-    }
-  </style>
+  .player-box {
+    background: rgba(8, 28, 74, 0.78);
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    border-radius: 14px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .player-box.active-turn {
+    border-color: var(--gold-light);
+    box-shadow: 0 0 12px rgba(255, 232, 117, 0.35);
+  }
+
+  .dice-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #fff;
+    color: #111;
+    font-weight: 900;
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--gold-mid);
+    cursor: pointer;
+  }
+
+  .board-frame {
+    background: #fff;
+    padding: 6px;
+    border-radius: 16px;
+    border: 3px solid var(--gold-light);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .ludo-grid {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1.5px solid #222;
+    position: relative;
+  }
+
+  .cell {
+    border: 0.5px solid rgba(0, 0, 0, 0.18);
+    display: grid;
+    place-items: center;
+    position: relative;
+    font-size: 10px;
+  }
+
+  .c-red { background: var(--red); }
+  .c-green { background: var(--green); }
+  .c-blue { background: var(--blue); }
+  .c-yellow { background: var(--yellow); }
+  .c-white { background: #ffffff; color: #333; }
+
+  .token {
+    width: 76%;
+    height: 76%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .token.t-red { background: #c62828; }
+  .token.t-yellow { background: #f9a825; }
+  .token.t-green { background: #2e7d32; }
+  .token.t-blue { background: #1565c0; }
+
+  .token.movable {
+    outline: 2.5px solid #fff;
+    transform: scale(1.12);
+    z-index: 4;
+  }
+
+  .prompt-bar {
+    background: linear-gradient(180deg, #1b4ea8, #0d2761);
+    border: 1.5px solid var(--gold-light);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 13px;
+  }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.68);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 50;
+  }
+
+  .modal-backdrop.open {
+    display: flex;
+  }
+
+  .modal-box {
+    width: 100%;
+    max-width: 360px;
+    background: linear-gradient(180deg, #1b4ea8, #0d2761);
+    border: 2px solid var(--gold-light);
+    border-radius: 18px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  .action-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: 800;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: linear-gradient(180deg, var(--gold-light), var(--gold-mid));
+    color: #2b1400;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+  }
+</style>
 </head>
 <body>
-  <div class="app-wrap">
-    <div id="lobbyScreen" class="lobby-card">
-      <div class="hero-banner">
-        <div class="hero-icon" id="lobbyIconBox">
-          <img src="icon-512.png" alt="देसी लूडो राजा" onerror="this.style.display='none'; this.parentElement.textContent='👑';" />
-        </div>
-        <div class="title-pill" id="lobbyTitle">👑 देसी लूडो राजा</div>
-      </div>
 
-      <div class="top-bar">
-        <span>🪙 <strong id="coinsText">5000</strong></span>
-        <div style="display:flex;gap:6px;">
-          <button type="button" class="pill-btn" id="soundBtn">🔊</button>
-          <button type="button" class="pill-btn" id="lobbyLangBtn">🌐 भाषा</button>
+<div class="app-shell">
+  <!-- START / LOBBY SCREEN -->
+  <section id="startScreen">
+    <header class="top-bar">
+      <div class="profile-pill" onclick="openDpModal()">
+        <div id="dpContainer" class="dp-avatar">👑</div>
+        <div class="dp-meta">
+          <span id="playerNameLabel" class="dp-name">राजा खिलाड़ी</span>
+          <span class="dp-sub">DP बदलें</span>
         </div>
       </div>
 
-      <div class="section-box">
-        <span class="section-label" id="playersLabel">खिलाड़ी संख्या</span>
-        <div class="grid-4" id="playerCountGroup">
-          <button type="button" class="opt-btn active" data-count="2">2</button>
-          <button type="button" class="opt-btn" data-count="3">3</button>
-          <button type="button" class="opt-btn" data-count="4">4</button>
-          <button type="button" class="opt-btn" data-count="1">1 (Bot)</button>
+      <div class="wallet-group">
+        <div class="coin-pill">
+          <span>🪙</span>
+          <span id="coinCount">2,500</span>
+          <button class="plus-btn" onclick="event.stopPropagation(); claimBonusCoins();" title="Bonus">+</button>
         </div>
+        <button class="icon-btn" onclick="toggleLang()">हिं/EN</button>
+        <button id="soundToggleBtn" class="icon-btn" onclick="toggleSound()">🔊</button>
       </div>
+    </header>
 
-      <button type="button" class="start-btn" id="startGameBtn">▶ खेल शुरू करें</button>
+    <div class="hero">
+      <div class="crown-badge">👑</div>
+      <h1 id="mainTitle" class="game-title">देसी लूडो राजा</h1>
+      <p id="subTitle" class="game-subtitle">15×15 बोर्ड • पास एंड प्ले • देसी अंदाज़</p>
     </div>
 
-    <div id="gameScreen" class="hidden">
-      <div class="top-bar">
-        <span id="gameHeaderTitle">👑 देसी लूडो राजा</span>
-        <div style="display:flex;gap:6px;">
-          <button type="button" class="pill-btn" id="gameSoundBtn">🔊</button>
-          <button type="button" class="pill-btn" id="gameLangBtn">🌐 भाषा</button>
-          <button type="button" class="danger-btn" id="exitGameBtn">बाहर</button>
+    <main class="modes-wrap">
+      <div class="mode-row-3">
+        <div class="gloss-card card-gold" onclick="startMode('pass', 4)">
+          <span class="tag-pill">PLAY NOW</span>
+          <div class="card-icon">🎲</div>
+          <div class="card-label">4 PLAYERS</div>
+          <div class="card-sub">पास एंड प्ले</div>
+        </div>
+
+        <div class="gloss-card card-gold" onclick="startMode('bot', 2)">
+          <div class="card-icon">🤖</div>
+          <div class="card-label">VS BOT</div>
+          <div class="card-sub">कंप्यूटर के साथ</div>
+        </div>
+
+        <div class="gloss-card card-gold" onclick="openRoomModal()">
+          <div class="card-icon">🤝</div>
+          <div class="card-label">FRIENDS</div>
+          <div class="card-sub">रूम कोड</div>
         </div>
       </div>
 
-      <div class="seats-row" id="seatsTop"></div>
+      <div class="mode-row-2">
+        <div class="gloss-card card-blue" onclick="startMode('bot', 2)">
+          <div class="card-icon">⚡</div>
+          <div class="card-label">QUICK BOT</div>
+          <div class="card-sub">तुरंत मैच</div>
+        </div>
 
-      <div class="board-wrap">
-        <div class="board-15" id="boardGrid"></div>
+        <div class="gloss-card card-blue" onclick="startMode('pass', 2)">
+          <div class="card-icon">📱</div>
+          <div class="card-label">2P PASS PLAY</div>
+          <div class="card-sub">दो खिलाड़ी</div>
+        </div>
+      </div>
+    </main>
+
+    <div class="extra-strip">
+      <button id="voiceRecBtn" class="voice-btn" onclick="record3SecVoice()">🎙️ 3s Voice</button>
+      <button id="voicePlayBtn" class="action-btn btn-secondary" onclick="playLastVoice()" disabled>▶️ सुनें</button>
+      <span id="statusText" class="status-msg">तैयार! मोड चुनें</span>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" onclick="setTab(this, 'home')">
+        <span class="nav-emoji">🏠</span>
+        <span>HOME</span>
+      </button>
+      <button class="nav-item" onclick="setTab(this, 'adda')">
+        <span class="nav-emoji">🎤</span>
+        <span>ADDA</span>
+      </button>
+      <button class="nav-item" onclick="setTab(this, 'inventory')">
+        <span class="nav-emoji">🖼️</span>
+        <span>DP / COINS</span>
+      </button>
+      <button class="nav-item" onclick="setTab(this, 'social')">
+        <span class="nav-emoji">🏆</span>
+        <span>RANK</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- 15x15 GAME BOARD SCREEN -->
+  <section id="gameScreen">
+    <div class="game-top">
+      <div class="game-brand">👑 देसी लूडो राजा</div>
+      <div class="game-controls">
+        <button class="small-btn" onclick="toggleLang()">हिं/EN</button>
+        <button id="gameSoundBtn" class="small-btn" onclick="toggleSound()">🔊</button>
+        <button class="small-btn exit-btn" onclick="exitToStart()">बाहर</button>
+      </div>
+    </div>
+
+    <div class="turn-strip">
+      <div id="p1Box" class="player-box active-turn">
+        <div>
+          <div id="p1Name" style="font-weight:800; font-size:13px;">You (Red)</div>
+          <div id="p1HomeCount" style="font-size:11px; color:#ffd028;">Home: 0/4</div>
+        </div>
+        <div id="p1Dice" class="dice-box" onclick="rollDice()">🎲</div>
       </div>
 
-      <div class="seats-row" id="seatsBottom"></div>
+      <div id="p2Box" class="player-box">
+        <div>
+          <div id="p2Name" style="font-weight:800; font-size:13px;">P2 (Yellow)</div>
+          <div id="p2HomeCount" style="font-size:11px; color:#ffd028;">Home: 0/4</div>
+        </div>
+        <div id="p2Dice" class="dice-box" onclick="rollDice()">🎲</div>
+      </div>
+    </div>
 
-      <div class="status-box" id="statusText">डाइस दबाएं</div>
+    <div class="board-frame">
+      <div id="ludoGrid" class="ludo-grid"></div>
+    </div>
+
+    <div id="gamePrompt" class="prompt-bar">डाइस पर टैप करें</div>
+  </section>
+</div>
+
+<input type="file" id="dpFileInput" accept="image/*" style="display:none" onchange="handleDpUpload(event)" />
+
+<div id="infoModal" class="modal-backdrop">
+  <div class="modal-box">
+    <h3 id="modalTitle" style="margin:0 0 8px; color:var(--gold-light);">प्रोफ़ाइल / रूम</h3>
+    <p id="modalBody" style="margin:0; font-size:13px; color:#e6f0ff;">यहाँ से अपनी DP बदलें या रूम कोड बनाएं।</p>
+    <div class="modal-actions">
+      <button id="modalConfirmBtn" class="action-btn btn-primary" onclick="closeModal()">ठीक है</button>
+      <button class="action-btn btn-secondary" onclick="closeModal()">बंद करें</button>
     </div>
   </div>
+</div>
 
-  <div class="modal-backdrop hidden" id="langModal">
-    <div class="modal-card">
-      <div style="font-size:1.05rem;font-weight:900;color:#fef08a;" id="langModalTitle">🌐 भाषा चुनें</div>
-      <div class="lang-grid" id="langChoices">
-        <button type="button" class="opt-btn active" data-lang="hi">हिन्दी</button>
-        <button type="button" class="opt-btn" data-lang="en">English</button>
-        <button type="button" class="opt-btn" data-lang="mr">मराठी</button>
-        <button type="button" class="opt-btn" data-lang="bn">বাংলা</button>
-        <button type="button" class="opt-btn" data-lang="ta">தமிழ்</button>
-        <button type="button" class="opt-btn" data-lang="te">తెలుగు</button>
-        <button type="button" class="opt-btn" data-lang="gu">ગુજરાતી</button>
-        <button type="button" class="opt-btn" data-lang="kn">ಕನ್ನಡ</button>
-      </div>
-      <button type="button" class="pill-btn" style="width:100%;padding:9px;" id="saveLangBtn">सेव करें</button>
-    </div>
-  </div>
+<script>
+  const STATE_KEY = "desi_ludo_raja_state_v2";
+  let appState = JSON.parse(localStorage.getItem(STATE_KEY) || "null") || {
+    coins: 2500,
+    dpDataUrl: "",
+    name: "राजा खिलाड़ी",
+    lang: "hi",
+    sound: true
+  };
 
-  <script>
-    const LANG_KEY = 'dlr_lang_saved_v1';
-    const PREFS_KEY = 'dlr_prefs_v1';
-    const MATCH_KEY = 'dlr_active_match_v1';
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let lastVoiceUrl = null;
+  let voiceTimer = null;
 
-    function storageGet(key) {
-      try { return window.localStorage.getItem(key); } catch (e) { return null; }
+  // 52-cell perimeter path on 15x15 grid
+  const MAIN_PATH = [
+    [6,1],[6,2],[6,3],[6,4],[6,5],
+    [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
+    [0,7],[0,8],
+    [1,8],[2,8],[3,8],[4,8],[5,8],
+    [6,9],[6,10],[6,11],[6,12],[6,13],[6,14],
+    [7,14],[8,14],
+    [8,13],[8,12],[8,11],[8,10],[8,9],
+    [9,8],[10,8],[11,8],[12,8],[13,8],[14,8],
+    [14,7],[14,6],
+    [13,6],[12,6],[11,6],[10,6],[9,6],
+    [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],
+    [7,0],[6,0]
+  ];
+
+  const SAFE_INDEXES = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
+  const YARD_COORDS = {
+    red: [[2,2],[2,3],[3,2],[3,3]],
+    green: [[2,11],[2,12],[3,11],[3,12]],
+    yellow: [[11,11],[11,12],[12,11],[12,12]],
+    blue: [[11,2],[11,3],[12,2],[12,3]]
+  };
+
+  let game = {
+    mode: "bot",
+    players: ["red", "yellow"],
+    turnIdx: 0,
+    dice: null,
+    rolled: false,
+    tokens: {
+      red: [-1, -1, -1, -1],
+      yellow: [-1, -1, -1, -1]
     }
-    function storageSet(key, val) {
-      try { window.localStorage.setItem(key, val); } catch (e) {}
-    }
-    function storageRemove(key) {
-      try { window.localStorage.removeItem(key); } catch (e) {}
-    }
+  };
 
-    const UI_TEXT = {
-      hi: { title: '👑 देसी लूडो राजा', players: 'खिलाड़ी संख्या', start: '▶ खेल शुरू करें', langBtn: '🌐 भाषा', exitBtn: 'बाहर', modalTitle: '🌐 भाषा चुनें', saveBtn: 'सेव करें', rollPrompt: 'डाइस पर टैप करें', movePrompt: 'चमकती गोटी चुनें' },
-      en: { title: '👑 Desi Ludo Raja', players: 'Players', start: '▶ Start Game', langBtn: '🌐 Lang', exitBtn: 'Exit', modalTitle: '🌐 Select Language', saveBtn: 'Save', rollPrompt: 'Tap the dice', movePrompt: 'Select a highlighted token' },
-      mr: { title: '👑 देसी लुडो राजा', players: 'खेळाडू संख्या', start: '▶ खेळ सुरू करा', langBtn: '🌐 भाषा', exitBtn: 'बाहेर', modalTitle: '🌐 भाषा निवडा', saveBtn: 'जतन करा', rollPrompt: 'फासा दाबा', movePrompt: 'गोटी निवडा' },
-      bn: { title: '👑 দেশি লুডো রাজা', players: 'খেলোয়াড়', start: '▶ খেলা শুরু করুন', langBtn: '🌐 ভাষা', exitBtn: 'বাহির', modalTitle: '🌐 ভাষা নির্বাচন করুন', saveBtn: 'সংরক্ষণ করুন', rollPrompt: 'ডাইস ট্যাপ করুন', movePrompt: 'গুটি নির্বাচন করুন' },
-      ta: { title: '👑 தேசி லுடோ ராஜா', players: 'வீரர்கள்', start: '▶ விளையாடத் தொடங்கு', langBtn: '🌐 மொழி', exitBtn: 'வெளியேறு', modalTitle: '🌐 மொழியைத் தேர்ந்தெடுக்கவும்', saveBtn: 'சேமிக்கவும்', rollPrompt: 'பகடையைத் தட்டவும்', movePrompt: 'காயைத் தேர்ந்தெடுக்கவும்' },
-      te: { title: '👑 దేశీ లూడో రాజా', players: 'ఆటగాళ్లు', start: '▶ ఆట ప్రారంభించండి', langBtn: '🌐 భాష', exitBtn: 'నిష్క్రమించు', modalTitle: '🌐 భాషను ఎంచుకోండి', saveBtn: 'సేవ్ చేయండి', rollPrompt: 'పాచికను తాకండి', movePrompt: 'పావును ఎంచుకోండి' },
-      gu: { title: '👑 દેસી લૂડો રાજા', players: 'ખેલાડીઓ', start: '▶ રમત શરૂ કરો', langBtn: '🌐 ભાષા', exitBtn: 'બહાર', modalTitle: '🌐 ભાષા પસંદ કરો', saveBtn: 'સાચવો', rollPrompt: 'પાસો દબાવો', movePrompt: 'કૂકરી પસંદ કરો' },
-      kn: { title: '👑 ದೇಸಿ ಲೂಡೋ ರಾಜ', players: 'ಆಟಗಾರರು', start: '▶ ಆಟ ಪ್ರಾರಂಭಿಸಿ', langBtn: '🌐 ಭಾಷೆ', exitBtn: 'ಹೊರಗೆ', modalTitle: '🌐 ಭಾಷೆಯನ್ನು ಆರಿಸಿ', saveBtn: 'ಉಳಿಸಿ', rollPrompt: 'ದಾಳವನ್ನು ಒತ್ತಿ', movePrompt: 'ಕಾಯಿಯನ್ನು ಆರಿಸಿ' }
-    };
+  function saveAppState() {
+    localStorage.setItem(STATE_KEY, JSON.stringify(appState));
+  }
 
-    const TRACK = [
-      [6,1],[6,2],[6,3],[6,4],[6,5],
-      [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
-      [0,7],[0,8],
-      [1,8],[2,8],[3,8],[4,8],[5,8],
-      [6,9],[6,10],[6,11],[6,12],[6,13],[6,14],
-      [7,14],[8,14],
-      [8,13],[8,12],[8,11],[8,10],[8,9],
-      [9,8],[10,8],[11,8],[12,8],[13,8],[14,8],
-      [14,7],[14,6],
-      [13,6],[12,6],[11,6],[10,6],[9,6],
-      [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],
-      [7,0],[6,0]
-    ];
-
-    const SAFE_TRACK = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
-    const DICE_DOTS = {
-      1: [4],
-      2: [0, 8],
-      3: [0, 4, 8],
-      4: [0, 2, 6, 8],
-      5: [0, 2, 4, 6, 8],
-      6: [0, 2, 3, 5, 6, 8]
-    };
-
-    const COLORS = [
-      { id: 0, name: 'लाल', bg: 'bg-red', start: 0, lane: [[7,1],[7,2],[7,3],[7,4],[7,5]] },
-      { id: 1, name: 'हरा', bg: 'bg-green', start: 13, lane: [[1,7],[2,7],[3,7],[4,7],[5,7]] },
-      { id: 2, name: 'पीला', bg: 'bg-yellow', start: 26, lane: [[7,13],[7,12],[7,11],[7,10],[7,9]] },
-      { id: 3, name: 'नीला', bg: 'bg-blue', start: 39, lane: [[13,7],[12,7],[11,7],[10,7],[9,7]] }
-    ];
-
-    let lang = storageGet(LANG_KEY) || 'hi';
-    let hasLangSaved = Boolean(storageGet(LANG_KEY));
-    let coins = 5000;
-    let playerCount = 2;
-    let soundEnabled = true;
-    let isRolling = false;
-    let isStepping = false;
-    let match = null;
-    let audioCtx = null;
-
-    function playSound(freq, dur = 0.09, wave = 'triangle', vol = 0.09) {
-      if (!soundEnabled) return;
-      try {
-        const Ctx = window.AudioContext || window.webkitAudioContext;
-        if (!Ctx) return;
-        if (!audioCtx) audioCtx = new Ctx();
-        if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = wave;
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + dur);
-      } catch (e) {}
-    }
-
-    function playFanfare() {
-      [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => {
-        setTimeout(() => playSound(f, 0.14, 'triangle', 0.1), idx * 90);
-      });
-    }
-
-    function syncSoundButtons() {
-      const icon = soundEnabled ? '🔊' : '🔇';
-      document.getElementById('soundBtn').textContent = icon;
-      document.getElementById('gameSoundBtn').textContent = icon;
-    }
-
-    function loadPrefs() {
-      try {
-        const raw = storageGet(PREFS_KEY);
-        if (!raw) return;
-        const p = JSON.parse(raw);
-        if (typeof p.coins === 'number') coins = p.coins;
-        if ([1, 2, 3, 4].includes(Number(p.playerCount))) playerCount = Number(p.playerCount);
-        if (typeof p.soundEnabled === 'boolean') soundEnabled = p.soundEnabled;
-      } catch (e) {}
-      syncSoundButtons();
-    }
-
-    function savePrefs() {
-      storageSet(PREFS_KEY, JSON.stringify({ coins, playerCount, soundEnabled }));
-    }
-
-    function saveMatch() {
-      if (!match) {
-        storageRemove(MATCH_KEY);
-        return;
-      }
-      storageSet(MATCH_KEY, JSON.stringify(match));
-    }
-
-    function clearMatch() {
-      match = null;
-      isRolling = false;
-      isStepping = false;
-      storageRemove(MATCH_KEY);
-    }
-
-    function applyLang() {
-      const t = UI_TEXT[lang] || UI_TEXT.hi;
-      document.documentElement.lang = lang;
-      document.getElementById('lobbyTitle').textContent = t.title;
-      document.getElementById('gameHeaderTitle').textContent = t.title;
-      document.getElementById('playersLabel').textContent = t.players;
-      document.getElementById('startGameBtn').textContent = t.start;
-      document.getElementById('lobbyLangBtn').textContent = t.langBtn;
-      document.getElementById('gameLangBtn').textContent = t.langBtn;
-      document.getElementById('exitGameBtn').textContent = t.exitBtn;
-      document.getElementById('langModalTitle').textContent = t.modalTitle;
-      document.getElementById('saveLangBtn').textContent = t.saveBtn;
-      document.querySelectorAll('#langChoices .opt-btn').forEach((b) => {
-        b.classList.toggle('active', b.dataset.lang === lang);
-      });
-      if (match) renderGame();
-    }
-
-    function openLangModal() {
-      document.getElementById('langModal').classList.remove('hidden');
-    }
-
-    function closeLangModal() {
-      document.getElementById('langModal').classList.add('hidden');
-    }
-
-    function showLobby() {
-      document.getElementById('gameScreen').classList.add('hidden');
-      document.getElementById('lobbyScreen').classList.remove('hidden');
-      document.getElementById('coinsText').textContent = String(coins);
-      document.querySelectorAll('#playerCountGroup .opt-btn').forEach((b) => {
-        b.classList.toggle('active', Number(b.dataset.count) === playerCount);
-      });
-    }
-
-    function getTokenCoords(player, step) {
-      if (step < 0 || step > 56) return null;
-      if (step <= 50) return TRACK[(player.start + step) % TRACK.length];
-      if (step <= 55) return player.lane[step - 51];
-      return [7, 7];
-    }
-
-    function canTokenMove(step, dice) {
-      if (step === -1) return dice === 6;
-      if (step >= 0 && step <= 55) return step + dice <= 56;
-      return false;
-    }
-
-    function buildDiceHTML(val, ready, rolling) {
-      const active = new Set(DICE_DOTS[val] || DICE_DOTS[6]);
-      let pips = '';
-      for (let i = 0; i < 9; i++) {
-        const on = active.has(i);
-        const red = on && (val === 1 || val === 4);
-        pips += `<span class="pip ${on ? 'on' : ''} ${red ? 'red' : ''}"></span>`;
-      }
-      return `<div class="dice-3d ${ready ? 'ready' : ''} ${rolling ? 'rolling' : ''}">${pips}</div>`;
-    }
-
-    function startNewMatch() {
-      if (coins < 200) {
-        coins = 5000;
-        savePrefs();
-      }
-      coins -= 200;
-      savePrefs();
-      playFanfare();
-
-      const seats = playerCount === 1 ? [0] : playerCount === 2 ? [0, 2] : playerCount === 3 ? [0, 1, 2] : [0, 1, 2, 3];
-      const players = seats.map((seatId, idx) => ({
-        ...COLORS[seatId],
-        name: idx === 0 ? 'You' : (playerCount === 1 ? 'Bot' : `P${idx + 1}`),
-        isBot: idx > 0 && playerCount === 1,
-        tokens: [-1, -1, -1, -1]
-      }));
-
-      match = {
-        players,
-        turn: 0,
-        dice: 6,
-        phase: 'ROLL'
-      };
-      isRolling = false;
-      isStepping = false;
-      saveMatch();
-      showGame();
-    }
-
-    function showGame() {
-      document.getElementById('lobbyScreen').classList.add('hidden');
-      document.getElementById('gameScreen').classList.remove('hidden');
-      renderGame();
-    }
-
-    function rollDice() {
-      if (!match || match.phase !== 'ROLL' || isRolling || isStepping) return;
-      isRolling = true;
-      let ticks = 0;
-
-      const timer = setInterval(() => {
-        ticks += 1;
-        match.dice = Math.floor(Math.random() * 6) + 1;
-        playSound(280 + ticks * 50, 0.05, 'square', 0.05);
-        renderGame(true);
-
-        if (ticks >= 6) {
-          clearInterval(timer);
-          isRolling = false;
-          const finalVal = Math.floor(Math.random() * 6) + 1;
-          match.dice = finalVal;
-          playSound(finalVal === 6 ? 720 : 500, 0.12, 'triangle', 0.1);
-
-          const cur = match.players[match.turn];
-          const movable = cur.tokens.some((s) => canTokenMove(s, finalVal));
-
-          if (!movable) {
-            match.phase = 'ROLL';
-            match.turn = (match.turn + 1) % match.players.length;
-            saveMatch();
-            renderGame();
-            document.getElementById('statusText').textContent = `${cur.name}: ${finalVal}`;
-            return;
-          }
-
-          match.phase = 'MOVE';
-          saveMatch();
-          renderGame();
-
-          if (cur.isBot) {
-            const idx = cur.tokens.findIndex((s) => canTokenMove(s, finalVal));
-            if (idx >= 0) setTimeout(() => moveToken(idx), 320);
-          }
-        }
-      }, 75);
-    }
-
-    function moveToken(tokenIdx) {
-      if (!match || match.phase !== 'MOVE' || isStepping) return;
-      const cur = match.players[match.turn];
-      const startStep = cur.tokens[tokenIdx];
-      if (!canTokenMove(startStep, match.dice)) return;
-
-      isStepping = true;
-      const steps = startStep === -1 ? 1 : match.dice;
-      let count = 0;
-
-      const stepTimer = setInterval(() => {
-        count += 1;
-        cur.tokens[tokenIdx] = cur.tokens[tokenIdx] === -1 ? 0 : cur.tokens[tokenIdx] + 1;
-        playSound(430 + count * 45, 0.06, 'sine', 0.08);
-        renderGame();
-
-        if (count >= steps) {
-          clearInterval(stepTimer);
-          isStepping = false;
-          finishMove(cur, tokenIdx);
-        }
-      }, 130);
-    }
-
-    function finishMove(cur, tokenIdx) {
-      const landedStep = cur.tokens[tokenIdx];
-      let captured = false;
-
-      if (landedStep >= 0 && landedStep <= 50) {
-        const absPos = (cur.start + landedStep) % TRACK.length;
-        if (!SAFE_TRACK.has(absPos)) {
-          match.players.forEach((other, oIdx) => {
-            if (oIdx === match.turn) return;
-            other.tokens.forEach((os, otIdx) => {
-              if (os >= 0 && os <= 50 && (other.start + os) % TRACK.length === absPos) {
-                other.tokens[otIdx] = -1;
-                captured = true;
-              }
-            });
-          });
-        }
-      }
-
-      if (captured) {
-        playSound(240, 0.2, 'sawtooth', 0.1);
-      }
-
-      if (cur.tokens.every((s) => s === 56)) {
-        match.phase = 'DONE';
-        if (!cur.isBot) {
-          coins += 500;
-          savePrefs();
-        }
-        playFanfare();
-        clearMatch();
-        renderGame();
-        document.getElementById('statusText').textContent = `🏆 ${cur.name} (+500 🪙)`;
-        return;
-      }
-
-      if (match.dice !== 6 && !captured) {
-        match.turn = (match.turn + 1) % match.players.length;
-      }
-      match.phase = 'ROLL';
-      saveMatch();
-      renderGame();
-    }
-
-    function renderGame(rollingNow = false) {
-      const t = UI_TEXT[lang] || UI_TEXT.hi;
-      const topEl = document.getElementById('seatsTop');
-      const botEl = document.getElementById('seatsBottom');
-      topEl.innerHTML = '';
-      botEl.innerHTML = '';
-
-      match.players.forEach((p, idx) => {
-        const isCur = idx === match.turn && match.phase !== 'DONE';
-        const homeCnt = p.tokens.filter((s) => s === 56).length;
-        const card = document.createElement('div');
-        card.className = `seat-card ${isCur ? 'active' : ''}`;
-        card.innerHTML = `
-          <div style="display:flex;align-items:center;gap:6px;min-width:0;">
-            <div class="seat-badge ${p.bg}">${p.isBot ? '🤖' : '👑'}</div>
-            <div style="min-width:0;">
-              <div style="font-weight:900;font-size:0.83rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div>
-              <div style="font-size:0.7rem;color:#475569;font-weight:700;">${p.name} • ${homeCnt}/4</div>
-            </div>
-          </div>
-          ${buildDiceHTML(isCur ? match.dice : 6, isCur && match.phase === 'ROLL' && !p.isBot && !rollingNow, isCur && rollingNow)}
-        `;
-        const dEl = card.querySelector('.dice-3d');
-        if (isCur && match.phase === 'ROLL' && !p.isBot && dEl) {
-          dEl.addEventListener('click', rollDice);
-        }
-        if (idx < 2) topEl.appendChild(card);
-        else botEl.appendChild(card);
-      });
-
-      const board = document.getElementById('boardGrid');
-      board.innerHTML = '';
-
-      const yards = [
-        { id: 0, bg: 'bg-red', col: 1, row: 1 },
-        { id: 1, bg: 'bg-green', col: 10, row: 1 },
-        { id: 2, bg: 'bg-yellow', col: 10, row: 10 },
-        { id: 3, bg: 'bg-blue', col: 1, row: 10 }
-      ];
-
-      yards.forEach((y) => {
-        const yDiv = document.createElement('div');
-        yDiv.className = `yard ${y.bg}`;
-        yDiv.style.gridColumn = `${y.col} / span 6`;
-        yDiv.style.gridRow = `${y.row} / span 6`;
-        const pIdx = match.players.findIndex((pl) => pl.id === y.id);
-        const p = pIdx >= 0 ? match.players[pIdx] : null;
-
-        for (let i = 0; i < 4; i++) {
-          const slot = document.createElement('div');
-          slot.className = 'yard-slot';
-          if (p && p.tokens[i] === -1) {
-            const tok = document.createElement('div');
-            tok.className = `token ${p.bg}`;
-            if (pIdx === match.turn && match.phase === 'MOVE' && !p.isBot && canTokenMove(-1, match.dice)) {
-              tok.classList.add('can-move');
-              tok.addEventListener('click', () => moveToken(i));
-            }
-            slot.appendChild(tok);
-          }
-          yDiv.appendChild(slot);
-        }
-        board.appendChild(yDiv);
-      });
-
-      const center = document.createElement('div');
-      center.className = 'center-home';
-      center.textContent = '👑';
-      board.appendChild(center);
-
-      for (let r = 0; r < 15; r++) {
-        for (let c = 0; c < 15; c++) {
-          const skip =
-            (r < 6 && c < 6) ||
-            (r < 6 && c > 8) ||
-            (r > 8 && c > 8) ||
-            (r > 8 && c < 6) ||
-            (r >= 6 && r <= 8 && c >= 6 && c <= 8);
-          if (skip) continue;
-
-          const cell = document.createElement('div');
-          cell.className = 'cell';
-          cell.style.gridRow = String(r + 1);
-          cell.style.gridColumn = String(c + 1);
-
-          if ((r === 7 && c >= 1 && c <= 5) || (r === 6 && c === 1)) cell.classList.add('bg-red');
-          if ((c === 7 && r >= 1 && r <= 5) || (r === 1 && c === 8)) cell.classList.add('bg-green');
-          if ((r === 7 && c >= 9 && c <= 13) || (r === 8 && c === 13)) cell.classList.add('bg-yellow');
-          if ((c === 7 && r >= 9 && r <= 13) || (r === 13 && c === 6)) cell.classList.add('bg-blue');
-
-          const isStar =
-            (r === 6 && c === 1) || (r === 2 && c === 6) ||
-            (r === 1 && c === 8) || (r === 6 && c === 12) ||
-            (r === 8 && c === 13) || (r === 12 && c === 8) ||
-            (r === 13 && c === 6) || (r === 8 && c === 2);
-          if (isStar) cell.classList.add('star-cell');
-
-          const cellTokens = [];
-          match.players.forEach((p, pIdx) => {
-            p.tokens.forEach((st, tIdx) => {
-              const xy = getTokenCoords(p, st);
-              if (xy && xy[0] === r && xy[1] === c) {
-                cellTokens.push({ p, pIdx, tIdx, st });
-              }
-            });
-          });
-
-          if (cellTokens.length > 0) {
-            const grp = document.createElement('div');
-            grp.className = `tokens-group ${cellTokens.length > 1 ? 'multi' : ''}`;
-            cellTokens.forEach(({ p, pIdx, tIdx, st }) => {
-              const tok = document.createElement('div');
-              tok.className = `token ${p.bg}`;
-              if (pIdx === match.turn && match.phase === 'MOVE' && !p.isBot && canTokenMove(st, match.dice)) {
-                tok.classList.add('can-move');
-                tok.addEventListener('click', () => moveToken(tIdx));
-              }
-              grp.appendChild(tok);
-            });
-            cell.appendChild(grp);
-          }
-
-          board.appendChild(cell);
-        }
-      }
-
-      const cur = match.players[match.turn];
-      document.getElementById('statusText').textContent =
-        match.phase === 'MOVE'
-          ? `${cur.name} (${match.dice}) — ${t.movePrompt}`
-          : `${cur.name} — ${t.rollPrompt}`;
-    }
-
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      syncSoundButtons();
-      savePrefs();
-      if (soundEnabled) playSound(620, 0.12, 'triangle', 0.09);
-    }
-
-    document.getElementById('soundBtn').addEventListener('click', toggleSound);
-    document.getElementById('gameSoundBtn').addEventListener('click', toggleSound);
-
-    document.querySelectorAll('#langChoices .opt-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        lang = btn.dataset.lang;
-        playSound(540, 0.09, 'triangle', 0.08);
-        applyLang();
-      });
-    });
-
-    document.getElementById('saveLangBtn').addEventListener('click', () => {
-      storageSet(LANG_KEY, lang);
-      hasLangSaved = true;
-      playSound(680, 0.12, 'triangle', 0.09);
-      closeLangModal();
-    });
-
-    document.getElementById('lobbyLangBtn').addEventListener('click', openLangModal);
-    document.getElementById('gameLangBtn').addEventListener('click', openLangModal);
-
-    document.querySelectorAll('#playerCountGroup .opt-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        playerCount = Number(btn.dataset.count);
-        savePrefs();
-        playSound(500 + playerCount * 60, 0.08, 'triangle', 0.08);
-        document.querySelectorAll('#playerCountGroup .opt-btn').forEach((b) => {
-          b.classList.toggle('active', Number(b.dataset.count) === playerCount);
-        });
-      });
-    });
-
-    document.getElementById('startGameBtn').addEventListener('click', startNewMatch);
-
-    document.getElementById('exitGameBtn').addEventListener('click', () => {
-      clearMatch();
-      showLobby();
-    });
-
-    window.addEventListener('beforeunload', () => {
-      savePrefs();
-      saveMatch();
-    });
-
-    loadPrefs();
-    applyLang();
-
+  function playTone(freq = 520, duration = 0.09) {
+    if (!appState.sound) return;
     try {
-      const savedMatchRaw = storageGet(MATCH_KEY);
-      if (savedMatchRaw) {
-        const parsed = JSON.parse(savedMatchRaw);
-        if (parsed && Array.isArray(parsed.players) && parsed.phase !== 'DONE') {
-          match = parsed;
-        }
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "triangle";
+      osc.frequency.value = freq;
+      gain.gain.value = 0.08;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (_) {}
+  }
+
+  function renderStartUI() {
+    document.getElementById("coinCount").textContent = appState.coins.toLocaleString("en-IN");
+    document.getElementById("playerNameLabel").textContent = appState.name;
+    const soundIcon = appState.sound ? "🔊" : "🔇";
+    document.getElementById("soundToggleBtn").textContent = soundIcon;
+    document.getElementById("gameSoundBtn").textContent = soundIcon;
+
+    const dp = document.getElementById("dpContainer");
+    dp.innerHTML = appState.dpDataUrl ? `<img src="${appState.dpDataUrl}" alt="DP" />` : "👑";
+
+    const isEn = appState.lang === "en";
+    document.getElementById("mainTitle").textContent = isEn ? "DESI LUDO RAJA" : "देसी लूडो राजा";
+    document.getElementById("subTitle").textContent = isEn
+      ? "15×15 Board • Pass & Play • Desi Style"
+      : "15×15 बोर्ड • पास एंड प्ले • देसी अंदाज़";
+  }
+
+  function openDpModal() {
+    document.getElementById("modalTitle").textContent = "कस्टम DP सेट करें";
+    document.getElementById("modalBody").textContent = "अपनी फोटो चुनें (अपने आप 128×128 में सेव होगी):";
+    const btn = document.getElementById("modalConfirmBtn");
+    btn.textContent = "फ़ोटो चुनें";
+    btn.onclick = () => {
+      closeModal();
+      document.getElementById("dpFileInput").click();
+    };
+    document.getElementById("infoModal").classList.add("open");
+  }
+
+  function handleDpUpload(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = 128;
+        canvas.height = 128;
+        const ctx = canvas.getContext("2d");
+        const size = Math.min(img.width, img.height);
+        ctx.drawImage(img, (img.width - size) / 2, (img.height - size) / 2, size, size, 0, 0, 128, 128);
+        appState.dpDataUrl = canvas.toDataURL("image/jpeg", 0.72);
+        saveAppState();
+        renderStartUI();
+        setStatus("कस्टम DP सेव हो गई!");
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function openRoomModal() {
+    const code = Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("modalTitle").textContent = "फ्रेंड्स रूम कोड";
+    document.getElementById("modalBody").textContent = `रूम कोड: ${code} — लोकल पास एंड प्ले शुरू करें:`;
+    const btn = document.getElementById("modalConfirmBtn");
+    btn.textContent = "शुरू करें";
+    btn.onclick = () => {
+      closeModal();
+      startMode("pass", 2);
+    };
+    document.getElementById("infoModal").classList.add("open");
+  }
+
+  function closeModal() {
+    document.getElementById("infoModal").classList.remove("open");
+  }
+
+  function claimBonusCoins() {
+    appState.coins += 250;
+    saveAppState();
+    renderStartUI();
+    playTone(740, 0.12);
+    setStatus("+250 बोनस कॉइन्स मिले!");
+  }
+
+  function toggleLang() {
+    appState.lang = appState.lang === "hi" ? "en" : "hi";
+    saveAppState();
+    renderStartUI();
+    updatePrompt();
+  }
+
+  function toggleSound() {
+    appState.sound = !appState.sound;
+    saveAppState();
+    renderStartUI();
+  }
+
+  function setTab(el, tab) {
+    document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
+    el.classList.add("active");
+    if (tab === "adda") record3SecVoice();
+    else if (tab === "inventory") openDpModal();
+    else setStatus(`${tab.toUpperCase()} तैयार`);
+  }
+
+  function setStatus(msg) {
+    document.getElementById("statusText").textContent = msg;
+  }
+
+  async function record3SecVoice() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      setStatus("माइक उपलब्ध नहीं");
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = [];
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = ev => {
+        if (ev.data.size > 0) audioChunks.push(ev.data);
+      };
+      mediaRecorder.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        if (lastVoiceUrl) URL.revokeObjectURL(lastVoiceUrl);
+        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || "audio/webm" });
+        lastVoiceUrl = URL.createObjectURL(blob);
+        document.getElementById("voicePlayBtn").disabled = false;
+        document.getElementById("voiceRecBtn").classList.remove("recording");
+        document.getElementById("voiceRecBtn").textContent = "🎙️ 3s Voice";
+        setStatus("3s वॉयस तैयार! ▶️ दबाएं");
+      };
+      mediaRecorder.start();
+      document.getElementById("voiceRecBtn").classList.add("recording");
+      document.getElementById("voiceRecBtn").textContent = "⏺️ 3s...";
+      setStatus("बोलें... 3 सेकंड में रुक जाएगा");
+      clearTimeout(voiceTimer);
+      voiceTimer = setTimeout(() => {
+        if (mediaRecorder && mediaRecorder.state === "recording") mediaRecorder.stop();
+      }, 3000);
+    } catch (_) {
+      setStatus("माइक अनुमति नहीं मिली");
+    }
+  }
+
+  function playLastVoice() {
+    if (!lastVoiceUrl) return;
+    new Audio(lastVoiceUrl).play();
+    setStatus("वॉयस रिएक्शन चल रही है...");
+  }
+
+  /* BOARD LOGIC */
+  function startMode(mode, count) {
+    game = {
+      mode,
+      players: count === 4 ? ["red", "green", "yellow", "blue"] : ["red", "yellow"],
+      turnIdx: 0,
+      dice: null,
+      rolled: false,
+      tokens: {
+        red: [-1, -1, -1, -1],
+        yellow: [-1, -1, -1, -1],
+        green: [-1, -1, -1, -1],
+        blue: [-1, -1, -1, -1]
       }
-    } catch (e) {}
+    };
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("gameScreen").style.display = "flex";
+    document.getElementById("p2Name").textContent = mode === "bot" ? "Bot (Yellow)" : "P2 (Yellow)";
+    renderBoard();
+    updatePrompt();
+  }
 
-    if (match) {
-      showGame();
+  function exitToStart() {
+    document.getElementById("gameScreen").style.display = "none";
+    document.getElementById("startScreen").style.display = "flex";
+  }
+
+  function currentColor() {
+    return game.players[game.turnIdx];
+  }
+
+  function startOffset(color) {
+    return { red: 0, green: 13, yellow: 26, blue: 39 }[color];
+  }
+
+  function canMoveToken(color, stepVal, dice) {
+    if (stepVal === 56) return false; // already home
+    if (stepVal === -1) return dice === 6;
+    return stepVal + dice <= 56;
+  }
+
+  function rollDice() {
+    const color = currentColor();
+    if (game.rolled) return;
+    if (game.mode === "bot" && color === "yellow") return;
+
+    const val = Math.floor(Math.random() * 6) + 1;
+    game.dice = val;
+    game.rolled = true;
+    playTone(620, 0.08);
+
+    const movableIndexes = game.tokens[color]
+      .map((pos, idx) => (canMoveToken(color, pos, val) ? idx : -1))
+      .filter(idx => idx !== -1);
+
+    renderBoard(movableIndexes);
+
+    if (movableIndexes.length === 0) {
+      updatePrompt(val, true);
+      setTimeout(nextTurn, 750);
+    } else if (game.mode === "bot" && color === "yellow") {
+      setTimeout(() => moveToken("yellow", movableIndexes[0]), 550);
     } else {
-      showLobby();
+      updatePrompt(val, false);
+    }
+  }
+
+  function moveToken(color, idx) {
+    if (!game.rolled || color !== currentColor()) return;
+    const cur = game.tokens[color][idx];
+    if (!canMoveToken(color, cur, game.dice)) return;
+
+    playTone(780, 0.1);
+    if (cur === -1 && game.dice === 6) {
+      game.tokens[color][idx] = 0;
+    } else {
+      game.tokens[color][idx] = cur + game.dice;
     }
 
-    if (!hasLangSaved) {
-      openLangModal();
+    const bonusTurn = game.dice === 6;
+    game.rolled = false;
+    game.dice = null;
+
+    if (game.tokens[color].every(p => p === 56)) {
+      appState.coins += 100;
+      saveAppState();
+      renderStartUI();
+      alert(`${color.toUpperCase()} जीत गया! +100 कॉइन्स`);
+      exitToStart();
+      return;
     }
-  </script>
+
+    if (!bonusTurn) {
+      nextTurn();
+    } else {
+      renderBoard();
+      updatePrompt();
+      if (game.mode === "bot" && currentColor() === "yellow") {
+        setTimeout(rollDice, 600);
+      }
+    }
+  }
+
+  function nextTurn() {
+    game.turnIdx = (game.turnIdx + 1) % game.players.length;
+    game.rolled = false;
+    game.dice = null;
+    renderBoard();
+    updatePrompt();
+    if (game.mode === "bot" && currentColor() === "yellow") {
+      setTimeout(rollDice, 650);
+    }
+  }
+
+  function updatePrompt(rolledVal = null, noMove = false) {
+    const c = currentColor().toUpperCase();
+    const isEn = appState.lang === "en";
+    const p1Home = game.tokens.red.filter(x => x === 56).length;
+    const p2Home = game.tokens.yellow.filter(x => x === 56).length;
+    document.getElementById("p1HomeCount").textContent = `Home: ${p1Home}/4`;
+    document.getElementById("p2HomeCount").textContent = `Home: ${p2Home}/4`;
+    document.getElementById("p1Box").classList.toggle("active-turn", currentColor() === "red");
+    document.getElementById("p2Box").classList.toggle("active-turn", currentColor() === "yellow");
+
+    document.getElementById("p1Dice").textContent = game.dice && currentColor() === "red" ? game.dice : "🎲";
+    document.getElementById("p2Dice").textContent = game.dice && currentColor() === "yellow" ? game.dice : "🎲";
+
+    const el = document.getElementById("gamePrompt");
+    if (noMove) {
+      el.textContent = isEn ? `${c} rolled ${rolledVal} — no valid move` : `${c} ने ${rolledVal} फेंका — चाल नहीं`;
+    } else if (rolledVal) {
+      el.textContent = isEn ? `${c} rolled ${rolledVal} — tap a token` : `${c} ने ${rolledVal} फेंका — गोटी चुनें`;
+    } else {
+      el.textContent = isEn ? `${c} — tap dice to roll` : `${c} — डाइस पर टैप करें`;
+    }
+  }
+
+  function tokenCoord(color, stepVal) {
+    if (stepVal === -1) return null;
+    if (stepVal >= 51) {
+      const homeStep = Math.min(5, stepVal - 51);
+      if (color === "red") return [7, 1 + homeStep];
+      if (color === "yellow") return [7, 13 - homeStep];
+      if (color === "green") return [1 + homeStep, 7];
+      if (color === "blue") return [13 - homeStep, 7];
+    }
+    const globalIdx = (startOffset(color) + stepVal) % MAIN_PATH.length;
+    return MAIN_PATH[globalIdx];
+  }
+
+  function renderBoard(movableIndexes = []) {
+    const grid = document.getElementById("ludoGrid");
+    grid.innerHTML = "";
+
+    const cellMatrix = Array.from({ length: 15 }, () =>
+      Array.from({ length: 15 }, () => {
+        const div = document.createElement("div");
+        div.className = "cell c-white";
+        return div;
+      })
+    );
+
+    // Bases
+    for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) cellMatrix[r][c].className = "cell c-red";
+    for (let r = 0; r < 6; r++) for (let c = 9; c < 15; c++) cellMatrix[r][c].className = "cell c-green";
+    for (let r = 9; r < 15; r++) for (let c = 0; c < 6; c++) cellMatrix[r][c].className = "cell c-blue";
+    for (let r = 9; r < 15; r++) for (let c = 9; c < 15; c++) cellMatrix[r][c].className = "cell c-yellow";
+
+    // Home stretch & center
+    for (let c = 1; c <= 5; c++) cellMatrix[7][c].className = "cell c-red";
+    for (let c = 9; c <= 13; c++) cellMatrix[7][c].className = "cell c-yellow";
+    for (let r = 1; r <= 5; r++) cellMatrix[r][7].className = "cell c-green";
+    for (let r = 9; r <= 13; r++) cellMatrix[r][7].className = "cell c-blue";
+
+    MAIN_PATH.forEach(([r, c], idx) => {
+      if (SAFE_INDEXES.has(idx)) {
+        cellMatrix[r][c].textContent = "★";
+      }
+    });
+
+    for (let r = 6; r <= 8; r++) {
+      for (let c = 6; c <= 8; c++) {
+        cellMatrix[r][c].style.background = "#ffd54f";
+      }
+    }
+    cellMatrix[7][7].textContent = "👑";
+
+    // Place tokens
+    game.players.forEach(color => {
+      game.tokens[color].forEach((stepVal, idx) => {
+        const coord = stepVal === -1 ? YARD_COORDS[color][idx] : tokenCoord(color, stepVal);
+        if (!coord) return;
+        const [r, c] = coord;
+        const tok = document.createElement("div");
+        tok.className = `token t-${color}`;
+        if (color === currentColor() && movableIndexes.includes(idx)) {
+          tok.classList.add("movable");
+        }
+        tok.onclick = () => moveToken(color, idx);
+        cellMatrix[r][c].appendChild(tok);
+      });
+    });
+
+    for (let r = 0; r < 15; r++) {
+      for (let c = 0; c < 15; c++) {
+        grid.appendChild(cellMatrix[r][c]);
+      }
+    }
+  }
+
+  renderStartUI();
+</script>
 </body>
 </html>
