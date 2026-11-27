@@ -5,22 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#0d3b8e" />
+<meta name="theme-color" content="#081d4d" />
 <style>
   :root {
-    --royal-top: #092666;
-    --royal-mid: #1246a8;
-    --royal-bot: #0a2d75;
-    --gold-light: #fff176;
-    --gold-main: #ffca28;
-    --gold-deep: #e65100;
-    --card-blue-top: #2979ff;
-    --card-blue-bot: #0d47a1;
+    --bg-deep: #061539;
+    --bg-royal: #0d327d;
+    --bg-azure: #1858c7;
+    --gold-hi: #fff59d;
+    --gold-mid: #ffca28;
+    --gold-lo: #e65100;
 
-    --red: #ff1744;
-    --green: #00e676;
-    --yellow: #ffea00;
-    --blue: #00b0ff;
+    --red: #f42246;
+    --green: #00d668;
+    --yellow: #ffd600;
+    --blue: #0099ff;
   }
 
   * {
@@ -35,7 +33,7 @@
     min-height: 100dvh;
     width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-    background: #071b4a;
+    background: #040e26;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -49,34 +47,34 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    box-shadow: 0 0 36px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
   }
 
-  /* ================= POP-UP & FLOAT ANIMATIONS ================= */
-  @keyframes popFloat {
+  /* ================= CONTINUOUS SMOOTH POP-UP & SHINE ================= */
+  @keyframes studioFloat {
     0%, 100% { transform: translateY(0px) scale(1); }
-    50%      { transform: translateY(-5px) scale(1.025); }
+    50%      { transform: translateY(-5px) scale(1.022); }
   }
 
-  @keyframes popFloatMicro {
+  @keyframes pillFloat {
     0%, 100% { transform: translateY(0px); }
-    50%      { transform: translateY(-3.5px); }
+    50%      { transform: translateY(-3px); }
   }
 
-  @keyframes spinSlow {
+  @keyframes slowRotate {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
   }
 
-  .pop-float-1 { animation: popFloat 2.1s ease-in-out infinite; }
-  .pop-float-2 { animation: popFloat 2.1s ease-in-out 0.35s infinite; }
-  .pop-float-3 { animation: popFloat 2.1s ease-in-out 0.7s infinite; }
-  .pop-float-4 { animation: popFloat 2.2s ease-in-out 0.2s infinite; }
-  .pop-float-5 { animation: popFloat 2.2s ease-in-out 0.55s infinite; }
+  .pop-float-1 { animation: studioFloat 2.2s ease-in-out infinite; }
+  .pop-float-2 { animation: studioFloat 2.2s ease-in-out 0.35s infinite; }
+  .pop-float-3 { animation: studioFloat 2.2s ease-in-out 0.7s infinite; }
+  .pop-float-4 { animation: studioFloat 2.3s ease-in-out 0.2s infinite; }
+  .pop-float-5 { animation: studioFloat 2.3s ease-in-out 0.55s infinite; }
 
-  .pop-pill-1  { animation: popFloatMicro 1.9s ease-in-out infinite; }
-  .pop-pill-2  { animation: popFloatMicro 1.9s ease-in-out 0.3s infinite; }
-  .pop-pill-3  { animation: popFloatMicro 1.9s ease-in-out 0.6s infinite; }
+  .pop-pill-1  { animation: pillFloat 2s ease-in-out infinite; }
+  .pop-pill-2  { animation: pillFloat 2s ease-in-out 0.3s infinite; }
+  .pop-pill-3  { animation: pillFloat 2s ease-in-out 0.6s infinite; }
 
   .shine-box {
     position: relative;
@@ -87,24 +85,24 @@
     content: "";
     position: absolute;
     top: -40%;
-    left: -135%;
-    width: 48%;
+    left: -140%;
+    width: 45%;
     height: 180%;
     background: linear-gradient(
       115deg,
       transparent 20%,
-      rgba(255, 255, 255, 0.42) 50%,
+      rgba(255, 255, 255, 0.36) 50%,
       transparent 80%
     );
-    transform: skewX(-18deg);
-    animation: shineSweep 3.5s infinite ease-in-out;
+    transform: skewX(-20deg);
+    animation: sheenPass 3.8s infinite ease-in-out;
     pointer-events: none;
   }
 
-  @keyframes shineSweep {
-    0%   { left: -135%; }
-    35%  { left: 160%; }
-    100% { left: 160%; }
+  @keyframes sheenPass {
+    0%   { left: -140%; }
+    32%  { left: 165%; }
+    100% { left: 165%; }
   }
 
   /* ================= GREEN STAR INTRO ================= */
@@ -119,21 +117,21 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 38%, rgba(255, 235, 59, 0.38), transparent 52%),
-      linear-gradient(155deg, #092666 0%, #1565c0 48%, #00695c 100%);
+      radial-gradient(circle at 50% 38%, rgba(0, 230, 118, 0.28), transparent 55%),
+      linear-gradient(160deg, #061539 0%, #0d327d 50%, #052e2b 100%);
     transition: opacity 0.28s ease, transform 0.28s ease;
   }
 
   #greenStarSplash.hide-splash {
     opacity: 0;
-    transform: scale(1.05);
+    transform: scale(1.04);
     pointer-events: none;
   }
 
   .star-stage {
     position: relative;
-    width: 170px;
-    height: 170px;
+    width: 164px;
+    height: 164px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,61 +143,63 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(255, 215, 0, 0.45) 0deg 10deg,
+      rgba(255, 215, 0, 0.35) 0deg 10deg,
       transparent 10deg 30deg
     );
     -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
     mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
-    animation: spinSlow 7s linear infinite;
+    animation: slowRotate 8s linear infinite;
   }
 
   .green-star-hero {
-    width: 122px;
-    height: 122px;
+    width: 118px;
+    height: 118px;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
-    animation: starSpringIn 0.75s cubic-bezier(0.2, 1.35, 0.35, 1) forwards;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.6));
+    animation: starSpringIn 0.7s cubic-bezier(0.2, 1.35, 0.35, 1) forwards;
   }
 
   @keyframes starSpringIn {
-    0%   { transform: scale(0.2) rotate(-55deg); opacity: 0; }
-    72%  { transform: scale(1.12) rotate(8deg); opacity: 1; }
+    0%   { transform: scale(0.25) rotate(-50deg); opacity: 0; }
+    72%  { transform: scale(1.1) rotate(6deg); opacity: 1; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
   }
 
   .splash-title {
     margin: 8px 0 4px;
-    font-size: 27px;
+    font-size: 26px;
     font-weight: 950;
-    color: #ffea00;
-    text-shadow: 0 3px 0 #7f3300, 0 6px 14px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffea00 55%, #ff9100 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .splash-sub {
-    margin: 0 0 16px;
+    margin: 0 0 18px;
     font-size: 12px;
-    font-weight: 900;
-    color: #e0f7fa;
-    background: rgba(9, 38, 102, 0.72);
-    border: 1.5px solid #ffca28;
-    padding: 4px 14px;
+    font-weight: 800;
+    color: #bae6fd;
+    background: rgba(6, 21, 57, 0.75);
+    border: 1px solid rgba(255, 202, 40, 0.45);
+    padding: 5px 14px;
     border-radius: 999px;
   }
 
   .splash-skip-btn {
-    border: 2.5px solid #ffffff;
+    border: 2px solid #fff59d;
     border-radius: 999px;
-    padding: 9px 24px;
+    padding: 10px 26px;
     background: linear-gradient(180deg, #ffea00, #ff6d00);
-    color: #240900;
+    color: #210800;
     font-size: 13px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 5px 0 #8c3800;
+    box-shadow: 0 5px 0 #8c3800, 0 10px 20px rgba(0, 0, 0, 0.45);
   }
 
-  /* ================= ROYAL SAPPHIRE BLUE PATTERNED START SCREEN ================= */
+  /* ================= MODERN STUDIO START SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
@@ -207,33 +207,23 @@
     justify-content: space-between;
     position: relative;
     background:
-      radial-gradient(circle at 50% 24%, rgba(64, 196, 255, 0.42), transparent 52%),
-      radial-gradient(circle at 18% 72%, rgba(41, 121, 255, 0.35), transparent 48%),
-      radial-gradient(circle at 84% 78%, rgba(0, 229, 255, 0.28), transparent 48%),
-      linear-gradient(180deg, #0b2f7a 0%, #1553bd 46%, #0c358a 100%);
+      radial-gradient(ellipse at 50% 18%, rgba(56, 189, 248, 0.42), transparent 55%),
+      radial-gradient(circle at 15% 65%, rgba(37, 99, 235, 0.35), transparent 50%),
+      radial-gradient(circle at 85% 75%, rgba(14, 165, 233, 0.28), transparent 50%),
+      linear-gradient(180deg, #071942 0%, #1042a3 48%, #071c4a 100%);
   }
 
-  /* Diagonal Ludo Checkered Watermark Overlay like Screenshot */
+  /* Subtle Architectural Diamond Grid */
   #startScreen::before {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
+    opacity: 0.22;
     background-image:
-      repeating-linear-gradient(
-        -28deg,
-        rgba(255, 255, 255, 0.045) 0px,
-        rgba(255, 255, 255, 0.045) 26px,
-        transparent 26px,
-        transparent 52px
-      ),
-      repeating-linear-gradient(
-        62deg,
-        rgba(255, 255, 255, 0.04) 0px,
-        rgba(255, 255, 255, 0.04) 26px,
-        transparent 26px,
-        transparent 52px
-      );
+      linear-gradient(30deg, rgba(255,255,255,0.08) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.08) 87.5%, rgba(255,255,255,0.08)),
+      linear-gradient(150deg, rgba(255,255,255,0.08) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.08) 87.5%, rgba(255,255,255,0.08));
+    background-size: 44px 76px;
   }
 
   #startScreen > * {
@@ -241,116 +231,112 @@
     z-index: 1;
   }
 
-  /* ================= ROYAL TOP HUD ================= */
+  /* Sleek Glassmorphic Top HUD */
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 5px;
-    padding: 7px 8px;
-    background: linear-gradient(180deg, #071e54 0%, #0d368a 100%);
-    border-bottom: 2.5px solid #ffca28;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    gap: 6px;
+    padding: 8px 10px;
+    background: linear-gradient(180deg, rgba(5, 16, 46, 0.92), rgba(11, 37, 94, 0.85));
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(255, 202, 40, 0.65);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
   }
 
   .hud-left {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
   }
 
   .dp-frame {
     position: relative;
     width: 38px;
     height: 38px;
-    border-radius: 10px;
-    border: 2.2px solid #ffca28;
-    background: linear-gradient(145deg, #2979ff, #0d47a1);
+    border-radius: 11px;
+    border: 2px solid #ffca28;
+    background: linear-gradient(145deg, #2563eb, #1e3a8a);
     display: grid;
     place-items: center;
-    font-size: 18px;
     cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
-    overflow: visible;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
   }
 
   .dp-frame img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 9px;
     object-fit: cover;
   }
 
-  .lvl-star {
+  .lvl-badge {
     position: absolute;
-    bottom: -6px;
-    left: -5px;
+    bottom: -5px;
+    left: -4px;
     background: linear-gradient(180deg, #ffea00, #ff8f00);
-    color: #210900;
-    border: 1.5px solid #fff;
+    color: #240900;
+    border: 1.2px solid #ffffff;
     border-radius: 999px;
-    font-size: 8.5px;
+    font-size: 8px;
     font-weight: 950;
     padding: 0 4px;
-    line-height: 1.2;
+    line-height: 1.25;
   }
 
-  .hud-sq-btn {
+  .hud-icon-pill {
     width: 30px;
     height: 30px;
     border-radius: 9px;
-    border: 1.6px solid #ffca28;
-    background: linear-gradient(180deg, #1e62d0, #0d368a);
+    border: 1.4px solid rgba(255, 202, 40, 0.7);
+    background: linear-gradient(180deg, #1d4ed8, #0f296b);
     color: #ffffff;
-    font-size: 13px;
-    font-weight: 950;
     display: grid;
     place-items: center;
     cursor: pointer;
-    box-shadow: 0 2px 0 #05163d;
+    box-shadow: 0 2px 0 #051233;
   }
 
   .hud-right {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
   }
 
-  .curr-pill {
+  .wallet-pill {
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 3px 5px 3px 7px;
+    padding: 3px 4px 3px 7px;
     border-radius: 999px;
-    background: #061844;
-    border: 1.6px solid #3b82f6;
+    background: rgba(4, 14, 38, 0.85);
+    border: 1.4px solid rgba(96, 165, 250, 0.55);
     font-size: 10.5px;
-    font-weight: 950;
+    font-weight: 900;
     color: #ffffff;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
-  .plus-green {
-    width: 18px;
-    height: 18px;
-    border: 1.4px solid #ffffff;
-    border-radius: 5px;
+  .plus-chip {
+    width: 17px;
+    height: 17px;
+    border: none;
+    border-radius: 50%;
     background: linear-gradient(180deg, #00e676, #00a152);
     color: #03210e;
     font-weight: 950;
     font-size: 12px;
     cursor: pointer;
-    line-height: 1;
     display: grid;
     place-items: center;
+    line-height: 1;
   }
 
   .lang-select {
     height: 28px;
-    max-width: 74px;
+    max-width: 72px;
     border-radius: 8px;
-    border: 1.5px solid #ffca28;
-    background: #061844;
+    border: 1.4px solid rgba(255, 202, 40, 0.7);
+    background: #061539;
     color: #ffea00;
     font-size: 9.5px;
     font-weight: 900;
@@ -358,132 +344,123 @@
     cursor: pointer;
   }
 
-  /* ================= CENTER HERO LOGO & 4-PAWN 3D STAGE ================= */
-  .hero-area {
+  /* ================= STUDIO BRAND SHOWCASE ================= */
+  .hero-showcase {
     position: relative;
-    padding: 6px 8px 2px;
+    padding: 6px 10px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .float-col-left {
+  .side-rail-left {
     position: absolute;
-    left: 8px;
-    top: 6px;
+    left: 10px;
+    top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 7px;
     z-index: 3;
   }
 
-  .float-col-right {
+  .side-rail-right {
     position: absolute;
-    right: 8px;
-    top: 4px;
+    right: 10px;
+    top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 7px;
     z-index: 3;
   }
 
-  .side-medallion {
+  .rail-btn {
     width: 44px;
-    padding: 4px 2px;
+    padding: 5px 2px;
     border-radius: 12px;
-    border: 1.8px solid #ffca28;
-    background: linear-gradient(180deg, #1b56c2, #0a286e);
-    text-align: center;
+    border: 1.6px solid rgba(255, 202, 40, 0.85);
+    background: linear-gradient(180deg, rgba(30, 64, 175, 0.92), rgba(15, 23, 42, 0.95));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
   }
 
-  .med-icon {
-    font-size: 16px;
-    line-height: 1.1;
-  }
-
-  .med-lbl {
-    font-size: 8px;
+  .rail-lbl {
+    font-size: 7.8px;
     font-weight: 950;
     color: #ffea00;
-    margin-top: 1px;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.3px;
   }
 
-  .med-live {
-    background: linear-gradient(180deg, #00e676, #00897b);
-    color: #03210e;
-    border-radius: 4px;
-    padding: 0 3px;
-    font-size: 7.5px;
-    font-weight: 950;
-    display: inline-block;
-  }
-
-  /* Royal Crown + Colorful 4-Tile L-U-D-O Logo */
-  .royal-emblem {
+  /* Studio Crown + 3D Glossy Emblem */
+  .brand-lockup {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
   }
 
-  .crown-top {
-    width: 54px;
-    height: 30px;
-    margin-bottom: -5px;
-    margin-right: 76px;
-    transform: rotate(-14deg);
-    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55));
+  .brand-crown {
+    width: 52px;
+    height: 28px;
+    margin-bottom: -4px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.55));
   }
 
-  .desi-tag-top {
-    font-size: 13px;
+  .brand-hindi-sub {
+    font-size: 12px;
     font-weight: 950;
+    letter-spacing: 1.2px;
     color: #ffea00;
-    text-shadow: 0 2px 0 #7f3300, 0 3px 6px rgba(0, 0, 0, 0.75);
-    letter-spacing: 1px;
-    margin-bottom: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
   }
 
-  .ludo-4-circles {
+  .ludo-orbs-row {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
+    margin: 2px 0;
   }
 
-  .l-ball {
-    width: 34px;
-    height: 34px;
+  .ludo-orb {
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 2.5px solid #ffffff;
+    border: 2.2px solid #ffffff;
     display: grid;
     place-items: center;
     font-size: 18px;
     font-weight: 950;
     color: #ffffff;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.65);
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45), inset 0 3px 5px rgba(255, 255, 255, 0.55);
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.55);
+    box-shadow:
+      0 4px 0 rgba(0, 0, 0, 0.45),
+      inset 0 4px 6px rgba(255, 255, 255, 0.65),
+      inset 0 -4px 6px rgba(0, 0, 0, 0.3);
   }
 
-  .lb-blue   { background: radial-gradient(circle at 35% 30%, #80d8ff, #0091ea); }
-  .lb-red    { background: radial-gradient(circle at 35% 30%, #ff8a80, #d50000); }
-  .lb-green  { background: radial-gradient(circle at 35% 30%, #b9f6ca, #00c853); }
-  .lb-yellow { background: radial-gradient(circle at 35% 30%, #ffff8d, #ffab00); color: #2b1400; text-shadow: none; }
+  .orb-b { background: radial-gradient(circle at 32% 28%, #80d8ff, #0277bd); }
+  .orb-r { background: radial-gradient(circle at 32% 28%, #ff8a80, #c62828); }
+  .orb-g { background: radial-gradient(circle at 32% 28%, #b9f6ca, #00897b); }
+  .orb-y { background: radial-gradient(circle at 32% 28%, #ffff8d, #f57f17); color: #260c00; text-shadow: none; }
 
-  .raja-tag-bot {
-    font-size: 13px;
+  .brand-raja-pill {
+    background: linear-gradient(180deg, #ffea00, #ff8f00);
+    color: #240900;
+    border: 1.5px solid #ffffff;
+    border-radius: 999px;
+    padding: 1px 14px;
+    font-size: 10.5px;
     font-weight: 950;
-    color: #ffea00;
-    text-shadow: 0 2px 0 #7f3300, 0 3px 6px rgba(0, 0, 0, 0.75);
-    letter-spacing: 1.5px;
-    margin-top: 2px;
+    letter-spacing: 1.4px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
   }
 
-  /* 3D Perspective Board + 4 Glossy Pawns + Dice Centerpiece (Like Reference Image) */
-  .hero-pawns-stage {
-    width: 224px;
+  /* 3D Perspective Studio Diorama */
+  .studio-diorama {
+    width: 230px;
     height: 76px;
     position: relative;
     margin-top: 2px;
@@ -492,394 +469,331 @@
     justify-content: center;
   }
 
-  .hero-board-3d {
-    width: 146px;
+  .diorama-board {
+    width: 152px;
     height: 54px;
     background: #ffffff;
     border: 2.5px solid #ffca28;
-    border-radius: 9px;
-    transform: perspective(220px) rotateX(34deg);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.55);
+    border-radius: 10px;
+    transform: perspective(220px) rotateX(36deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.65);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     overflow: hidden;
   }
 
-  .hb-r { background: #ff1744; }
-  .hb-g { background: #00e676; }
-  .hb-b { background: #00b0ff; }
-  .hb-y { background: #ffea00; }
+  .db-r { background: linear-gradient(135deg, #ff5252, #d50000); }
+  .db-g { background: linear-gradient(135deg, #69f0ae, #00c853); }
+  .db-b { background: linear-gradient(135deg, #40c4ff, #0091ea); }
+  .db-y { background: linear-gradient(135deg, #ffff00, #ffab00); }
 
-  .hero-pawn-svg {
+  .dio-pawn {
     position: absolute;
-    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.65));
   }
 
-  .hp-red    { width: 24px; height: 32px; left: 46px; top: 4px; }
-  .hp-green  { width: 24px; height: 32px; right: 46px; top: 4px; }
-  .hp-blue   { width: 32px; height: 42px; left: 26px; bottom: 2px; z-index: 3; }
-  .hp-yellow { width: 32px; height: 42px; right: 26px; bottom: 2px; z-index: 3; }
+  .dp-r { width: 25px; height: 31px; left: 48px; top: 3px; }
+  .dp-g { width: 25px; height: 31px; right: 48px; top: 3px; }
+  .dp-b { width: 32px; height: 40px; left: 26px; bottom: 2px; z-index: 3; }
+  .dp-y { width: 32px; height: 40px; right: 26px; bottom: 2px; z-index: 3; }
 
-  .hero-center-dice {
+  .dio-dice {
     position: absolute;
-    top: 12px;
+    top: 11px;
     left: 50%;
     transform: translateX(-50%) rotate(-12deg);
     width: 36px;
     height: 36px;
     border-radius: 9px;
     background: linear-gradient(145deg, #ffffff, #e2e8f0);
-    border: 2px solid #1e293b;
+    border: 2px solid #0f172a;
     padding: 4px;
     z-index: 4;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   }
 
-  /* ================= GOLD-BORDERED GLOSSY MODE CARDS ================= */
-  .modes-section {
+  /* ================= STUDIO 3D MODE CARDS ================= */
+  .modes-wrap {
     padding: 4px 10px 2px;
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .modes-row-3 {
+  .modes-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
 
-  .modes-row-2 {
+  .modes-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    padding: 0 12px;
+    padding: 0 10px;
   }
 
-  .mode-col-wrap {
+  .mode-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .gold-card {
+  .studio-card {
     width: 100%;
-    border-radius: 15px;
-    border: 2.5px solid #ffca28;
-    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 55%, #1e3a8a 100%);
+    border-radius: 16px;
+    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 55%, #172554 100%);
     box-shadow:
-      0 5px 0 #7f3300,
-      0 9px 16px rgba(0, 0, 0, 0.45),
-      inset 0 2px 4px rgba(255, 255, 255, 0.45);
+      0 5px 0 #7c2d12,
+      0 10px 18px rgba(0, 0, 0, 0.5),
+      inset 0 2px 3px rgba(255, 255, 255, 0.45);
     overflow: hidden;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   }
 
-  .gold-card:active {
+  .studio-card:active {
     transform: scale(0.95) !important;
   }
 
-  .card-art {
-    height: 48px;
+  .card-artwork {
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
-    position: relative;
+    padding: 4px;
   }
 
-  .modes-row-2 .card-art {
+  .modes-2 .card-artwork {
     height: 44px;
-    font-size: 24px;
   }
 
-  .card-gold-plate {
-    background: linear-gradient(180deg, #fff176 0%, #ffca28 48%, #f57f17 100%);
-    border-top: 2px solid #ffffff;
+  .card-ribbon {
+    background: linear-gradient(180deg, #fff59d 0%, #ffca28 50%, #f57f17 100%);
+    border-top: 1.5px solid #ffffff;
     padding: 4px 4px 5px;
     text-align: center;
     font-size: 11px;
     font-weight: 950;
-    color: #260c00;
+    color: #240900;
     letter-spacing: 0.3px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
   }
 
-  .live-players-txt {
+  .online-count {
     margin-top: 4px;
     font-size: 9px;
-    font-weight: 900;
-    color: #e0f2fe;
+    font-weight: 800;
+    color: #bae6fd;
     display: flex;
     align-items: center;
-    gap: 3px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    gap: 4px;
   }
 
-  .green-dot {
+  .pulse-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: #00e676;
     box-shadow: 0 0 6px #00e676;
-    display: inline-block;
   }
 
-  /* ================= TOURNAMENT + SEASON CLAIM + SPIN ROW ================= */
-  .tourney-strip {
+  /* ================= TOURNAMENT & SEASON CLAIM ================= */
+  .tourney-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    padding: 2px 14px;
+    padding: 2px 12px;
   }
 
-  .round-gold-med {
-    width: 44px;
-    height: 44px;
+  .circle-medallion {
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    border: 2.2px solid #ffca28;
-    background: linear-gradient(180deg, #2979ff, #0d368a);
+    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, #1d4ed8, #0f172a);
     display: grid;
     place-items: center;
-    font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     flex-shrink: 0;
   }
 
-  .tourney-emblem {
+  .tourney-banner {
     flex: 1;
     border-radius: 14px;
-    border: 2.2px solid #ffca28;
-    background: linear-gradient(180deg, #1e40af, #0f172a);
+    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, #1e3a8a, #091333);
     padding: 6px 10px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 5px 0 #7f3300, 0 8px 14px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 0 #7c2d12, 0 8px 16px rgba(0, 0, 0, 0.5);
   }
 
-  .tourney-emblem-txt {
-    font-size: 13px;
+  .tourney-txt {
+    font-size: 12.5px;
     font-weight: 950;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.8px;
     background: linear-gradient(180deg, #ffffff 0%, #ffea00 60%, #ff9100 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .bottom-rewards-strip {
+  .rewards-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
+    gap: 8px;
     padding: 2px 10px 4px;
   }
 
-  .free-video-box {
+  .reward-card-mini {
     border-radius: 12px;
-    border: 2px solid #ffca28;
+    border: 1.8px solid #ffca28;
     background: linear-gradient(180deg, #1d4ed8, #0f296b);
     padding: 4px 8px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     flex-shrink: 0;
   }
 
-  .season-claim-banner {
+  .claim-pill-main {
     flex: 1;
     border-radius: 14px;
-    border: 2.5px solid #ffffff;
-    background: linear-gradient(180deg, #fff176 0%, #ffca28 50%, #f57f17 100%);
+    border: 2px solid #ffffff;
+    background: linear-gradient(180deg, #fff59d 0%, #ffca28 50%, #f57f17 100%);
     padding: 7px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 8px;
     cursor: pointer;
-    box-shadow: 0 5px 0 #8c3800, 0 8px 16px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 5px 0 #8c3800, 0 8px 16px rgba(0, 0, 0, 0.5);
   }
 
-  .season-shield {
-    background: linear-gradient(180deg, #9c27b0, #4a148c);
-    border: 1.5px solid #ffea00;
+  .season-tag {
+    background: linear-gradient(180deg, #9333ea, #4c1d95);
+    border: 1.4px solid #ffea00;
     border-radius: 8px;
     padding: 2px 6px;
-    font-size: 9px;
+    font-size: 8.5px;
     font-weight: 950;
     color: #ffea00;
     line-height: 1.1;
   }
 
-  .claim-word {
+  .claim-label {
     font-size: 16px;
     font-weight: 950;
-    color: #2b0900;
-    letter-spacing: 0.5px;
+    color: #240900;
+    letter-spacing: 0.6px;
   }
 
-  .spin-wheel-box {
-    width: 52px;
-    height: 52px;
+  .spin-wheel-btn {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: 2.5px solid #ffea00;
+    border: 2.2px solid #ffea00;
     background: conic-gradient(
-      #ff1744 0deg 60deg,
-      #ffea00 60deg 120deg,
-      #00e676 120deg 180deg,
-      #00b0ff 180deg 240deg,
-      #d500f9 240deg 300deg,
-      #ff9100 300deg 360deg
+      #f42246 0deg 60deg,
+      #ffd600 60deg 120deg,
+      #00d668 120deg 180deg,
+      #0099ff 180deg 240deg,
+      #a855f7 240deg 300deg,
+      #ff6d00 300deg 360deg
     );
     display: grid;
     place-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
-    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     flex-shrink: 0;
   }
 
-  .spin-center-cap {
-    background: #092666;
+  .spin-cap {
+    background: #061539;
     color: #ffea00;
-    border: 1.5px solid #fff;
+    border: 1.4px solid #ffffff;
     border-radius: 999px;
-    font-size: 8.5px;
+    font-size: 8px;
     font-weight: 950;
     padding: 2px 5px;
   }
 
-  /* Compact Invite + Voice Strip */
-  .quick-adda-bar {
-    margin: 0 10px 4px;
-    padding: 5px 8px;
-    border-radius: 11px;
-    background: rgba(6, 24, 68, 0.85);
-    border: 1.5px solid #3b82f6;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-  }
-
-  .q-btn {
-    border: 1.3px solid #ffffff;
-    border-radius: 8px;
-    padding: 4px 8px;
-    font-size: 9.5px;
-    font-weight: 950;
-    cursor: pointer;
-  }
-
-  .q-wa { background: linear-gradient(180deg, #00e676, #009688); color: #03210e; }
-  .q-sh { background: linear-gradient(180deg, #00e5ff, #0284c7); color: #fff; }
-  .q-rec { background: linear-gradient(180deg, #ff1744, #b71c1c); color: #fff; border-radius: 999px; }
-  .q-rec.active-rec { animation: pulseRec 0.65s infinite alternate; }
-  @keyframes pulseRec { from { transform: scale(1); } to { transform: scale(1.08); } }
-  .q-play { background: linear-gradient(180deg, #d500f9, #6200ea); color: #fff; border-radius: 999px; }
-  .q-play:disabled { opacity: 0.4; }
-
-  /* ================= ROYAL BOTTOM NAVIGATION BAR ================= */
+  /* ================= CLEAN STUDIO BOTTOM NAV ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #0b2f7a 0%, #05163d 100%);
-    border-top: 2.5px solid #ffca28;
-    padding: 4px 4px 6px;
-    gap: 3px;
+    background: linear-gradient(180deg, #0b2b6e 0%, #040e26 100%);
+    border-top: 2px solid #ffca28;
+    padding: 5px 4px 7px;
+    gap: 4px;
   }
 
   .nav-tab {
-    border: 1.5px solid transparent;
+    border: 1.4px solid transparent;
     background: transparent;
-    color: #bfdbfe;
+    color: #93c5fd;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2px;
     font-size: 9px;
-    font-weight: 950;
+    font-weight: 900;
     cursor: pointer;
     padding: 4px 2px;
     border-radius: 11px;
     position: relative;
   }
 
-  .nav-tab span:first-child {
-    font-size: 16px;
-    line-height: 1.1;
-  }
-
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     border-color: #ffffff;
     color: #ffffff;
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(37, 99, 235, 0.55);
   }
 
-  .badge-new {
+  .new-pill {
     position: absolute;
     top: -4px;
     right: 4px;
-    background: #ff1744;
-    color: #fff;
-    border: 1px solid #fff;
+    background: #f42246;
+    color: #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 999px;
     font-size: 7px;
     font-weight: 950;
     padding: 0 4px;
   }
 
-  /* ================= ROYAL BLUE & GOLD GAME SCREEN ================= */
+  /* ================= STUDIO GAME BOARD SCREEN ================= */
   #gameScreen {
     display: none;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding: 5px 5px 8px;
-    gap: 4px;
+    padding: 5px 6px 8px;
+    gap: 5px;
     position: relative;
     background:
-      radial-gradient(circle at 50% 45%, rgba(64, 196, 255, 0.36), transparent 56%),
-      linear-gradient(180deg, #0b2f7a 0%, #1553bd 48%, #092666 100%);
-  }
-
-  #gameScreen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      repeating-linear-gradient(
-        -28deg,
-        rgba(255, 255, 255, 0.04) 0px,
-        rgba(255, 255, 255, 0.04) 26px,
-        transparent 26px,
-        transparent 52px
-      );
-  }
-
-  #gameScreen > * {
-    position: relative;
-    z-index: 1;
+      radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.32), transparent 58%),
+      linear-gradient(180deg, #071942 0%, #1042a3 50%, #061539 100%);
   }
 
   .game-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(180deg, #071e54, #0d368a);
-    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, rgba(5, 16, 46, 0.92), rgba(11, 37, 94, 0.88));
+    border: 1.8px solid #ffca28;
     border-radius: 12px;
-    padding: 5px 8px;
-    gap: 4px;
+    padding: 5px 9px;
+    gap: 5px;
   }
 
   .game-logo {
@@ -890,23 +804,33 @@
 
   .header-actions {
     display: flex;
-    gap: 4px;
+    gap: 5px;
     align-items: center;
   }
 
   .mini-btn {
-    border: 1.5px solid #ffca28;
+    border: 1.4px solid rgba(255, 202, 40, 0.85);
     border-radius: 8px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #2979ff, #0d47a1);
+    background: linear-gradient(180deg, #2563eb, #1e3a8a);
     color: #ffffff;
     font-size: 11px;
-    font-weight: 950;
+    font-weight: 900;
     cursor: pointer;
   }
 
+  .mini-btn.active-rec {
+    background: linear-gradient(180deg, #f42246, #991b1b);
+    animation: pulseRec 0.65s infinite alternate;
+  }
+
+  @keyframes pulseRec {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+  }
+
   .mini-exit {
-    background: linear-gradient(180deg, #ff1744, #b71c1c);
+    background: linear-gradient(180deg, #f42246, #991b1b);
     border-color: #ffffff;
   }
 
@@ -914,14 +838,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
     gap: 6px;
-    padding: 0 2px;
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, #1d4ed8, #0f296b);
-    border: 2px solid rgba(255, 202, 40, 0.65);
+    background: linear-gradient(180deg, #1e3a8a, #0f172a);
+    border: 1.8px solid rgba(255, 202, 40, 0.55);
     border-radius: 14px;
-    padding: 5px 8px;
+    padding: 5px 9px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -934,7 +857,7 @@
     opacity: 1;
     border-color: #ffea00;
     background: linear-gradient(180deg, #2563eb, #1e3a8a);
-    box-shadow: 0 0 16px rgba(255, 234, 0, 0.85);
+    box-shadow: 0 0 16px rgba(255, 234, 0, 0.8);
   }
 
   .pod-name {
@@ -948,18 +871,18 @@
   .pod-home {
     font-size: 10.5px;
     color: #ffea00;
-    font-weight: 900;
+    font-weight: 800;
   }
 
-  /* BIGGER 56x56 DICE WITH MID-AIR TOSSED ARC ANIMATION */
+  /* BIG 56x56 DICE WITH MID-AIR TOSSED ARC ANIMATION */
   .pod-dice-big {
     width: 56px;
     height: 56px;
     flex-shrink: 0;
     border-radius: 14px;
-    border: 2.6px solid #ffca28;
-    background: linear-gradient(145deg, #ffffff, #e0f2fe);
-    box-shadow: 0 5px 0 #7f3300, 0 8px 14px rgba(0, 0, 0, 0.45);
+    border: 2.5px solid #ffca28;
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    box-shadow: 0 5px 0 #7c2d12, 0 8px 14px rgba(0, 0, 0, 0.5);
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -979,7 +902,7 @@
 
   .seat-pod:not(.pod-active) .pod-dice-big {
     background: linear-gradient(145deg, #cbd5e1, #94a3b8);
-    border-color: rgba(255, 255, 255, 0.55);
+    border-color: rgba(255, 255, 255, 0.45);
     box-shadow: 0 3px 0 #334155;
     opacity: 0.82;
   }
@@ -991,7 +914,7 @@
   @keyframes dieThrownArc {
     0% {
       transform: translate(0px, 0px) rotate(0deg) scale(1);
-      box-shadow: 0 5px 0 #7f3300, 0 8px 14px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 5px 0 #7c2d12, 0 8px 14px rgba(0, 0, 0, 0.5);
     }
     28% {
       transform: translate(12px, -22px) rotate(135deg) scale(1.3);
@@ -999,11 +922,11 @@
     }
     58% {
       transform: translate(-10px, -26px) rotate(265deg) scale(1.34);
-      box-shadow: 0 0 24px rgba(0, 229, 255, 0.9), 0 28px 20px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.95), 0 28px 20px rgba(0, 0, 0, 0.55);
     }
     82% {
       transform: translate(3px, 4px) rotate(350deg) scale(0.95);
-      box-shadow: 0 2px 0 #7f3300, 0 4px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 0 #7c2d12, 0 4px 8px rgba(0, 0, 0, 0.5);
     }
     100% {
       transform: translate(0px, -3px) rotate(360deg) scale(1.04);
@@ -1024,18 +947,18 @@
     width: 8.5px;
     height: 8.5px;
     border-radius: 50%;
-    background: #111827;
+    background: #0f172a;
   }
 
   .pip-dot.pip-red {
     width: 11px;
     height: 11px;
-    background: #ff1744;
+    background: #f42246;
   }
 
   .reaction-ribbon {
-    background: linear-gradient(180deg, #071e54, #0d368a);
-    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, rgba(5, 16, 46, 0.92), rgba(11, 37, 94, 0.88));
+    border: 1.8px solid #ffca28;
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -1053,28 +976,31 @@
   .reaction-text {
     flex: 1;
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 850;
     color: #ffffff;
     text-align: left;
   }
 
   .fx-pill {
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 950;
     padding: 2px 8px;
     border-radius: 999px;
     background: linear-gradient(180deg, #ffea00, #ff9100);
-    border: 1.2px solid #ffffff;
+    border: 1px solid #ffffff;
     color: #240900;
     white-space: nowrap;
   }
 
+  /* ================= STUDIO 3D BEVELED LUDO BOARD ================= */
   .board-stage {
     width: 100%;
-    background: linear-gradient(180deg, #fff176, #ffca28, #e65100);
-    padding: 4px;
-    border-radius: 11px;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(180deg, #fff59d 0%, #ffca28 45%, #d97706 100%);
+    padding: 5px;
+    border-radius: 14px;
+    box-shadow:
+      0 6px 0 #78350f,
+      0 14px 28px rgba(0, 0, 0, 0.65);
     position: relative;
   }
 
@@ -1082,15 +1008,15 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1.5px solid #260c00;
-    border-radius: 7px;
-    background: #fff;
+    border: 2px solid #451a03;
+    border-radius: 9px;
+    background: #f8fafc;
   }
 
   .board-inner-clip {
     position: absolute;
     inset: 0;
-    border-radius: 5.5px;
+    border-radius: 7px;
     overflow: hidden;
   }
 
@@ -1105,25 +1031,25 @@
   }
 
   .sq {
-    border: 0.6px solid #90a4ae;
+    border: 0.6px solid #cbd5e1;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     font-size: 12px;
     font-weight: 950;
-    color: #37474f;
+    color: #475569;
   }
 
-  .sq-red { background: var(--red); border-color: rgba(0, 0, 0, 0.16); color: #fff; }
-  .sq-green { background: var(--green); border-color: rgba(0, 0, 0, 0.16); color: #03210e; }
-  .sq-yellow { background: var(--yellow); border-color: rgba(0, 0, 0, 0.16); color: #211800; }
-  .sq-blue { background: var(--blue); border-color: rgba(0, 0, 0, 0.16); color: #fff; }
-  .sq-white { background: #ffffff; }
+  .sq-red    { background: linear-gradient(145deg, #ff4d6d, #e11d48); border-color: rgba(0,0,0,0.12); color: #fff; }
+  .sq-green  { background: linear-gradient(145deg, #34d399, #059669); border-color: rgba(0,0,0,0.12); color: #fff; }
+  .sq-yellow { background: linear-gradient(145deg, #fde047, #eab308); border-color: rgba(0,0,0,0.12); color: #422006; }
+  .sq-blue   { background: linear-gradient(145deg, #38bdf8, #0284c7); border-color: rgba(0,0,0,0.12); color: #fff; }
+  .sq-white  { background: linear-gradient(180deg, #ffffff, #f1f5f9); }
 
   .sq-fx-flash {
     box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 16px #ffea00;
-    filter: brightness(1.22);
+    filter: brightness(1.18);
   }
 
   .board-overlay-svg {
@@ -1137,16 +1063,18 @@
 
   .yard-corner-title {
     position: absolute;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 950;
     color: #ffffff;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    background: rgba(15, 23, 42, 0.55);
+    padding: 1px 8px;
+    border-radius: 999px;
     z-index: 3;
     pointer-events: none;
   }
 
-  .title-tr { top: 0.5%; right: 7.5%; }
-  .title-bl { bottom: 0.5%; left: 13.5%; }
+  .title-tr { top: 1%; right: 6.5%; }
+  .title-bl { bottom: 1%; left: 11.5%; }
 
   .tokens-layer {
     position: absolute;
@@ -1155,25 +1083,30 @@
     pointer-events: none;
   }
 
-  /* COMPACT BOARD-SAFE GOTI + HALCHAL IN ALL GOTIS */
+  /*
+    PRECISION BASE-CENTERED 3D STUDIO GOTI:
+    SVG viewBox = 0 0 64 76 -> Circular base center is at (32, 57) = (50%, 75%).
+    translate(-50%, -75%) locks the circular base dead-center on every yard circle & grid cell!
+    Height 4.8% ensures even at row 0 (top 3.33%), head top is at +0.30% -> 100% INSIDE board!
+  */
   .gem-goti {
     position: absolute;
-    width: 4.8%;
-    height: 5.6%;
-    transform: translate(-50%, -45%);
+    width: 4.4%;
+    height: 4.8%;
+    transform: translate(-50%, -75%) scale(var(--g-scale, 1));
     pointer-events: auto;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
-    transition: left 0.11s linear, top 0.11s linear;
-    animation: gotiAliveBreathe 1.4s ease-in-out infinite alternate;
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.5));
+    transition: left 0.12s linear, top 0.12s linear;
+    animation: gotiStudioIdle 1.5s ease-in-out infinite alternate;
   }
 
-  @keyframes gotiAliveBreathe {
-    0%   { transform: translate(-50%, -45%) rotate(-3deg) scale(0.98); }
-    100% { transform: translate(-50%, -47%) rotate(3deg) scale(1.02); }
+  @keyframes gotiStudioIdle {
+    0%   { transform: translate(-50%, -75%) scale(var(--g-scale, 1)) rotate(-2deg); }
+    100% { transform: translate(-50%, -77%) scale(calc(var(--g-scale, 1) * 1.03)) rotate(2deg); }
   }
 
   .gem-goti.all-halchal {
@@ -1181,27 +1114,27 @@
   }
 
   @keyframes gotiAllHalchal {
-    0%   { transform: translate(-50%, -43%) rotate(-8deg) scale(0.96); }
-    50%  { transform: translate(-50%, -48%) rotate(0deg) scale(1.05); }
-    100% { transform: translate(-50%, -43%) rotate(8deg) scale(0.96); }
+    0%   { transform: translate(-50%, -74%) scale(var(--g-scale, 1)) rotate(-7deg); }
+    50%  { transform: translate(-50%, -80%) scale(calc(var(--g-scale, 1) * 1.07)) rotate(0deg); }
+    100% { transform: translate(-50%, -74%) scale(var(--g-scale, 1)) rotate(7deg); }
   }
 
   .gem-goti.can-pick {
     animation: gotiPickDance 0.36s ease-in-out infinite alternate !important;
-    filter: drop-shadow(0 0 6px #ffea00) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.65));
+    filter: drop-shadow(0 0 6px #ffea00) drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
     z-index: 8;
   }
 
   @keyframes gotiPickDance {
-    0%   { transform: translate(-50%, -42%) rotate(-10deg) scale(1.0); }
-    100% { transform: translate(-50%, -50%) rotate(10deg) scale(1.1); }
+    0%   { transform: translate(-50%, -73%) scale(1.02) rotate(-9deg); }
+    100% { transform: translate(-50%, -82%) scale(1.13) rotate(9deg); }
   }
 
   .gem-goti.is-moving {
-    transform: translate(-50%, -49%) scale(1.12) !important;
+    transform: translate(-50%, -82%) scale(1.14) !important;
     animation: none !important;
     z-index: 9;
-    filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.72));
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.7));
   }
 
   .gem-goti svg {
@@ -1212,15 +1145,15 @@
 
   .pin-emo-tag {
     position: absolute;
-    top: -13px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     background: #ffffff;
-    color: #111;
-    border: 1.3px solid #222;
+    color: #0f172a;
+    border: 1.2px solid #1e293b;
     border-radius: 999px;
     padding: 0 3.5px;
-    font-size: 9.5px;
+    font-size: 9px;
     line-height: 1.15;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
     white-space: nowrap;
@@ -1229,12 +1162,12 @@
 
   .status-banner {
     text-align: center;
-    background: linear-gradient(180deg, #071e54, #0d368a);
-    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, rgba(5, 16, 46, 0.94), rgba(11, 37, 94, 0.9));
+    border: 1.8px solid #ffca28;
     border-radius: 12px;
     padding: 6px 10px;
     font-size: 12px;
-    font-weight: 950;
+    font-weight: 900;
     color: #ffea00;
   }
 
@@ -1242,8 +1175,8 @@
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(5, 16, 48, 0.78);
-    backdrop-filter: blur(4px);
+    background: rgba(4, 14, 38, 0.8);
+    backdrop-filter: blur(5px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -1258,12 +1191,12 @@
   .modal-card {
     width: 100%;
     max-width: 360px;
-    background: linear-gradient(180deg, #1d4ed8 0%, #0a2566 100%);
-    border: 2.5px solid #ffca28;
+    background: linear-gradient(180deg, #1e3a8a 0%, #091536 100%);
+    border: 2px solid #ffca28;
     border-radius: 18px;
     padding: 16px;
     text-align: center;
-    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
   }
 
   .count-picker-grid {
@@ -1274,15 +1207,15 @@
   }
 
   .cnt-choice-btn {
-    border: 2px solid #ffca28;
+    border: 1.8px solid #ffca28;
     border-radius: 13px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #2979ff, #0d47a1);
+    background: linear-gradient(180deg, #2563eb, #1e3a8a);
     color: #ffffff;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 4px 0 #7f3300;
-    animation: popFloatMicro 1.8s ease-in-out infinite;
+    box-shadow: 0 4px 0 #7c2d12;
+    animation: pillFloat 1.8s ease-in-out infinite;
   }
 
   .cnt-choice-num {
@@ -1296,7 +1229,7 @@
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #e0f2fe;
+    color: #bae6fd;
   }
 
   .spin-stage {
@@ -1325,12 +1258,12 @@
     border-radius: 50%;
     border: 4px solid #ffca28;
     background: conic-gradient(
-      #ff1744 0deg 60deg,
-      #ffea00 60deg 120deg,
-      #00e676 120deg 180deg,
-      #00b0ff 180deg 240deg,
-      #d500f9 240deg 300deg,
-      #ff9100 300deg 360deg
+      #f42246 0deg 60deg,
+      #ffd600 60deg 120deg,
+      #00d668 120deg 180deg,
+      #0099ff 180deg 240deg,
+      #a855f7 240deg 300deg,
+      #ff6d00 300deg 360deg
     );
     transition: transform 2.2s cubic-bezier(0.15, 0.85, 0.2, 1);
     display: grid;
@@ -1342,8 +1275,8 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #092666;
-    border: 2.5px solid #ffca28;
+    background: #061539;
+    border: 2.2px solid #ffca28;
     color: #ffea00;
     font-size: 11px;
     font-weight: 950;
@@ -1367,12 +1300,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #071b4a;
-    border: 1.5px solid #3b82f6;
+    background: #061539;
+    border: 1.4px solid #3b82f6;
     border-radius: 11px;
     padding: 7px 10px;
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 850;
   }
 
   .lb-city { color: #38bdf8; font-size: 9.5px; }
@@ -1387,7 +1320,7 @@
   }
 
   .m-btn {
-    border: 1.5px solid #ffffff;
+    border: 1.4px solid #ffffff;
     border-radius: 11px;
     padding: 8px 15px;
     font-size: 12px;
@@ -1396,13 +1329,13 @@
   }
 
   .m-gold { background: linear-gradient(180deg, #ffea00, #ff9100); color: #240900; }
-  .m-danger { background: linear-gradient(180deg, #ff1744, #b71c1c); color: #fff; }
-  .m-dark { background: rgba(255, 255, 255, 0.18); color: #fff; }
+  .m-danger { background: linear-gradient(180deg, #f42246, #991b1b); color: #fff; }
+  .m-dark { background: rgba(255, 255, 255, 0.16); color: #fff; }
 
   @media (max-width: 375px) {
-    .l-ball { width: 30px; height: 30px; font-size: 16px; }
-    .card-art { height: 42px; font-size: 22px; }
-    .card-gold-plate { font-size: 10px; }
+    .ludo-orb { width: 32px; height: 32px; font-size: 16px; }
+    .card-artwork { height: 44px; }
+    .card-ribbon { font-size: 10px; }
   }
 </style>
 </head>
@@ -1424,40 +1357,50 @@
         points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
         fill="url(#gStarGem)"
         stroke="#ffca28"
-        stroke-width="4"
+        stroke-width="3.5"
         stroke-linejoin="round"
       />
     </svg>
   </div>
-  <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • रॉयल कलरफुल एडिशन</div>
+  <div class="splash-title">GREEN STAR</div>
+  <div class="splash-sub">देसी लूडो राजा • 3D स्टूडियो एडिशन</div>
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">खेल शुरू करें ▶</button>
 </div>
 
 <div class="shell">
-  <!-- ROYAL SAPPHIRE BLUE COLOURFUL START SCREEN -->
+  <!-- MODERN 3D STUDIO START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
       <div class="hud-left">
         <div class="dp-frame" onclick="openDpDialog()">
-          <div id="userAvatar" style="width:100%;height:100%;display:grid;place-items:center;">👑</div>
-          <span class="lvl-star">★ 1</span>
+          <div id="userAvatar" style="width:100%;height:100%;display:grid;place-items:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 18L2 8L8 12L12 5L16 12L22 8L21 18H3Z" fill="#ffca28" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="lvl-badge">★1</span>
         </div>
-        <button id="startSoundBtn" class="hud-sq-btn" onclick="switchSound()" title="Sound">🔊</button>
-        <button class="hud-sq-btn" onclick="openLeaderboard()" title="Leaderboard">✉️</button>
+
+        <button id="startSoundBtn" class="hud-icon-pill" onclick="switchSound()" title="Sound">🔊</button>
+
+        <button class="hud-icon-pill" onclick="inviteWhatsApp()" title="Invite Friends">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .17 1L8.91 8.7a3 3 0 0 0-1.91-.7 3 3 0 1 0 1.91 5.3l6.26 3.7a3 3 0 1 0 .83-1.4l-6.26-3.7a3.1 3.1 0 0 0 0-1.8l6.26-3.7A3 3 0 0 0 18 8Z" fill="#ffca28"/>
+          </svg>
+        </button>
       </div>
 
       <div class="hud-right">
-        <div class="curr-pill">
-          <span>💎</span>
+        <div class="wallet-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12,2 22,9 12,22 2,9" fill="#38bdf8"/></svg>
           <span id="gemsText">150</span>
-          <button class="plus-green" onclick="addGems(25)">+</button>
+          <button class="plus-chip" onclick="addGems(25)">+</button>
         </div>
 
-        <div class="curr-pill">
-          <span>🪙</span>
+        <div class="wallet-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffca28"/><circle cx="12" cy="12" r="6.5" fill="#f59e0b"/></svg>
           <span id="coinsText">2,250</span>
-          <button class="plus-green" onclick="addCoins(250)">+</button>
+          <button class="plus-chip" onclick="addCoins(250)">+</button>
         </div>
 
         <select id="langSelect" class="lang-select" onchange="onLangChange(this.value)">
@@ -1474,209 +1417,273 @@
       </div>
     </header>
 
-    <!-- HERO LOGO & 4-PAWN STAGE -->
-    <div class="hero-area">
-      <!-- Left Floating Medallions -->
-      <div class="float-col-left">
-        <div class="side-medallion shine-box pop-pill-1" onclick="addCoins(500)">
-          <div class="med-icon">🪙</div>
-          <div class="med-lbl">+500</div>
+    <!-- HERO STUDIO SHOWCASE -->
+    <div class="hero-showcase">
+      <!-- Left Custom Vector Rail -->
+      <div class="side-rail-left">
+        <div class="rail-btn shine-box pop-pill-1" onclick="addCoins(500)">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="#ffca28" stroke="#fff" stroke-width="1.5"/>
+            <text x="12" y="16" text-anchor="middle" font-size="11" font-weight="900" fill="#451a03">₹</text>
+          </svg>
+          <span class="rail-lbl">+500</span>
         </div>
-        <div class="side-medallion shine-box pop-pill-2" onclick="openCoinTableDialog()">
-          <div class="med-icon">👑</div>
-          <div class="med-lbl">VIP</div>
+
+        <div class="rail-btn shine-box pop-pill-2" onclick="openCoinTableDialog()">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path d="M4 17L2 7L8 11L12 4L16 11L22 7L20 17H4Z" fill="#ffea00" stroke="#fff" stroke-width="1.3"/>
+          </svg>
+          <span class="rail-lbl">VIP</span>
         </div>
-        <div class="side-medallion shine-box pop-pill-3" onclick="openLeaderboard()">
-          <div class="med-icon">📺</div>
-          <div class="med-live">LIVE</div>
+
+        <div class="rail-btn shine-box pop-pill-3" onclick="openLeaderboard()">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path d="M7 4H17V10C17 12.8 14.8 15 12 15C9.2 15 7 12.8 7 10V4Z" fill="#ffca28"/>
+            <rect x="9" y="16" width="6" height="4" rx="1" fill="#fff"/>
+          </svg>
+          <span class="rail-lbl">TOP 10</span>
         </div>
       </div>
 
-      <!-- Right Floating Medallions -->
-      <div class="float-col-right">
-        <div class="side-medallion shine-box pop-pill-1" onclick="claimDailyBonus()">
-          <div class="med-icon">🎁</div>
-          <div class="med-lbl">FREE</div>
+      <!-- Right Custom Vector Rail -->
+      <div class="side-rail-right">
+        <div class="rail-btn shine-box pop-pill-1" onclick="claimDailyBonus()">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <rect x="3" y="9" width="18" height="12" rx="2.5" fill="#f59e0b" stroke="#fff" stroke-width="1.4"/>
+            <path d="M3 13H21" stroke="#ffea00" stroke-width="2.5"/>
+            <circle cx="12" cy="13" r="2.2" fill="#fff"/>
+          </svg>
+          <span class="rail-lbl">FREE</span>
         </div>
-        <div class="side-medallion shine-box pop-pill-2" onclick="openSpinModal()">
-          <div class="med-icon">🎯</div>
-          <div class="med-lbl">AIM</div>
+
+        <div class="rail-btn shine-box pop-pill-2" onclick="openSpinModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9.5" fill="#f42246" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="5.5" fill="#ffffff"/>
+            <circle cx="12" cy="12" r="2.5" fill="#f42246"/>
+          </svg>
+          <span class="rail-lbl">SPIN</span>
         </div>
-        <div class="side-medallion shine-box pop-pill-3" onclick="replayGreenStarSplash()">
-          <div class="med-icon">🎲</div>
-          <div class="med-lbl">STAR</div>
+
+        <div class="rail-btn shine-box pop-pill-3" onclick="replayGreenStarSplash()">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <polygon points="12,2 15,9 22,9.5 16.5,14.5 18,21.5 12,17.5 6,21.5 7.5,14.5 2,9.5 9,9" fill="#00e676" stroke="#fff" stroke-width="1.4"/>
+          </svg>
+          <span class="rail-lbl">INTRO</span>
         </div>
-        <div class="side-medallion shine-box pop-pill-1" onclick="openRulesModal()">
-          <div class="med-icon">❓</div>
-          <div class="med-lbl">नियम</div>
+
+        <div class="rail-btn shine-box pop-pill-1" onclick="openRulesModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9.5" fill="#2563eb" stroke="#ffca28" stroke-width="1.6"/>
+            <text x="12" y="16" text-anchor="middle" font-size="13" font-weight="900" fill="#ffea00">?</text>
+          </svg>
+          <span class="rail-lbl">नियम</span>
         </div>
       </div>
 
-      <!-- Royal Crown + 4-Color Circle Logo -->
-      <div class="royal-emblem">
-        <svg class="crown-top" viewBox="0 0 80 44">
+      <!-- Brand Lockup -->
+      <div class="brand-lockup">
+        <svg class="brand-crown" viewBox="0 0 80 44">
           <defs>
-            <linearGradient id="crGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="crStudio" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#ffffff"/>
               <stop offset="50%" stop-color="#ffea00"/>
               <stop offset="100%" stop-color="#ff6d00"/>
             </linearGradient>
           </defs>
-          <path d="M8 34 L4 13 L24 23 L40 7 L56 23 L76 13 L72 34 Z"
-                fill="url(#crGold)" stroke="#4a1c00" stroke-width="2.4" stroke-linejoin="round"/>
-          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9100" stroke="#4a1c00" stroke-width="1.8"/>
+          <path d="M8 34 L4 13 L24 23 L40 7 L56 23 L76 13 L72 34 Z" fill="url(#crStudio)" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9100" stroke="#fff" stroke-width="1.4"/>
         </svg>
 
-        <div id="brandTopTag" class="desi-tag-top">👑 देसी</div>
-        <div class="ludo-4-circles">
-          <div class="l-ball lb-blue">L</div>
-          <div class="l-ball lb-red">U</div>
-          <div class="l-ball lb-green">D</div>
-          <div class="l-ball lb-yellow">O</div>
+        <div id="brandTopTag" class="brand-hindi-sub">देसी</div>
+        <div class="ludo-orbs-row">
+          <div class="ludo-orb orb-b">L</div>
+          <div class="ludo-orb orb-r">U</div>
+          <div class="ludo-orb orb-g">D</div>
+          <div class="ludo-orb orb-y">O</div>
         </div>
-        <div id="brandBotTag" class="raja-tag-bot">राजा • RAJA</div>
+        <div id="brandBotTag" class="brand-raja-pill">राजा • RAJA</div>
       </div>
 
-      <!-- 3D Perspective Board + 4 Glossy Pawns + Dice -->
-      <div class="hero-pawns-stage">
-        <div class="hero-board-3d">
-          <div class="hb-r"></div>
-          <div class="hb-g"></div>
-          <div class="hb-b"></div>
-          <div class="hb-y"></div>
+      <!-- 3D Diorama Stage -->
+      <div class="studio-diorama">
+        <div class="diorama-board">
+          <div class="db-r"></div>
+          <div class="db-g"></div>
+          <div class="db-b"></div>
+          <div class="db-y"></div>
         </div>
 
-        <!-- Red Pawn -->
-        <svg class="hero-pawn-svg hp-red pop-pill-2" viewBox="0 0 60 72">
-          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
-          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#ff1744" stroke="#181818" stroke-width="2"/>
-          <circle cx="30" cy="17" r="11" fill="#ff5252" stroke="#181818" stroke-width="2"/>
-        </svg>
-
-        <!-- Green Pawn -->
-        <svg class="hero-pawn-svg hp-green pop-pill-3" viewBox="0 0 60 72">
-          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
-          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#00e676" stroke="#181818" stroke-width="2"/>
-          <circle cx="30" cy="17" r="11" fill="#69f0ae" stroke="#181818" stroke-width="2"/>
-        </svg>
-
-        <!-- Blue Pawn -->
-        <svg class="hero-pawn-svg hp-blue pop-pill-1" viewBox="0 0 60 72">
-          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
-          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#00b0ff" stroke="#181818" stroke-width="2"/>
-          <circle cx="30" cy="17" r="11" fill="#40c4ff" stroke="#181818" stroke-width="2"/>
-        </svg>
-
-        <!-- Yellow Pawn -->
-        <svg class="hero-pawn-svg hp-yellow pop-pill-2" viewBox="0 0 60 72">
-          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
-          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#ffea00" stroke="#181818" stroke-width="2"/>
-          <circle cx="30" cy="17" r="11" fill="#ffff00" stroke="#181818" stroke-width="2"/>
-        </svg>
-
-        <div id="heroDiceFace" class="hero-center-dice pop-pill-1"></div>
+        <div id="dioPawnR" class="dio-pawn dp-r pop-pill-2"></div>
+        <div id="dioPawnG" class="dio-pawn dp-g pop-pill-3"></div>
+        <div id="dioPawnB" class="dio-pawn dp-b pop-pill-1"></div>
+        <div id="dioPawnY" class="dio-pawn dp-y pop-pill-2"></div>
+        <div id="heroDiceFace" class="dio-dice pop-pill-1"></div>
       </div>
     </div>
 
-    <!-- MAIN GOLD-BORDERED MODE CARDS -->
-    <main class="modes-section">
-      <div class="modes-row-3">
-        <div class="mode-col-wrap">
-          <div class="gold-card shine-box pop-float-1" onclick="openPlayerCountSelector('online', 'ONLINE')">
-            <div class="card-art">🌍📱</div>
-            <div id="mOnline" class="card-gold-plate">ONLINE</div>
+    <!-- CUSTOM VECTOR MODE CARDS -->
+    <main class="modes-wrap">
+      <div class="modes-3">
+        <!-- ONLINE -->
+        <div class="mode-unit">
+          <div class="studio-card shine-box pop-float-1" onclick="openPlayerCountSelector('online', 'ONLINE')">
+            <div class="card-artwork">
+              <svg width="56" height="40" viewBox="0 0 64 46">
+                <circle cx="32" cy="23" r="15" fill="#00b0ff" stroke="#fff" stroke-width="1.6"/>
+                <path d="M23 16C26 14 31 15 33 19C35 23 29 27 25 25Z" fill="#00e676"/>
+                <path d="M35 22C39 20 43 24 41 29C38 32 34 29 35 22Z" fill="#00e676"/>
+                <rect x="6" y="12" width="12" height="22" rx="2.5" fill="#ffca28" stroke="#fff" stroke-width="1.3"/>
+                <rect x="46" y="12" width="12" height="22" rx="2.5" fill="#ffca28" stroke="#fff" stroke-width="1.3"/>
+              </svg>
+            </div>
+            <div id="mOnline" class="card-ribbon">ONLINE</div>
           </div>
-          <div class="live-players-txt"><span class="green-dot"></span> Players: 90,434</div>
+          <div class="online-count"><span class="pulse-dot"></span> 90,434</div>
         </div>
 
-        <div class="mode-col-wrap">
-          <div class="gold-card shine-box pop-float-2" onclick="openPlayerCountSelector('team', 'TEAM UP')">
-            <div class="card-art">⚔️🛡️</div>
-            <div id="mTeam" class="card-gold-plate">TEAM UP</div>
+        <!-- TEAM UP -->
+        <div class="mode-unit">
+          <div class="studio-card shine-box pop-float-2" onclick="openPlayerCountSelector('team', 'TEAM UP')">
+            <div class="card-artwork">
+              <svg width="56" height="40" viewBox="0 0 64 46">
+                <path d="M32 6L46 12V24C46 33 39 39 32 42C25 39 18 33 18 24V12L32 6Z" fill="#ffca28" stroke="#fff" stroke-width="1.8"/>
+                <path d="M32 10L42 14.5V23.5C42 30.5 37 35 32 37.5C27 35 22 30.5 22 23.5V14.5L32 10Z" fill="#0284c7"/>
+                <polygon points="32,15 34.5,21 41,21.5 36,26 37.5,32 32,28.5 26.5,32 28,26 23,21.5 29.5,21" fill="#ffea00"/>
+              </svg>
+            </div>
+            <div id="mTeam" class="card-ribbon">TEAM UP</div>
           </div>
-          <div class="live-players-txt"><span class="green-dot"></span> Players: 1,704</div>
+          <div class="online-count"><span class="pulse-dot"></span> 1,704</div>
         </div>
 
-        <div class="mode-col-wrap">
-          <div class="gold-card shine-box pop-float-3" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
-            <div class="card-art">❤️📱</div>
-            <div id="mFriends" class="card-gold-plate">FRIENDS</div>
+        <!-- FRIENDS -->
+        <div class="mode-unit">
+          <div class="studio-card shine-box pop-float-3" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
+            <div class="card-artwork">
+              <svg width="56" height="40" viewBox="0 0 64 46">
+                <rect x="7" y="13" width="12" height="21" rx="2.5" fill="#ffca28" stroke="#fff" stroke-width="1.3"/>
+                <rect x="45" y="13" width="12" height="21" rx="2.5" fill="#ffca28" stroke="#fff" stroke-width="1.3"/>
+                <path d="M32 35C32 35 19 26.5 19 18.5C19 14.5 22.2 11.5 26 11.5C28.6 11.5 30.8 12.9 32 15C33.2 12.9 35.4 11.5 38 11.5C41.8 11.5 45 14.5 45 18.5C45 26.5 32 35 32 35Z" fill="#f42246" stroke="#fff" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <div id="mFriends" class="card-ribbon">FRIENDS</div>
           </div>
-          <div class="live-players-txt"><span class="green-dot"></span> Players: 11,928</div>
+          <div class="online-count"><span class="pulse-dot"></span> 11,928</div>
         </div>
       </div>
 
-      <div class="modes-row-2">
-        <div class="gold-card shine-box pop-float-4" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
-          <div class="card-art">🤖🆚</div>
-          <div id="mBot" class="card-gold-plate">COMPUTER</div>
+      <div class="modes-2">
+        <!-- COMPUTER -->
+        <div class="studio-card shine-box pop-float-4" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
+          <div class="card-artwork">
+            <svg width="88" height="38" viewBox="0 0 96 42">
+              <rect x="14" y="8" width="26" height="26" rx="6" fill="#38bdf8" stroke="#fff" stroke-width="1.6"/>
+              <circle cx="22" cy="19" r="3" fill="#0f172a"/>
+              <circle cx="32" cy="19" r="3" fill="#0f172a"/>
+              <rect x="21" y="26" width="12" height="3" rx="1.5" fill="#ffea00"/>
+              <rect x="52" y="10" width="28" height="22" rx="6" fill="#ffca28" stroke="#fff" stroke-width="1.5"/>
+              <text x="66" y="25" text-anchor="middle" font-size="13" font-weight="950" fill="#240900">VS</text>
+            </svg>
+          </div>
+          <div id="mBot" class="card-ribbon">COMPUTER</div>
         </div>
 
-        <div class="gold-card shine-box pop-float-5" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
-          <div class="card-art">👥🎲</div>
-          <div id="mPass" class="card-gold-plate">PASS N PLAY</div>
+        <!-- PASS N PLAY -->
+        <div class="studio-card shine-box pop-float-5" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
+          <div class="card-artwork">
+            <svg width="88" height="38" viewBox="0 0 96 42">
+              <circle cx="26" cy="13" r="6" fill="#ffea00"/>
+              <path d="M16 33C16 26 20 22 26 22C32 22 36 26 36 33" fill="#ffca28"/>
+              <rect x="41" y="12" width="16" height="16" rx="4" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+              <circle cx="49" cy="20" r="2.4" fill="#f42246"/>
+              <circle cx="71" cy="13" r="6" fill="#ffea00"/>
+              <path d="M61 33C61 26 65 22 71 22C77 22 81 26 81 33" fill="#ffca28"/>
+            </svg>
+          </div>
+          <div id="mPass" class="card-ribbon">PASS N PLAY</div>
         </div>
       </div>
     </main>
 
-    <!-- TOURNAMENT EMBLEM ROW -->
-    <div class="tourney-strip">
-      <div class="round-gold-med shine-box pop-pill-1" onclick="openCoinTableDialog()" title="Lucky 7 Table">7️⃣</div>
-      <div class="tourney-emblem shine-box pop-pill-2" onclick="openCoinTableDialog()">
-        <div style="font-size:12px;line-height:1;">👑</div>
-        <div class="tourney-emblem-txt">TOURNAMENT</div>
-      </div>
-      <div class="round-gold-med shine-box pop-pill-3" onclick="openPlayerCountSelector('pass', 'CLASSIC 4P')" title="4 Player Board">🎲</div>
-    </div>
-
-    <!-- SEASON CLAIM + FREE x5 + LUCKY SPIN WHEEL -->
-    <div class="bottom-rewards-strip">
-      <div class="free-video-box shine-box pop-pill-1" onclick="watchVideoReward()">
-        <div style="font-size:9px;font-weight:950;color:#ffea00;">FREE</div>
-        <div style="font-size:12px;font-weight:950;">🎬 x5</div>
-        <div style="font-size:8.5px;font-weight:950;background:#ffca28;color:#240900;border-radius:4px;padding:0 4px;">1000</div>
+    <!-- TOURNAMENT BAR -->
+    <div class="tourney-row">
+      <div class="circle-medallion shine-box pop-pill-1" onclick="openCoinTableDialog()" title="Coin Tables">
+        <span style="font-size:16px;font-weight:950;color:#ffea00;">7</span>
       </div>
 
-      <div class="season-claim-banner shine-box pop-pill-2" onclick="addCoins(300)">
-        <div class="season-shield">SEASON<br><span style="font-size:12px;">28</span></div>
-        <div class="claim-word">CLAIM</div>
+      <div class="tourney-banner shine-box pop-pill-2" onclick="openCoinTableDialog()">
+        <div class="tourney-txt">👑 TOURNAMENT</div>
       </div>
 
-      <div class="spin-wheel-box pop-pill-3" onclick="openSpinModal()" title="Lucky Spin">
-        <span class="spin-center-cap">SPIN</span>
+      <div class="circle-medallion shine-box pop-pill-3" onclick="openPlayerCountSelector('pass', '4-PLAYER ROYAL')" title="Quick 4P">
+        <svg width="22" height="22" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="4" fill="#ffffff"/>
+          <circle cx="8" cy="8" r="2" fill="#f42246"/>
+          <circle cx="16" cy="8" r="2" fill="#0f172a"/>
+          <circle cx="12" cy="12" r="2" fill="#0f172a"/>
+          <circle cx="8" cy="16" r="2" fill="#0f172a"/>
+          <circle cx="16" cy="16" r="2" fill="#f42246"/>
+        </svg>
       </div>
     </div>
 
-    <!-- QUICK INVITE & 3s VOICE ADDA BAR -->
-    <div class="quick-adda-bar">
-      <div style="display:flex;gap:5px;">
-        <button class="q-btn q-wa" onclick="inviteWhatsApp()">WhatsApp</button>
-        <button class="q-btn q-sh" onclick="inviteOther()">Share</button>
+    <!-- SEASON CLAIM + FREE REWARD + LUCKY SPIN -->
+    <div class="rewards-row">
+      <div class="reward-card-mini shine-box pop-pill-1" onclick="watchVideoReward()">
+        <div style="font-size:8.5px;font-weight:950;color:#ffea00;">FREE</div>
+        <div style="font-size:11px;font-weight:950;color:#fff;">+1,000</div>
+        <div style="font-size:8px;font-weight:950;background:#ffca28;color:#240900;border-radius:4px;padding:0 5px;">CLAIM</div>
       </div>
-      <div style="display:flex;gap:5px;align-items:center;">
-        <button id="recBtn" class="q-btn q-rec" onclick="startVoice3s()">🎙️ 3s</button>
-        <button id="playVoiceBtn" class="q-btn q-play" onclick="playVoiceClip()" disabled>▶️</button>
-        <span id="lobbyStatus" style="font-size:9.5px;font-weight:950;color:#ffea00;">तैयार!</span>
+
+      <div class="claim-pill-main shine-box pop-pill-2" onclick="addCoins(300)">
+        <div class="season-tag">SEASON<br><span style="font-size:11.5px;">28</span></div>
+        <div class="claim-label">CLAIM</div>
+      </div>
+
+      <div class="spin-wheel-btn pop-pill-3" onclick="openSpinModal()" title="Lucky Spin">
+        <span class="spin-cap">SPIN</span>
       </div>
     </div>
 
-    <!-- ROYAL BOTTOM NAVIGATION BAR -->
+    <!-- CLEAN STUDIO BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
-      <button class="nav-tab tab-active" onclick="setActiveTab(this, 'home')"><span>🏠</span><span>HOME</span></button>
-      <button class="nav-tab" onclick="setActiveTab(this, 'event')"><span>📅</span><span>EVENT</span></button>
-      <button class="nav-tab" onclick="setActiveTab(this, 'adda')"><span class="badge-new">NEW</span><span>🎙️</span><span>ADDA</span></button>
-      <button class="nav-tab" onclick="setActiveTab(this, 'inventory')"><span>🎲</span><span>INVENTORY</span></button>
-      <button class="nav-tab" onclick="setActiveTab(this, 'social')"><span>🏆</span><span>SOCIAL</span></button>
+      <button class="nav-tab tab-active" onclick="setActiveTab(this, 'home')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M3 11L12 3L21 11V20H15V14H9V20H3V11Z" fill="currentColor"/></svg>
+        <span>HOME</span>
+      </button>
+
+      <button class="nav-tab" onclick="setActiveTab(this, 'event')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3" fill="currentColor"/><path d="M3 10H21" stroke="#061539" stroke-width="2"/></svg>
+        <span>EVENT</span>
+      </button>
+
+      <button class="nav-tab" onclick="setActiveTab(this, 'adda')">
+        <span id="addaNewTag" class="new-pill">3s</span>
+        <svg width="18" height="18" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11C5 14.9 8.1 18 12 18C15.9 18 19 14.9 19 11" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 18V22" stroke="currentColor" stroke-width="2"/></svg>
+        <span>ADDA</span>
+      </button>
+
+      <button class="nav-tab" onclick="setActiveTab(this, 'inventory')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="currentColor"/><circle cx="9" cy="9" r="1.8" fill="#061539"/><circle cx="15" cy="15" r="1.8" fill="#061539"/></svg>
+        <span>INVENTORY</span>
+      </button>
+
+      <button class="nav-tab" onclick="setActiveTab(this, 'social')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 4H17V10C17 12.8 14.8 15 12 15C9.2 15 7 12.8 7 10V4Z" fill="currentColor"/><rect x="9" y="16" width="6" height="4" rx="1" fill="currentColor"/></svg>
+        <span>SOCIAL</span>
+      </button>
     </nav>
   </section>
 
-  <!-- ROYAL BLUE & GOLD GAME SCREEN -->
+  <!-- STUDIO 3D GAME SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
       <span class="game-logo">👑 देसी लूडो राजा</span>
       <div class="header-actions">
         <button class="mini-btn" onclick="openLeaderboard()">🏆</button>
-        <button class="mini-btn" onclick="startVoice3s()">🎙️ 3s</button>
+        <button id="gameRecBtn" class="mini-btn" onclick="startVoice3s()">🎙️ 3s</button>
+        <button id="gamePlayVoiceBtn" class="mini-btn" onclick="playVoiceClip()" style="display:none;">▶️</button>
         <button id="boardSoundBtn" class="mini-btn" onclick="switchSound()">🔊</button>
         <button class="mini-btn mini-exit" onclick="requestExitWarning()">बाहर</button>
       </div>
@@ -1695,35 +1702,43 @@
         <div class="board-inner-clip">
           <div id="ludoGrid15" class="ludo-15"></div>
 
+          <!-- Precision 1500x1500 Studio Vector Board Overlay -->
           <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
-            <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
-            <circle cx="220" cy="220" r="52" fill="#ff1744"/>
-            <circle cx="380" cy="220" r="52" fill="#ff1744"/>
-            <circle cx="220" cy="380" r="52" fill="#ff1744"/>
-            <circle cx="380" cy="380" r="52" fill="#ff1744"/>
+            <!-- Red Home Yard (0..600, 0..600) -->
+            <rect x="85" y="85" width="430" height="430" rx="28" fill="#ffffff" stroke="#991b1b" stroke-width="10"/>
+            <circle cx="215" cy="215" r="54" fill="#fee2e2" stroke="#f42246" stroke-width="8"/>
+            <circle cx="385" cy="215" r="54" fill="#fee2e2" stroke="#f42246" stroke-width="8"/>
+            <circle cx="215" cy="385" r="54" fill="#fee2e2" stroke="#f42246" stroke-width="8"/>
+            <circle cx="385" cy="385" r="54" fill="#fee2e2" stroke="#f42246" stroke-width="8"/>
 
-            <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#00692c" stroke-width="10"/>
-            <circle cx="1120" cy="220" r="52" fill="#00e676"/>
-            <circle cx="1280" cy="220" r="52" fill="#00e676"/>
-            <circle cx="1120" cy="380" r="52" fill="#00e676"/>
-            <circle cx="1280" cy="380" r="52" fill="#00e676"/>
+            <!-- Green Home Yard (900..1500, 0..600) -->
+            <rect x="985" y="85" width="430" height="430" rx="28" fill="#ffffff" stroke="#065f46" stroke-width="10"/>
+            <circle cx="1115" cy="215" r="54" fill="#d1fae5" stroke="#00d668" stroke-width="8"/>
+            <circle cx="1285" cy="215" r="54" fill="#d1fae5" stroke="#00d668" stroke-width="8"/>
+            <circle cx="1115" cy="385" r="54" fill="#d1fae5" stroke="#00d668" stroke-width="8"/>
+            <circle cx="1285" cy="385" r="54" fill="#d1fae5" stroke="#00d668" stroke-width="8"/>
 
-            <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#005599" stroke-width="10"/>
-            <circle cx="220" cy="1120" r="52" fill="#00b0ff"/>
-            <circle cx="380" cy="1120" r="52" fill="#00b0ff"/>
-            <circle cx="220" cy="1280" r="52" fill="#00b0ff"/>
-            <circle cx="380" cy="1280" r="52" fill="#00b0ff"/>
+            <!-- Blue Home Yard (0..600, 900..1500) -->
+            <rect x="85" y="985" width="430" height="430" rx="28" fill="#ffffff" stroke="#075985" stroke-width="10"/>
+            <circle cx="215" cy="1115" r="54" fill="#e0f2fe" stroke="#0099ff" stroke-width="8"/>
+            <circle cx="385" cy="1115" r="54" fill="#e0f2fe" stroke="#0099ff" stroke-width="8"/>
+            <circle cx="215" cy="1285" r="54" fill="#e0f2fe" stroke="#0099ff" stroke-width="8"/>
+            <circle cx="385" cy="1285" r="54" fill="#e0f2fe" stroke="#0099ff" stroke-width="8"/>
 
-            <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#e65100" stroke-width="10"/>
-            <circle cx="1120" cy="1120" r="52" fill="#ffea00"/>
-            <circle cx="1280" cy="1120" r="52" fill="#ffea00"/>
-            <circle cx="1120" cy="1280" r="52" fill="#ffea00"/>
-            <circle cx="1280" cy="1280" r="52" fill="#ffea00"/>
+            <!-- Yellow Home Yard (900..1500, 900..1500) -->
+            <rect x="985" y="985" width="430" height="430" rx="28" fill="#ffffff" stroke="#92400e" stroke-width="10"/>
+            <circle cx="1115" cy="1115" r="54" fill="#fef9c3" stroke="#eab308" stroke-width="8"/>
+            <circle cx="1285" cy="1115" r="54" fill="#fef9c3" stroke="#eab308" stroke-width="8"/>
+            <circle cx="1115" cy="1285" r="54" fill="#fef9c3" stroke="#eab308" stroke-width="8"/>
+            <circle cx="1285" cy="1285" r="54" fill="#fef9c3" stroke="#eab308" stroke-width="8"/>
 
-            <polygon points="600,600 900,600 750,750" fill="#00e676" stroke="#111" stroke-width="6"/>
-            <polygon points="900,600 900,900 750,750" fill="#ffea00" stroke="#111" stroke-width="6"/>
-            <polygon points="900,900 600,900 750,750" fill="#00b0ff" stroke="#111" stroke-width="6"/>
-            <polygon points="600,900 600,600 750,750" fill="#ff1744" stroke="#111" stroke-width="6"/>
+            <!-- Center 4-Triangle Royal Home Goal -->
+            <polygon points="600,600 900,600 750,750" fill="#00d668" stroke="#1e293b" stroke-width="6"/>
+            <polygon points="900,600 900,900 750,750" fill="#ffd600" stroke="#1e293b" stroke-width="6"/>
+            <polygon points="900,900 600,900 750,750" fill="#0099ff" stroke="#1e293b" stroke-width="6"/>
+            <polygon points="600,900 600,600 750,750" fill="#f42246" stroke="#1e293b" stroke-width="6"/>
+            <circle cx="750" cy="750" r="44" fill="#ffffff" stroke="#ffca28" stroke-width="8"/>
+            <path d="M732 762L728 742L742 750L750 736L758 750L772 742L768 762H732Z" fill="#ff9100"/>
           </svg>
 
           <div id="cornerTopLabel" class="yard-corner-title title-tr">Computer</div>
@@ -1745,10 +1760,9 @@
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
     <h3 id="dialogTitle" style="margin:0 0 6px; color:#ffea00; font-size:15px;">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:12px; color:#ffffff; line-height:1.4;"></p>
+    <p id="dialogText" style="margin:0; font-size:12px; color:#e0f2fe; line-height:1.45;"></p>
     <div id="playerCountGrid" class="count-picker-grid" style="display:none;"></div>
 
-    <!-- Interactive Spin Wheel Inside Modal -->
     <div id="spinWheelStage" class="spin-stage" style="display:none;">
       <div class="spin-pointer">▼</div>
       <div id="spinDisc" class="spin-disc">
@@ -1765,7 +1779,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_royal_colourful_v16";
+  const STORAGE_KEY = "dlr_studio_3d_v17";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1777,82 +1791,73 @@
 
   const I18N = {
     hi: {
-      topTag: "👑 देसी", botTag: "राजा • RAJA",
+      topTag: "देसी", botTag: "राजा • RAJA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "तैयार!",
       exitTitle: "⚠️ बाहर जाने की चेतावनी",
       exitMsg: "क्या आप सच में खेल छोड़ना चाहते हैं? मौजूदा मैच बंद हो जाएगा।",
       stay: "खेलते रहें", exitYes: "हाँ, बाहर जाएं"
     },
     en: {
-      topTag: "👑 DESI", botTag: "RAJA • ROYAL",
+      topTag: "DESI", botTag: "RAJA • ROYAL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "Ready!",
       exitTitle: "⚠️ Exit Warning",
       exitMsg: "Current match progress will stop! Sure you want to exit?",
       stay: "Stay & Play", exitYes: "Yes, Exit"
     },
     mr: {
-      topTag: "👑 देसी", botTag: "राजा • MAHARASHTRA",
+      topTag: "देसी", botTag: "राजा • MAHARASHTRA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "तयार!",
       exitTitle: "⚠️ बाहेर पडण्याचा इशारा",
       exitMsg: "तुम्हाला खरोखर गेम सोडायचा आहे का?",
       stay: "खेळत राहा", exitYes: "हो, बाहेर जा"
     },
     ta: {
-      topTag: "👑 தேசி", botTag: "ராஜா • TAMIL",
+      topTag: "தேசி", botTag: "ராஜா • TAMIL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "தயார்!",
       exitTitle: "⚠️ வெளியேறும் எச்சரிக்கை",
       exitMsg: "விளையாட்டை விட்டு வெளியேற விரும்புகிறீர்களா?",
       stay: "தொடரவும்", exitYes: "ஆம், வெளியேறு"
     },
     te: {
-      topTag: "👑 దేశీ", botTag: "రాజా • TELUGU",
+      topTag: "దేశీ", botTag: "రాజా • TELUGU",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "సిద్ధం!",
       exitTitle: "⚠️ నిష్క్రమణ హెచ్చరిక",
       exitMsg: "మీరు నిజంగా ఆట నుండి నిష్క్రమించాలనుకుంటున్నారా?",
       stay: "ఆడుతూ ఉండండి", exitYes: "అవును, నిష్క్రమించు"
     },
     bn: {
-      topTag: "👑 দেশি", botTag: "রাজা • BENGAL",
+      topTag: "দেশি", botTag: "রাজা • BENGAL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "প্রস্তুত!",
       exitTitle: "⚠️ বের হওয়ার সতর্কতা",
       exitMsg: "আপনি কি সত্যিই খেলা ছাড়তে চান?",
       stay: "খেলে যান", exitYes: "হ্যাঁ, বের হন"
     },
     gu: {
-      topTag: "👑 દેશી", botTag: "રાજા • GUJARAT",
+      topTag: "દેશી", botTag: "રાજા • GUJARAT",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "તૈયાર!",
       exitTitle: "⚠️ બહાર જવાની ચેતવણી",
       exitMsg: "શું તમે ખરેખર રમત છોડવા માંગો છો?",
       stay: "રમતા રહો", exitYes: "હા, બહાર જાઓ"
     },
     pa: {
-      topTag: "👑 ਦੇਸੀ", botTag: "ਰਾਜਾ • PUNJAB",
+      topTag: "ਦੇਸੀ", botTag: "ਰਾਜਾ • PUNJAB",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "ਤਿਆਰ!",
       exitTitle: "⚠️ ਬਾਹਰ ਜਾਣ ਦੀ ਚੇਤਾਵਨੀ",
       exitMsg: "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਖੇਡ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
       stay: "ਖੇਡਦੇ ਰਹੋ", exitYes: "ਹਾਂ, ਬਾਹਰ ਜਾਓ"
     },
     kn: {
-      topTag: "👑 ದೇಸಿ", botTag: "ರಾಜ • KARNATAKA",
+      topTag: "ದೇಸಿ", botTag: "ರಾಜ • KARNATAKA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      ready: "ಸಿದ್ಧ!",
       exitTitle: "⚠️ ನಿರ್ಗಮನ ಎಚ್ಚರಿಕೆ",
       exitMsg: "ನೀವು ನಿಜವಾಗಿಯೂ ಆಟದಿಂದ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?",
       stay: "ಆಡುತ್ತಿರಿ", exitYes: "ಹೌದು, ನಿರ್ಗಮಿಸಿ"
@@ -1906,11 +1911,12 @@
 
   const SAFE_SPOTS = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
 
+  /* Exact mathematical centers of the 4 yard circles in 1500x1500 SVG (215/1500 = 14.333%, 385/1500 = 25.667%) */
   const YARD_SPOT_PCT = {
-    red:    [[14.66, 14.66], [25.33, 14.66], [14.66, 25.33], [25.33, 25.33]],
-    green:  [[74.66, 14.66], [85.33, 14.66], [74.66, 25.33], [85.33, 25.33]],
-    blue:   [[14.66, 74.66], [25.33, 74.66], [14.66, 85.33], [25.33, 85.33]],
-    yellow: [[74.66, 74.66], [85.33, 74.66], [74.66, 85.33], [85.33, 85.33]]
+    red:    [[14.333, 14.333], [25.667, 14.333], [14.333, 25.667], [25.667, 25.667]],
+    green:  [[74.333, 14.333], [85.667, 14.333], [74.333, 25.667], [85.667, 25.667]],
+    blue:   [[14.333, 74.333], [25.667, 74.333], [14.333, 85.667], [25.667, 85.667]],
+    yellow: [[74.333, 74.333], [85.667, 74.333], [74.333, 85.667], [85.667, 85.667]]
   };
 
   const COLOR_START = { red: 0, green: 13, yellow: 26, blue: 39 };
@@ -2019,32 +2025,58 @@
     return `<div class="pip-grid">${dots}</div>`;
   }
 
-  const GOTI_SHADES = {
-    red:    { hi: "#ff9e80", base: "#ff1744", lo: "#880e4f", gem: "#ffffff" },
-    green:  { hi: "#b9f6ca", base: "#00e676", lo: "#00692c", gem: "#ffffff" },
-    blue:   { hi: "#80d8ff", base: "#00b0ff", lo: "#01579b", gem: "#ffffff" },
-    yellow: { hi: "#ffff8d", base: "#ffea00", lo: "#f57f17", gem: "#ffffff" }
+  /*
+    3D Studio Glossy Teardrop Pawn SVG (viewBox="0 0 64 76"):
+    - No harsh cartoon black outline
+    - Circular base center is at (32, 57) = (50%, 75%)
+    - Golden metallic collar + 3D specular glass highlight
+  */
+  const STUDIO_PAWN_PALETTE = {
+    red:    { top: "#ff9aa2", mid: "#f42246", deep: "#880e4f", rim: "#ffcdd2" },
+    green:  { top: "#a7f3d0", mid: "#00c853", deep: "#004d40", rim: "#d1fae5" },
+    blue:   { top: "#bae6fd", mid: "#0284c7", deep: "#0c4a6e", rim: "#e0f2fe" },
+    yellow: { top: "#fef08a", mid: "#f59e0b", deep: "#78350f", rim: "#fef9c3" }
   };
 
-  function buildGemGotiSvg(color, idx) {
-    const s = GOTI_SHADES[color];
-    const gid = `sg_${color}_${idx}`;
+  function buildStudioGotiSvg(color, uid) {
+    const p = STUDIO_PAWN_PALETTE[color];
+    const gBody = `gb_${color}_${uid}`;
+    const gHead = `gh_${color}_${uid}`;
+    const gGold = `gg_${color}_${uid}`;
     return `
-      <svg viewBox="0 0 60 72">
+      <svg viewBox="0 0 64 76">
         <defs>
-          <radialGradient id="${gid}" cx="36%" cy="28%" r="72%">
-            <stop offset="0%" stop-color="${s.hi}"/>
-            <stop offset="52%" stop-color="${s.base}"/>
-            <stop offset="100%" stop-color="${s.lo}"/>
+          <radialGradient id="${gBody}" cx="35%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="${p.top}"/>
+            <stop offset="48%" stop-color="${p.mid}"/>
+            <stop offset="100%" stop-color="${p.deep}"/>
           </radialGradient>
+          <radialGradient id="${gHead}" cx="34%" cy="28%" r="70%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="28%" stop-color="${p.top}"/>
+            <stop offset="68%" stop-color="${p.mid}"/>
+            <stop offset="100%" stop-color="${p.deep}"/>
+          </radialGradient>
+          <linearGradient id="${gGold}" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fff59d"/>
+            <stop offset="50%" stop-color="#ffca28"/>
+            <stop offset="100%" stop-color="#b45309"/>
+          </linearGradient>
         </defs>
-        <ellipse cx="30" cy="66" rx="19" ry="4.2" fill="rgba(0,0,0,0.48)"/>
-        <ellipse cx="30" cy="61.5" rx="17.5" ry="4.5" fill="#ffcc00" stroke="#181818" stroke-width="2"/>
-        <path d="M14 60.5 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60.5 Z"
-              fill="url(#${gid})" stroke="#181818" stroke-width="2" stroke-linejoin="round"/>
-        <circle cx="30" cy="17" r="10.8" fill="url(#${gid})" stroke="#181818" stroke-width="2"/>
-        <circle cx="30" cy="17" r="3.8" fill="${s.gem}" opacity="0.9"/>
-        <ellipse cx="26" cy="13.5" rx="2.4" ry="1.4" transform="rotate(-25 26 13.5)" fill="rgba(255,255,255,0.92)"/>
+        <!-- Ground ambient shadow centered at (32, 62) -->
+        <ellipse cx="32" cy="62" rx="20" ry="8" fill="rgba(2, 6, 23, 0.42)"/>
+        <!-- Golden 3D metallic pedestal centered at (32, 57) -->
+        <ellipse cx="32" cy="57.5" rx="18.5" ry="10.5" fill="url(#${gGold})" stroke="#78350f" stroke-width="1.2"/>
+        <ellipse cx="32" cy="56" rx="15.5" ry="8.5" fill="url(#${gBody})"/>
+        <!-- Sculpted 3D cone body -->
+        <path d="M17.5 55.5 C18 42, 24.5 34, 26.5 27 L37.5 27 C39.5 34, 46 42, 46.5 55.5 Z"
+              fill="url(#${gBody})" stroke="${p.rim}" stroke-width="0.9" stroke-linejoin="round"/>
+        <!-- Golden neck ring -->
+        <ellipse cx="32" cy="27.5" rx="7" ry="2.4" fill="url(#${gGold})"/>
+        <!-- 3D Glossy Sphere Head -->
+        <circle cx="32" cy="18.5" r="11.5" fill="url(#${gHead})" stroke="${p.rim}" stroke-width="0.9"/>
+        <!-- Specular glass shine -->
+        <ellipse cx="27.5" cy="14" rx="3.4" ry="2" transform="rotate(-28 27.5 14)" fill="rgba(255,255,255,0.88)"/>
       </svg>
     `;
   }
@@ -2175,12 +2207,18 @@
     document.getElementById("langSelect").value = profile.lang;
     document.getElementById("heroDiceFace").innerHTML = buildPippedDiceHtml(5);
 
+    document.getElementById("dioPawnR").innerHTML = buildStudioGotiSvg("red", "hero_r");
+    document.getElementById("dioPawnG").innerHTML = buildStudioGotiSvg("green", "hero_g");
+    document.getElementById("dioPawnB").innerHTML = buildStudioGotiSvg("blue", "hero_b");
+    document.getElementById("dioPawnY").innerHTML = buildStudioGotiSvg("yellow", "hero_y");
+
     const ico = profile.sound ? "🔊" : "🔇";
     document.getElementById("startSoundBtn").textContent = ico;
     document.getElementById("boardSoundBtn").textContent = ico;
 
-    const av = document.getElementById("userAvatar");
-    av.innerHTML = profile.dp ? `<img src="${profile.dp}" alt="DP" />` : "👑";
+    if (profile.dp) {
+      document.getElementById("userAvatar").innerHTML = `<img src="${profile.dp}" alt="DP" />`;
+    }
 
     document.getElementById("brandTopTag").textContent = txt.topTag;
     document.getElementById("brandBotTag").textContent = txt.botTag;
@@ -2189,17 +2227,14 @@
     document.getElementById("mFriends").textContent = txt.friends;
     document.getElementById("mBot").textContent = txt.bot;
     document.getElementById("mPass").textContent = txt.pass;
-    setLobbyNote(txt.ready);
   }
 
   function claimDailyBonus() {
     addCoins(250);
-    setLobbyNote("FREE +250!");
   }
 
   function watchVideoReward() {
     addCoins(1000);
-    setLobbyNote("FREE x5 +1000!");
   }
 
   function resetModalParts() {
@@ -2218,7 +2253,7 @@
 
     const ok = document.getElementById("dialogOkBtn");
     ok.className = "m-btn m-gold";
-    ok.textContent = "🎯 SPIN करें";
+    ok.textContent = "SPIN करें";
     ok.onclick = () => {
       ok.disabled = true;
       sfxDice();
@@ -2228,10 +2263,10 @@
       setTimeout(() => {
         ok.disabled = false;
         const prizes = [
-          { type: "coins", val: 500, label: "🪙 500 कॉइन जीते!" },
-          { type: "gems", val: 30, label: "💎 30 हीरे जीते!" },
-          { type: "coins", val: 1000, label: "🪙 1,000 जैकपॉट जीते!" },
-          { type: "coins", val: 300, label: "🪙 300 कॉइन जीते!" }
+          { type: "coins", val: 500, label: "500 कॉइन जीते!" },
+          { type: "gems", val: 30, label: "30 हीरे जीते!" },
+          { type: "coins", val: 1000, label: "1,000 जैकपॉट जीते!" },
+          { type: "coins", val: 300, label: "300 कॉइन जीते!" }
         ];
         const won = prizes[Math.floor(Math.random() * prizes.length)];
         if (won.type === "coins") addCoins(won.val);
@@ -2247,7 +2282,7 @@
 
   function openRulesModal() {
     resetModalParts();
-    document.getElementById("dialogTitle").textContent = "❓ देसी लूडो राजा नियम";
+    document.getElementById("dialogTitle").textContent = "देसी लूडो राजा — नियम";
     document.getElementById("dialogText").innerHTML =
       "• 6 आने पर गोटी अपने आप घर से बाहर निकलेगी<br>" +
       "• दुश्मन की गोटी काटने पर किलर इफेक्ट और गोटी रोते हुए वापस जाएगी<br>" +
@@ -2370,7 +2405,7 @@
       list.appendChild(li);
     });
 
-    document.getElementById("dialogTitle").textContent = "🪙 भारत टूर्नामेंट और कॉइन टेबल";
+    document.getElementById("dialogTitle").textContent = "🏆 भारत टूर्नामेंट और कॉइन टेबल";
     document.getElementById("dialogText").textContent = "टेबल चुनें और 1–4 खिलाड़ी सेट करें:";
     document.getElementById("dialogOkBtn").style.display = "none";
     document.getElementById("dialogCancelBtn").textContent = "बंद करें";
@@ -2382,20 +2417,6 @@
       `👑 देसी लूडो राजा में आओ! 1–2–3–4 खिलाड़ी लूडो खेलते हैं: ${location.href}`
     );
     window.open(`https://wa.me/?text=${msg}`, "_blank", "noopener");
-  }
-
-  async function inviteOther() {
-    const shareText = `👑 देसी लूडो राजा खेलें! ${location.href}`;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "देसी लूडो राजा", text: shareText, url: location.href });
-        return;
-      } catch (_) {}
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(shareText).catch(() => {});
-    }
-    setLobbyNote("लिंक कॉपी!");
   }
 
   function openDpDialog() {
@@ -2428,7 +2449,6 @@
         profile.dp = c.toDataURL("image/jpeg", 0.72);
         persist();
         syncStartView();
-        setLobbyNote("DP सेव!");
       };
       img.src = reader.result;
     };
@@ -2445,7 +2465,6 @@
     persist();
     syncStartView();
     playNote(760, 0.1);
-    setLobbyNote(`+${amt} 🪙`);
   }
 
   function addGems(amt) {
@@ -2453,7 +2472,6 @@
     persist();
     syncStartView();
     playNote(880, 0.1);
-    setLobbyNote(`+${amt} 💎`);
   }
 
   function switchSound() {
@@ -2464,15 +2482,8 @@
     else stopBgMusic();
   }
 
-  function setLobbyNote(msg) {
-    document.getElementById("lobbyStatus").textContent = msg;
-  }
-
   async function startVoice3s() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      setLobbyNote("माइक नहीं");
-      return;
-    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       chunks = [];
@@ -2485,30 +2496,28 @@
         if (clipUrl) URL.revokeObjectURL(clipUrl);
         const blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
         clipUrl = URL.createObjectURL(blob);
-        document.getElementById("playVoiceBtn").disabled = false;
-        document.getElementById("recBtn").classList.remove("active-rec");
-        document.getElementById("recBtn").textContent = "🎙️ 3s";
-        setLobbyNote("3s तैयार!");
+        document.getElementById("addaNewTag").textContent = "▶️";
+        document.getElementById("gameRecBtn").classList.remove("active-rec");
+        document.getElementById("gameRecBtn").textContent = "🎙️ 3s";
+        document.getElementById("gamePlayVoiceBtn").style.display = "inline-block";
+        playVoiceClip();
       };
 
       recorder.start();
-      document.getElementById("recBtn").classList.add("active-rec");
-      document.getElementById("recBtn").textContent = "⏺️ 3s...";
-      setLobbyNote("बोलें...");
+      document.getElementById("addaNewTag").textContent = "REC";
+      document.getElementById("gameRecBtn").classList.add("active-rec");
+      document.getElementById("gameRecBtn").textContent = "⏺️ 3s";
 
       clearTimeout(stopTimer);
       stopTimer = setTimeout(() => {
         if (recorder && recorder.state === "recording") recorder.stop();
       }, 3000);
-    } catch (_) {
-      setLobbyNote("अनुमति दें");
-    }
+    } catch (_) {}
   }
 
   function playVoiceClip() {
     if (!clipUrl) return;
     new Audio(clipUrl).play();
-    setLobbyNote("वॉयस...");
   }
 
   function requestExitWarning() {
@@ -2876,20 +2885,13 @@
     return TRACK_52[(COLOR_START[color] + step) % 52];
   }
 
-  function piecePctPosition(color, step, idx) {
-    if (step === -1) {
-      const [px, py] = YARD_SPOT_PCT[color][idx];
-      return { left: px, top: py };
-    }
-    const xy = pieceXY(color, step);
-    const [r, c] = xy;
-    const rawLeft = ((c + 0.5) / 15) * 100;
-    const rawTop = ((r + 0.5) / 15) * 100;
-    return {
-      left: Math.min(96.4, Math.max(3.6, rawLeft)),
-      top: Math.min(95.8, Math.max(4.8, rawTop))
-    };
-  }
+  /* Smart Cluster Offsets when 2, 3, or 4 gotis stand on the exact same board square */
+  const CLUSTER_OFFSETS = [
+    [[0, 0]],
+    [[-1.0, -0.35], [1.0, 0.35]],
+    [[-1.05, -0.55], [1.05, -0.55], [0, 0.75]],
+    [[-1.05, -0.6], [1.05, -0.6], [-1.05, 0.65], [1.05, 0.65]]
+  ];
 
   function drawBoard(movableList = [], movingMeta = null, allHalchal = false) {
     const grid = document.getElementById("ludoGrid15");
@@ -2944,39 +2946,71 @@
       }
     }
 
+    /* Group active board tokens by cell (r,c) so overlapping tokens arrange neatly */
+    const cellGroups = {};
+    const allTokens = [];
+
     match.seats.forEach(col => {
       match.pieces[col].forEach((step, idx) => {
-        const pos = piecePctPosition(col, step, idx);
-        const goti = document.createElement("div");
-        goti.className = `gem-goti p-${col}`;
-        goti.style.left = `${pos.left}%`;
-        goti.style.top = `${pos.top}%`;
-        goti.style.animationDelay = `${idx * 0.16}s`;
-
-        const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
-        const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
-        if (allHalchal) goti.classList.add("all-halchal");
-        if (canPick) goti.classList.add("can-pick");
-        if (isMoving) goti.classList.add("is-moving");
-
-        goti.innerHTML = buildGemGotiSvg(col, idx);
-
-        const emoInfo = match.tokenReactions[`${col}-${idx}`];
-        if (emoInfo) {
-          const tag = document.createElement("span");
-          tag.className = "pin-emo-tag";
-          tag.textContent = emoInfo.emoji;
-          goti.appendChild(tag);
-        } else if (step === 56) {
-          const homeTag = document.createElement("span");
-          homeTag.className = "pin-emo-tag";
-          homeTag.textContent = "🥳";
-          goti.appendChild(homeTag);
+        const item = { col, step, idx, xy: pieceXY(col, step) };
+        allTokens.push(item);
+        if (item.xy) {
+          const key = `${item.xy[0]}_${item.xy[1]}`;
+          if (!cellGroups[key]) cellGroups[key] = [];
+          cellGroups[key].push(item);
         }
-
-        goti.onclick = () => executeStepMove(col, idx);
-        tokensLayer.appendChild(goti);
       });
+    });
+
+    allTokens.forEach(item => {
+      const { col, step, idx, xy } = item;
+      let leftPct, topPct, scaleVal = 1;
+
+      if (step === -1) {
+        [leftPct, topPct] = YARD_SPOT_PCT[col][idx];
+      } else {
+        const [r, c] = xy;
+        const baseLeft = ((c + 0.5) / 15) * 100;
+        const baseTop = ((r + 0.5) / 15) * 100;
+        const group = cellGroups[`${r}_${c}`] || [item];
+        const slot = group.indexOf(item);
+        const count = Math.min(4, group.length);
+        const [dx, dy] = CLUSTER_OFFSETS[count - 1][slot % 4];
+        leftPct = baseLeft + dx;
+        topPct = baseTop + dy;
+        if (count > 1) scaleVal = 0.85;
+      }
+
+      const goti = document.createElement("div");
+      goti.className = `gem-goti p-${col}`;
+      goti.style.left = `${leftPct}%`;
+      goti.style.top = `${topPct}%`;
+      goti.style.setProperty("--g-scale", scaleVal);
+      goti.style.animationDelay = `${idx * 0.16}s`;
+
+      const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
+      const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
+      if (allHalchal) goti.classList.add("all-halchal");
+      if (canPick) goti.classList.add("can-pick");
+      if (isMoving) goti.classList.add("is-moving");
+
+      goti.innerHTML = buildStudioGotiSvg(col, idx);
+
+      const emoInfo = match.tokenReactions[`${col}-${idx}`];
+      if (emoInfo) {
+        const tag = document.createElement("span");
+        tag.className = "pin-emo-tag";
+        tag.textContent = emoInfo.emoji;
+        goti.appendChild(tag);
+      } else if (step === 56) {
+        const homeTag = document.createElement("span");
+        homeTag.className = "pin-emo-tag";
+        homeTag.textContent = "🥳";
+        goti.appendChild(homeTag);
+      }
+
+      goti.onclick = () => executeStepMove(col, idx);
+      tokensLayer.appendChild(goti);
     });
   }
 
