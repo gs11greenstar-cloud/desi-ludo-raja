@@ -17,7 +17,7 @@
     --green: #2e7d32;
     --yellow: #fdd835;
     --blue: #1e88e5;
-    --panel: rgba(7, 24, 64, 0.85);
+    --panel: rgba(7, 24, 64, 0.86);
   }
 
   * {
@@ -44,30 +44,60 @@
     flex-direction: column;
   }
 
+  /* Glossy Shine Sweep Effect */
+  .shine-box {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-box::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -120%;
+    width: 55%;
+    height: 180%;
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.42) 50%,
+      transparent 80%
+    );
+    transform: skewX(-18deg);
+    animation: shineSweep 3.4s infinite ease-in-out;
+    pointer-events: none;
+  }
+
+  @keyframes shineSweep {
+    0%   { left: -120%; }
+    45%  { left: 150%; }
+    100% { left: 150%; }
+  }
+
   /* ================= START SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 14px;
+    padding-bottom: 12px;
   }
 
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    padding: 10px 12px;
+    gap: 6px;
+    padding: 9px 10px;
     background: var(--panel);
-    border-bottom: 1.5px solid rgba(255, 240, 153, 0.35);
+    border-bottom: 1.5px solid rgba(255, 240, 153, 0.38);
   }
 
   .user-chip {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 4px 10px 4px 4px;
+    gap: 7px;
+    padding: 3px 9px 3px 3px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.08);
     border: 1.5px solid var(--gold-1);
@@ -75,14 +105,14 @@
   }
 
   .avatar-circle {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: 2px solid var(--gold-2);
     background: #173a7a;
     display: grid;
     place-items: center;
-    font-size: 18px;
+    font-size: 17px;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -102,7 +132,7 @@
   .user-name {
     font-size: 12px;
     font-weight: 800;
-    max-width: 78px;
+    max-width: 72px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -117,61 +147,76 @@
   .hud-right {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .coins-box {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 5px 8px;
+    gap: 4px;
+    padding: 4px 7px;
     border-radius: 999px;
     background: #061436;
     border: 1.5px solid var(--gold-2);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     color: var(--gold-1);
   }
 
   .add-coin-btn {
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
     border: none;
     border-radius: 50%;
     background: linear-gradient(180deg, #5ef03b, #238c00);
     color: #fff;
     font-weight: 900;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     line-height: 1;
   }
 
   .hud-btn {
-    height: 34px;
-    padding: 0 9px;
-    border-radius: 10px;
-    border: 1.5px solid rgba(255, 240, 153, 0.45);
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 9px;
+    border: 1.5px solid rgba(255, 240, 153, 0.5);
     background: linear-gradient(180deg, #3282f6, #14439c);
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
+    cursor: pointer;
+  }
+
+  .lang-select {
+    height: 32px;
+    max-width: 112px;
+    border-radius: 9px;
+    border: 1.5px solid var(--gold-1);
+    background: #092154;
+    color: var(--gold-1);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 0 5px;
     cursor: pointer;
   }
 
   .hero-banner {
     text-align: center;
-    padding: 12px 14px 4px;
+    padding: 10px 14px 2px;
   }
 
   .hero-crown {
-    font-size: 30px;
+    font-size: 28px;
     line-height: 1;
     filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
   }
 
   .hero-title {
-    margin: 4px 0 0;
-    font-size: 30px;
+    margin: 3px 0 0;
+    font-size: 28px;
     font-weight: 900;
     background: linear-gradient(180deg, #fff8c4 0%, #ffd026 55%, #ff8800 100%);
     -webkit-background-clip: text;
@@ -180,41 +225,40 @@
   }
 
   .hero-sub {
-    margin: 3px 0 0;
-    font-size: 12px;
+    margin: 2px 0 0;
+    font-size: 11px;
     color: #d6e8ff;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .lobby-cards {
-    padding: 10px 14px;
+    padding: 8px 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 7px;
   }
 
   .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
   }
 
   .mode-tile {
     position: relative;
-    border-radius: 16px;
+    border-radius: 15px;
     border: 2px solid var(--gold-1);
-    padding: 13px 6px;
+    padding: 11px 6px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 5px 0 #071b47, 0 10px 16px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 5px 0 #071b47, 0 8px 16px rgba(0, 0, 0, 0.38);
     transition: transform 0.08s ease;
-    overflow: hidden;
   }
 
   .mode-tile:active {
@@ -223,11 +267,15 @@
   }
 
   .tile-gold {
-    background: linear-gradient(180deg, #ffca3a, #e06d00);
+    background: linear-gradient(180deg, #ffd147, #e06d00);
   }
 
   .tile-blue {
-    background: linear-gradient(180deg, #3b9eff, #1452bd);
+    background: linear-gradient(180deg, #43a4ff, #1452bd);
+  }
+
+  .tile-emerald {
+    background: linear-gradient(180deg, #26c6da, #00695c);
   }
 
   .hot-tag {
@@ -237,52 +285,97 @@
     transform: translateX(-50%);
     background: #d81b60;
     color: #fff;
-    font-size: 9px;
+    font-size: 8.5px;
     font-weight: 900;
-    padding: 1px 7px;
+    padding: 1px 6px;
     border-radius: 999px;
     white-space: nowrap;
   }
 
   .tile-ico {
-    font-size: 26px;
-    margin-top: 6px;
+    font-size: 24px;
+    margin-top: 5px;
     line-height: 1.1;
   }
 
   .tile-name {
-    margin-top: 6px;
-    font-size: 12px;
+    margin-top: 5px;
+    font-size: 11.5px;
     font-weight: 900;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
   }
 
   .tile-hint {
     margin-top: 2px;
-    font-size: 10px;
+    font-size: 9.5px;
     color: #f4f9ff;
     font-weight: 600;
   }
 
+  .invite-strip {
+    margin: 0 12px 8px;
+    padding: 8px 10px;
+    border-radius: 13px;
+    background: var(--panel);
+    border: 1.5px solid rgba(255, 240, 153, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .inv-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold-1);
+  }
+
+  .inv-btns {
+    display: flex;
+    gap: 6px;
+  }
+
+  .wa-btn {
+    border: 1.5px solid #b9f6ca;
+    border-radius: 9px;
+    padding: 5px 10px;
+    background: linear-gradient(180deg, #25d366, #128c7e);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .other-inv-btn {
+    border: 1.5px solid var(--gold-1);
+    border-radius: 9px;
+    padding: 5px 10px;
+    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
   .voice-box {
-    margin: 0 14px;
-    padding: 10px 12px;
-    border-radius: 14px;
+    margin: 0 12px;
+    padding: 9px 11px;
+    border-radius: 13px;
     background: var(--panel);
     border: 1.5px solid rgba(255, 215, 79, 0.45);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     flex-wrap: wrap;
   }
 
   .rec-btn {
     border: 1.5px solid var(--gold-1);
     border-radius: 999px;
-    padding: 7px 13px;
+    padding: 6px 12px;
     background: linear-gradient(180deg, #ff5252, #b71c1c);
     color: #fff;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
     cursor: pointer;
   }
@@ -299,10 +392,10 @@
   .play-voice-btn {
     border: none;
     border-radius: 999px;
-    padding: 7px 12px;
+    padding: 6px 11px;
     background: rgba(255, 255, 255, 0.18);
     color: #fff;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
     cursor: pointer;
   }
@@ -314,14 +407,14 @@
 
   .voice-status {
     flex: 1;
-    min-width: 110px;
+    min-width: 100px;
     text-align: right;
     font-size: 11px;
     font-weight: 700;
     color: var(--gold-1);
   }
 
-  /* ================= PROFESSIONAL GAME SCREEN ================= */
+  /* ================= GAME SCREEN ================= */
   #gameScreen {
     display: none;
     flex: 1;
@@ -341,27 +434,30 @@
     background: var(--panel);
     border: 1.5px solid rgba(255, 240, 153, 0.4);
     border-radius: 12px;
-    padding: 5px 9px;
+    padding: 5px 8px;
+    gap: 4px;
   }
 
   .game-logo {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 900;
     color: var(--gold-1);
+    white-space: nowrap;
   }
 
   .header-actions {
     display: flex;
-    gap: 5px;
+    gap: 4px;
+    align-items: center;
   }
 
   .mini-btn {
     border: 1px solid rgba(255, 240, 153, 0.5);
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 4px 7px;
     background: linear-gradient(180deg, #2f7df2, #15459e);
     color: #fff;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
     cursor: pointer;
   }
@@ -370,22 +466,21 @@
     background: linear-gradient(180deg, #ef5350, #b71c1c);
   }
 
-  /* Corner / Seat Dice Pods */
   .seat-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 6px;
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, rgba(16, 48, 108, 0.92), rgba(8, 25, 62, 0.95));
+    background: linear-gradient(180deg, rgba(16, 48, 108, 0.94), rgba(8, 25, 62, 0.96));
     border: 2px solid rgba(255, 255, 255, 0.24);
     border-radius: 12px;
-    padding: 5px 8px;
+    padding: 5px 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
+    gap: 5px;
     opacity: 0.72;
     transition: all 0.15s ease;
   }
@@ -393,7 +488,7 @@
   .seat-pod.pod-active {
     opacity: 1;
     border-color: var(--gold-1);
-    box-shadow: 0 0 12px rgba(255, 240, 153, 0.45);
+    box-shadow: 0 0 13px rgba(255, 240, 153, 0.52);
   }
 
   .pod-meta {
@@ -401,7 +496,7 @@
   }
 
   .pod-name {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 900;
     white-space: nowrap;
     overflow: hidden;
@@ -409,20 +504,20 @@
   }
 
   .pod-home {
-    font-size: 10px;
+    font-size: 9.5px;
     color: var(--gold-1);
     font-weight: 700;
   }
 
   .pod-dice {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
     border-radius: 10px;
-    border: 2px solid rgba(255, 240, 153, 0.55);
+    border: 2px solid rgba(255, 240, 153, 0.6);
     background: #172a52;
     color: #fff;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 900;
     display: grid;
     place-items: center;
@@ -430,31 +525,31 @@
   }
 
   .seat-pod.pod-active .pod-dice {
-    background: linear-gradient(180deg, #ffffff, #e8f0ff);
+    background: linear-gradient(180deg, #ffffff, #e3f0ff);
     color: #0b2254;
     border-color: var(--gold-1);
+    box-shadow: 0 0 8px rgba(255, 240, 153, 0.65);
   }
 
   .pod-dice.rolling {
-    animation: diceSpin 0.26s linear infinite;
+    animation: diceSpin 0.25s linear infinite;
   }
 
   @keyframes diceSpin {
     0% { transform: rotate(0deg) scale(1.05); }
-    50% { transform: rotate(15deg) scale(1.14); }
-    100% { transform: rotate(-15deg) scale(1.05); }
+    50% { transform: rotate(16deg) scale(1.15); }
+    100% { transform: rotate(-16deg) scale(1.05); }
   }
 
-  /* Reaction & FX Ribbon */
   .reaction-ribbon {
-    background: rgba(5, 18, 48, 0.9);
+    background: rgba(5, 18, 48, 0.92);
     border: 1.5px solid rgba(255, 240, 153, 0.45);
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 7px;
     min-height: 32px;
   }
 
@@ -476,19 +571,19 @@
     font-weight: 800;
     padding: 2px 7px;
     border-radius: 999px;
-    background: rgba(255, 179, 0, 0.22);
-    border: 1px solid rgba(255, 240, 153, 0.45);
+    background: rgba(255, 179, 0, 0.24);
+    border: 1px solid rgba(255, 240, 153, 0.5);
     color: #fff;
     white-space: nowrap;
   }
 
-  /* Professional Board Stage */
+  /* Board Stage */
   .board-stage {
     background: #ffffff;
     padding: 3px;
     border-radius: 8px;
-    border: 2.5px solid #d4af37;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    border: 2.5px solid #ffd54f;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.62);
     position: relative;
   }
 
@@ -528,10 +623,10 @@
   .sq-white { background: #ffffff; }
 
   .sq-fx-flash {
-    box-shadow: inset 0 0 0 2px #fff176, 0 0 10px rgba(255, 241, 118, 0.95);
+    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 12px #ffd54f;
+    filter: brightness(1.18);
   }
 
-  /* Vector Overlay (White Yard Boxes + 4 Circles + Center 4-Triangle Home) */
   .board-overlay-svg {
     position: absolute;
     inset: 0;
@@ -543,7 +638,7 @@
 
   .yard-corner-title {
     position: absolute;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 900;
     color: #ffffff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
@@ -554,7 +649,6 @@
   .title-tr { top: 0.5%; right: 7.5%; }
   .title-bl { bottom: 0.5%; left: 13.5%; }
 
-  /* Tokens Layer on Top */
   .tokens-layer {
     position: absolute;
     inset: 0;
@@ -562,7 +656,7 @@
     pointer-events: none;
   }
 
-  /* Pro 3D Pin Token with Shadow */
+  /* Pro 3D Pin Token with Shine & Shadow */
   .pro-pin {
     position: absolute;
     width: 6.2%;
@@ -573,7 +667,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: left 0.12s linear, top 0.12s linear, transform 0.12s ease;
+    transition: left 0.11s linear, top 0.11s linear, transform 0.11s ease;
   }
 
   .pin-shadow {
@@ -589,10 +683,10 @@
   }
 
   .pro-pin.is-moving .pin-shadow {
-    width: 86%;
+    width: 88%;
     height: 28%;
-    bottom: -10%;
-    background: rgba(0, 0, 0, 0.68);
+    bottom: -11%;
+    background: rgba(0, 0, 0, 0.72);
   }
 
   .pin-body {
@@ -601,40 +695,55 @@
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
     border: 1.8px solid #1c1c1c;
-    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.45);
+    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.45), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
+  }
+
+  .pin-body::before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    left: 12%;
+    width: 45%;
+    height: 25%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.72);
+    transform: rotate(25deg);
+    pointer-events: none;
   }
 
   .pin-eye {
-    width: 48%;
-    height: 48%;
+    width: 46%;
+    height: 46%;
     border-radius: 50%;
     background: #ffffff;
     border: 1.2px solid #222;
     transform: rotate(45deg);
+    z-index: 2;
   }
 
-  .p-red .pin-body    { background: radial-gradient(circle at 30% 30%, #ff8a80, #c62828); }
-  .p-green .pin-body  { background: radial-gradient(circle at 30% 30%, #a5d6a7, #1b5e20); }
-  .p-blue .pin-body   { background: radial-gradient(circle at 30% 30%, #81d4fa, #0277bd); }
-  .p-yellow .pin-body { background: radial-gradient(circle at 30% 30%, #fff59d, #f9a825); }
+  .p-red .pin-body    { background: radial-gradient(circle at 30% 30%, #ff9e80, #c62828); }
+  .p-green .pin-body  { background: radial-gradient(circle at 30% 30%, #b9f6ca, #1b5e20); }
+  .p-blue .pin-body   { background: radial-gradient(circle at 30% 30%, #84ffff, #0277bd); }
+  .p-yellow .pin-body { background: radial-gradient(circle at 30% 30%, #ffff8d, #f9a825); }
 
   .pro-pin.is-moving {
-    transform: translate(-50%, -82%) scale(1.16);
+    transform: translate(-50%, -84%) scale(1.18);
     z-index: 9;
   }
 
   .pro-pin.can-pick .pin-body {
-    box-shadow: 0 0 0 2.5px #fff176, 0 0 10px #ffd54f;
+    box-shadow: 0 0 0 2.5px #fff176, 0 0 11px #ffd54f;
     animation: pinBob 0.55s infinite alternate;
   }
 
   @keyframes pinBob {
     from { transform: rotate(-45deg) scale(1); }
-    to   { transform: rotate(-45deg) scale(1.14); }
+    to   { transform: rotate(-45deg) scale(1.15); }
   }
 
   .pin-emo-tag {
@@ -660,7 +769,7 @@
     border: 1.5px solid rgba(255, 240, 153, 0.4);
     border-radius: 11px;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
     color: var(--gold-1);
   }
@@ -669,7 +778,7 @@
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.72);
+    background: rgba(0, 0, 0, 0.74);
     display: none;
     align-items: center;
     justify-content: center;
@@ -683,20 +792,54 @@
 
   .modal-card {
     width: 100%;
-    max-width: 340px;
+    max-width: 355px;
     background: linear-gradient(180deg, #1b4ea8, #0b2254);
     border: 2px solid var(--gold-1);
     border-radius: 16px;
-    padding: 16px;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+  }
+
+  .lb-list {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 240px;
+    overflow-y: auto;
+    text-align: left;
+  }
+
+  .lb-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(5, 18, 48, 0.72);
+    border: 1px solid rgba(255, 240, 153, 0.35);
+    border-radius: 10px;
+    padding: 6px 9px;
+    font-size: 11.5px;
+    font-weight: 800;
+  }
+
+  .lb-city {
+    color: #90caf9;
+    font-size: 10px;
+  }
+
+  .lb-coins {
+    color: var(--gold-1);
   }
 
   .modal-btns {
     display: flex;
     gap: 8px;
     justify-content: center;
-    margin-top: 14px;
+    margin-top: 13px;
+    flex-wrap: wrap;
   }
 
   .m-btn {
@@ -730,7 +873,7 @@
   <!-- START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
-      <div class="user-chip" onclick="openDpDialog()">
+      <div class="user-chip shine-box" onclick="openDpDialog()">
         <div id="userAvatar" class="avatar-circle">👑</div>
         <div class="user-text">
           <span id="userNameText" class="user-name">राजा खिलाड़ी</span>
@@ -744,7 +887,18 @@
           <span id="coinsText">2,500</span>
           <button class="add-coin-btn" onclick="event.stopPropagation(); addCoins(250);">+</button>
         </div>
-        <button class="hud-btn" onclick="switchLang()">हिं/EN</button>
+        <button class="hud-btn" onclick="openLeaderboard()">🏆</button>
+        <select id="langSelect" class="lang-select" onchange="onLangChange(this.value)">
+          <option value="hi">हिंदी (MP)</option>
+          <option value="en">English (IN)</option>
+          <option value="mr">मराठी (MH)</option>
+          <option value="ta">தமிழ் (TN)</option>
+          <option value="te">తెలుగు (TS/AP)</option>
+          <option value="bn">বাংলা (WB)</option>
+          <option value="gu">ગુજરાતી (GJ)</option>
+          <option value="pa">ਪੰਜਾਬੀ (PB)</option>
+          <option value="kn">ಕನ್ನಡ (KA)</option>
+        </select>
         <button id="startSoundBtn" class="hud-btn" onclick="switchSound()">🔊</button>
       </div>
     </header>
@@ -752,45 +906,55 @@
     <div class="hero-banner">
       <div class="hero-crown">👑</div>
       <h1 id="brandTitle" class="hero-title">देसी लूडो राजा</h1>
-      <p id="brandSub" class="hero-sub">प्रो बोर्ड • सबका डाइस • रिएक्शन व FX</p>
+      <p id="brandSub" class="hero-sub">6 पर खुद बाहर • सिंगल गोटी खुद चले • शाइन व FX</p>
     </div>
 
     <main class="lobby-cards">
       <div class="grid-3">
-        <div class="mode-tile tile-gold" onclick="launchGame('pass', 4)">
+        <div class="mode-tile tile-gold shine-box" onclick="launchGame('pass', 2)">
+          <div class="tile-ico">👥</div>
+          <div id="lbl2P" class="tile-name">2 PLAYERS</div>
+          <div class="tile-hint">2 सीट • पास प्ले</div>
+        </div>
+
+        <div class="mode-tile tile-gold shine-box" onclick="launchGame('pass', 3)">
+          <span class="hot-tag">3 SEAT</span>
+          <div class="tile-ico">🎯</div>
+          <div id="lbl3P" class="tile-name">3 PLAYERS</div>
+          <div class="tile-hint">3 सीट • पास प्ले</div>
+        </div>
+
+        <div class="mode-tile tile-gold shine-box" onclick="launchGame('pass', 4)">
           <span class="hot-tag">4 SEAT</span>
           <div class="tile-ico">🎲</div>
-          <div class="tile-name">4 PLAYERS</div>
-          <div class="tile-hint">4 डाइस • पास प्ले</div>
-        </div>
-
-        <div class="mode-tile tile-gold" onclick="launchGame('bot', 2)">
-          <div class="tile-ico">🤖</div>
-          <div class="tile-name">VS BOT</div>
-          <div class="tile-hint">You vs Com</div>
-        </div>
-
-        <div class="mode-tile tile-gold" onclick="openRoomDialog()">
-          <div class="tile-ico">🤝</div>
-          <div class="tile-name">FRIENDS</div>
-          <div class="tile-hint">रूम कोड</div>
+          <div id="lbl4P" class="tile-name">4 PLAYERS</div>
+          <div class="tile-hint">4 सीट • पास प्ले</div>
         </div>
       </div>
 
       <div class="grid-2">
-        <div class="mode-tile tile-blue" onclick="launchGame('bot', 4)">
-          <div class="tile-ico">⚔️</div>
-          <div class="tile-name">4P ROYAL</div>
-          <div class="tile-hint">4 रंग • फुल एक्शन</div>
+        <div class="mode-tile tile-blue shine-box" onclick="launchGame('bot', 2)">
+          <div class="tile-ico">🤖</div>
+          <div id="lblBot" class="tile-name">VS BOT</div>
+          <div class="tile-hint">You vs Computer</div>
         </div>
 
-        <div class="mode-tile tile-blue" onclick="launchGame('pass', 2)">
-          <div class="tile-ico">📱</div>
-          <div class="tile-name">PASS N PLAY</div>
-          <div class="tile-hint">2 खिलाड़ी • 2 डाइस</div>
+        <div class="mode-tile tile-emerald shine-box" onclick="openCoinTableDialog()">
+          <div class="tile-ico">🪙</div>
+          <div id="lblCoinTable" class="tile-name">COIN TABLE</div>
+          <div class="tile-hint">भारत कॉइन टेबल व रैंक</div>
         </div>
       </div>
     </main>
+
+    <!-- WhatsApp & Other Invite Strip -->
+    <div class="invite-strip">
+      <span id="inviteLabel" class="inv-title">📲 दोस्तों को बुलाएं:</span>
+      <div class="inv-btns">
+        <button class="wa-btn shine-box" onclick="inviteWhatsApp()">WhatsApp</button>
+        <button class="other-inv-btn shine-box" onclick="inviteOther()">Other</button>
+      </div>
+    </div>
 
     <div class="voice-box">
       <button id="recBtn" class="rec-btn" onclick="startVoice3s()">🎙️ 3s Voice</button>
@@ -799,64 +963,55 @@
     </div>
   </section>
 
-  <!-- GAME BOARD SCREEN -->
+  <!-- GAME SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
       <span class="game-logo">👑 देसी लूडो राजा</span>
       <div class="header-actions">
+        <button class="mini-btn" onclick="openLeaderboard()">🏆</button>
         <button class="mini-btn" onclick="startVoice3s()">🎙️ 3s</button>
-        <button class="mini-btn" onclick="switchLang()">हिं/EN</button>
         <button id="boardSoundBtn" class="mini-btn" onclick="switchSound()">🔊</button>
         <button class="mini-btn mini-exit" onclick="requestExitWarning()">बाहर</button>
       </div>
     </header>
 
-    <!-- Top Seat Dice Row -->
     <div id="topDiceRow" class="seat-row"></div>
 
-    <!-- Reaction & Special FX Ribbon -->
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
       <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का डाइस दबाएं</span>
-      <span id="fxBadge" class="fx-pill">✨ FX READY</span>
+      <span id="fxBadge" class="fx-pill">✨ SHINE FX</span>
     </div>
 
-    <!-- Professional Board Stage -->
-    <div class="board-stage">
+    <div class="board-stage shine-box">
       <div class="board-canvas-wrap">
         <div id="ludoGrid15" class="ludo-15"></div>
 
-        <!-- Crisp White Yard Boxes + 4 Spots + 4-Triangle Center -->
         <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
-          <!-- Red Yard Box -->
           <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
           <circle cx="220" cy="220" r="52" fill="#e53935"/>
           <circle cx="380" cy="220" r="52" fill="#e53935"/>
           <circle cx="220" cy="380" r="52" fill="#e53935"/>
           <circle cx="380" cy="380" r="52" fill="#e53935"/>
 
-          <!-- Green Yard Box -->
           <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#1b5e20" stroke-width="10"/>
           <circle cx="1120" cy="220" r="52" fill="#2e7d32"/>
           <circle cx="1280" cy="220" r="52" fill="#2e7d32"/>
           <circle cx="1120" cy="380" r="52" fill="#2e7d32"/>
           <circle cx="1280" cy="380" r="52" fill="#2e7d32"/>
 
-          <!-- Blue Yard Box -->
           <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#0d47a1" stroke-width="10"/>
           <circle cx="220" cy="1120" r="52" fill="#1e88e5"/>
           <circle cx="380" cy="1120" r="52" fill="#1e88e5"/>
           <circle cx="220" cy="1280" r="52" fill="#1e88e5"/>
           <circle cx="380" cy="1280" r="52" fill="#1e88e5"/>
 
-          <!-- Yellow Yard Box -->
           <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#f57f17" stroke-width="10"/>
           <circle cx="1120" cy="1120" r="52" fill="#fdd835"/>
           <circle cx="1280" cy="1120" r="52" fill="#fdd835"/>
           <circle cx="1120" cy="1280" r="52" fill="#fdd835"/>
           <circle cx="1280" cy="1280" r="52" fill="#fdd835"/>
 
-          <!-- Center 4-Color Home Triangles (600..900) -->
           <polygon points="600,600 900,600 750,750" fill="#2e7d32" stroke="#222" stroke-width="6"/>
           <polygon points="900,600 900,900 750,750" fill="#fdd835" stroke="#222" stroke-width="6"/>
           <polygon points="900,900 600,900 750,750" fill="#1e88e5" stroke="#222" stroke-width="6"/>
@@ -870,7 +1025,6 @@
       </div>
     </div>
 
-    <!-- Bottom Seat Dice Row -->
     <div id="bottomDiceRow" class="seat-row"></div>
 
     <div id="boardMsg" class="status-banner">अपनी सीट के डाइस पर टैप करें</div>
@@ -881,9 +1035,10 @@
 
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
-    <h3 id="dialogTitle" style="margin:0 0 8px; color:var(--gold-1);">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:13px; color:#eef6ff;"></p>
-    <div class="modal-btns">
+    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--gold-1); font-size:16px;">सूचना</h3>
+    <p id="dialogText" style="margin:0; font-size:12.5px; color:#eef6ff;"></p>
+    <ul id="dialogList" class="lb-list" style="display:none;"></ul>
+    <div id="dialogBtns" class="modal-btns">
       <button id="dialogOkBtn" class="m-btn m-gold" onclick="closeDialog()">ठीक है</button>
       <button id="dialogCancelBtn" class="m-btn m-dark" onclick="closeDialog()">बंद करें</button>
     </div>
@@ -891,7 +1046,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_pro_board_state_v1";
+  const STORAGE_KEY = "dlr_india_pro_v3";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     coins: 2500,
@@ -899,6 +1054,127 @@
     lang: "hi",
     sound: true
   };
+
+  const I18N = {
+    hi: {
+      title: "देसी लूडो राजा",
+      sub: "6 पर खुद बाहर • सिंगल गोटी खुद चले • शाइन व FX",
+      p2: "2 PLAYERS", p3: "3 PLAYERS", p4: "4 PLAYERS",
+      bot: "VS BOT", coinTable: "COIN TABLE",
+      invite: "📲 दोस्तों को बुलाएं:",
+      ready: "तैयार! मोड चुनें",
+      exitTitle: "⚠️ बाहर जाने की चेतावनी",
+      exitMsg: "क्या आप सच में खेल छोड़ना चाहते हैं? मौजूदा मैच बंद हो जाएगा।",
+      stay: "खेलते रहें", exitYes: "हाँ, बाहर जाएं"
+    },
+    en: {
+      title: "DESI LUDO RAJA",
+      sub: "Auto-Out on 6 • Auto-Step on Single Token • Shine FX",
+      p2: "2 PLAYERS", p3: "3 PLAYERS", p4: "4 PLAYERS",
+      bot: "VS BOT", coinTable: "COIN TABLE",
+      invite: "📲 Invite Friends:",
+      ready: "Ready! Pick a mode",
+      exitTitle: "⚠️ Exit Warning",
+      exitMsg: "Current match progress will stop! Sure you want to exit?",
+      stay: "Stay & Play", exitYes: "Yes, Exit"
+    },
+    mr: {
+      title: "देसी लुडो राजा",
+      sub: "६ वर आपोआप बाहेर • एकच सोंगटी स्वतः चालेल • शाइन FX",
+      p2: "२ खेळाडू", p3: "३ खेळाडू", p4: "४ खेळाडू",
+      bot: "VS BOT", coinTable: "कॉइन टेबल",
+      invite: "📲 मित्रांना बोलवा:",
+      ready: "तयार! मोड निवडा",
+      exitTitle: "⚠️ बाहेर पडण्याचा इशारा",
+      exitMsg: "तुम्हाला खरोखर गेम सोडायचा आहे का?",
+      stay: "खेळत राहा", exitYes: "हो, बाहेर जा"
+    },
+    ta: {
+      title: "தேசி லுடோ ராஜா",
+      sub: "6 வந்தால் தானாக வெளியே • ஒற்றை காயை தானாக நகரும்",
+      p2: "2 வீரர்கள்", p3: "3 வீரர்கள்", p4: "4 வீரர்கள்",
+      bot: "VS BOT", coinTable: "நாணய அட்டவணை",
+      invite: "📲 நண்பர்களை அழை:",
+      ready: "தயார்! பயன்முறை தேர்வு",
+      exitTitle: "⚠️ வெளியேறும் எச்சரிக்கை",
+      exitMsg: "விளையாட்டை விட்டு வெளியேற விரும்புகிறீர்களா?",
+      stay: "தொடரவும்", exitYes: "ஆம், வெளியேறு"
+    },
+    te: {
+      title: "దేశీ లూడో రాజా",
+      sub: "6 వస్తే ఆటో అవుట్ • సింగిల్ కాయిన్ ఆటో మూవ్ • షైన్ FX",
+      p2: "2 ఆటగాళ్లు", p3: "3 ఆటగాళ్లు", p4: "4 ఆటగాళ్లు",
+      bot: "VS BOT", coinTable: "కాయిన్ టేబుల్",
+      invite: "📲 స్నేహితులను ఆహ్వానించండి:",
+      ready: "సిద్ధం! మోడ్ ఎంచుకోండి",
+      exitTitle: "⚠️ నిష్క్రమణ హెచ్చరిక",
+      exitMsg: "మీరు నిజంగా ఆట నుండి నిష్క్రమించాలనుకుంటున్నారా?",
+      stay: "ఆడుతూ ఉండండి", exitYes: "అవును, నిష్క్రమించు"
+    },
+    bn: {
+      title: "দেশি লুডো রাজা",
+      sub: "৬ এলে নিজেই বাইরে • একক গুটি নিজেই চলে • শাইন FX",
+      p2: "২ প্লেয়ার", p3: "৩ প্লেয়ার", p4: "৪ প্লেয়ার",
+      bot: "VS BOT", coinTable: "কয়েন টেবিল",
+      invite: "📲 বন্ধুদের আমন্ত্রণ:",
+      ready: "প্রস্তুত! মোড বেছে নিন",
+      exitTitle: "⚠️ বের হওয়ার সতর্কতা",
+      exitMsg: "আপনি কি সত্যিই খেলা ছাড়তে চান?",
+      stay: "খেলে যান", exitYes: "হ্যাঁ, বের হন"
+    },
+    gu: {
+      title: "દેશી લુડો રાજા",
+      sub: "૬ પર આપમેળે બહાર • સિંગલ ગોટી આપમેળે ચાલે • શાઈન FX",
+      p2: "૨ ખેલાડી", p3: "૩ ખેલાડી", p4: "૪ ખેલાડી",
+      bot: "VS BOT", coinTable: "કોઈન ટેબલ",
+      invite: "📲 મિત્રોને બોલાવો:",
+      ready: "તૈયાર! મોડ પસંદ કરો",
+      exitTitle: "⚠️ બહાર જવાની ચેતવણી",
+      exitMsg: "શું તમે ખરેખર રમત છોડવા માંગો છો?",
+      stay: "રમતા રહો", exitYes: "હા, બહાર જાઓ"
+    },
+    pa: {
+      title: "ਦੇਸੀ ਲੂਡੋ ਰਾਜਾ",
+      sub: "੬ ਤੇ ਆਪਣੇ ਆਪ ਬਾਹਰ • ਇਕੱਲੀ ਗੋਟੀ ਆਪੇ ਚੱਲੇ • ਸ਼ਾਈਨ FX",
+      p2: "੨ ਖਿਡਾਰੀ", p3: "੩ ਖਿਡਾਰੀ", p4: "੪ ਖਿਡਾਰੀ",
+      bot: "VS BOT", coinTable: "ਕੋਇਨ ਟੇਬਲ",
+      invite: "📲 ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ:",
+      ready: "ਤਿਆਰ! ਮੋਡ ਚੁਣੋ",
+      exitTitle: "⚠️ ਬਾਹਰ ਜਾਣ ਦੀ ਚੇਤਾਵਨੀ",
+      exitMsg: "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਖੇਡ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+      stay: "ਖੇਡਦੇ ਰਹੋ", exitYes: "ਹਾਂ, ਬਾਹਰ ਜਾਓ"
+    },
+    kn: {
+      title: "ದೇಸಿ ಲೂಡೋ ರಾಜ",
+      sub: "6 ಬಂದರೆ ತಾನಾಗಿಯೇ ಹೊರಗೆ • ಒಂದೇ ಕಾಯಿ ತಾನಾಗಿ ಚಲಿಸುತ್ತದೆ",
+      p2: "2 ಆಟಗಾರರು", p3: "3 ಆಟಗಾರರು", p4: "4 ಆಟಗಾರರು",
+      bot: "VS BOT", coinTable: "ಕಾಯಿನ್ ಟೇಬಲ್",
+      invite: "📲 ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ:",
+      ready: "ಸಿದ್ಧ! ಮೋಡ್ ಆಯ್ಕೆಮಾಡಿ",
+      exitTitle: "⚠️ ನಿರ್ಗಮನ ಎಚ್ಚರಿಕೆ",
+      exitMsg: "ನೀವು ನಿಜವಾಗಿಯೂ ಆಟದಿಂದ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?",
+      stay: "ಆಡುತ್ತಿರಿ", exitYes: "ಹೌದು, ನಿರ್ಗಮಿಸಿ"
+    }
+  };
+
+  const INDIA_CITIES_LB = [
+    { rank: 1, name: "विक्रम सिंह", city: "इंदौर, MP", coins: 18500 },
+    { rank: 2, name: "आदित्य शर्मा", city: "जबलपुर, MP", coins: 16200 },
+    { rank: 3, name: "रोहन देशमुख", city: "मुंबई, MH", coins: 14850 },
+    { rank: 4, name: "अमन वर्मा", city: "दिल्ली, DL", coins: 13400 },
+    { rank: 5, name: "कार्तिक राव", city: "बेंगलुरु, KA", coins: 12100 },
+    { rank: 6, name: "सुंदरम अय्यर", city: "चेन्नई, TN", coins: 11050 },
+    { rank: 7, name: "साई रेड्डी", city: "हैदराबाद, TS", coins: 9800 },
+    { rank: 8, name: "सौरभ चटर्जी", city: "कोलकाता, WB", coins: 8650 },
+    { rank: 9, name: "हर्ष पटेल", city: "अहमदाबाद, GJ", coins: 7400 }
+  ];
+
+  const COIN_TABLES = [
+    { title: "इंदौर टेबल (Table #1)", entry: 100, win: 180 },
+    { title: "जबलपुर रॉयल टेबल (Table #2)", entry: 250, win: 450 },
+    { title: "मुंबई मेट्रो टेबल (Table #3)", entry: 500, win: 900 },
+    { title: "भारत चैंपियन टेबल (Table #4)", entry: 1000, win: 1850 }
+  ];
 
   let recorder = null;
   let chunks = [];
@@ -925,7 +1201,6 @@
 
   const SAFE_SPOTS = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
 
-  // Exact percentage centers (0..100) for the 4 spots inside each SVG yard
   const YARD_SPOT_PCT = {
     red:    [[14.66, 14.66], [25.33, 14.66], [14.66, 25.33], [25.33, 25.33]],
     green:  [[74.66, 14.66], [85.33, 14.66], [74.66, 25.33], [85.33, 25.33]],
@@ -954,6 +1229,10 @@
 
   function persist() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+  }
+
+  function t() {
+    return I18N[profile.lang] || I18N.hi;
   }
 
   /* ================= MUSIC, SOUND & SPECIAL FX ================= */
@@ -1048,7 +1327,7 @@
       setTimeout(() => {
         match.fxCell = null;
         drawBoard();
-      }, 450);
+      }, 420);
     }
   }
 
@@ -1069,10 +1348,13 @@
     }
   }
 
-  /* ================= START SCREEN & DP / VOICE ================= */
+  /* ================= START SCREEN, LANGUAGES, COIN TABLE & INVITE ================= */
   function syncStartView() {
+    const txt = t();
     document.getElementById("coinsText").textContent = profile.coins.toLocaleString("en-IN");
     document.getElementById("userNameText").textContent = profile.name;
+    document.getElementById("langSelect").value = profile.lang;
+
     const ico = profile.sound ? "🔊" : "🔇";
     document.getElementById("startSoundBtn").textContent = ico;
     document.getElementById("boardSoundBtn").textContent = ico;
@@ -1080,14 +1362,113 @@
     const av = document.getElementById("userAvatar");
     av.innerHTML = profile.dp ? `<img src="${profile.dp}" alt="DP" />` : "👑";
 
-    const en = profile.lang === "en";
-    document.getElementById("brandTitle").textContent = en ? "DESI LUDO RAJA" : "देसी लूडो राजा";
-    document.getElementById("brandSub").textContent = en
-      ? "Pro Board • Corner Dice • Reactions & FX"
-      : "प्रो बोर्ड • सबका डाइस • रिएक्शन व FX";
+    document.getElementById("brandTitle").textContent = txt.title;
+    document.getElementById("brandSub").textContent = txt.sub;
+    document.getElementById("lbl2P").textContent = txt.p2;
+    document.getElementById("lbl3P").textContent = txt.p3;
+    document.getElementById("lbl4P").textContent = txt.p4;
+    document.getElementById("lblBot").textContent = txt.bot;
+    document.getElementById("lblCoinTable").textContent = txt.coinTable;
+    document.getElementById("inviteLabel").textContent = txt.invite;
+    setLobbyNote(txt.ready);
+  }
+
+  function onLangChange(langCode) {
+    profile.lang = langCode;
+    persist();
+    syncStartView();
+    if (document.getElementById("gameScreen").style.display === "flex") {
+      refreshBoardBanner();
+    }
+  }
+
+  function openLeaderboard() {
+    const list = document.getElementById("dialogList");
+    list.style.display = "flex";
+    list.innerHTML = "";
+
+    const rows = [
+      { rank: "★", name: `${profile.name} (आप)`, city: "भारत", coins: profile.coins },
+      ...INDIA_CITIES_LB
+    ];
+
+    rows.forEach((r, i) => {
+      const li = document.createElement("li");
+      li.className = "lb-item";
+      li.innerHTML = `
+        <span>#${i + 1} ${r.name} <span class="lb-city">(${r.city})</span></span>
+        <span class="lb-coins">🪙 ${Number(r.coins).toLocaleString("en-IN")}</span>
+      `;
+      list.appendChild(li);
+    });
+
+    document.getElementById("dialogTitle").textContent = "🏆 भारत कॉइन लीडरबोर्ड";
+    document.getElementById("dialogText").textContent = "देश के प्रमुख शहरों के टॉप खिलाड़ी:";
+    document.getElementById("dialogCancelBtn").style.display = "none";
+    const ok = document.getElementById("dialogOkBtn");
+    ok.className = "m-btn m-gold";
+    ok.textContent = "बंद करें";
+    ok.onclick = closeDialog;
+    document.getElementById("dialogBox").classList.add("show");
+  }
+
+  function openCoinTableDialog() {
+    const list = document.getElementById("dialogList");
+    list.style.display = "flex";
+    list.innerHTML = "";
+
+    COIN_TABLES.forEach(tb => {
+      const li = document.createElement("li");
+      li.className = "lb-item";
+      li.style.cursor = "pointer";
+      li.innerHTML = `
+        <span>${tb.title}</span>
+        <span class="lb-coins">🪙 ${tb.entry} → ${tb.win}</span>
+      `;
+      li.onclick = () => {
+        closeDialog();
+        if (profile.coins >= tb.entry) {
+          profile.coins -= tb.entry;
+          persist();
+          syncStartView();
+        }
+        launchGame("bot", 2);
+      };
+      list.appendChild(li);
+    });
+
+    document.getElementById("dialogTitle").textContent = "🪙 भारत कॉइन टेबल";
+    document.getElementById("dialogText").textContent = "अपनी कॉइन टेबल चुनें और खेल शुरू करें:";
+    document.getElementById("dialogCancelBtn").style.display = "inline-block";
+    document.getElementById("dialogCancelBtn").textContent = "बंद करें";
+    document.getElementById("dialogOkBtn").style.display = "none";
+    document.getElementById("dialogBox").classList.add("show");
+  }
+
+  function inviteWhatsApp() {
+    const msg = encodeURIComponent(
+      `👑 देसी लूडो राजा में आओ! साथ में 2-3-4 खिलाड़ी लूडो खेलते हैं: ${location.href}`
+    );
+    window.open(`https://wa.me/?text=${msg}`, "_blank", "noopener");
+  }
+
+  async function inviteOther() {
+    const shareText = `👑 देसी लूडो राजा खेलें! ${location.href}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "देसी लूडो राजा", text: shareText, url: location.href });
+        return;
+      } catch (_) {}
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(shareText).catch(() => {});
+    }
+    setLobbyNote("इनवाइट लिंक कॉपी हो गया!");
   }
 
   function openDpDialog() {
+    document.getElementById("dialogList").style.display = "none";
+    document.getElementById("dialogOkBtn").style.display = "inline-block";
     document.getElementById("dialogTitle").textContent = "कस्टम DP";
     document.getElementById("dialogText").textContent = "अपनी फोटो चुनें (128×128 में सेव होगी):";
     document.getElementById("dialogCancelBtn").style.display = "inline-block";
@@ -1124,22 +1505,9 @@
     reader.readAsDataURL(file);
   }
 
-  function openRoomDialog() {
-    const code = Math.floor(100000 + Math.random() * 900000);
-    document.getElementById("dialogTitle").textContent = "फ्रेंड्स रूम";
-    document.getElementById("dialogText").textContent = `रूम कोड: ${code} — पास एंड प्ले से खेल शुरू करें।`;
-    document.getElementById("dialogCancelBtn").style.display = "inline-block";
-    const ok = document.getElementById("dialogOkBtn");
-    ok.className = "m-btn m-gold";
-    ok.textContent = "खेलें";
-    ok.onclick = () => {
-      closeDialog();
-      launchGame("pass", 2);
-    };
-    document.getElementById("dialogBox").classList.add("show");
-  }
-
   function closeDialog() {
+    document.getElementById("dialogList").style.display = "none";
+    document.getElementById("dialogOkBtn").style.display = "inline-block";
     document.getElementById("dialogBox").classList.remove("show");
   }
 
@@ -1149,13 +1517,6 @@
     syncStartView();
     playNote(760, 0.1);
     setLobbyNote(`+${amt} कॉइन्स जुड़े!`);
-  }
-
-  function switchLang() {
-    profile.lang = profile.lang === "hi" ? "en" : "hi";
-    persist();
-    syncStartView();
-    refreshBoardBanner();
   }
 
   function switchSound() {
@@ -1215,17 +1576,17 @@
 
   /* ================= EXIT WARNING ================= */
   function requestExitWarning() {
-    const en = profile.lang === "en";
-    document.getElementById("dialogTitle").textContent = en ? "⚠️ Exit Warning" : "⚠️ बाहर जाने की चेतावनी";
-    document.getElementById("dialogText").textContent = en
-      ? "Current match progress will stop! Are you sure you want to exit?"
-      : "क्या आप सच में खेल छोड़ना चाहते हैं? मौजूदा मैच बंद हो जाएगा।";
+    const txt = t();
+    document.getElementById("dialogList").style.display = "none";
+    document.getElementById("dialogOkBtn").style.display = "inline-block";
+    document.getElementById("dialogTitle").textContent = txt.exitTitle;
+    document.getElementById("dialogText").textContent = txt.exitMsg;
     document.getElementById("dialogCancelBtn").style.display = "inline-block";
-    document.getElementById("dialogCancelBtn").textContent = en ? "Stay & Play" : "खेलते रहें";
+    document.getElementById("dialogCancelBtn").textContent = txt.stay;
 
     const ok = document.getElementById("dialogOkBtn");
     ok.className = "m-btn m-danger";
-    ok.textContent = en ? "Yes, Exit" : "हाँ, बाहर जाएं";
+    ok.textContent = txt.exitYes;
     ok.onclick = () => {
       closeDialog();
       stopBgMusic();
@@ -1243,7 +1604,7 @@
     }
   });
 
-  /* ================= GAME ENGINE ================= */
+  /* ================= GAME ENGINE (AUTO-OUT ON 6 + AUTO-STEP ON SINGLE TOKEN) ================= */
   function seatTitle(color) {
     if (color === "blue") return profile.name.slice(0, 8) || "You";
     if (color === "green") return match.mode === "bot" ? "Computer" : "P2";
@@ -1261,9 +1622,14 @@
 
   function launchGame(mode, count) {
     Object.values(match.tokenReactions).forEach(r => r.timer && clearTimeout(r.timer));
+    const seatMap = {
+      2: ["blue", "green"],
+      3: ["blue", "red", "green"],
+      4: ["blue", "red", "green", "yellow"]
+    };
     match = {
       mode,
-      seats: count === 4 ? ["blue", "red", "green", "yellow"] : ["blue", "green"],
+      seats: seatMap[count] || ["blue", "green"],
       turn: 0,
       diceValues: { red: "🎲", green: "🎲", yellow: "🎲", blue: "🎲" },
       hasRolled: false,
@@ -1283,7 +1649,7 @@
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
     setReaction("😊", "खेल शुरू! अपनी सीट के पास वाला डाइस दबाएं");
-    triggerFx("✨ FX ACTIVE");
+    triggerFx("✨ SHINE FX");
     startBgMusic();
     renderSeatDicePods();
     drawBoard();
@@ -1309,7 +1675,7 @@
     const homeCnt = match.pieces[color].filter(x => x === 56).length;
 
     const pod = document.createElement("div");
-    pod.className = `seat-pod ${isTurn ? "pod-active" : ""}`;
+    pod.className = `seat-pod shine-box ${isTurn ? "pod-active" : ""}`;
 
     const meta = document.createElement("div");
     meta.className = "pod-meta";
@@ -1369,13 +1735,15 @@
       if (movable.length === 0) {
         setReaction("😐", `${seatTitle(color)} का ${val} आया — कोई चाल नहीं`);
         refreshBoardBanner(val, true);
-        setTimeout(advanceTurn, 750);
-      } else if (isBotColor(color)) {
-        setTimeout(() => executeStepMove(color, movable[0]), 500);
+        setTimeout(advanceTurn, 700);
+      } else if (movable.length === 1 || isBotColor(color)) {
+        // Single movable token (or 6 bringing out/moving single piece) moves automatically step-by-step
+        refreshBoardBanner(val, false, true);
+        setTimeout(() => executeStepMove(color, movable[0]), 320);
       } else {
-        refreshBoardBanner(val, false);
+        refreshBoardBanner(val, false, false);
       }
-    }, 260);
+    }, 240);
   }
 
   function checkNearDanger(moverColor, targetStep) {
@@ -1413,16 +1781,16 @@
     if (startStep === -1 && diceVal === 6) {
       match.pieces[color][idx] = 0;
       sfxOutKhushi();
-      triggerFx("🎉 OUT!", pieceXY(color, 0));
-      setReaction("😄🎉", `${seatTitle(color)} की गोटी बाहर आई — खुशी!`, color, idx);
+      triggerFx("🎉 AUTO OUT!", pieceXY(color, 0));
+      setReaction("😄🎉", `${seatTitle(color)} की गोटी 6 पर खुद बाहर आई — खुशी!`, color, idx);
       drawBoard([], { color, idx });
-      await sleep(320);
+      await sleep(300);
     } else {
       for (let s = 1; s <= diceVal; s++) {
         match.pieces[color][idx] = startStep + s;
         sfxStep(false);
         const curXY = pieceXY(color, match.pieces[color][idx]);
-        triggerFx(`👣 ${s}/${diceVal}`, curXY);
+        triggerFx(`✨ ${s}/${diceVal}`, curXY);
 
         if (checkNearDanger(color, match.pieces[color][idx])) {
           setReaction("😨", `${seatTitle(color)} दुश्मन के पास — डर!`, color, idx);
@@ -1431,7 +1799,7 @@
         }
 
         drawBoard([], { color, idx });
-        await sleep(165);
+        await sleep(150);
       }
     }
 
@@ -1450,7 +1818,7 @@
                 triggerFx("⚔️ KILLER!", pieceXY(color, finalStep));
                 setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! ${seatTitle(opp)} की गोटी कटी!`, color, idx);
                 drawBoard([], { color, idx });
-                await sleep(360);
+                await sleep(350);
 
                 sfxCrySad();
                 for (let backStep = oStep - 1; backStep >= 0; backStep--) {
@@ -1458,12 +1826,12 @@
                   sfxStep(true);
                   setReaction("😭", `${seatTitle(opp)} रोते हुए पीछे जा रही है...`, opp, oIdx);
                   drawBoard([], { color: opp, idx: oIdx });
-                  await sleep(105);
+                  await sleep(100);
                 }
                 match.pieces[opp][oIdx] = -1;
                 setReaction("😭💔", `${seatTitle(opp)} रोते-रोते घर वापस पहुंची!`, opp, oIdx);
                 drawBoard();
-                await sleep(250);
+                await sleep(240);
               }
             }
           }
@@ -1495,7 +1863,7 @@
       drawBoard();
       refreshBoardBanner();
       if (isBotColor(activeColor())) {
-        setTimeout(() => rollPlayerDice(activeColor(), true), 650);
+        setTimeout(() => rollPlayerDice(activeColor(), true), 600);
       }
     }
   }
@@ -1508,22 +1876,23 @@
     drawBoard();
     refreshBoardBanner();
     if (isBotColor(activeColor())) {
-      setTimeout(() => rollPlayerDice(activeColor(), true), 650);
+      setTimeout(() => rollPlayerDice(activeColor(), true), 600);
     }
   }
 
-  function refreshBoardBanner(val = null, blocked = false) {
+  function refreshBoardBanner(val = null, blocked = false, autoMoving = false) {
     const c = activeColor();
     const label = seatTitle(c);
-    const en = profile.lang === "en";
     const el = document.getElementById("boardMsg");
 
     if (blocked) {
-      el.textContent = en ? `${label} rolled ${val} — next turn` : `${label} का ${val} आया — अगली बारी`;
+      el.textContent = `${label} का ${val} आया — अगली बारी`;
+    } else if (autoMoving) {
+      el.textContent = `${label} का ${val} आया — गोटी अपने आप चल रही है...`;
     } else if (val) {
-      el.textContent = en ? `${label} rolled ${val} — tap glowing pin` : `${label} ने ${val} चला — चमकती गोटी चुनें`;
+      el.textContent = `${label} ने ${val} चला — चमकती गोटी चुनें`;
     } else {
-      el.textContent = en ? `${label}'s turn — tap ${label}'s dice` : `${label} की बारी — ${label} का डाइस दबाएं`;
+      el.textContent = `${label} की बारी — ${label} का डाइस दबाएं`;
     }
   }
 
@@ -1566,13 +1935,11 @@
       })
     );
 
-    // 4 Corner Yards
     for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) cells[r][c].className = "sq sq-red";
     for (let r = 0; r < 6; r++) for (let c = 9; c < 15; c++) cells[r][c].className = "sq sq-green";
     for (let r = 9; r < 15; r++) for (let c = 0; c < 6; c++) cells[r][c].className = "sq sq-blue";
     for (let r = 9; r < 15; r++) for (let c = 9; c < 15; c++) cells[r][c].className = "sq sq-yellow";
 
-    // Start Squares + Colored Home Lanes
     cells[6][1].className = "sq sq-red";
     for (let c = 1; c <= 5; c++) cells[7][c].className = "sq sq-red";
 
@@ -1585,7 +1952,6 @@
     cells[13][6].className = "sq sq-blue";
     for (let r = 9; r <= 13; r++) cells[r][7].className = "sq sq-blue";
 
-    // Entry Arrows & Safe Stars (matching reference image)
     cells[7][0].textContent = "→";
     cells[0][7].textContent = "↓";
     cells[7][14].textContent = "←";
@@ -1608,7 +1974,6 @@
       }
     }
 
-    // Place 3D Pin Tokens in dedicated overlay layer
     match.seats.forEach(col => {
       match.pieces[col].forEach((step, idx) => {
         const pos = piecePctPosition(col, step, idx);
