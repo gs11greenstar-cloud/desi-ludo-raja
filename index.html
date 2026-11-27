@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -18,7 +17,7 @@
     --green: #2e7d32;
     --yellow: #fbc02d;
     --blue: #1e88e5;
-    --panel: rgba(7, 24, 64, 0.82);
+    --panel: rgba(7, 24, 64, 0.84);
   }
 
   * {
@@ -328,8 +327,8 @@
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding: 8px 10px 12px;
-    gap: 7px;
+    padding: 7px 10px 10px;
+    gap: 6px;
   }
 
   .game-header {
@@ -368,42 +367,37 @@
     background: linear-gradient(180deg, #ef5350, #b71c1c);
   }
 
-  /* Per-Player Dice Row */
-  .dice-roster {
+  /* Corner / Seat Dice Slots */
+  .seat-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
-  .dice-roster.four-seats {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .seat-dice-card {
+  .seat-pod {
     background: var(--panel);
     border: 2px solid rgba(255, 255, 255, 0.22);
-    border-radius: 12px;
-    padding: 6px 7px;
+    border-radius: 13px;
+    padding: 6px 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4px;
+    gap: 6px;
     opacity: 0.72;
     transition: all 0.15s ease;
   }
 
-  .seat-dice-card.turn-active {
+  .seat-pod.pod-active {
     opacity: 1;
     border-color: var(--gold-1);
     box-shadow: 0 0 12px rgba(255, 240, 153, 0.45);
-    transform: translateY(-1px);
   }
 
-  .seat-info {
+  .pod-meta {
     min-width: 0;
   }
 
-  .seat-label {
+  .pod-name {
     font-size: 11px;
     font-weight: 900;
     white-space: nowrap;
@@ -411,19 +405,19 @@
     text-overflow: ellipsis;
   }
 
-  .seat-mini-stat {
+  .pod-home {
     font-size: 10px;
     color: var(--gold-1);
     font-weight: 700;
   }
 
-  .player-dice-btn {
+  .pod-dice {
     width: 38px;
     height: 38px;
     flex-shrink: 0;
     border-radius: 10px;
     border: 2px solid rgba(255, 240, 153, 0.45);
-    background: #1b2d56;
+    background: #182b54;
     color: #fff;
     font-size: 18px;
     font-weight: 900;
@@ -432,13 +426,13 @@
     cursor: pointer;
   }
 
-  .seat-dice-card.turn-active .player-dice-btn {
+  .seat-pod.pod-active .pod-dice {
     background: linear-gradient(180deg, #ffffff, #e8f0ff);
     color: #0b2254;
     border-color: var(--gold-1);
   }
 
-  .player-dice-btn.rolling {
+  .pod-dice.rolling {
     animation: diceSpin 0.28s linear infinite;
   }
 
@@ -453,23 +447,22 @@
     background: rgba(5, 18, 48, 0.88);
     border: 1.5px solid rgba(255, 240, 153, 0.45);
     border-radius: 12px;
-    padding: 6px 10px;
+    padding: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    min-height: 38px;
+    min-height: 34px;
   }
 
   .reaction-badge {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
   }
 
   .reaction-text {
     flex: 1;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     color: var(--gold-1);
     text-align: left;
@@ -478,10 +471,10 @@
   .fx-pill {
     font-size: 10px;
     font-weight: 800;
-    padding: 3px 7px;
+    padding: 2px 7px;
     border-radius: 999px;
-    background: rgba(255, 179, 0, 0.2);
-    border: 1px solid rgba(255, 240, 153, 0.4);
+    background: rgba(255, 179, 0, 0.22);
+    border: 1px solid rgba(255, 240, 153, 0.45);
     color: #fff;
     white-space: nowrap;
   }
@@ -530,37 +523,62 @@
   }
 
   .sq-fx-flash {
-    box-shadow: inset 0 0 0 2px #fff176, 0 0 10px rgba(255, 241, 118, 0.9);
+    box-shadow: inset 0 0 0 2px #fff176, 0 0 10px rgba(255, 241, 118, 0.95);
   }
 
-  /* Goti with Shadow + Reaction Tag */
+  /* Unique Attractive Jewel Gotiyan */
   .goti {
-    width: 78%;
-    height: 78%;
+    width: 84%;
+    height: 84%;
     border-radius: 50%;
     border: 2px solid #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.65);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), inset 0 0 0 1.5px rgba(255, 255, 255, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 3;
     position: relative;
-    transition: transform 0.12s ease;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
 
-  .goti-red { background: radial-gradient(circle at 32% 32%, #ff7961, #b71c1c); }
-  .goti-green { background: radial-gradient(circle at 32% 32%, #80e27e, #1b5e20); }
-  .goti-yellow { background: radial-gradient(circle at 32% 32%, #ffff72, #f57f17); }
-  .goti-blue { background: radial-gradient(circle at 32% 32%, #73e8ff, #0d47a1); }
+  .goti-core {
+    width: 54%;
+    height: 54%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    font-size: 8px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .goti-red {
+    background: conic-gradient(from 40deg, #ff8a80, #e53935, #7f0000, #ff5252, #ff8a80);
+  }
+  .goti-green {
+    background: conic-gradient(from 40deg, #b9f6ca, #2e7d32, #003300, #69f0ae, #b9f6ca);
+  }
+  .goti-yellow {
+    background: conic-gradient(from 40deg, #ffff8d, #fbc02d, #8d5b00, #ffd740, #ffff8d);
+  }
+  .goti-blue {
+    background: conic-gradient(from 40deg, #84ffff, #1e88e5, #002171, #40c4ff, #84ffff);
+  }
 
   .goti.moving-shadow {
-    transform: scale(1.22) translateY(-2px);
-    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.72), 0 0 0 2px rgba(255, 255, 255, 0.85);
+    transform: scale(1.25) translateY(-2px);
+    box-shadow: 0 7px 11px rgba(0, 0, 0, 0.78), 0 0 0 2.5px #fff176;
     z-index: 8;
   }
 
   .goti.can-move {
-    outline: 2.5px solid #212121;
-    box-shadow: 0 0 0 2px #ffe875, 0 4px 8px rgba(0, 0, 0, 0.6);
-    transform: scale(1.12);
+    box-shadow: 0 0 0 2.5px #ffe875, 0 0 10px #ffe875, 0 4px 8px rgba(0, 0, 0, 0.65);
+    transform: scale(1.15);
     z-index: 6;
   }
 
@@ -587,7 +605,7 @@
     background: var(--panel);
     border: 1.5px solid rgba(255, 240, 153, 0.4);
     border-radius: 12px;
-    padding: 7px 10px;
+    padding: 6px 10px;
     font-size: 12px;
     font-weight: 800;
     color: var(--gold-1);
@@ -680,7 +698,7 @@
     <div class="hero-banner">
       <div class="hero-crown">👑</div>
       <h1 id="brandTitle" class="hero-title">देसी लूडो राजा</h1>
-      <p id="brandSub" class="hero-sub">सबका अपना डाइस • स्टेप मूव • रिएक्शन व FX</p>
+      <p id="brandSub" class="hero-sub">कोने-कोने डाइस • यूनिक गोटी • रिएक्शन व FX</p>
     </div>
 
     <main class="lobby-cards">
@@ -739,21 +757,25 @@
       </div>
     </header>
 
-    <!-- Every player gets their own dedicated dice button -->
-    <div id="diceRoster" class="dice-roster"></div>
+    <!-- Top Player Dice Row (Green / Yellow seats) -->
+    <div id="topDiceRow" class="seat-row"></div>
 
-    <!-- Reaction & Special FX Status Bar -->
+    <!-- Reaction & Special FX Ribbon -->
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
-      <span id="reactionText" class="reaction-text">खेल शुरू! अपना डाइस चलाएं</span>
+      <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का डाइस दबाएं</span>
       <span id="fxBadge" class="fx-pill">✨ FX READY</span>
     </div>
 
+    <!-- 15x15 Board -->
     <div class="board-card">
       <div id="board15" class="board-15"></div>
     </div>
 
-    <div id="boardMsg" class="status-banner">अपनी बारी के डाइस पर टैप करें</div>
+    <!-- Bottom Player Dice Row (Red / Blue seats) -->
+    <div id="bottomDiceRow" class="seat-row"></div>
+
+    <div id="boardMsg" class="status-banner">अपनी सीट के डाइस पर टैप करें</div>
   </section>
 </div>
 
@@ -771,7 +793,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_royal_fx_state_v1";
+  const STORAGE_KEY = "dlr_royal_fx_state_v2";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     coins: 2500,
@@ -820,7 +842,7 @@
     hasRolled: false,
     busy: false,
     fxCell: null,
-    tokenReactions: {}, // key: "color-idx" -> { emoji, timer }
+    tokenReactions: {},
     pieces: {
       red: [-1, -1, -1, -1],
       yellow: [-1, -1, -1, -1],
@@ -960,8 +982,8 @@
     const en = profile.lang === "en";
     document.getElementById("brandTitle").textContent = en ? "DESI LUDO RAJA" : "देसी लूडो राजा";
     document.getElementById("brandSub").textContent = en
-      ? "Personal Dice • Step Move • Reactions & FX"
-      : "सबका अपना डाइस • स्टेप मूव • रिएक्शन व FX";
+      ? "Corner Dice • Unique Tokens • Reactions & FX"
+      : "कोने-कोने डाइस • यूनिक गोटी • रिएक्शन व FX";
   }
 
   function openDpDialog() {
@@ -1090,7 +1112,7 @@
     setLobbyNote("वॉयस चल रही है...");
   }
 
-  /* ================= EXIT WARNING (NO SINGLE-TAP BACK) ================= */
+  /* ================= EXIT WARNING ================= */
   function requestExitWarning() {
     const en = profile.lang === "en";
     document.getElementById("dialogTitle").textContent = en ? "⚠️ Exit Warning" : "⚠️ बाहर जाने की चेतावनी";
@@ -1112,7 +1134,6 @@
     document.getElementById("dialogBox").classList.add("show");
   }
 
-  // Intercept browser/Android Back button inside game screen
   history.pushState({ dlrGame: true }, "");
   window.addEventListener("popstate", () => {
     history.pushState({ dlrGame: true }, "");
@@ -1121,10 +1142,10 @@
     }
   });
 
-  /* ================= GAME ENGINE (PER-PLAYER DICE + STEP MOVE + REACTIONS) ================= */
+  /* ================= GAME ENGINE ================= */
   function seatTitle(color) {
     if (color === "red") return profile.name.slice(0, 8) || "You";
-    if (color === "yellow") return match.mode === "bot" ? "Bot" : "P2";
+    if (color === "yellow") return match.mode === "bot" ? "Bot-Y" : "P2";
     if (color === "green") return match.mode === "bot" ? "Bot-G" : "P3";
     return match.mode === "bot" ? "Bot-B" : "P4";
   }
@@ -1158,10 +1179,10 @@
 
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
-    setReaction("😊", "खेल शुरू! अपनी बारी का डाइस दबाएं");
+    setReaction("😊", "खेल शुरू! अपनी सीट के पास वाला डाइस दबाएं");
     triggerFx("✨ FX ACTIVE");
     startBgMusic();
-    renderDiceRoster();
+    renderSeatDicePods();
     drawBoard();
     refreshBoardBanner();
 
@@ -1180,35 +1201,47 @@
     return step + val <= 56;
   }
 
-  function renderDiceRoster(movableList = [], rollingColor = null) {
-    const roster = document.getElementById("diceRoster");
-    roster.className = match.seats.length === 4 ? "dice-roster four-seats" : "dice-roster";
-    roster.innerHTML = "";
+  function buildPodElement(color, rollingColor) {
+    const isTurn = color === activeColor();
+    const homeCnt = match.pieces[color].filter(x => x === 56).length;
 
-    match.seats.forEach(color => {
-      const isTurn = color === activeColor();
-      const homeCnt = match.pieces[color].filter(x => x === 56).length;
+    const pod = document.createElement("div");
+    pod.className = `seat-pod ${isTurn ? "pod-active" : ""}`;
 
-      const card = document.createElement("div");
-      card.className = `seat-dice-card ${isTurn ? "turn-active" : ""}`;
+    const meta = document.createElement("div");
+    meta.className = "pod-meta";
+    meta.innerHTML = `
+      <div class="pod-name">${seatDot(color)} ${seatTitle(color)}</div>
+      <div class="pod-home">🏠 ${homeCnt}/4</div>
+    `;
 
-      const info = document.createElement("div");
-      info.className = "seat-info";
-      info.innerHTML = `
-        <div class="seat-label">${seatDot(color)} ${seatTitle(color)}</div>
-        <div class="seat-mini-stat">🏠 ${homeCnt}/4</div>
-      `;
+    const diceBtn = document.createElement("button");
+    diceBtn.className = `pod-dice ${rollingColor === color ? "rolling" : ""}`;
+    diceBtn.textContent = match.diceValues[color];
+    diceBtn.disabled = !isTurn || match.hasRolled || match.busy || isBotColor(color);
+    diceBtn.onclick = () => rollPlayerDice(color, false);
 
-      const btn = document.createElement("button");
-      btn.className = `player-dice-btn ${rollingColor === color ? "rolling" : ""}`;
-      btn.textContent = match.diceValues[color];
-      btn.disabled = !isTurn || match.hasRolled || match.busy || isBotColor(color);
-      btn.onclick = () => rollPlayerDice(color, false);
+    pod.appendChild(meta);
+    pod.appendChild(diceBtn);
+    return pod;
+  }
 
-      card.appendChild(info);
-      card.appendChild(btn);
-      roster.appendChild(card);
-    });
+  function renderSeatDicePods(rollingColor = null) {
+    const topRow = document.getElementById("topDiceRow");
+    const botRow = document.getElementById("bottomDiceRow");
+    topRow.innerHTML = "";
+    botRow.innerHTML = "";
+
+    // Top row: green & yellow (board ke upar wale players ka dice)
+    const topColors = match.seats.filter(c => c === "green" || c === "yellow");
+    // Bottom row: red & blue (board ke niche wale players ka dice)
+    const botColors = match.seats.filter(c => c === "red" || c === "blue");
+
+    topColors.forEach(c => topRow.appendChild(buildPodElement(c, rollingColor)));
+    botColors.forEach(c => botRow.appendChild(buildPodElement(c, rollingColor)));
+
+    topRow.style.display = topColors.length ? "grid" : "none";
+    botRow.style.display = botColors.length ? "grid" : "none";
   }
 
   function rollPlayerDice(color, fromBot = false) {
@@ -1217,7 +1250,7 @@
 
     match.busy = true;
     sfxDice();
-    renderDiceRoster([], color);
+    renderSeatDicePods(color);
 
     const val = Math.floor(Math.random() * 6) + 1;
     setTimeout(() => {
@@ -1229,7 +1262,7 @@
         .map((p, i) => (isMovable(p, val) ? i : -1))
         .filter(i => i !== -1);
 
-      renderDiceRoster(movable, null);
+      renderSeatDicePods(null);
       drawBoard(movable, null);
 
       if (movable.length === 0) {
@@ -1274,9 +1307,8 @@
     if (!isMovable(startStep, diceVal)) return;
 
     match.busy = true;
-    renderDiceRoster([], null);
+    renderSeatDicePods(null);
 
-    // Coming out of yard on 6 -> Khushi reaction
     if (startStep === -1 && diceVal === 6) {
       match.pieces[color][idx] = 0;
       sfxOutKhushi();
@@ -1285,7 +1317,6 @@
       drawBoard([], { color, idx });
       await sleep(320);
     } else {
-      // Step-by-step movement one square at a time with shadow + smile/dar reaction
       for (let s = 1; s <= diceVal; s++) {
         match.pieces[color][idx] = startStep + s;
         sfxStep(false);
@@ -1305,7 +1336,6 @@
 
     const finalStep = match.pieces[color][idx];
 
-    // Check Capture (Killer reaction on attacker, Cry + step-by-step slide back on victim)
     if (finalStep >= 0 && finalStep <= 50) {
       const landedGlobal = (COLOR_START[color] + finalStep) % 52;
       if (!SAFE_SPOTS.has(landedGlobal)) {
@@ -1321,7 +1351,6 @@
                 drawBoard([], { color, idx });
                 await sleep(380);
 
-                // Victim cries and steps backward one by one to yard (-1)
                 sfxCrySad();
                 for (let backStep = oStep - 1; backStep >= 0; backStep--) {
                   match.pieces[opp][oIdx] = backStep;
@@ -1345,7 +1374,6 @@
     match.hasRolled = false;
     match.busy = false;
 
-    // Check Win -> Bahut zyada khushi reaction
     if (match.pieces[color].every(p => p === 56)) {
       stopBgMusic();
       sfxWinGrand();
@@ -1362,7 +1390,7 @@
     if (!bonusRoll) {
       advanceTurn();
     } else {
-      renderDiceRoster([], null);
+      renderSeatDicePods(null);
       drawBoard();
       refreshBoardBanner();
       if (isBotColor(activeColor())) {
@@ -1375,7 +1403,7 @@
     match.turn = (match.turn + 1) % match.seats.length;
     match.hasRolled = false;
     match.busy = false;
-    renderDiceRoster([], null);
+    renderSeatDicePods(null);
     drawBoard();
     refreshBoardBanner();
     if (isBotColor(activeColor())) {
@@ -1422,13 +1450,11 @@
       })
     );
 
-    // 4 Corner Yards
     for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) cells[r][c].className = "sq sq-red";
     for (let r = 0; r < 6; r++) for (let c = 9; c < 15; c++) cells[r][c].className = "sq sq-green";
     for (let r = 9; r < 15; r++) for (let c = 0; c < 6; c++) cells[r][c].className = "sq sq-blue";
     for (let r = 9; r < 15; r++) for (let c = 9; c < 15; c++) cells[r][c].className = "sq sq-yellow";
 
-    // Start Squares + Home Stretch Lanes
     cells[6][1].className = "sq sq-red";
     for (let c = 1; c <= 5; c++) cells[7][c].className = "sq sq-red";
 
@@ -1441,7 +1467,6 @@
     cells[13][6].className = "sq sq-blue";
     for (let r = 9; r <= 13; r++) cells[r][7].className = "sq sq-blue";
 
-    // Yard Slots
     Object.entries(YARD_SLOTS).forEach(([col, coords]) => {
       coords.forEach(([r, c]) => {
         cells[r][c].className = "sq sq-white";
@@ -1450,14 +1475,12 @@
       });
     });
 
-    // Safe Stars
     TRACK_52.forEach(([r, c], idx) => {
       if (SAFE_SPOTS.has(idx) && cells[r][c].className === "sq sq-white") {
         cells[r][c].textContent = "★";
       }
     });
 
-    // 3x3 Center Home
     for (let r = 6; r <= 8; r++) {
       for (let c = 6; c <= 8; c++) {
         cells[r][c].className = "sq sq-center";
@@ -1472,7 +1495,6 @@
       }
     }
 
-    // Place Gotis
     match.seats.forEach(col => {
       match.pieces[col].forEach((step, idx) => {
         const xy = step === -1 ? YARD_SLOTS[col][idx] : pieceXY(col, step);
@@ -1481,6 +1503,11 @@
 
         const piece = document.createElement("div");
         piece.className = `goti goti-${col}`;
+
+        const core = document.createElement("span");
+        core.className = "goti-core";
+        core.textContent = String(idx + 1);
+        piece.appendChild(core);
 
         if (col === activeColor() && movableList.includes(idx) && !isBotColor(col)) {
           piece.classList.add("can-move");
