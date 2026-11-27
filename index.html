@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#090326" />
+<meta name="theme-color" content="#00d2ff" />
 <style>
   :root {
-    --neon-cyan: #00f5ff;
-    --neon-pink: #ff007f;
-    --neon-lime: #39ff14;
-    --neon-yellow: #ffe600;
-    --neon-purple: #b517ff;
+    --neo-cyan: #00e5ff;
+    --neo-pink: #ff1e8a;
+    --neo-lime: #00e676;
+    --neo-yellow: #ffe600;
+    --neo-indigo: #31108f;
 
     --red: #ff1744;
     --green: #00e676;
@@ -32,7 +32,7 @@
     min-height: 100dvh;
     width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-    background: #06021c;
+    background: #dff9fb;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -46,6 +46,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.25);
   }
 
   /* ================= CONTINUOUS POP-UP UP-DOWN FLOAT ANIMATIONS ================= */
@@ -77,7 +78,7 @@
   .pop-pill-2  { animation: popFloatMicro 1.9s ease-in-out 0.3s infinite; }
   .pop-pill-3  { animation: popFloatMicro 1.9s ease-in-out 0.6s infinite; }
 
-  /* ================= GREEN STAR INTRO ================= */
+  /* ================= BRIGHT NEO GREEN STAR INTRO ================= */
   #greenStarSplash {
     position: fixed;
     inset: 0;
@@ -89,8 +90,8 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 42%, rgba(0, 245, 255, 0.35), transparent 56%),
-      linear-gradient(160deg, #1b0552 0%, #0b022b 60%, #050117 100%);
+      radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9), transparent 52%),
+      linear-gradient(145deg, #38ef7d 0%, #00d2ff 48%, #a855f7 100%);
     transition: opacity 0.28s ease, transform 0.28s ease;
   }
 
@@ -115,7 +116,7 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(0, 245, 255, 0.34) 0deg 10deg,
+      rgba(255, 255, 255, 0.55) 0deg 10deg,
       transparent 10deg 30deg
     );
     -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
@@ -131,7 +132,8 @@
   .star-sparkle {
     position: absolute;
     font-size: 16px;
-    color: var(--neon-cyan);
+    color: #fff200;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
     animation: sparkleOrbit 1.7s ease-in-out infinite alternate;
   }
 
@@ -140,7 +142,7 @@
   .sp-3 { top: 26px; left: 20px; font-size: 13px; animation-delay: 0.7s; }
 
   @keyframes sparkleOrbit {
-    from { transform: scale(0.8) rotate(-12deg); opacity: 0.6; }
+    from { transform: scale(0.8) rotate(-12deg); opacity: 0.7; }
     to   { transform: scale(1.26) rotate(14deg); opacity: 1; }
   }
 
@@ -149,7 +151,7 @@
     height: 126px;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 0 18px rgba(57, 255, 20, 0.75));
+    filter: drop-shadow(0 10px 18px rgba(0, 90, 45, 0.45));
     animation: starSpringIn 0.75s cubic-bezier(0.2, 1.35, 0.35, 1) forwards, starFloat 2s ease-in-out 0.75s infinite alternate;
   }
 
@@ -166,32 +168,33 @@
 
   .splash-title {
     margin: 8px 0 4px;
-    font-size: 27px;
+    font-size: 28px;
     font-weight: 950;
     letter-spacing: 0.5px;
-    background: linear-gradient(180deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-lime) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.55));
+    color: #1e0866;
+    text-shadow: 0 2px 0 #ffffff, 0 4px 12px rgba(255, 255, 255, 0.7);
   }
 
   .splash-sub {
     margin: 0 0 16px;
     font-size: 12px;
-    font-weight: 800;
-    color: #e0f7fa;
+    font-weight: 900;
+    color: #0f172a;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 4px 12px;
+    border-radius: 999px;
   }
 
   .splash-skip-btn {
-    border: 2px solid var(--neon-cyan);
+    border: 2.5px solid #ffffff;
     border-radius: 999px;
     padding: 9px 24px;
-    background: linear-gradient(180deg, #00e676, #009688);
-    color: #031f18;
+    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    color: #1f0600;
     font-size: 13px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 0 16px rgba(0, 245, 255, 0.65), 0 5px 0 #004d40;
+    box-shadow: 0 5px 0 #993d00, 0 10px 20px rgba(0, 0, 0, 0.25);
   }
 
   .shine-box {
@@ -209,7 +212,7 @@
     background: linear-gradient(
       115deg,
       transparent 20%,
-      rgba(255, 255, 255, 0.45) 50%,
+      rgba(255, 255, 255, 0.48) 50%,
       transparent 80%
     );
     transform: skewX(-18deg);
@@ -223,7 +226,7 @@
     100% { left: 160%; }
   }
 
-  /* ================= NEON / NEO CYBER-GLOW BACKGROUND (START SCREEN) ================= */
+  /* ================= BRIGHT LUMINOUS NEO BACKGROUND (START SCREEN) ================= */
   #startScreen {
     flex: 1;
     display: flex;
@@ -231,12 +234,11 @@
     justify-content: space-between;
     position: relative;
     background:
-      radial-gradient(circle at 12% 14%, rgba(255, 0, 127, 0.42), transparent 44%),
-      radial-gradient(circle at 88% 18%, rgba(0, 245, 255, 0.44), transparent 46%),
-      radial-gradient(circle at 50% 56%, rgba(181, 23, 255, 0.34), transparent 55%),
-      radial-gradient(circle at 22% 88%, rgba(57, 255, 20, 0.28), transparent 46%),
-      radial-gradient(circle at 85% 86%, rgba(255, 230, 0, 0.26), transparent 45%),
-      linear-gradient(170deg, #160442 0%, #090226 55%, #040114 100%);
+      radial-gradient(circle at 14% 12%, rgba(255, 64, 129, 0.42), transparent 44%),
+      radial-gradient(circle at 88% 16%, rgba(0, 229, 255, 0.52), transparent 46%),
+      radial-gradient(circle at 50% 50%, rgba(255, 238, 88, 0.45), transparent 56%),
+      radial-gradient(circle at 20% 86%, rgba(0, 230, 118, 0.42), transparent 48%),
+      linear-gradient(165deg, #7ef9ff 0%, #a5f3fc 32%, #fef08a 68%, #f5d0fe 100%);
   }
 
   #startScreen::before {
@@ -245,9 +247,9 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgba(0, 245, 255, 0.12) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 0, 127, 0.12) 1px, transparent 1px);
-    background-size: 26px 26px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   #startScreen > * {
@@ -255,16 +257,16 @@
     z-index: 1;
   }
 
-  /* Neon Top HUD */
+  /* Bright Crisp Top HUD */
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5px;
     padding: 8px 9px;
-    background: linear-gradient(180deg, rgba(28, 7, 79, 0.95), rgba(11, 3, 38, 0.98));
-    border-bottom: 2px solid var(--neon-cyan);
-    box-shadow: 0 4px 18px rgba(0, 245, 255, 0.28);
+    background: linear-gradient(180deg, #4f46e5 0%, #31108f 100%);
+    border-bottom: 2.5px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(49, 16, 143, 0.35);
   }
 
   .user-chip {
@@ -273,11 +275,11 @@
     gap: 6px;
     padding: 3px 9px 3px 3px;
     border-radius: 13px;
-    background: linear-gradient(180deg, #ff007f, #9c0052);
-    border: 1.8px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #ff1e8a, #c2185b);
+    border: 1.8px solid #ffffff;
     cursor: pointer;
     flex-shrink: 0;
-    box-shadow: 0 0 12px rgba(255, 0, 127, 0.55);
+    box-shadow: 0 3px 0 #7b0036;
   }
 
   .avatar-circle {
@@ -285,7 +287,7 @@
     height: 32px;
     border-radius: 10px;
     border: 1.8px solid #ffffff;
-    background: linear-gradient(145deg, #00f5ff, #651fff);
+    background: linear-gradient(145deg, #00e5ff, #0066ff);
     display: grid;
     place-items: center;
     font-size: 16px;
@@ -317,7 +319,7 @@
 
   .user-edit {
     font-size: 8.5px;
-    color: var(--neon-cyan);
+    color: #ffe600;
     font-weight: 900;
   }
 
@@ -334,12 +336,11 @@
     gap: 3px;
     padding: 4px 7px;
     border-radius: 999px;
-    background: rgba(9, 3, 36, 0.92);
-    border: 1.6px solid var(--neon-cyan);
+    background: #1e0866;
+    border: 1.6px solid #00e5ff;
     font-size: 10px;
     font-weight: 950;
-    color: var(--neon-yellow);
-    box-shadow: 0 0 8px rgba(0, 245, 255, 0.25);
+    color: #ffe600;
   }
 
   .plus-mini {
@@ -347,7 +348,7 @@
     height: 16px;
     border: 1px solid #fff;
     border-radius: 999px;
-    background: linear-gradient(180deg, var(--neon-lime), #00b248);
+    background: linear-gradient(180deg, #00e676, #00a152);
     color: #03210e;
     font-weight: 950;
     font-size: 11px;
@@ -361,24 +362,24 @@
     height: 29px;
     padding: 0 7px;
     border-radius: 9px;
-    border: 1.5px solid var(--neon-cyan);
-    background: linear-gradient(180deg, #651fff, #2c088c);
-    color: #ffffff;
+    border: 1.5px solid #ffffff;
+    background: linear-gradient(180deg, #00e5ff, #0077cc);
+    color: #041826;
     font-size: 11px;
     font-weight: 950;
     cursor: pointer;
     display: grid;
     place-items: center;
-    box-shadow: 0 0 10px rgba(181, 23, 255, 0.45);
+    box-shadow: 0 2px 0 #003a75;
   }
 
   .lang-select {
     height: 29px;
     max-width: 82px;
     border-radius: 9px;
-    border: 1.5px solid var(--neon-pink);
-    background: #0c032e;
-    color: var(--neon-cyan);
+    border: 1.5px solid #ffffff;
+    background: #1e0866;
+    color: #ffe600;
     font-size: 9.5px;
     font-weight: 900;
     padding: 0 4px;
@@ -413,26 +414,26 @@
   }
 
   .pack-badge {
-    background: linear-gradient(180deg, #ffea00, #ff3d00);
-    border: 1.8px solid #ffffff;
+    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    border: 2px solid #ffffff;
     border-radius: 11px;
     padding: 5px 9px;
     font-size: 10px;
     font-weight: 950;
     color: #1f0600;
-    box-shadow: 0 0 14px rgba(255, 234, 0, 0.55), 0 4px 0 #992200;
+    box-shadow: 0 4px 0 #993d00, 0 6px 12px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
 
   .free-perk-btn {
-    background: linear-gradient(180deg, #00f5ff, #0091ea);
-    border: 1.8px solid #ffffff;
+    background: linear-gradient(180deg, #00e676, #00a152);
+    border: 2px solid #ffffff;
     border-radius: 11px;
     padding: 5px 9px;
     font-size: 10px;
     font-weight: 950;
-    color: #03192e;
-    box-shadow: 0 0 14px rgba(0, 245, 255, 0.55), 0 4px 0 #004c8c;
+    color: #03210e;
+    box-shadow: 0 4px 0 #00572b, 0 6px 12px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
 
@@ -446,18 +447,18 @@
   .royal-crown-svg {
     width: 48px;
     height: 29px;
-    filter: drop-shadow(0 0 12px rgba(255, 230, 0, 0.85));
+    filter: drop-shadow(0 3px 6px rgba(49, 16, 143, 0.4));
   }
 
   .hero-logo-txt {
     margin: 1px 0 0;
-    font-size: 27px;
+    font-size: 28px;
     font-weight: 950;
     letter-spacing: 0.4px;
-    background: linear-gradient(180deg, #ffffff 0%, var(--neon-cyan) 46%, var(--neon-pink) 100%);
+    background: linear-gradient(180deg, #4f46e5 0%, #c026d3 52%, #e11d48 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5));
+    filter: drop-shadow(0 2px 0 #ffffff);
   }
 
   .hero-en-badge {
@@ -465,16 +466,18 @@
     font-weight: 950;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--neon-lime);
-    text-shadow: 0 0 8px rgba(57, 255, 20, 0.65);
+    color: #1e0866;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 1px 10px;
+    border-radius: 999px;
     margin-top: 1px;
   }
 
   .hero-tagline {
-    margin: 3px 0 6px;
+    margin: 4px 0 6px;
     font-size: 10px;
-    color: #e0f7fa;
-    font-weight: 800;
+    color: #0f172a;
+    font-weight: 900;
   }
 
   .hero-3d-stage {
@@ -491,10 +494,10 @@
     width: 108px;
     height: 52px;
     background: #ffffff;
-    border: 2.5px solid var(--neon-cyan);
+    border: 2.5px solid #31108f;
     border-radius: 9px;
     transform: perspective(260px) rotateX(24deg);
-    box-shadow: 0 0 18px rgba(0, 245, 255, 0.45), 0 8px 18px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(49, 16, 143, 0.35);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -515,12 +518,12 @@
     height: 40px;
     border-radius: 11px;
     background: linear-gradient(155deg, #ffffff, #e0f7fa);
-    border: 2.5px solid var(--neon-cyan);
+    border: 2.5px solid #31108f;
     color: #0f172a;
     display: grid;
     place-items: center;
     padding: 4px;
-    box-shadow: 0 0 14px rgba(0, 245, 255, 0.6), 0 6px 14px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 6px 12px rgba(49, 16, 143, 0.35);
   }
 
   /* ================= NEON POP-UP MODE BUTTONS ================= */
@@ -556,30 +559,30 @@
 
   .tile-online {
     border-radius: 17px;
-    border: 2.2px solid var(--neon-yellow);
+    border: 2.5px solid #ffffff;
     background: linear-gradient(160deg, #ff9100 0%, #ff1744 100%);
-    box-shadow: 0 0 16px rgba(255, 145, 0, 0.55), 0 6px 0 #8a0c24;
+    box-shadow: 0 6px 0 #8a0c24, 0 10px 18px rgba(255, 23, 68, 0.35);
   }
 
   .tile-team {
     border-radius: 17px;
-    border: 2.2px solid var(--neon-lime);
+    border: 2.5px solid #ffffff;
     background: linear-gradient(160deg, #00e676 0%, #00897b 100%);
-    box-shadow: 0 0 16px rgba(57, 255, 20, 0.45), 0 6px 0 #004d40;
+    box-shadow: 0 6px 0 #004d40, 0 10px 18px rgba(0, 137, 123, 0.35);
   }
 
   .tile-friends {
     border-radius: 17px;
-    border: 2.2px solid var(--neon-cyan);
-    background: linear-gradient(160deg, #ff007f 0%, #8e006d 100%);
-    box-shadow: 0 0 16px rgba(255, 0, 127, 0.55), 0 6px 0 #4d003b;
+    border: 2.5px solid #ffffff;
+    background: linear-gradient(160deg, #ff1e8a 0%, #9c0058 100%);
+    box-shadow: 0 6px 0 #4d002b, 0 10px 18px rgba(255, 30, 138, 0.35);
   }
 
   .tile-computer {
     border-radius: 17px;
-    border: 2.2px solid var(--neon-cyan);
-    background: linear-gradient(160deg, #00e5ff 0%, #0055ff 100%);
-    box-shadow: 0 0 16px rgba(0, 245, 255, 0.55), 0 6px 0 #002980;
+    border: 2.5px solid #ffffff;
+    background: linear-gradient(160deg, #00d2ff 0%, #0055ff 100%);
+    box-shadow: 0 6px 0 #002980, 0 10px 18px rgba(0, 85, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -589,9 +592,9 @@
 
   .tile-pass {
     border-radius: 17px;
-    border: 2.2px solid #ea80fc;
+    border: 2.5px solid #ffffff;
     background: linear-gradient(160deg, #d500f9 0%, #5200cc 100%);
-    box-shadow: 0 0 16px rgba(213, 0, 249, 0.55), 0 6px 0 #290066;
+    box-shadow: 0 6px 0 #290066, 0 10px 18px rgba(82, 0, 204, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -604,7 +607,7 @@
     height: 36px;
     margin: 0 auto;
     border-radius: 11px;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.28);
     border: 1.5px solid #ffffff;
     display: grid;
     place-items: center;
@@ -617,7 +620,7 @@
     font-weight: 950;
     letter-spacing: 0.4px;
     color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
     margin-top: 5px;
   }
 
@@ -630,7 +633,7 @@
   .tile-tag {
     font-size: 9.5px;
     font-weight: 950;
-    color: #090226;
+    color: #0f172a;
     background: #ffffff;
     border-radius: 999px;
     display: inline-block;
@@ -650,40 +653,40 @@
   .tourney-pill {
     flex: 1;
     border-radius: 13px;
-    border: 2px solid var(--neon-cyan);
-    background: linear-gradient(180deg, #1e88e5 0%, #0d1b66 100%);
+    border: 2px solid #ffffff;
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     padding: 9px 10px;
     text-align: center;
     font-size: 11px;
     font-weight: 950;
     color: #ffffff;
     cursor: pointer;
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.35), 0 4px 0 #070e38;
+    box-shadow: 0 4px 0 #1e3a8a, 0 8px 14px rgba(29, 78, 216, 0.3);
   }
 
   .daily-pill {
     border-radius: 13px;
     border: 2px solid #ffffff;
-    background: linear-gradient(180deg, var(--neon-cyan) 0%, #0088cc 100%);
+    background: linear-gradient(180deg, #00e5ff 0%, #0088cc 100%);
     padding: 9px 10px;
     font-size: 11px;
     font-weight: 950;
     color: #031826;
     cursor: pointer;
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.45), 0 4px 0 #004466;
+    box-shadow: 0 4px 0 #004466;
     white-space: nowrap;
   }
 
   .season-claim-btn {
     border-radius: 13px;
     border: 2px solid #ffffff;
-    background: linear-gradient(180deg, var(--neon-yellow) 0%, #ff6d00 100%);
+    background: linear-gradient(180deg, #ffe600 0%, #ff6d00 100%);
     padding: 9px 12px;
     font-size: 11px;
     font-weight: 950;
     color: #1f0600;
     cursor: pointer;
-    box-shadow: 0 0 12px rgba(255, 230, 0, 0.45), 0 4px 0 #8c3800;
+    box-shadow: 0 4px 0 #8c3800;
     white-space: nowrap;
   }
 
@@ -692,14 +695,14 @@
     margin: 3px 10px 5px;
     padding: 8px 9px;
     border-radius: 14px;
-    background: linear-gradient(180deg, rgba(31, 8, 84, 0.95), rgba(10, 3, 36, 0.98));
-    border: 1.8px solid var(--neon-pink);
+    background: linear-gradient(180deg, #4f46e5, #31108f);
+    border: 2px solid #ffffff;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
     flex-wrap: wrap;
-    box-shadow: 0 0 14px rgba(255, 0, 127, 0.28);
+    box-shadow: 0 5px 14px rgba(49, 16, 143, 0.3);
   }
 
   .wa-btn {
@@ -730,7 +733,7 @@
     border: 1.5px solid #ffffff;
     border-radius: 9px;
     padding: 5px 9px;
-    background: linear-gradient(180deg, var(--neon-yellow), #ff6d00);
+    background: linear-gradient(180deg, #ffe600, #ff6d00);
     color: #1f0600;
     font-size: 10px;
     font-weight: 950;
@@ -763,7 +766,7 @@
     border: 1.5px solid #fff;
     border-radius: 999px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #b517ff, #5200cc);
+    background: linear-gradient(180deg, #d500f9, #6200ea);
     color: #fff;
     font-size: 10px;
     font-weight: 950;
@@ -777,24 +780,23 @@
   .status-mini {
     font-size: 10px;
     font-weight: 950;
-    color: var(--neon-cyan);
+    color: #ffe600;
   }
 
   /* ================= BOTTOM NAVIGATION BAR ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #240769 0%, #0b022b 100%);
-    border-top: 2px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #4f46e5 0%, #31108f 100%);
+    border-top: 2.5px solid #ffffff;
     padding: 5px 4px 7px;
     gap: 3px;
-    box-shadow: 0 -4px 18px rgba(0, 245, 255, 0.25);
   }
 
   .nav-tab {
     border: 1.5px solid transparent;
     background: transparent;
-    color: #b2ebf2;
+    color: #e0e7ff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -814,13 +816,13 @@
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, var(--neon-cyan), #0088cc);
+    background: linear-gradient(180deg, #ffe600, #ff9100);
     border-color: #ffffff;
-    color: #041826;
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.65);
+    color: #1f0600;
+    box-shadow: 0 3px 0 #8c3800;
   }
 
-  /* ================= GAME SCREEN WITH NEON BACKDROP & TOSSED DICE ================= */
+  /* ================= BRIGHT NEO GAME SCREEN ================= */
   #gameScreen {
     display: none;
     flex: 1;
@@ -830,10 +832,10 @@
     gap: 4px;
     position: relative;
     background:
-      radial-gradient(circle at 15% 15%, rgba(0, 245, 255, 0.34), transparent 45%),
-      radial-gradient(circle at 86% 20%, rgba(255, 0, 127, 0.34), transparent 46%),
-      radial-gradient(circle at 50% 82%, rgba(57, 255, 20, 0.24), transparent 52%),
-      linear-gradient(168deg, #160442 0%, #090226 58%, #040114 100%);
+      radial-gradient(circle at 16% 16%, rgba(0, 229, 255, 0.52), transparent 45%),
+      radial-gradient(circle at 86% 20%, rgba(255, 64, 129, 0.4), transparent 46%),
+      radial-gradient(circle at 50% 82%, rgba(0, 230, 118, 0.42), transparent 52%),
+      linear-gradient(165deg, #67e8f9 0%, #bae6fd 36%, #fef08a 72%, #fbcfe8 100%);
   }
 
   #gameScreen::before {
@@ -842,9 +844,9 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgba(0, 245, 255, 0.11) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 0, 127, 0.11) 1px, transparent 1px);
-    background-size: 26px 26px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   #gameScreen > * {
@@ -856,8 +858,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(180deg, #240769, #0c022e);
-    border: 1.8px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #4f46e5, #31108f);
+    border: 2px solid #ffffff;
     border-radius: 12px;
     padding: 5px 8px;
     gap: 4px;
@@ -866,7 +868,7 @@
   .game-logo {
     font-size: 13px;
     font-weight: 950;
-    color: var(--neon-cyan);
+    color: #ffe600;
   }
 
   .header-actions {
@@ -876,19 +878,19 @@
   }
 
   .mini-btn {
-    border: 1.5px solid var(--neon-cyan);
+    border: 1.5px solid #ffffff;
     border-radius: 8px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #651fff, #2c088c);
-    color: #fff;
+    background: linear-gradient(180deg, #00e5ff, #0077cc);
+    color: #041826;
     font-size: 11px;
     font-weight: 950;
     cursor: pointer;
   }
 
   .mini-exit {
-    border-color: #ff80ab;
-    background: linear-gradient(180deg, #ff1744, #9e0028);
+    background: linear-gradient(180deg, #ff1744, #b71c1c);
+    color: #ffffff;
   }
 
   .seat-row {
@@ -899,23 +901,23 @@
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, #240769, #0d0230);
-    border: 2px solid rgba(0, 245, 255, 0.38);
+    background: linear-gradient(180deg, #4f46e5, #31108f);
+    border: 2px solid rgba(255, 255, 255, 0.75);
     border-radius: 14px;
     padding: 5px 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
-    opacity: 0.85;
+    opacity: 0.88;
     transition: all 0.15s ease;
   }
 
   .seat-pod.pod-active {
     opacity: 1;
-    border-color: var(--neon-cyan);
-    background: linear-gradient(180deg, #4a00e0, #16044d);
-    box-shadow: 0 0 18px rgba(0, 245, 255, 0.72);
+    border-color: #ffe600;
+    background: linear-gradient(180deg, #7c3aed, #4c1d95);
+    box-shadow: 0 0 16px rgba(255, 230, 0, 0.85);
   }
 
   .pod-name {
@@ -928,7 +930,7 @@
 
   .pod-home {
     font-size: 10.5px;
-    color: var(--neon-lime);
+    color: #ffe600;
     font-weight: 900;
   }
 
@@ -938,9 +940,9 @@
     height: 56px;
     flex-shrink: 0;
     border-radius: 14px;
-    border: 2.6px solid var(--neon-cyan);
+    border: 2.6px solid #ffe600;
     background: linear-gradient(145deg, #ffffff, #e0f7fa);
-    box-shadow: 0 0 14px rgba(0, 245, 255, 0.55), 0 5px 0 #1a237e;
+    box-shadow: 0 5px 0 #1e0866, 0 8px 14px rgba(0, 0, 0, 0.35);
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -959,10 +961,10 @@
   }
 
   .seat-pod:not(.pod-active) .pod-dice-big {
-    background: linear-gradient(145deg, #cfd8dc, #90a4ae);
-    border-color: rgba(255, 255, 255, 0.45);
-    box-shadow: 0 3px 0 #37474f;
-    opacity: 0.78;
+    background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+    border-color: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 3px 0 #475569;
+    opacity: 0.82;
   }
 
   /* TOSSED / THROWN IN AIR ARC ("kisi ne uchhala ho") */
@@ -973,23 +975,23 @@
   @keyframes dieThrownArc {
     0% {
       transform: translate(0px, 0px) rotate(0deg) scale(1);
-      box-shadow: 0 5px 0 #1a237e, 0 8px 14px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 5px 0 #1e0866, 0 8px 14px rgba(0, 0, 0, 0.4);
     }
     28% {
-      transform: translate(12px, -24px) rotate(135deg) scale(1.32);
-      box-shadow: 0 0 24px rgba(0, 245, 255, 0.95), 0 28px 20px rgba(0, 0, 0, 0.75);
+      transform: translate(12px, -22px) rotate(135deg) scale(1.3);
+      box-shadow: 0 0 22px rgba(0, 229, 255, 0.95), 0 24px 18px rgba(0, 0, 0, 0.5);
     }
     58% {
-      transform: translate(-10px, -28px) rotate(265deg) scale(1.36);
-      box-shadow: 0 0 26px rgba(255, 0, 127, 0.9), 0 32px 22px rgba(0, 0, 0, 0.75);
+      transform: translate(-10px, -26px) rotate(265deg) scale(1.34);
+      box-shadow: 0 0 24px rgba(255, 30, 138, 0.9), 0 28px 20px rgba(0, 0, 0, 0.5);
     }
     82% {
       transform: translate(3px, 4px) rotate(350deg) scale(0.95);
-      box-shadow: 0 2px 0 #1a237e, 0 4px 8px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 2px 0 #1e0866, 0 4px 8px rgba(0, 0, 0, 0.45);
     }
     100% {
       transform: translate(0px, -3px) rotate(360deg) scale(1.04);
-      box-shadow: 0 0 16px rgba(57, 255, 20, 0.8), 0 6px 12px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 0 14px rgba(0, 230, 118, 0.85), 0 6px 12px rgba(0, 0, 0, 0.4);
     }
   }
 
@@ -1017,8 +1019,8 @@
   }
 
   .reaction-ribbon {
-    background: linear-gradient(180deg, #240769, #0c022e);
-    border: 1.6px solid var(--neon-pink);
+    background: linear-gradient(180deg, #4f46e5, #31108f);
+    border: 2px solid #ffffff;
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -1037,7 +1039,7 @@
     flex: 1;
     font-size: 11px;
     font-weight: 900;
-    color: #e0f7fa;
+    color: #ffffff;
     text-align: left;
   }
 
@@ -1046,18 +1048,18 @@
     font-weight: 950;
     padding: 2px 8px;
     border-radius: 999px;
-    background: linear-gradient(180deg, var(--neon-cyan), #0088cc);
+    background: linear-gradient(180deg, #ffe600, #ff9100);
     border: 1.2px solid #ffffff;
-    color: #031926;
+    color: #1f0600;
     white-space: nowrap;
   }
 
   .board-stage {
     width: 100%;
-    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink), var(--neon-lime), var(--neon-yellow));
-    padding: 3px;
+    background: linear-gradient(135deg, #ff1744, #ffea00, #00e676, #00b0ff);
+    padding: 3.5px;
     border-radius: 10px;
-    box-shadow: 0 0 22px rgba(0, 245, 255, 0.45), 0 10px 26px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 10px 24px rgba(49, 16, 143, 0.35);
     position: relative;
   }
 
@@ -1065,7 +1067,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1.5px solid #111;
+    border: 1.5px solid #1e0866;
     border-radius: 7px;
     overflow: hidden;
     background: #fff;
@@ -1082,7 +1084,7 @@
   }
 
   .sq {
-    border: 0.6px solid #78909c;
+    border: 0.6px solid #90a4ae;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1132,18 +1134,55 @@
     pointer-events: none;
   }
 
+  /* COMPACT BALANCED GOTI (HEAD NEVER GOES OUTSIDE BOARD) + HALCHAL IN ALL GOTIS */
   .gem-goti {
     position: absolute;
-    width: 6.6%;
-    height: 8.4%;
-    transform: translate(-50%, -74%);
+    width: 5.1%;
+    height: 6.1%;
+    transform: translate(-50%, -52%);
     pointer-events: auto;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.62));
-    transition: left 0.11s linear, top 0.11s linear, transform 0.11s ease;
+    filter: drop-shadow(0 2.5px 3.5px rgba(0, 0, 0, 0.58));
+    transition: left 0.11s linear, top 0.11s linear;
+    animation: gotiAliveBreathe 1.4s ease-in-out infinite alternate;
+  }
+
+  @keyframes gotiAliveBreathe {
+    0%   { transform: translate(-50%, -52%) rotate(-3deg) scale(0.98); }
+    100% { transform: translate(-50%, -54%) rotate(3deg) scale(1.03); }
+  }
+
+  /* Lively Halchal in ALL gotis when a step turn is active */
+  .gem-goti.all-halchal {
+    animation: gotiAllHalchal 0.42s ease-in-out infinite alternate !important;
+  }
+
+  @keyframes gotiAllHalchal {
+    0%   { transform: translate(-50%, -50%) rotate(-8deg) scale(0.96); }
+    50%  { transform: translate(-50%, -56%) rotate(0deg) scale(1.06); }
+    100% { transform: translate(-50%, -50%) rotate(8deg) scale(0.96); }
+  }
+
+  /* Extra energetic halchal on movable gotis */
+  .gem-goti.can-pick {
+    animation: gotiPickDance 0.36s ease-in-out infinite alternate !important;
+    filter: drop-shadow(0 0 6px #ffea00) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.65));
+    z-index: 8;
+  }
+
+  @keyframes gotiPickDance {
+    0%   { transform: translate(-50%, -48%) rotate(-11deg) scale(1.0); }
+    100% { transform: translate(-50%, -58%) rotate(11deg) scale(1.13); }
+  }
+
+  .gem-goti.is-moving {
+    transform: translate(-50%, -56%) scale(1.14) !important;
+    animation: none !important;
+    z-index: 9;
+    filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.72));
   }
 
   .gem-goti svg {
@@ -1152,54 +1191,38 @@
     overflow: visible;
   }
 
-  .gem-goti.is-moving {
-    transform: translate(-50%, -90%) scale(1.2);
-    z-index: 9;
-    filter: drop-shadow(0 7px 8px rgba(0, 0, 0, 0.8));
-  }
-
-  .gem-goti.can-pick {
-    animation: gotiLift 0.48s infinite alternate;
-    filter: drop-shadow(0 0 7px #ffea00) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.68));
-  }
-
-  @keyframes gotiLift {
-    from { transform: translate(-50%, -74%) scale(1); }
-    to   { transform: translate(-50%, -86%) scale(1.14); }
-  }
-
   .pin-emo-tag {
     position: absolute;
-    top: -15px;
+    top: -13px;
     left: 50%;
     transform: translateX(-50%);
     background: #ffffff;
     color: #111;
-    border: 1.4px solid #222;
+    border: 1.3px solid #222;
     border-radius: 999px;
-    padding: 0 4px;
-    font-size: 10px;
-    line-height: 1.2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 0 3.5px;
+    font-size: 9.5px;
+    line-height: 1.15;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
     white-space: nowrap;
     z-index: 12;
   }
 
   .status-banner {
     text-align: center;
-    background: linear-gradient(180deg, #240769, #0c022e);
-    border: 1.8px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #4f46e5, #31108f);
+    border: 2px solid #ffffff;
     border-radius: 12px;
     padding: 6px 10px;
     font-size: 12px;
     font-weight: 950;
-    color: var(--neon-yellow);
+    color: #ffe600;
   }
 
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(5, 1, 22, 0.85);
+    background: rgba(30, 8, 102, 0.68);
     backdrop-filter: blur(4px);
     display: none;
     align-items: center;
@@ -1215,12 +1238,12 @@
   .modal-card {
     width: 100%;
     max-width: 360px;
-    background: linear-gradient(180deg, #240769 0%, #0b022b 100%);
-    border: 2.5px solid var(--neon-cyan);
+    background: linear-gradient(180deg, #4f46e5 0%, #31108f 100%);
+    border: 2.5px solid #ffffff;
     border-radius: 18px;
     padding: 16px;
     text-align: center;
-    box-shadow: 0 0 24px rgba(0, 245, 255, 0.45), 0 18px 38px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 18px 38px rgba(30, 8, 102, 0.55);
   }
 
   .count-picker-grid {
@@ -1234,11 +1257,11 @@
     border: 2px solid #ffffff;
     border-radius: 13px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, var(--neon-cyan), #0077cc);
+    background: linear-gradient(180deg, #00e5ff, #0077cc);
     color: #031826;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.45), 0 4px 0 #003b66;
+    box-shadow: 0 4px 0 #003b66;
     animation: popFloatMicro 1.8s ease-in-out infinite;
   }
 
@@ -1271,8 +1294,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #090226;
-    border: 1.5px solid rgba(0, 245, 255, 0.55);
+    background: #1e0866;
+    border: 1.5px solid #00e5ff;
     border-radius: 11px;
     padding: 7px 10px;
     font-size: 11px;
@@ -1280,12 +1303,12 @@
   }
 
   .lb-city {
-    color: var(--neon-cyan);
+    color: #00e5ff;
     font-size: 9.5px;
   }
 
   .lb-coins {
-    color: var(--neon-yellow);
+    color: #ffe600;
   }
 
   .modal-btns {
@@ -1306,8 +1329,8 @@
   }
 
   .m-gold {
-    background: linear-gradient(180deg, var(--neon-cyan), #0077cc);
-    color: #031826;
+    background: linear-gradient(180deg, #ffe600, #ff9100);
+    color: #1f0600;
   }
 
   .m-danger {
@@ -1316,12 +1339,12 @@
   }
 
   .m-dark {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.22);
     color: #fff;
   }
 
   @media (max-width: 375px) {
-    .hero-logo-txt { font-size: 23px; }
+    .hero-logo-txt { font-size: 24px; }
     .mode-tile { padding: 10px 5px; }
     .tile-emblem { width: 32px; height: 32px; font-size: 17px; }
     .tile-title { font-size: 11px; }
@@ -1337,7 +1360,7 @@
 </head>
 <body>
 
-<!-- PRO GREEN STAR INTRO -->
+<!-- BRIGHT NEO GREEN STAR INTRO -->
 <div id="greenStarSplash" onclick="dismissSplash()">
   <div class="star-stage">
     <div class="star-rays"></div>
@@ -1355,23 +1378,23 @@
       <polygon
         points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
         fill="url(#gStarGem)"
-        stroke="#00f5ff"
+        stroke="#ffffff"
         stroke-width="4"
         stroke-linejoin="round"
       />
       <polygon
         points="60,24 69,45 92,48 75,64 80,87 60,75 40,87 45,64 28,48 51,45"
-        fill="rgba(255,255,255,0.28)"
+        fill="rgba(255,255,255,0.35)"
       />
     </svg>
   </div>
   <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • निऑन बैकग्राउंड व हवा में उछलता डाइस</div>
+  <div class="splash-sub">देसी लूडो राजा • ब्राइट निऑन थीम व जिंदादिल गोटियां</div>
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">आगे बढ़ें ▶</button>
 </div>
 
 <div class="shell">
-  <!-- NEON START SCREEN -->
+  <!-- BRIGHT NEO START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
       <div class="user-chip shine-box" onclick="openDpDialog()">
@@ -1433,8 +1456,8 @@
             </linearGradient>
           </defs>
           <path d="M8 34 L4 13 L24 23 L40 7 L56 23 L76 13 L72 34 Z"
-                fill="url(#royalGold)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
-          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9100" stroke="#ffffff" stroke-width="1.4"/>
+                fill="url(#royalGold)" stroke="#31108f" stroke-width="2.2" stroke-linejoin="round"/>
+          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9100" stroke="#31108f" stroke-width="1.6"/>
           <circle cx="40" cy="24" r="4" fill="#ff1744"/>
           <circle cx="22" cy="27" r="3" fill="#00e676"/>
           <circle cx="58" cy="27" r="3" fill="#00b0ff"/>
@@ -1524,7 +1547,7 @@
     </nav>
   </section>
 
-  <!-- NEON GAME SCREEN -->
+  <!-- BRIGHT NEO GAME SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
       <span class="game-logo">👑 देसी लूडो राजा</span>
@@ -1541,7 +1564,7 @@
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
       <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का बड़ा डाइस उछालें</span>
-      <span id="fxBadge" class="fx-pill">⚡ NEON ARC</span>
+      <span id="fxBadge" class="fx-pill">⚡ NEO LUDO</span>
     </div>
 
     <div class="board-stage shine-box">
@@ -1596,8 +1619,8 @@
 
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
-    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--neon-cyan); font-size:15px;">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:12px; color:#e0f7fa;"></p>
+    <h3 id="dialogTitle" style="margin:0 0 6px; color:#ffe600; font-size:15px;">सूचना</h3>
+    <p id="dialogText" style="margin:0; font-size:12px; color:#ffffff;"></p>
     <div id="playerCountGrid" class="count-picker-grid" style="display:none;"></div>
     <ul id="dialogList" class="lb-list" style="display:none;"></ul>
     <div id="dialogBtns" class="modal-btns">
@@ -1608,7 +1631,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_neon_toss_v13";
+  const STORAGE_KEY = "dlr_bright_neo_v14";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1881,7 +1904,7 @@
     const s = GOTI_SHADES[color];
     const gid = `sg_${color}_${idx}`;
     return `
-      <svg viewBox="0 0 60 76">
+      <svg viewBox="0 0 60 72">
         <defs>
           <radialGradient id="${gid}" cx="36%" cy="28%" r="72%">
             <stop offset="0%" stop-color="${s.hi}"/>
@@ -1889,13 +1912,13 @@
             <stop offset="100%" stop-color="${s.lo}"/>
           </radialGradient>
         </defs>
-        <ellipse cx="30" cy="70" rx="20" ry="4.5" fill="rgba(0,0,0,0.52)"/>
-        <ellipse cx="30" cy="65" rx="18.5" ry="4.8" fill="#ffcc00" stroke="#181818" stroke-width="2"/>
-        <path d="M13 64 C13 48, 22 36, 23 26 L37 26 C38 36, 47 48, 47 64 Z"
-              fill="url(#${gid})" stroke="#181818" stroke-width="2.1" stroke-linejoin="round"/>
-        <circle cx="30" cy="17" r="11.5" fill="url(#${gid})" stroke="#181818" stroke-width="2.1"/>
-        <circle cx="30" cy="17" r="4.2" fill="${s.gem}" opacity="0.88"/>
-        <ellipse cx="25.5" cy="13" rx="2.6" ry="1.5" transform="rotate(-25 25.5 13)" fill="rgba(255,255,255,0.9)"/>
+        <ellipse cx="30" cy="66" rx="19" ry="4.2" fill="rgba(0,0,0,0.48)"/>
+        <ellipse cx="30" cy="61.5" rx="17.5" ry="4.5" fill="#ffcc00" stroke="#181818" stroke-width="2"/>
+        <path d="M14 60.5 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60.5 Z"
+              fill="url(#${gid})" stroke="#181818" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="30" cy="17" r="10.8" fill="url(#${gid})" stroke="#181818" stroke-width="2"/>
+        <circle cx="30" cy="17" r="3.8" fill="${s.gem}" opacity="0.9"/>
+        <ellipse cx="26" cy="13.5" rx="2.4" ry="1.4" transform="rotate(-25 26 13.5)" fill="rgba(255,255,255,0.92)"/>
       </svg>
     `;
   }
@@ -1949,6 +1972,12 @@
     playNote(784, 0.14, "triangle", 0.10, 0.16);
   }
 
+  /* Special Joyful Fanfare when a goti enters inside Home! */
+  function sfxHomeEntryKhushi() {
+    const chord = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+    chord.forEach((f, i) => playNote(f, 0.14, "triangle", 0.11, i * 0.08));
+  }
+
   function sfxCaptureKiller() {
     playNote(220, 0.14, "sawtooth", 0.10, 0);
     playNote(150, 0.18, "sawtooth", 0.10, 0.10);
@@ -1997,7 +2026,7 @@
     }
   }
 
-  function setReaction(emoji, text, color = null, idx = null) {
+  function setReaction(emoji, text, color = null, idx = null, durationMs = 1800) {
     document.getElementById("reactionEmoji").textContent = emoji;
     document.getElementById("reactionText").textContent = text;
     if (color !== null && idx !== null) {
@@ -2008,7 +2037,7 @@
         timer: setTimeout(() => {
           delete match.tokenReactions[key];
           drawBoard();
-        }, 1600)
+        }, durationMs)
       };
       drawBoard();
     }
@@ -2373,7 +2402,7 @@
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
     setReaction("🎲", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस उछालें`);
-    triggerFx("⚡ NEON ARC");
+    triggerFx("⚡ NEO LUDO");
     startBgMusic();
     renderSeatDicePods();
     drawBoard();
@@ -2474,7 +2503,8 @@
         .filter(i => i !== -1);
 
       renderSeatDicePods(null);
-      drawBoard(movable, null);
+      /* Trigger lively halchal across all tokens on the board */
+      drawBoard(movable, null, movable.length > 0);
 
       if (movable.length === 0) {
         setReaction("😐", `${seatTitle(color)} का ${val} आया — कोई चाल नहीं`);
@@ -2482,7 +2512,7 @@
         setTimeout(advanceTurn, 700);
       } else if (movable.length === 1 || isBotColor(color)) {
         refreshBoardBanner(val, false, true);
-        setTimeout(() => executeStepMove(color, movable[0]), 300);
+        setTimeout(() => executeStepMove(color, movable[0]), 480);
       } else {
         refreshBoardBanner(val, false, false);
       }
@@ -2526,7 +2556,7 @@
       sfxOutKhushi();
       triggerFx("🎉 AUTO OUT!", pieceXY(color, 0));
       setReaction("😄🎉", `${seatTitle(color)} की गोटी 6 पर खुद बाहर आई — खुशी!`, color, idx);
-      drawBoard([], { color, idx });
+      drawBoard([], { color, idx }, false);
       await sleep(300);
     } else {
       for (let s = 1; s <= diceVal; s++) {
@@ -2535,18 +2565,37 @@
         const curXY = pieceXY(color, match.pieces[color][idx]);
         triggerFx(`✨ ${s}/${diceVal}`, curXY);
 
-        if (checkNearDanger(color, match.pieces[color][idx])) {
+        if (match.pieces[color][idx] === 56) {
+          setReaction("🥳🏠", `${seatTitle(color)} की गोटी घर में प्रवेश कर रही है!`, color, idx);
+        } else if (checkNearDanger(color, match.pieces[color][idx])) {
           setReaction("😨", `${seatTitle(color)} दुश्मन के पास — डर!`, color, idx);
         } else {
           setReaction("😊", `${seatTitle(color)} मुस्कुराते हुए आगे बढ़ा (${s}/${diceVal})`, color, idx);
         }
 
-        drawBoard([], { color, idx });
+        drawBoard([], { color, idx }, false);
         await sleep(150);
       }
     }
 
     const finalStep = match.pieces[color][idx];
+
+    /* Joyful Celebration Reaction when a Goti enters inside the Home Goal! */
+    if (finalStep === 56) {
+      sfxHomeEntryKhushi();
+      const homeCount = match.pieces[color].filter(p => p === 56).length;
+      triggerFx(`🥳 HOME ${homeCount}/4!`, pieceXY(color, 56));
+      setReaction(
+        "🥳🎉😄",
+        `वाह! ${seatTitle(color)} की गोटी घर के अंदर पहुंची (${homeCount}/4) — जबरदस्त खुशी!`,
+        color,
+        idx,
+        3500
+      );
+      renderSeatDicePods(null);
+      drawBoard([], null, false);
+      await sleep(520);
+    }
 
     if (finalStep >= 0 && finalStep <= 50) {
       const landedGlobal = (COLOR_START[color] + finalStep) % 52;
@@ -2560,7 +2609,7 @@
                 sfxCaptureKiller();
                 triggerFx("⚔️ KILLER!", pieceXY(color, finalStep));
                 setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! ${seatTitle(opp)} की गोटी कटी!`, color, idx);
-                drawBoard([], { color, idx });
+                drawBoard([], { color, idx }, false);
                 await sleep(350);
 
                 sfxCrySad();
@@ -2568,7 +2617,7 @@
                   match.pieces[opp][oIdx] = backStep;
                   sfxStep(true);
                   setReaction("😭", `${seatTitle(opp)} रोते हुए पीछे जा रही है...`, opp, oIdx);
-                  drawBoard([], { color: opp, idx: oIdx });
+                  drawBoard([], { color: opp, idx: oIdx }, false);
                   await sleep(100);
                 }
                 match.pieces[opp][oIdx] = -1;
@@ -2582,7 +2631,7 @@
       }
     }
 
-    const bonusRoll = diceVal === 6;
+    const bonusRoll = diceVal === 6 || finalStep === 56;
     match.hasRolled = false;
     match.busy = false;
 
@@ -2593,7 +2642,7 @@
       setReaction("🤩🥳👑", `ज़बरदस्त! ${seatTitle(color)} जीत गया — महा-खुशी!`, color, idx);
       addCoins(150);
       drawBoard();
-      await sleep(750);
+      await sleep(850);
       document.getElementById("gameScreen").style.display = "none";
       document.getElementById("startScreen").style.display = "flex";
       return;
@@ -2604,7 +2653,7 @@
     } else {
       renderSeatDicePods(null);
       drawBoard();
-      refreshBoardBanner();
+      refreshBoardBanner(null, false, false, finalStep === 56);
       if (isBotColor(activeColor())) {
         setTimeout(() => rollPlayerDice(activeColor(), true), 600);
       }
@@ -2623,7 +2672,7 @@
     }
   }
 
-  function refreshBoardBanner(val = null, blocked = false, autoMoving = false) {
+  function refreshBoardBanner(val = null, blocked = false, autoMoving = false, homeBonus = false) {
     const c = activeColor();
     const label = seatTitle(c);
     const el = document.getElementById("boardMsg");
@@ -2631,9 +2680,11 @@
     if (blocked) {
       el.textContent = `${label} का ${val} आया — अगली बारी`;
     } else if (autoMoving) {
-      el.textContent = `${label} का ${val} आया — गोटी अपने आप चल रही है...`;
+      el.textContent = `${label} का ${val} आया — सब गोटियों में हलचल, चाल चल रही है...`;
     } else if (val) {
       el.textContent = `${label} ने ${val} चला — चमकती गोटी चुनें`;
+    } else if (homeBonus) {
+      el.textContent = `🥳 गोटी घर पहुंची! ${label} को बोनस डाइस मिला`;
     } else {
       el.textContent = `${label} की बारी — ${label} का बड़ा डाइस उछालें`;
     }
@@ -2658,13 +2709,16 @@
     }
     const xy = pieceXY(color, step);
     const [r, c] = xy;
+    /* Clamp top/left safely so even on row 0 or col 0/14 the head never goes outside board */
+    const rawLeft = ((c + 0.5) / 15) * 100;
+    const rawTop = ((r + 0.5) / 15) * 100;
     return {
-      left: ((c + 0.5) / 15) * 100,
-      top: ((r + 0.5) / 15) * 100
+      left: Math.min(96.5, Math.max(3.5, rawLeft)),
+      top: Math.min(96.2, Math.max(3.9, rawTop))
     };
   }
 
-  function drawBoard(movableList = [], movingMeta = null) {
+  function drawBoard(movableList = [], movingMeta = null, allHalchal = false) {
     const grid = document.getElementById("ludoGrid15");
     const tokensLayer = document.getElementById("tokensLayer");
     grid.innerHTML = "";
@@ -2724,9 +2778,11 @@
         goti.className = `gem-goti p-${col}`;
         goti.style.left = `${pos.left}%`;
         goti.style.top = `${pos.top}%`;
+        goti.style.animationDelay = `${idx * 0.16}s`;
 
         const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
         const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
+        if (allHalchal) goti.classList.add("all-halchal");
         if (canPick) goti.classList.add("can-pick");
         if (isMoving) goti.classList.add("is-moving");
 
@@ -2738,6 +2794,11 @@
           tag.className = "pin-emo-tag";
           tag.textContent = emoInfo.emoji;
           goti.appendChild(tag);
+        } else if (step === 56) {
+          const homeTag = document.createElement("span");
+          homeTag.className = "pin-emo-tag";
+          homeTag.textContent = "🥳";
+          goti.appendChild(homeTag);
         }
 
         goti.onclick = () => executeStepMove(col, idx);
