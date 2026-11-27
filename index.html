@@ -5,14 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#00d2ff" />
+<meta name="theme-color" content="#0d3b8e" />
 <style>
   :root {
-    --neo-cyan: #00e5ff;
-    --neo-pink: #ff1e8a;
-    --neo-lime: #00e676;
-    --neo-yellow: #ffe600;
-    --neo-indigo: #31108f;
+    --royal-top: #092666;
+    --royal-mid: #1246a8;
+    --royal-bot: #0a2d75;
+    --gold-light: #fff176;
+    --gold-main: #ffca28;
+    --gold-deep: #e65100;
+    --card-blue-top: #2979ff;
+    --card-blue-bot: #0d47a1;
 
     --red: #ff1744;
     --green: #00e676;
@@ -32,7 +35,7 @@
     min-height: 100dvh;
     width: 100%;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
-    background: #dff9fb;
+    background: #071b4a;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -46,26 +49,23 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    box-shadow: 0 0 30px rgba(0, 180, 255, 0.25);
+    box-shadow: 0 0 36px rgba(0, 0, 0, 0.65);
   }
 
-  /* ================= CONTINUOUS POP-UP UP-DOWN FLOAT ANIMATIONS ================= */
+  /* ================= POP-UP & FLOAT ANIMATIONS ================= */
   @keyframes popFloat {
-    0%, 100% {
-      transform: translateY(0px) scale(1);
-    }
-    50% {
-      transform: translateY(-6px) scale(1.03);
-    }
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50%      { transform: translateY(-5px) scale(1.025); }
   }
 
   @keyframes popFloatMicro {
-    0%, 100% {
-      transform: translateY(0px) scale(1);
-    }
-    50% {
-      transform: translateY(-4px) scale(1.035);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-3.5px); }
+  }
+
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 
   .pop-float-1 { animation: popFloat 2.1s ease-in-out infinite; }
@@ -77,125 +77,6 @@
   .pop-pill-1  { animation: popFloatMicro 1.9s ease-in-out infinite; }
   .pop-pill-2  { animation: popFloatMicro 1.9s ease-in-out 0.3s infinite; }
   .pop-pill-3  { animation: popFloatMicro 1.9s ease-in-out 0.6s infinite; }
-
-  /* ================= BRIGHT NEO GREEN STAR INTRO ================= */
-  #greenStarSplash {
-    position: fixed;
-    inset: 0;
-    z-index: 90;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    text-align: center;
-    background:
-      radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9), transparent 52%),
-      linear-gradient(145deg, #38ef7d 0%, #00d2ff 48%, #a855f7 100%);
-    transition: opacity 0.28s ease, transform 0.28s ease;
-  }
-
-  #greenStarSplash.hide-splash {
-    opacity: 0;
-    transform: scale(1.05);
-    pointer-events: none;
-  }
-
-  .star-stage {
-    position: relative;
-    width: 176px;
-    height: 176px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .star-rays {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: repeating-conic-gradient(
-      from 0deg,
-      rgba(255, 255, 255, 0.55) 0deg 10deg,
-      transparent 10deg 30deg
-    );
-    -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
-    mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
-    animation: raysSpin 6s linear infinite;
-  }
-
-  @keyframes raysSpin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  .star-sparkle {
-    position: absolute;
-    font-size: 16px;
-    color: #fff200;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-    animation: sparkleOrbit 1.7s ease-in-out infinite alternate;
-  }
-
-  .sp-1 { top: 14px; right: 24px; animation-delay: 0s; }
-  .sp-2 { bottom: 18px; left: 22px; animation-delay: 0.35s; }
-  .sp-3 { top: 26px; left: 20px; font-size: 13px; animation-delay: 0.7s; }
-
-  @keyframes sparkleOrbit {
-    from { transform: scale(0.8) rotate(-12deg); opacity: 0.7; }
-    to   { transform: scale(1.26) rotate(14deg); opacity: 1; }
-  }
-
-  .green-star-hero {
-    width: 126px;
-    height: 126px;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 10px 18px rgba(0, 90, 45, 0.45));
-    animation: starSpringIn 0.75s cubic-bezier(0.2, 1.35, 0.35, 1) forwards, starFloat 2s ease-in-out 0.75s infinite alternate;
-  }
-
-  @keyframes starSpringIn {
-    0%   { transform: scale(0.2) rotate(-55deg); opacity: 0; }
-    72%  { transform: scale(1.12) rotate(8deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-
-  @keyframes starFloat {
-    from { transform: translateY(0px); }
-    to   { transform: translateY(-7px); }
-  }
-
-  .splash-title {
-    margin: 8px 0 4px;
-    font-size: 28px;
-    font-weight: 950;
-    letter-spacing: 0.5px;
-    color: #1e0866;
-    text-shadow: 0 2px 0 #ffffff, 0 4px 12px rgba(255, 255, 255, 0.7);
-  }
-
-  .splash-sub {
-    margin: 0 0 16px;
-    font-size: 12px;
-    font-weight: 900;
-    color: #0f172a;
-    background: rgba(255, 255, 255, 0.72);
-    padding: 4px 12px;
-    border-radius: 999px;
-  }
-
-  .splash-skip-btn {
-    border: 2.5px solid #ffffff;
-    border-radius: 999px;
-    padding: 9px 24px;
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
-    color: #1f0600;
-    font-size: 13px;
-    font-weight: 950;
-    cursor: pointer;
-    box-shadow: 0 5px 0 #993d00, 0 10px 20px rgba(0, 0, 0, 0.25);
-  }
 
   .shine-box {
     position: relative;
@@ -212,11 +93,11 @@
     background: linear-gradient(
       115deg,
       transparent 20%,
-      rgba(255, 255, 255, 0.48) 50%,
+      rgba(255, 255, 255, 0.42) 50%,
       transparent 80%
     );
     transform: skewX(-18deg);
-    animation: shineSweep 3.4s infinite ease-in-out;
+    animation: shineSweep 3.5s infinite ease-in-out;
     pointer-events: none;
   }
 
@@ -226,7 +107,99 @@
     100% { left: 160%; }
   }
 
-  /* ================= BRIGHT LUMINOUS NEO BACKGROUND (START SCREEN) ================= */
+  /* ================= GREEN STAR INTRO ================= */
+  #greenStarSplash {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255, 235, 59, 0.38), transparent 52%),
+      linear-gradient(155deg, #092666 0%, #1565c0 48%, #00695c 100%);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+  }
+
+  #greenStarSplash.hide-splash {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+  }
+
+  .star-stage {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .star-rays {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 215, 0, 0.45) 0deg 10deg,
+      transparent 10deg 30deg
+    );
+    -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
+    mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
+    animation: spinSlow 7s linear infinite;
+  }
+
+  .green-star-hero {
+    width: 122px;
+    height: 122px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+    animation: starSpringIn 0.75s cubic-bezier(0.2, 1.35, 0.35, 1) forwards;
+  }
+
+  @keyframes starSpringIn {
+    0%   { transform: scale(0.2) rotate(-55deg); opacity: 0; }
+    72%  { transform: scale(1.12) rotate(8deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .splash-title {
+    margin: 8px 0 4px;
+    font-size: 27px;
+    font-weight: 950;
+    color: #ffea00;
+    text-shadow: 0 3px 0 #7f3300, 0 6px 14px rgba(0, 0, 0, 0.6);
+  }
+
+  .splash-sub {
+    margin: 0 0 16px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #e0f7fa;
+    background: rgba(9, 38, 102, 0.72);
+    border: 1.5px solid #ffca28;
+    padding: 4px 14px;
+    border-radius: 999px;
+  }
+
+  .splash-skip-btn {
+    border: 2.5px solid #ffffff;
+    border-radius: 999px;
+    padding: 9px 24px;
+    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    color: #240900;
+    font-size: 13px;
+    font-weight: 950;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #8c3800;
+  }
+
+  /* ================= ROYAL SAPPHIRE BLUE PATTERNED START SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
@@ -234,22 +207,33 @@
     justify-content: space-between;
     position: relative;
     background:
-      radial-gradient(circle at 14% 12%, rgba(255, 64, 129, 0.42), transparent 44%),
-      radial-gradient(circle at 88% 16%, rgba(0, 229, 255, 0.52), transparent 46%),
-      radial-gradient(circle at 50% 50%, rgba(255, 238, 88, 0.45), transparent 56%),
-      radial-gradient(circle at 20% 86%, rgba(0, 230, 118, 0.42), transparent 48%),
-      linear-gradient(165deg, #7ef9ff 0%, #a5f3fc 32%, #fef08a 68%, #f5d0fe 100%);
+      radial-gradient(circle at 50% 24%, rgba(64, 196, 255, 0.42), transparent 52%),
+      radial-gradient(circle at 18% 72%, rgba(41, 121, 255, 0.35), transparent 48%),
+      radial-gradient(circle at 84% 78%, rgba(0, 229, 255, 0.28), transparent 48%),
+      linear-gradient(180deg, #0b2f7a 0%, #1553bd 46%, #0c358a 100%);
   }
 
+  /* Diagonal Ludo Checkered Watermark Overlay like Screenshot */
   #startScreen::before {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
-    background-size: 24px 24px;
+      repeating-linear-gradient(
+        -28deg,
+        rgba(255, 255, 255, 0.045) 0px,
+        rgba(255, 255, 255, 0.045) 26px,
+        transparent 26px,
+        transparent 52px
+      ),
+      repeating-linear-gradient(
+        62deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 26px,
+        transparent 26px,
+        transparent 52px
+      );
   }
 
   #startScreen > * {
@@ -257,585 +241,614 @@
     z-index: 1;
   }
 
-  /* Bright Crisp Top HUD */
+  /* ================= ROYAL TOP HUD ================= */
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    padding: 8px 9px;
-    background: linear-gradient(180deg, #4f46e5 0%, #31108f 100%);
-    border-bottom: 2.5px solid #ffffff;
-    box-shadow: 0 4px 14px rgba(49, 16, 143, 0.35);
+    padding: 7px 8px;
+    background: linear-gradient(180deg, #071e54 0%, #0d368a 100%);
+    border-bottom: 2.5px solid #ffca28;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   }
 
-  .user-chip {
+  .hud-left {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 3px 9px 3px 3px;
-    border-radius: 13px;
-    background: linear-gradient(180deg, #ff1e8a, #c2185b);
-    border: 1.8px solid #ffffff;
-    cursor: pointer;
-    flex-shrink: 0;
-    box-shadow: 0 3px 0 #7b0036;
+    gap: 5px;
   }
 
-  .avatar-circle {
-    width: 32px;
-    height: 32px;
+  .dp-frame {
+    position: relative;
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
-    border: 1.8px solid #ffffff;
-    background: linear-gradient(145deg, #00e5ff, #0066ff);
+    border: 2.2px solid #ffca28;
+    background: linear-gradient(145deg, #2979ff, #0d47a1);
     display: grid;
     place-items: center;
-    font-size: 16px;
-    overflow: hidden;
-    flex-shrink: 0;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+    overflow: visible;
   }
 
-  .avatar-circle img {
+  .dp-frame img {
     width: 100%;
     height: 100%;
+    border-radius: 8px;
     object-fit: cover;
   }
 
-  .user-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.12;
-  }
-
-  .user-name {
-    font-size: 10.5px;
-    font-weight: 950;
-    max-width: 58px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #ffffff;
-  }
-
-  .user-edit {
+  .lvl-star {
+    position: absolute;
+    bottom: -6px;
+    left: -5px;
+    background: linear-gradient(180deg, #ffea00, #ff8f00);
+    color: #210900;
+    border: 1.5px solid #fff;
+    border-radius: 999px;
     font-size: 8.5px;
-    color: #ffe600;
-    font-weight: 900;
+    font-weight: 950;
+    padding: 0 4px;
+    line-height: 1.2;
+  }
+
+  .hud-sq-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    border: 1.6px solid #ffca28;
+    background: linear-gradient(180deg, #1e62d0, #0d368a);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 950;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 0 #05163d;
   }
 
   .hud-right {
     display: flex;
     align-items: center;
     gap: 4px;
-    min-width: 0;
   }
 
   .curr-pill {
     display: flex;
     align-items: center;
-    gap: 3px;
-    padding: 4px 7px;
+    gap: 4px;
+    padding: 3px 5px 3px 7px;
     border-radius: 999px;
-    background: #1e0866;
-    border: 1.6px solid #00e5ff;
-    font-size: 10px;
+    background: #061844;
+    border: 1.6px solid #3b82f6;
+    font-size: 10.5px;
     font-weight: 950;
-    color: #ffe600;
+    color: #ffffff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
-  .plus-mini {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #fff;
-    border-radius: 999px;
+  .plus-green {
+    width: 18px;
+    height: 18px;
+    border: 1.4px solid #ffffff;
+    border-radius: 5px;
     background: linear-gradient(180deg, #00e676, #00a152);
     color: #03210e;
     font-weight: 950;
-    font-size: 11px;
+    font-size: 12px;
     cursor: pointer;
     line-height: 1;
     display: grid;
     place-items: center;
   }
 
-  .hud-icon-btn {
-    height: 29px;
-    padding: 0 7px;
-    border-radius: 9px;
-    border: 1.5px solid #ffffff;
-    background: linear-gradient(180deg, #00e5ff, #0077cc);
-    color: #041826;
-    font-size: 11px;
-    font-weight: 950;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    box-shadow: 0 2px 0 #003a75;
-  }
-
   .lang-select {
-    height: 29px;
-    max-width: 82px;
-    border-radius: 9px;
-    border: 1.5px solid #ffffff;
-    background: #1e0866;
-    color: #ffe600;
+    height: 28px;
+    max-width: 74px;
+    border-radius: 8px;
+    border: 1.5px solid #ffca28;
+    background: #061844;
+    color: #ffea00;
     font-size: 9.5px;
     font-weight: 900;
-    padding: 0 4px;
+    padding: 0 3px;
     cursor: pointer;
   }
 
-  /* ================= HERO SHOWCASE ================= */
-  .hero-showcase {
+  /* ================= CENTER HERO LOGO & 4-PAWN 3D STAGE ================= */
+  .hero-area {
     position: relative;
-    text-align: center;
-    padding: 8px 10px 4px;
-  }
-
-  .side-badges {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    z-index: 2;
-  }
-
-  .right-badges {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    z-index: 2;
-  }
-
-  .pack-badge {
-    background: linear-gradient(180deg, #ffea00, #ff6d00);
-    border: 2px solid #ffffff;
-    border-radius: 11px;
-    padding: 5px 9px;
-    font-size: 10px;
-    font-weight: 950;
-    color: #1f0600;
-    box-shadow: 0 4px 0 #993d00, 0 6px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-
-  .free-perk-btn {
-    background: linear-gradient(180deg, #00e676, #00a152);
-    border: 2px solid #ffffff;
-    border-radius: 11px;
-    padding: 5px 9px;
-    font-size: 10px;
-    font-weight: 950;
-    color: #03210e;
-    box-shadow: 0 4px 0 #00572b, 0 6px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-
-  .royal-logo-wrap {
+    padding: 6px 8px 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .float-col-left {
+    position: absolute;
+    left: 8px;
+    top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 3;
+  }
+
+  .float-col-right {
+    position: absolute;
+    right: 8px;
+    top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 3;
+  }
+
+  .side-medallion {
+    width: 44px;
+    padding: 4px 2px;
+    border-radius: 12px;
+    border: 1.8px solid #ffca28;
+    background: linear-gradient(180deg, #1b56c2, #0a286e);
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+  }
+
+  .med-icon {
+    font-size: 16px;
+    line-height: 1.1;
+  }
+
+  .med-lbl {
+    font-size: 8px;
+    font-weight: 950;
+    color: #ffea00;
+    margin-top: 1px;
+    letter-spacing: 0.2px;
+  }
+
+  .med-live {
+    background: linear-gradient(180deg, #00e676, #00897b);
+    color: #03210e;
+    border-radius: 4px;
+    padding: 0 3px;
+    font-size: 7.5px;
+    font-weight: 950;
+    display: inline-block;
+  }
+
+  /* Royal Crown + Colorful 4-Tile L-U-D-O Logo */
+  .royal-emblem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .crown-top {
+    width: 54px;
+    height: 30px;
+    margin-bottom: -5px;
+    margin-right: 76px;
+    transform: rotate(-14deg);
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55));
+  }
+
+  .desi-tag-top {
+    font-size: 13px;
+    font-weight: 950;
+    color: #ffea00;
+    text-shadow: 0 2px 0 #7f3300, 0 3px 6px rgba(0, 0, 0, 0.75);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+
+  .ludo-4-circles {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .l-ball {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2.5px solid #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 950;
+    color: #ffffff;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.45), inset 0 3px 5px rgba(255, 255, 255, 0.55);
+  }
+
+  .lb-blue   { background: radial-gradient(circle at 35% 30%, #80d8ff, #0091ea); }
+  .lb-red    { background: radial-gradient(circle at 35% 30%, #ff8a80, #d50000); }
+  .lb-green  { background: radial-gradient(circle at 35% 30%, #b9f6ca, #00c853); }
+  .lb-yellow { background: radial-gradient(circle at 35% 30%, #ffff8d, #ffab00); color: #2b1400; text-shadow: none; }
+
+  .raja-tag-bot {
+    font-size: 13px;
+    font-weight: 950;
+    color: #ffea00;
+    text-shadow: 0 2px 0 #7f3300, 0 3px 6px rgba(0, 0, 0, 0.75);
+    letter-spacing: 1.5px;
     margin-top: 2px;
   }
 
-  .royal-crown-svg {
-    width: 48px;
-    height: 29px;
-    filter: drop-shadow(0 3px 6px rgba(49, 16, 143, 0.4));
-  }
-
-  .hero-logo-txt {
-    margin: 1px 0 0;
-    font-size: 28px;
-    font-weight: 950;
-    letter-spacing: 0.4px;
-    background: linear-gradient(180deg, #4f46e5 0%, #c026d3 52%, #e11d48 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 0 #ffffff);
-  }
-
-  .hero-en-badge {
-    font-size: 9.5px;
-    font-weight: 950;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #1e0866;
-    background: rgba(255, 255, 255, 0.75);
-    padding: 1px 10px;
-    border-radius: 999px;
-    margin-top: 1px;
-  }
-
-  .hero-tagline {
-    margin: 4px 0 6px;
-    font-size: 10px;
-    color: #0f172a;
-    font-weight: 900;
-  }
-
-  .hero-3d-stage {
-    margin: 0 auto;
-    width: 210px;
-    height: 62px;
+  /* 3D Perspective Board + 4 Glossy Pawns + Dice Centerpiece (Like Reference Image) */
+  .hero-pawns-stage {
+    width: 224px;
+    height: 76px;
     position: relative;
+    margin-top: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .mini-tilted-board {
-    width: 108px;
-    height: 52px;
+  .hero-board-3d {
+    width: 146px;
+    height: 54px;
     background: #ffffff;
-    border: 2.5px solid #31108f;
+    border: 2.5px solid #ffca28;
     border-radius: 9px;
-    transform: perspective(260px) rotateX(24deg);
-    box-shadow: 0 8px 16px rgba(49, 16, 143, 0.35);
+    transform: perspective(220px) rotateX(34deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.55);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     overflow: hidden;
   }
 
-  .mt-r { background: #ff1744; }
-  .mt-g { background: #00e676; }
-  .mt-b { background: #00b0ff; }
-  .mt-y { background: #ffea00; }
+  .hb-r { background: #ff1744; }
+  .hb-g { background: #00e676; }
+  .hb-b { background: #00b0ff; }
+  .hb-y { background: #ffea00; }
 
-  .hero-3d-dice {
+  .hero-pawn-svg {
     position: absolute;
-    top: 1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 11px;
-    background: linear-gradient(155deg, #ffffff, #e0f7fa);
-    border: 2.5px solid #31108f;
-    color: #0f172a;
-    display: grid;
-    place-items: center;
-    padding: 4px;
-    box-shadow: 0 6px 12px rgba(49, 16, 143, 0.35);
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.6));
   }
 
-  /* ================= NEON POP-UP MODE BUTTONS ================= */
-  .modes-wrap {
-    padding: 4px 10px 4px;
+  .hp-red    { width: 24px; height: 32px; left: 46px; top: 4px; }
+  .hp-green  { width: 24px; height: 32px; right: 46px; top: 4px; }
+  .hp-blue   { width: 32px; height: 42px; left: 26px; bottom: 2px; z-index: 3; }
+  .hp-yellow { width: 32px; height: 42px; right: 26px; bottom: 2px; z-index: 3; }
+
+  .hero-center-dice {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-12deg);
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    border: 2px solid #1e293b;
+    padding: 4px;
+    z-index: 4;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.55);
+  }
+
+  /* ================= GOLD-BORDERED GLOSSY MODE CARDS ================= */
+  .modes-section {
+    padding: 4px 10px 2px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
-  .grid-3 {
+  .modes-row-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
+    gap: 8px;
   }
 
-  .grid-2 {
+  .modes-row-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 9px;
+    gap: 10px;
+    padding: 0 12px;
   }
 
-  .mode-tile {
-    padding: 12px 7px;
-    text-align: center;
+  .mode-col-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gold-card {
+    width: 100%;
+    border-radius: 15px;
+    border: 2.5px solid #ffca28;
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 55%, #1e3a8a 100%);
+    box-shadow:
+      0 5px 0 #7f3300,
+      0 9px 16px rgba(0, 0, 0, 0.45),
+      inset 0 2px 4px rgba(255, 255, 255, 0.45);
+    overflow: hidden;
     cursor: pointer;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .mode-tile:active {
+  .gold-card:active {
     transform: scale(0.95) !important;
   }
 
-  .tile-online {
-    border-radius: 17px;
-    border: 2.5px solid #ffffff;
-    background: linear-gradient(160deg, #ff9100 0%, #ff1744 100%);
-    box-shadow: 0 6px 0 #8a0c24, 0 10px 18px rgba(255, 23, 68, 0.35);
-  }
-
-  .tile-team {
-    border-radius: 17px;
-    border: 2.5px solid #ffffff;
-    background: linear-gradient(160deg, #00e676 0%, #00897b 100%);
-    box-shadow: 0 6px 0 #004d40, 0 10px 18px rgba(0, 137, 123, 0.35);
-  }
-
-  .tile-friends {
-    border-radius: 17px;
-    border: 2.5px solid #ffffff;
-    background: linear-gradient(160deg, #ff1e8a 0%, #9c0058 100%);
-    box-shadow: 0 6px 0 #4d002b, 0 10px 18px rgba(255, 30, 138, 0.35);
-  }
-
-  .tile-computer {
-    border-radius: 17px;
-    border: 2.5px solid #ffffff;
-    background: linear-gradient(160deg, #00d2ff 0%, #0055ff 100%);
-    box-shadow: 0 6px 0 #002980, 0 10px 18px rgba(0, 85, 255, 0.35);
+  .card-art {
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 12px 9px;
+    font-size: 26px;
+    position: relative;
   }
 
-  .tile-pass {
-    border-radius: 17px;
-    border: 2.5px solid #ffffff;
-    background: linear-gradient(160deg, #d500f9 0%, #5200cc 100%);
-    box-shadow: 0 6px 0 #290066, 0 10px 18px rgba(82, 0, 204, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 9px;
+  .modes-row-2 .card-art {
+    height: 44px;
+    font-size: 24px;
   }
 
-  .tile-emblem {
-    width: 36px;
-    height: 36px;
-    margin: 0 auto;
-    border-radius: 11px;
-    background: rgba(255, 255, 255, 0.28);
-    border: 1.5px solid #ffffff;
-    display: grid;
-    place-items: center;
-    font-size: 19px;
-    flex-shrink: 0;
-  }
-
-  .tile-title {
-    font-size: 12px;
-    font-weight: 950;
-    letter-spacing: 0.4px;
-    color: #ffffff;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
-    margin-top: 5px;
-  }
-
-  .tile-computer .tile-title,
-  .tile-pass .tile-title {
-    margin-top: 0;
-    text-align: left;
-  }
-
-  .tile-tag {
-    font-size: 9.5px;
-    font-weight: 950;
-    color: #0f172a;
-    background: #ffffff;
-    border-radius: 999px;
-    display: inline-block;
-    padding: 2px 8px;
-    margin-top: 4px;
-  }
-
-  /* ================= TOURNAMENT, DAILY BONUS & CLAIM ================= */
-  .tournament-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 7px;
-    padding: 2px 10px;
-  }
-
-  .tourney-pill {
-    flex: 1;
-    border-radius: 13px;
-    border: 2px solid #ffffff;
-    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
-    padding: 9px 10px;
+  .card-gold-plate {
+    background: linear-gradient(180deg, #fff176 0%, #ffca28 48%, #f57f17 100%);
+    border-top: 2px solid #ffffff;
+    padding: 4px 4px 5px;
     text-align: center;
     font-size: 11px;
     font-weight: 950;
-    color: #ffffff;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #1e3a8a, 0 8px 14px rgba(29, 78, 216, 0.3);
+    color: #260c00;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
   }
 
-  .daily-pill {
-    border-radius: 13px;
-    border: 2px solid #ffffff;
-    background: linear-gradient(180deg, #00e5ff 0%, #0088cc 100%);
-    padding: 9px 10px;
-    font-size: 11px;
-    font-weight: 950;
-    color: #031826;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #004466;
-    white-space: nowrap;
+  .live-players-txt {
+    margin-top: 4px;
+    font-size: 9px;
+    font-weight: 900;
+    color: #e0f2fe;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   }
 
-  .season-claim-btn {
-    border-radius: 13px;
-    border: 2px solid #ffffff;
-    background: linear-gradient(180deg, #ffe600 0%, #ff6d00 100%);
-    padding: 9px 12px;
-    font-size: 11px;
-    font-weight: 950;
-    color: #1f0600;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #8c3800;
-    white-space: nowrap;
+  .green-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00e676;
+    box-shadow: 0 0 6px #00e676;
+    display: inline-block;
   }
 
-  /* ================= UTILITY, VIDEO REWARD, SHARE & VOICE BAR ================= */
-  .utility-bar {
-    margin: 3px 10px 5px;
-    padding: 8px 9px;
+  /* ================= TOURNAMENT + SEASON CLAIM + SPIN ROW ================= */
+  .tourney-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 2px 14px;
+  }
+
+  .round-gold-med {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2.2px solid #ffca28;
+    background: linear-gradient(180deg, #2979ff, #0d368a);
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+    flex-shrink: 0;
+  }
+
+  .tourney-emblem {
+    flex: 1;
     border-radius: 14px;
-    background: linear-gradient(180deg, #4f46e5, #31108f);
-    border: 2px solid #ffffff;
+    border: 2.2px solid #ffca28;
+    background: linear-gradient(180deg, #1e40af, #0f172a);
+    padding: 6px 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #7f3300, 0 8px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  .tourney-emblem-txt {
+    font-size: 13px;
+    font-weight: 950;
+    letter-spacing: 0.6px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffea00 60%, #ff9100 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bottom-rewards-strip {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
-    flex-wrap: wrap;
-    box-shadow: 0 5px 14px rgba(49, 16, 143, 0.3);
+    padding: 2px 10px 4px;
   }
 
-  .wa-btn {
-    border: 1.5px solid #ffffff;
-    border-radius: 9px;
-    padding: 5px 9px;
-    background: linear-gradient(180deg, #00e676, #009688);
-    color: #03210e;
-    font-size: 10px;
-    font-weight: 950;
+  .free-video-box {
+    border-radius: 12px;
+    border: 2px solid #ffca28;
+    background: linear-gradient(180deg, #1d4ed8, #0f296b);
+    padding: 4px 8px;
+    text-align: center;
     cursor: pointer;
-    box-shadow: 0 3px 0 #004d40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+    flex-shrink: 0;
   }
 
-  .other-btn {
-    border: 1.5px solid #ffffff;
-    border-radius: 9px;
-    padding: 5px 9px;
-    background: linear-gradient(180deg, #00e5ff, #0066cc);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 950;
+  .season-claim-banner {
+    flex: 1;
+    border-radius: 14px;
+    border: 2.5px solid #ffffff;
+    background: linear-gradient(180deg, #fff176 0%, #ffca28 50%, #f57f17 100%);
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
     cursor: pointer;
-    box-shadow: 0 3px 0 #003366;
+    box-shadow: 0 5px 0 #8c3800, 0 8px 16px rgba(0, 0, 0, 0.45);
   }
 
-  .vid-reward-btn {
-    border: 1.5px solid #ffffff;
-    border-radius: 9px;
-    padding: 5px 9px;
-    background: linear-gradient(180deg, #ffe600, #ff6d00);
-    color: #1f0600;
-    font-size: 10px;
+  .season-shield {
+    background: linear-gradient(180deg, #9c27b0, #4a148c);
+    border: 1.5px solid #ffea00;
+    border-radius: 8px;
+    padding: 2px 6px;
+    font-size: 9px;
     font-weight: 950;
-    cursor: pointer;
-    box-shadow: 0 3px 0 #8c3800;
+    color: #ffea00;
+    line-height: 1.1;
   }
 
-  .rec-btn {
-    border: 1.5px solid #ffffff;
-    border-radius: 999px;
-    padding: 5px 10px;
-    background: linear-gradient(180deg, #ff1744, #b71c1c);
-    color: #fff;
-    font-size: 10px;
+  .claim-word {
+    font-size: 16px;
     font-weight: 950;
+    color: #2b0900;
+    letter-spacing: 0.5px;
+  }
+
+  .spin-wheel-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2.5px solid #ffea00;
+    background: conic-gradient(
+      #ff1744 0deg 60deg,
+      #ffea00 60deg 120deg,
+      #00e676 120deg 180deg,
+      #00b0ff 180deg 240deg,
+      #d500f9 240deg 300deg,
+      #ff9100 300deg 360deg
+    );
+    display: grid;
+    place-items: center;
     cursor: pointer;
-    box-shadow: 0 3px 0 #6b0000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
+    position: relative;
+    flex-shrink: 0;
   }
 
-  .rec-btn.active-rec {
-    animation: pulseRec 0.65s infinite alternate;
-  }
-
-  @keyframes pulseRec {
-    from { transform: scale(1); }
-    to   { transform: scale(1.08); }
-  }
-
-  .play-voice-btn {
+  .spin-center-cap {
+    background: #092666;
+    color: #ffea00;
     border: 1.5px solid #fff;
     border-radius: 999px;
+    font-size: 8.5px;
+    font-weight: 950;
+    padding: 2px 5px;
+  }
+
+  /* Compact Invite + Voice Strip */
+  .quick-adda-bar {
+    margin: 0 10px 4px;
+    padding: 5px 8px;
+    border-radius: 11px;
+    background: rgba(6, 24, 68, 0.85);
+    border: 1.5px solid #3b82f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  .q-btn {
+    border: 1.3px solid #ffffff;
+    border-radius: 8px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #d500f9, #6200ea);
-    color: #fff;
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 950;
     cursor: pointer;
   }
 
-  .play-voice-btn:disabled {
-    opacity: 0.4;
-  }
+  .q-wa { background: linear-gradient(180deg, #00e676, #009688); color: #03210e; }
+  .q-sh { background: linear-gradient(180deg, #00e5ff, #0284c7); color: #fff; }
+  .q-rec { background: linear-gradient(180deg, #ff1744, #b71c1c); color: #fff; border-radius: 999px; }
+  .q-rec.active-rec { animation: pulseRec 0.65s infinite alternate; }
+  @keyframes pulseRec { from { transform: scale(1); } to { transform: scale(1.08); } }
+  .q-play { background: linear-gradient(180deg, #d500f9, #6200ea); color: #fff; border-radius: 999px; }
+  .q-play:disabled { opacity: 0.4; }
 
-  .status-mini {
-    font-size: 10px;
-    font-weight: 950;
-    color: #ffe600;
-  }
-
-  /* ================= BOTTOM NAVIGATION BAR ================= */
+  /* ================= ROYAL BOTTOM NAVIGATION BAR ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #4f46e5 0%, #31108f 100%);
-    border-top: 2.5px solid #ffffff;
-    padding: 5px 4px 7px;
+    background: linear-gradient(180deg, #0b2f7a 0%, #05163d 100%);
+    border-top: 2.5px solid #ffca28;
+    padding: 4px 4px 6px;
     gap: 3px;
   }
 
   .nav-tab {
     border: 1.5px solid transparent;
     background: transparent;
-    color: #e0e7ff;
+    color: #bfdbfe;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2px;
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 950;
     cursor: pointer;
     padding: 4px 2px;
     border-radius: 11px;
-    transition: all 0.14s ease;
+    position: relative;
   }
 
   .nav-tab span:first-child {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.1;
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #ffe600, #ff9100);
+    background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
     border-color: #ffffff;
-    color: #1f0600;
-    box-shadow: 0 3px 0 #8c3800;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.55);
   }
 
-  /* ================= BRIGHT NEO GAME SCREEN ================= */
+  .badge-new {
+    position: absolute;
+    top: -4px;
+    right: 4px;
+    background: #ff1744;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    font-size: 7px;
+    font-weight: 950;
+    padding: 0 4px;
+  }
+
+  /* ================= ROYAL BLUE & GOLD GAME SCREEN ================= */
   #gameScreen {
     display: none;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding: 4px 4px 8px;
+    padding: 5px 5px 8px;
     gap: 4px;
     position: relative;
     background:
-      radial-gradient(circle at 16% 16%, rgba(0, 229, 255, 0.52), transparent 45%),
-      radial-gradient(circle at 86% 20%, rgba(255, 64, 129, 0.4), transparent 46%),
-      radial-gradient(circle at 50% 82%, rgba(0, 230, 118, 0.42), transparent 52%),
-      linear-gradient(165deg, #67e8f9 0%, #bae6fd 36%, #fef08a 72%, #fbcfe8 100%);
+      radial-gradient(circle at 50% 45%, rgba(64, 196, 255, 0.36), transparent 56%),
+      linear-gradient(180deg, #0b2f7a 0%, #1553bd 48%, #092666 100%);
   }
 
   #gameScreen::before {
@@ -844,9 +857,13 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
-    background-size: 24px 24px;
+      repeating-linear-gradient(
+        -28deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 26px,
+        transparent 26px,
+        transparent 52px
+      );
   }
 
   #gameScreen > * {
@@ -858,8 +875,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(180deg, #4f46e5, #31108f);
-    border: 2px solid #ffffff;
+    background: linear-gradient(180deg, #071e54, #0d368a);
+    border: 2px solid #ffca28;
     border-radius: 12px;
     padding: 5px 8px;
     gap: 4px;
@@ -868,7 +885,7 @@
   .game-logo {
     font-size: 13px;
     font-weight: 950;
-    color: #ffe600;
+    color: #ffea00;
   }
 
   .header-actions {
@@ -878,11 +895,11 @@
   }
 
   .mini-btn {
-    border: 1.5px solid #ffffff;
+    border: 1.5px solid #ffca28;
     border-radius: 8px;
     padding: 4px 8px;
-    background: linear-gradient(180deg, #00e5ff, #0077cc);
-    color: #041826;
+    background: linear-gradient(180deg, #2979ff, #0d47a1);
+    color: #ffffff;
     font-size: 11px;
     font-weight: 950;
     cursor: pointer;
@@ -890,7 +907,7 @@
 
   .mini-exit {
     background: linear-gradient(180deg, #ff1744, #b71c1c);
-    color: #ffffff;
+    border-color: #ffffff;
   }
 
   .seat-row {
@@ -901,8 +918,8 @@
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, #4f46e5, #31108f);
-    border: 2px solid rgba(255, 255, 255, 0.75);
+    background: linear-gradient(180deg, #1d4ed8, #0f296b);
+    border: 2px solid rgba(255, 202, 40, 0.65);
     border-radius: 14px;
     padding: 5px 8px;
     display: flex;
@@ -915,9 +932,9 @@
 
   .seat-pod.pod-active {
     opacity: 1;
-    border-color: #ffe600;
-    background: linear-gradient(180deg, #7c3aed, #4c1d95);
-    box-shadow: 0 0 16px rgba(255, 230, 0, 0.85);
+    border-color: #ffea00;
+    background: linear-gradient(180deg, #2563eb, #1e3a8a);
+    box-shadow: 0 0 16px rgba(255, 234, 0, 0.85);
   }
 
   .pod-name {
@@ -930,7 +947,7 @@
 
   .pod-home {
     font-size: 10.5px;
-    color: #ffe600;
+    color: #ffea00;
     font-weight: 900;
   }
 
@@ -940,9 +957,9 @@
     height: 56px;
     flex-shrink: 0;
     border-radius: 14px;
-    border: 2.6px solid #ffe600;
-    background: linear-gradient(145deg, #ffffff, #e0f7fa);
-    box-shadow: 0 5px 0 #1e0866, 0 8px 14px rgba(0, 0, 0, 0.35);
+    border: 2.6px solid #ffca28;
+    background: linear-gradient(145deg, #ffffff, #e0f2fe);
+    box-shadow: 0 5px 0 #7f3300, 0 8px 14px rgba(0, 0, 0, 0.45);
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -961,13 +978,12 @@
   }
 
   .seat-pod:not(.pod-active) .pod-dice-big {
-    background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
-    border-color: rgba(255, 255, 255, 0.65);
-    box-shadow: 0 3px 0 #475569;
+    background: linear-gradient(145deg, #cbd5e1, #94a3b8);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 3px 0 #334155;
     opacity: 0.82;
   }
 
-  /* TOSSED / THROWN IN AIR ARC ("kisi ne uchhala ho") */
   .pod-dice-big.tossing {
     animation: dieThrownArc 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
   }
@@ -975,23 +991,23 @@
   @keyframes dieThrownArc {
     0% {
       transform: translate(0px, 0px) rotate(0deg) scale(1);
-      box-shadow: 0 5px 0 #1e0866, 0 8px 14px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 5px 0 #7f3300, 0 8px 14px rgba(0, 0, 0, 0.45);
     }
     28% {
       transform: translate(12px, -22px) rotate(135deg) scale(1.3);
-      box-shadow: 0 0 22px rgba(0, 229, 255, 0.95), 0 24px 18px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 22px rgba(255, 234, 0, 0.95), 0 24px 18px rgba(0, 0, 0, 0.55);
     }
     58% {
       transform: translate(-10px, -26px) rotate(265deg) scale(1.34);
-      box-shadow: 0 0 24px rgba(255, 30, 138, 0.9), 0 28px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 24px rgba(0, 229, 255, 0.9), 0 28px 20px rgba(0, 0, 0, 0.55);
     }
     82% {
       transform: translate(3px, 4px) rotate(350deg) scale(0.95);
-      box-shadow: 0 2px 0 #1e0866, 0 4px 8px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 2px 0 #7f3300, 0 4px 8px rgba(0, 0, 0, 0.5);
     }
     100% {
       transform: translate(0px, -3px) rotate(360deg) scale(1.04);
-      box-shadow: 0 0 14px rgba(0, 230, 118, 0.85), 0 6px 12px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 14px rgba(0, 230, 118, 0.9), 0 6px 12px rgba(0, 0, 0, 0.45);
     }
   }
 
@@ -1009,7 +1025,6 @@
     height: 8.5px;
     border-radius: 50%;
     background: #111827;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
   }
 
   .pip-dot.pip-red {
@@ -1019,8 +1034,8 @@
   }
 
   .reaction-ribbon {
-    background: linear-gradient(180deg, #4f46e5, #31108f);
-    border: 2px solid #ffffff;
+    background: linear-gradient(180deg, #071e54, #0d368a);
+    border: 2px solid #ffca28;
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -1048,32 +1063,30 @@
     font-weight: 950;
     padding: 2px 8px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #ffe600, #ff9100);
+    background: linear-gradient(180deg, #ffea00, #ff9100);
     border: 1.2px solid #ffffff;
-    color: #1f0600;
+    color: #240900;
     white-space: nowrap;
   }
 
   .board-stage {
     width: 100%;
-    background: linear-gradient(135deg, #ff1744, #ffea00, #00e676, #00b0ff);
-    padding: 3.5px;
-    border-radius: 10px;
-    box-shadow: 0 10px 24px rgba(49, 16, 143, 0.35);
+    background: linear-gradient(180deg, #fff176, #ffca28, #e65100);
+    padding: 4px;
+    border-radius: 11px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
     position: relative;
   }
 
-  /* Wrapper holds board + tokens layer without clipping top heads */
   .board-canvas-wrap {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1.5px solid #1e0866;
+    border: 1.5px solid #260c00;
     border-radius: 7px;
     background: #fff;
   }
 
-  /* Inner clipped layer for grid & SVG lines */
   .board-inner-clip {
     position: absolute;
     inset: 0;
@@ -1142,7 +1155,7 @@
     pointer-events: none;
   }
 
-  /* SLEEK COMPACT GOTI (4.8% x 5.6%, centered anchor -> head ALWAYS stays inside board!) */
+  /* COMPACT BOARD-SAFE GOTI + HALCHAL IN ALL GOTIS */
   .gem-goti {
     position: absolute;
     width: 4.8%;
@@ -1163,7 +1176,6 @@
     100% { transform: translate(-50%, -47%) rotate(3deg) scale(1.02); }
   }
 
-  /* Lively Halchal in ALL gotis when a step turn is active */
   .gem-goti.all-halchal {
     animation: gotiAllHalchal 0.42s ease-in-out infinite alternate !important;
   }
@@ -1174,7 +1186,6 @@
     100% { transform: translate(-50%, -43%) rotate(8deg) scale(0.96); }
   }
 
-  /* Extra energetic halchal on movable gotis */
   .gem-goti.can-pick {
     animation: gotiPickDance 0.36s ease-in-out infinite alternate !important;
     filter: drop-shadow(0 0 6px #ffea00) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.65));
@@ -1218,19 +1229,20 @@
 
   .status-banner {
     text-align: center;
-    background: linear-gradient(180deg, #4f46e5, #31108f);
-    border: 2px solid #ffffff;
+    background: linear-gradient(180deg, #071e54, #0d368a);
+    border: 2px solid #ffca28;
     border-radius: 12px;
     padding: 6px 10px;
     font-size: 12px;
     font-weight: 950;
-    color: #ffe600;
+    color: #ffea00;
   }
 
+  /* ================= MODALS ================= */
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(30, 8, 102, 0.68);
+    background: rgba(5, 16, 48, 0.78);
     backdrop-filter: blur(4px);
     display: none;
     align-items: center;
@@ -1246,12 +1258,12 @@
   .modal-card {
     width: 100%;
     max-width: 360px;
-    background: linear-gradient(180deg, #4f46e5 0%, #31108f 100%);
-    border: 2.5px solid #ffffff;
+    background: linear-gradient(180deg, #1d4ed8 0%, #0a2566 100%);
+    border: 2.5px solid #ffca28;
     border-radius: 18px;
     padding: 16px;
     text-align: center;
-    box-shadow: 0 18px 38px rgba(30, 8, 102, 0.55);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.65);
   }
 
   .count-picker-grid {
@@ -1262,20 +1274,21 @@
   }
 
   .cnt-choice-btn {
-    border: 2px solid #ffffff;
+    border: 2px solid #ffca28;
     border-radius: 13px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #00e5ff, #0077cc);
-    color: #031826;
+    background: linear-gradient(180deg, #2979ff, #0d47a1);
+    color: #ffffff;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 4px 0 #003b66;
+    box-shadow: 0 4px 0 #7f3300;
     animation: popFloatMicro 1.8s ease-in-out infinite;
   }
 
   .cnt-choice-num {
     display: block;
     font-size: 19px;
+    color: #ffea00;
     line-height: 1.1;
   }
 
@@ -1283,7 +1296,59 @@
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #031826;
+    color: #e0f2fe;
+  }
+
+  .spin-stage {
+    margin: 10px auto;
+    width: 148px;
+    height: 148px;
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  .spin-pointer {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #ffea00;
+    z-index: 5;
+    filter: drop-shadow(0 2px 3px #000);
+  }
+
+  .spin-disc {
+    width: 136px;
+    height: 136px;
+    border-radius: 50%;
+    border: 4px solid #ffca28;
+    background: conic-gradient(
+      #ff1744 0deg 60deg,
+      #ffea00 60deg 120deg,
+      #00e676 120deg 180deg,
+      #00b0ff 180deg 240deg,
+      #d500f9 240deg 300deg,
+      #ff9100 300deg 360deg
+    );
+    transition: transform 2.2s cubic-bezier(0.15, 0.85, 0.2, 1);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+  }
+
+  .spin-hub {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #092666;
+    border: 2.5px solid #ffca28;
+    color: #ffea00;
+    font-size: 11px;
+    font-weight: 950;
+    display: grid;
+    place-items: center;
   }
 
   .lb-list {
@@ -1302,22 +1367,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #1e0866;
-    border: 1.5px solid #00e5ff;
+    background: #071b4a;
+    border: 1.5px solid #3b82f6;
     border-radius: 11px;
     padding: 7px 10px;
     font-size: 11px;
     font-weight: 900;
   }
 
-  .lb-city {
-    color: #00e5ff;
-    font-size: 9.5px;
-  }
-
-  .lb-coins {
-    color: #ffe600;
-  }
+  .lb-city { color: #38bdf8; font-size: 9.5px; }
+  .lb-coins { color: #ffea00; }
 
   .modal-btns {
     display: flex;
@@ -1336,226 +1395,282 @@
     cursor: pointer;
   }
 
-  .m-gold {
-    background: linear-gradient(180deg, #ffe600, #ff9100);
-    color: #1f0600;
-  }
-
-  .m-danger {
-    background: linear-gradient(180deg, #ff1744, #b71c1c);
-    color: #fff;
-  }
-
-  .m-dark {
-    background: rgba(255, 255, 255, 0.22);
-    color: #fff;
-  }
+  .m-gold { background: linear-gradient(180deg, #ffea00, #ff9100); color: #240900; }
+  .m-danger { background: linear-gradient(180deg, #ff1744, #b71c1c); color: #fff; }
+  .m-dark { background: rgba(255, 255, 255, 0.18); color: #fff; }
 
   @media (max-width: 375px) {
-    .hero-logo-txt { font-size: 24px; }
-    .mode-tile { padding: 10px 5px; }
-    .tile-emblem { width: 32px; height: 32px; font-size: 17px; }
-    .tile-title { font-size: 11px; }
-    .curr-pill { padding: 3px 6px; font-size: 9.5px; }
-  }
-
-  @media (min-height: 780px) {
-    .hero-3d-stage { height: 74px; }
-    .modes-wrap { gap: 12px; }
-    .mode-tile { padding: 14px 8px; }
+    .l-ball { width: 30px; height: 30px; font-size: 16px; }
+    .card-art { height: 42px; font-size: 22px; }
+    .card-gold-plate { font-size: 10px; }
   }
 </style>
 </head>
 <body>
 
-<!-- BRIGHT NEO GREEN STAR INTRO -->
+<!-- GREEN STAR INTRO -->
 <div id="greenStarSplash" onclick="dismissSplash()">
   <div class="star-stage">
     <div class="star-rays"></div>
-    <span class="star-sparkle sp-1">✦</span>
-    <span class="star-sparkle sp-2">✦</span>
-    <span class="star-sparkle sp-3">✧</span>
     <svg class="green-star-hero" viewBox="0 0 120 120">
       <defs>
         <radialGradient id="gStarGem" cx="38%" cy="30%" r="72%">
           <stop offset="0%" stop-color="#ffffff"/>
           <stop offset="42%" stop-color="#00e676"/>
-          <stop offset="100%" stop-color="#007032"/>
+          <stop offset="100%" stop-color="#00692c"/>
         </radialGradient>
       </defs>
       <polygon
         points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
         fill="url(#gStarGem)"
-        stroke="#ffffff"
+        stroke="#ffca28"
         stroke-width="4"
         stroke-linejoin="round"
-      />
-      <polygon
-        points="60,24 69,45 92,48 75,64 80,87 60,75 40,87 45,64 28,48 51,45"
-        fill="rgba(255,255,255,0.35)"
       />
     </svg>
   </div>
   <div class="splash-title">⭐ GREEN STAR ⭐</div>
-  <div class="splash-sub">देसी लूडो राजा • ब्राइट निऑन थीम व जिंदादिल गोटियां</div>
-  <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">आगे बढ़ें ▶</button>
+  <div class="splash-sub">देसी लूडो राजा • रॉयल कलरफुल एडिशन</div>
+  <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">खेल शुरू करें ▶</button>
 </div>
 
 <div class="shell">
-  <!-- BRIGHT NEO START SCREEN -->
+  <!-- ROYAL SAPPHIRE BLUE COLOURFUL START SCREEN -->
   <section id="startScreen">
     <header class="top-hud">
-      <div class="user-chip shine-box" onclick="openDpDialog()">
-        <div id="userAvatar" class="avatar-circle">👑</div>
-        <div class="user-text">
-          <span id="userNameText" class="user-name">राजा खिलाड़ी</span>
-          <span class="user-edit">DP बदलें</span>
+      <div class="hud-left">
+        <div class="dp-frame" onclick="openDpDialog()">
+          <div id="userAvatar" style="width:100%;height:100%;display:grid;place-items:center;">👑</div>
+          <span class="lvl-star">★ 1</span>
         </div>
+        <button id="startSoundBtn" class="hud-sq-btn" onclick="switchSound()" title="Sound">🔊</button>
+        <button class="hud-sq-btn" onclick="openLeaderboard()" title="Leaderboard">✉️</button>
       </div>
 
       <div class="hud-right">
         <div class="curr-pill">
           <span>💎</span>
           <span id="gemsText">150</span>
-          <button class="plus-mini" onclick="event.stopPropagation(); addGems(25);">+</button>
+          <button class="plus-green" onclick="addGems(25)">+</button>
         </div>
 
         <div class="curr-pill">
           <span>🪙</span>
-          <span id="coinsText">2,500</span>
-          <button class="plus-mini" onclick="event.stopPropagation(); addCoins(250);">+</button>
+          <span id="coinsText">2,250</span>
+          <button class="plus-green" onclick="addCoins(250)">+</button>
         </div>
 
-        <button class="hud-icon-btn" onclick="replayGreenStarSplash()" title="Green Star Intro">⭐</button>
-        <button class="hud-icon-btn" onclick="openLeaderboard()" title="Leaderboard">🏆</button>
         <select id="langSelect" class="lang-select" onchange="onLangChange(this.value)">
-          <option value="hi">हिंदी (MP)</option>
-          <option value="en">English (IN)</option>
-          <option value="mr">मराठी (MH)</option>
-          <option value="ta">தமிழ் (TN)</option>
-          <option value="te">తెలుగు (TS/AP)</option>
-          <option value="bn">বাংলা (WB)</option>
-          <option value="gu">ગુજરાતી (GJ)</option>
-          <option value="pa">ਪੰਜਾਬੀ (PB)</option>
-          <option value="kn">ಕನ್ನಡ (KA)</option>
+          <option value="hi">हिंदी</option>
+          <option value="en">English</option>
+          <option value="mr">मराठी</option>
+          <option value="ta">தமிழ்</option>
+          <option value="te">తెలుగు</option>
+          <option value="bn">বাংলা</option>
+          <option value="gu">ગુજરાતી</option>
+          <option value="pa">ਪੰਜਾਬੀ</option>
+          <option value="kn">ಕನ್ನಡ</option>
         </select>
-        <button id="startSoundBtn" class="hud-icon-btn" onclick="switchSound()">🔊</button>
       </div>
     </header>
 
-    <div class="hero-showcase">
-      <div class="side-badges">
-        <div class="pack-badge shine-box pop-pill-1" onclick="addCoins(500)">🪙 +500</div>
-        <div class="pack-badge shine-box pop-pill-2" onclick="openLeaderboard()">👑 LIVE</div>
+    <!-- HERO LOGO & 4-PAWN STAGE -->
+    <div class="hero-area">
+      <!-- Left Floating Medallions -->
+      <div class="float-col-left">
+        <div class="side-medallion shine-box pop-pill-1" onclick="addCoins(500)">
+          <div class="med-icon">🪙</div>
+          <div class="med-lbl">+500</div>
+        </div>
+        <div class="side-medallion shine-box pop-pill-2" onclick="openCoinTableDialog()">
+          <div class="med-icon">👑</div>
+          <div class="med-lbl">VIP</div>
+        </div>
+        <div class="side-medallion shine-box pop-pill-3" onclick="openLeaderboard()">
+          <div class="med-icon">📺</div>
+          <div class="med-live">LIVE</div>
+        </div>
       </div>
 
-      <div class="right-badges">
-        <div class="free-perk-btn shine-box pop-pill-2" onclick="addGems(50)">💎 FREE</div>
-        <div class="free-perk-btn shine-box pop-pill-3" onclick="openCoinTableDialog()">🎯 TABLE</div>
+      <!-- Right Floating Medallions -->
+      <div class="float-col-right">
+        <div class="side-medallion shine-box pop-pill-1" onclick="claimDailyBonus()">
+          <div class="med-icon">🎁</div>
+          <div class="med-lbl">FREE</div>
+        </div>
+        <div class="side-medallion shine-box pop-pill-2" onclick="openSpinModal()">
+          <div class="med-icon">🎯</div>
+          <div class="med-lbl">AIM</div>
+        </div>
+        <div class="side-medallion shine-box pop-pill-3" onclick="replayGreenStarSplash()">
+          <div class="med-icon">🎲</div>
+          <div class="med-lbl">STAR</div>
+        </div>
+        <div class="side-medallion shine-box pop-pill-1" onclick="openRulesModal()">
+          <div class="med-icon">❓</div>
+          <div class="med-lbl">नियम</div>
+        </div>
       </div>
 
-      <div class="royal-logo-wrap">
-        <svg class="royal-crown-svg" viewBox="0 0 80 44">
+      <!-- Royal Crown + 4-Color Circle Logo -->
+      <div class="royal-emblem">
+        <svg class="crown-top" viewBox="0 0 80 44">
           <defs>
-            <linearGradient id="royalGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="crGold" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#ffffff"/>
-              <stop offset="48%" stop-color="#ffea00"/>
+              <stop offset="50%" stop-color="#ffea00"/>
               <stop offset="100%" stop-color="#ff6d00"/>
             </linearGradient>
           </defs>
           <path d="M8 34 L4 13 L24 23 L40 7 L56 23 L76 13 L72 34 Z"
-                fill="url(#royalGold)" stroke="#31108f" stroke-width="2.2" stroke-linejoin="round"/>
-          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9100" stroke="#31108f" stroke-width="1.6"/>
-          <circle cx="40" cy="24" r="4" fill="#ff1744"/>
-          <circle cx="22" cy="27" r="3" fill="#00e676"/>
-          <circle cx="58" cy="27" r="3" fill="#00b0ff"/>
+                fill="url(#crGold)" stroke="#4a1c00" stroke-width="2.4" stroke-linejoin="round"/>
+          <rect x="10" y="34" width="60" height="6" rx="3" fill="#ff9100" stroke="#4a1c00" stroke-width="1.8"/>
         </svg>
-        <h1 id="brandTitle" class="hero-logo-txt">देसी लूडो राजा</h1>
-        <div class="hero-en-badge">DESI LUDO RAJA</div>
+
+        <div id="brandTopTag" class="desi-tag-top">👑 देसी</div>
+        <div class="ludo-4-circles">
+          <div class="l-ball lb-blue">L</div>
+          <div class="l-ball lb-red">U</div>
+          <div class="l-ball lb-green">D</div>
+          <div class="l-ball lb-yellow">O</div>
+        </div>
+        <div id="brandBotTag" class="raja-tag-bot">राजा • RAJA</div>
       </div>
 
-      <div id="brandSub" class="hero-tagline">1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • कॉल पर ऑटो-म्यूट</div>
-
-      <div class="hero-3d-stage">
-        <div class="mini-tilted-board">
-          <div class="mt-r"></div>
-          <div class="mt-g"></div>
-          <div class="mt-b"></div>
-          <div class="mt-y"></div>
+      <!-- 3D Perspective Board + 4 Glossy Pawns + Dice -->
+      <div class="hero-pawns-stage">
+        <div class="hero-board-3d">
+          <div class="hb-r"></div>
+          <div class="hb-g"></div>
+          <div class="hb-b"></div>
+          <div class="hb-y"></div>
         </div>
-        <div id="heroDiceFace" class="hero-3d-dice shine-box pop-pill-1"></div>
+
+        <!-- Red Pawn -->
+        <svg class="hero-pawn-svg hp-red pop-pill-2" viewBox="0 0 60 72">
+          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
+          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#ff1744" stroke="#181818" stroke-width="2"/>
+          <circle cx="30" cy="17" r="11" fill="#ff5252" stroke="#181818" stroke-width="2"/>
+        </svg>
+
+        <!-- Green Pawn -->
+        <svg class="hero-pawn-svg hp-green pop-pill-3" viewBox="0 0 60 72">
+          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
+          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#00e676" stroke="#181818" stroke-width="2"/>
+          <circle cx="30" cy="17" r="11" fill="#69f0ae" stroke="#181818" stroke-width="2"/>
+        </svg>
+
+        <!-- Blue Pawn -->
+        <svg class="hero-pawn-svg hp-blue pop-pill-1" viewBox="0 0 60 72">
+          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
+          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#00b0ff" stroke="#181818" stroke-width="2"/>
+          <circle cx="30" cy="17" r="11" fill="#40c4ff" stroke="#181818" stroke-width="2"/>
+        </svg>
+
+        <!-- Yellow Pawn -->
+        <svg class="hero-pawn-svg hp-yellow pop-pill-2" viewBox="0 0 60 72">
+          <ellipse cx="30" cy="61" rx="17" ry="4.5" fill="#ffca28" stroke="#181818" stroke-width="2"/>
+          <path d="M14 60 C14 45, 22 34, 23.5 25 L36.5 25 C38 34, 46 45, 46 60 Z" fill="#ffea00" stroke="#181818" stroke-width="2"/>
+          <circle cx="30" cy="17" r="11" fill="#ffff00" stroke="#181818" stroke-width="2"/>
+        </svg>
+
+        <div id="heroDiceFace" class="hero-center-dice pop-pill-1"></div>
       </div>
     </div>
 
-    <main class="modes-wrap">
-      <div class="grid-3">
-        <div class="mode-tile tile-online shine-box pop-float-1" onclick="openPlayerCountSelector('online', 'ONLINE')">
-          <div class="tile-emblem">🌐</div>
-          <div id="mOnline" class="tile-title">ONLINE</div>
-          <div class="tile-tag">1–4 Players</div>
+    <!-- MAIN GOLD-BORDERED MODE CARDS -->
+    <main class="modes-section">
+      <div class="modes-row-3">
+        <div class="mode-col-wrap">
+          <div class="gold-card shine-box pop-float-1" onclick="openPlayerCountSelector('online', 'ONLINE')">
+            <div class="card-art">🌍📱</div>
+            <div id="mOnline" class="card-gold-plate">ONLINE</div>
+          </div>
+          <div class="live-players-txt"><span class="green-dot"></span> Players: 90,434</div>
         </div>
 
-        <div class="mode-tile tile-team shine-box pop-float-2" onclick="openPlayerCountSelector('team', 'TEAM UP')">
-          <div class="tile-emblem">🛡️</div>
-          <div id="mTeam" class="tile-title">TEAM UP</div>
-          <div class="tile-tag">1–4 Players</div>
+        <div class="mode-col-wrap">
+          <div class="gold-card shine-box pop-float-2" onclick="openPlayerCountSelector('team', 'TEAM UP')">
+            <div class="card-art">⚔️🛡️</div>
+            <div id="mTeam" class="card-gold-plate">TEAM UP</div>
+          </div>
+          <div class="live-players-txt"><span class="green-dot"></span> Players: 1,704</div>
         </div>
 
-        <div class="mode-tile tile-friends shine-box pop-float-3" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
-          <div class="tile-emblem">🤝</div>
-          <div id="mFriends" class="tile-title">FRIENDS</div>
-          <div class="tile-tag">1–4 Players</div>
+        <div class="mode-col-wrap">
+          <div class="gold-card shine-box pop-float-3" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
+            <div class="card-art">❤️📱</div>
+            <div id="mFriends" class="card-gold-plate">FRIENDS</div>
+          </div>
+          <div class="live-players-txt"><span class="green-dot"></span> Players: 11,928</div>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="mode-tile tile-computer shine-box pop-float-4" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
-          <div class="tile-emblem">🤖</div>
-          <div>
-            <div id="mBot" class="tile-title">COMPUTER</div>
-            <div class="tile-tag">1–4 Seat Setup</div>
-          </div>
+      <div class="modes-row-2">
+        <div class="gold-card shine-box pop-float-4" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
+          <div class="card-art">🤖🆚</div>
+          <div id="mBot" class="card-gold-plate">COMPUTER</div>
         </div>
 
-        <div class="mode-tile tile-pass shine-box pop-float-5" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
-          <div class="tile-emblem">🎲</div>
-          <div>
-            <div id="mPass" class="tile-title">PASS N PLAY</div>
-            <div class="tile-tag">1–4 Seat Setup</div>
-          </div>
+        <div class="gold-card shine-box pop-float-5" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
+          <div class="card-art">👥🎲</div>
+          <div id="mPass" class="card-gold-plate">PASS N PLAY</div>
         </div>
       </div>
     </main>
 
-    <div class="tournament-row">
-      <div class="tourney-pill shine-box pop-pill-1" onclick="openCoinTableDialog()">🏆 TOURNAMENT & COIN TABLE</div>
-      <button class="daily-pill shine-box pop-pill-2" onclick="claimDailyBonus()">☀️ DAILY</button>
-      <button class="season-claim-btn shine-box pop-pill-3" onclick="addCoins(300)">🎁 CLAIM</button>
+    <!-- TOURNAMENT EMBLEM ROW -->
+    <div class="tourney-strip">
+      <div class="round-gold-med shine-box pop-pill-1" onclick="openCoinTableDialog()" title="Lucky 7 Table">7️⃣</div>
+      <div class="tourney-emblem shine-box pop-pill-2" onclick="openCoinTableDialog()">
+        <div style="font-size:12px;line-height:1;">👑</div>
+        <div class="tourney-emblem-txt">TOURNAMENT</div>
+      </div>
+      <div class="round-gold-med shine-box pop-pill-3" onclick="openPlayerCountSelector('pass', 'CLASSIC 4P')" title="4 Player Board">🎲</div>
     </div>
 
-    <div class="utility-bar">
-      <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
-        <button class="wa-btn shine-box pop-pill-1" onclick="inviteWhatsApp()">WhatsApp</button>
-        <button class="other-btn shine-box pop-pill-2" onclick="inviteOther()">Other</button>
-        <button class="vid-reward-btn shine-box pop-pill-3" onclick="watchVideoReward()">🎬 +300</button>
+    <!-- SEASON CLAIM + FREE x5 + LUCKY SPIN WHEEL -->
+    <div class="bottom-rewards-strip">
+      <div class="free-video-box shine-box pop-pill-1" onclick="watchVideoReward()">
+        <div style="font-size:9px;font-weight:950;color:#ffea00;">FREE</div>
+        <div style="font-size:12px;font-weight:950;">🎬 x5</div>
+        <div style="font-size:8.5px;font-weight:950;background:#ffca28;color:#240900;border-radius:4px;padding:0 4px;">1000</div>
       </div>
-      <div style="display:flex; gap:5px; align-items:center;">
-        <button id="recBtn" class="rec-btn" onclick="startVoice3s()">🎙️ 3s</button>
-        <button id="playVoiceBtn" class="play-voice-btn" onclick="playVoiceClip()" disabled>▶️</button>
-        <span id="lobbyStatus" class="status-mini">तैयार!</span>
+
+      <div class="season-claim-banner shine-box pop-pill-2" onclick="addCoins(300)">
+        <div class="season-shield">SEASON<br><span style="font-size:12px;">28</span></div>
+        <div class="claim-word">CLAIM</div>
+      </div>
+
+      <div class="spin-wheel-box pop-pill-3" onclick="openSpinModal()" title="Lucky Spin">
+        <span class="spin-center-cap">SPIN</span>
       </div>
     </div>
 
+    <!-- QUICK INVITE & 3s VOICE ADDA BAR -->
+    <div class="quick-adda-bar">
+      <div style="display:flex;gap:5px;">
+        <button class="q-btn q-wa" onclick="inviteWhatsApp()">WhatsApp</button>
+        <button class="q-btn q-sh" onclick="inviteOther()">Share</button>
+      </div>
+      <div style="display:flex;gap:5px;align-items:center;">
+        <button id="recBtn" class="q-btn q-rec" onclick="startVoice3s()">🎙️ 3s</button>
+        <button id="playVoiceBtn" class="q-btn q-play" onclick="playVoiceClip()" disabled>▶️</button>
+        <span id="lobbyStatus" style="font-size:9.5px;font-weight:950;color:#ffea00;">तैयार!</span>
+      </div>
+    </div>
+
+    <!-- ROYAL BOTTOM NAVIGATION BAR -->
     <nav class="bottom-nav">
       <button class="nav-tab tab-active" onclick="setActiveTab(this, 'home')"><span>🏠</span><span>HOME</span></button>
-      <button class="nav-tab" onclick="setActiveTab(this, 'event')"><span>🎉</span><span>EVENT</span></button>
-      <button class="nav-tab" onclick="setActiveTab(this, 'adda')"><span>🎙️</span><span>ADDA</span></button>
+      <button class="nav-tab" onclick="setActiveTab(this, 'event')"><span>📅</span><span>EVENT</span></button>
+      <button class="nav-tab" onclick="setActiveTab(this, 'adda')"><span class="badge-new">NEW</span><span>🎙️</span><span>ADDA</span></button>
       <button class="nav-tab" onclick="setActiveTab(this, 'inventory')"><span>🎲</span><span>INVENTORY</span></button>
       <button class="nav-tab" onclick="setActiveTab(this, 'social')"><span>🏆</span><span>SOCIAL</span></button>
     </nav>
   </section>
 
-  <!-- BRIGHT NEO GAME SCREEN -->
+  <!-- ROYAL BLUE & GOLD GAME SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
       <span class="game-logo">👑 देसी लूडो राजा</span>
@@ -1572,7 +1687,7 @@
     <div class="reaction-ribbon">
       <span id="reactionEmoji" class="reaction-badge">😊</span>
       <span id="reactionText" class="reaction-text">खेल शुरू! अपनी सीट का बड़ा डाइस उछालें</span>
-      <span id="fxBadge" class="fx-pill">⚡ NEO LUDO</span>
+      <span id="fxBadge" class="fx-pill">👑 ROYAL LUDO</span>
     </div>
 
     <div class="board-stage">
@@ -1615,7 +1730,6 @@
           <div id="cornerBotLabel" class="yard-corner-title title-bl">You</div>
         </div>
 
-        <!-- Placed outside overflow:hidden so heads & emoji badges NEVER get sliced -->
         <div id="tokensLayer" class="tokens-layer"></div>
       </div>
     </div>
@@ -1630,9 +1744,18 @@
 
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
-    <h3 id="dialogTitle" style="margin:0 0 6px; color:#ffe600; font-size:15px;">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:12px; color:#ffffff;"></p>
+    <h3 id="dialogTitle" style="margin:0 0 6px; color:#ffea00; font-size:15px;">सूचना</h3>
+    <p id="dialogText" style="margin:0; font-size:12px; color:#ffffff; line-height:1.4;"></p>
     <div id="playerCountGrid" class="count-picker-grid" style="display:none;"></div>
+
+    <!-- Interactive Spin Wheel Inside Modal -->
+    <div id="spinWheelStage" class="spin-stage" style="display:none;">
+      <div class="spin-pointer">▼</div>
+      <div id="spinDisc" class="spin-disc">
+        <div class="spin-hub">SPIN</div>
+      </div>
+    </div>
+
     <ul id="dialogList" class="lb-list" style="display:none;"></ul>
     <div id="dialogBtns" class="modal-btns">
       <button id="dialogOkBtn" class="m-btn m-gold" onclick="closeDialog()">ठीक है</button>
@@ -1642,11 +1765,11 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_bright_neo_v15";
+  const STORAGE_KEY = "dlr_royal_colourful_v16";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
-    coins: 2500,
+    coins: 2250,
     dp: "",
     lang: "hi",
     sound: true
@@ -1654,8 +1777,7 @@
 
   const I18N = {
     hi: {
-      title: "देसी लूडो राजा",
-      sub: "1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • कॉल पर ऑटो-म्यूट",
+      topTag: "👑 देसी", botTag: "राजा • RAJA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "तैयार!",
@@ -1664,8 +1786,7 @@
       stay: "खेलते रहें", exitYes: "हाँ, बाहर जाएं"
     },
     en: {
-      title: "DESI LUDO RAJA",
-      sub: "Pick 1–2–3–4 Players • Auto-Out on 6 • Auto-Mute on Calls",
+      topTag: "👑 DESI", botTag: "RAJA • ROYAL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "Ready!",
@@ -1674,8 +1795,7 @@
       stay: "Stay & Play", exitYes: "Yes, Exit"
     },
     mr: {
-      title: "देसी लुडो राजा",
-      sub: "१–२–३–४ खेळाडू निवडा • ६ वर आपोआप बाहेर • कॉलवर म्यूट",
+      topTag: "👑 देसी", botTag: "राजा • MAHARASHTRA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "तयार!",
@@ -1684,8 +1804,7 @@
       stay: "खेळत राहा", exitYes: "हो, बाहेर जा"
     },
     ta: {
-      title: "தேசி லுடோ ராஜா",
-      sub: "1–2–3–4 வீரர்கள் தேர்வு • 6 வந்தால் தானாக வெளியே",
+      topTag: "👑 தேசி", botTag: "ராஜா • TAMIL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "தயார்!",
@@ -1694,8 +1813,7 @@
       stay: "தொடரவும்", exitYes: "ஆம், வெளியேறு"
     },
     te: {
-      title: "దేశీ లూడో రాజా",
-      sub: "1–2–3–4 ఆటగాళ్ల ఎంపిక • 6 వస్తే ఆటో అవుట్",
+      topTag: "👑 దేశీ", botTag: "రాజా • TELUGU",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "సిద్ధం!",
@@ -1704,8 +1822,7 @@
       stay: "ఆడుతూ ఉండండి", exitYes: "అవును, నిష్క్రమించు"
     },
     bn: {
-      title: "দেশি লুডো রাজা",
-      sub: "১–২–৩–৪ প্লেয়ার বাছুন • ৬ এলে নিজেই বাইরে",
+      topTag: "👑 দেশি", botTag: "রাজা • BENGAL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "প্রস্তুত!",
@@ -1714,8 +1831,7 @@
       stay: "খেলে যান", exitYes: "হ্যাঁ, বের হন"
     },
     gu: {
-      title: "દેશી લુડો રાજા",
-      sub: "૧–૨–૩–૪ ખેલાડી પસંદ કરો • ૬ પર આપમેળે બહાર",
+      topTag: "👑 દેશી", botTag: "રાજા • GUJARAT",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "તૈયાર!",
@@ -1724,8 +1840,7 @@
       stay: "રમતા રહો", exitYes: "હા, બહાર જાઓ"
     },
     pa: {
-      title: "ਦੇਸੀ ਲੂਡੋ ਰਾਜਾ",
-      sub: "੧–੨–੩–੪ ਖਿਡਾਰੀ ਚੁਣੋ • ੬ ਤੇ ਆਪਣੇ ਆਪ ਬਾਹਰ",
+      topTag: "👑 ਦੇਸੀ", botTag: "ਰਾਜਾ • PUNJAB",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "ਤਿਆਰ!",
@@ -1734,8 +1849,7 @@
       stay: "ਖੇਡਦੇ ਰਹੋ", exitYes: "ਹਾਂ, ਬਾਹਰ ਜਾਓ"
     },
     kn: {
-      title: "ದೇಸಿ ಲೂಡೋ ರಾಜ",
-      sub: "1–2–3–4 ಆಟಗಾರರ ಆಯ್ಕೆ • 6 ಬಂದರೆ ತಾನಾಗಿಯೇ ಹೊರಗೆ",
+      topTag: "👑 ದೇಸಿ", botTag: "ರಾಜ • KARNATAKA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "ಸಿದ್ಧ!",
@@ -1769,6 +1883,7 @@
   let clipUrl = null;
   let stopTimer = null;
   let splashTimer = null;
+  let currentSpinDeg = 0;
 
   let audioCtx = null;
   let bgmTimer = null;
@@ -2057,9 +2172,8 @@
     const txt = t();
     document.getElementById("gemsText").textContent = profile.gems.toLocaleString("en-IN");
     document.getElementById("coinsText").textContent = profile.coins.toLocaleString("en-IN");
-    document.getElementById("userNameText").textContent = profile.name;
     document.getElementById("langSelect").value = profile.lang;
-    document.getElementById("heroDiceFace").innerHTML = buildPippedDiceHtml(6);
+    document.getElementById("heroDiceFace").innerHTML = buildPippedDiceHtml(5);
 
     const ico = profile.sound ? "🔊" : "🔇";
     document.getElementById("startSoundBtn").textContent = ico;
@@ -2068,8 +2182,8 @@
     const av = document.getElementById("userAvatar");
     av.innerHTML = profile.dp ? `<img src="${profile.dp}" alt="DP" />` : "👑";
 
-    document.getElementById("brandTitle").textContent = txt.title;
-    document.getElementById("brandSub").textContent = txt.sub;
+    document.getElementById("brandTopTag").textContent = txt.topTag;
+    document.getElementById("brandBotTag").textContent = txt.botTag;
     document.getElementById("mOnline").textContent = txt.online;
     document.getElementById("mTeam").textContent = txt.team;
     document.getElementById("mFriends").textContent = txt.friends;
@@ -2079,13 +2193,72 @@
   }
 
   function claimDailyBonus() {
-    addCoins(200);
-    setLobbyNote("डेली बोनस +200!");
+    addCoins(250);
+    setLobbyNote("FREE +250!");
   }
 
   function watchVideoReward() {
-    addCoins(300);
-    setLobbyNote("रिवॉर्ड +300!");
+    addCoins(1000);
+    setLobbyNote("FREE x5 +1000!");
+  }
+
+  function resetModalParts() {
+    document.getElementById("playerCountGrid").style.display = "none";
+    document.getElementById("spinWheelStage").style.display = "none";
+    document.getElementById("dialogList").style.display = "none";
+    document.getElementById("dialogOkBtn").style.display = "inline-block";
+    document.getElementById("dialogCancelBtn").style.display = "inline-block";
+  }
+
+  function openSpinModal() {
+    resetModalParts();
+    document.getElementById("dialogTitle").textContent = "🎡 देसी लकी स्पिन व्हील";
+    document.getElementById("dialogText").textContent = "पहिया घुमाएं और मुफ्त कॉइन या हीरे जीतें!";
+    document.getElementById("spinWheelStage").style.display = "grid";
+
+    const ok = document.getElementById("dialogOkBtn");
+    ok.className = "m-btn m-gold";
+    ok.textContent = "🎯 SPIN करें";
+    ok.onclick = () => {
+      ok.disabled = true;
+      sfxDice();
+      const extra = 1080 + Math.floor(Math.random() * 360);
+      currentSpinDeg += extra;
+      document.getElementById("spinDisc").style.transform = `rotate(${currentSpinDeg}deg)`;
+      setTimeout(() => {
+        ok.disabled = false;
+        const prizes = [
+          { type: "coins", val: 500, label: "🪙 500 कॉइन जीते!" },
+          { type: "gems", val: 30, label: "💎 30 हीरे जीते!" },
+          { type: "coins", val: 1000, label: "🪙 1,000 जैकपॉट जीते!" },
+          { type: "coins", val: 300, label: "🪙 300 कॉइन जीते!" }
+        ];
+        const won = prizes[Math.floor(Math.random() * prizes.length)];
+        if (won.type === "coins") addCoins(won.val);
+        else addGems(won.val);
+        sfxHomeEntryKhushi();
+        document.getElementById("dialogText").textContent = `🥳 बधाई हो! आपने ${won.label}`;
+      }, 2250);
+    };
+
+    document.getElementById("dialogCancelBtn").textContent = "बंद करें";
+    document.getElementById("dialogBox").classList.add("show");
+  }
+
+  function openRulesModal() {
+    resetModalParts();
+    document.getElementById("dialogTitle").textContent = "❓ देसी लूडो राजा नियम";
+    document.getElementById("dialogText").innerHTML =
+      "• 6 आने पर गोटी अपने आप घर से बाहर निकलेगी<br>" +
+      "• दुश्मन की गोटी काटने पर किलर इफेक्ट और गोटी रोते हुए वापस जाएगी<br>" +
+      "• घर (Home) के अंदर जाने पर खुशी का जश्न और बोनस डाइस मिलेगा<br>" +
+      "• फोन कॉल या ऐप मिनिमाइज़ होने पर आवाज़ अपने आप बंद हो जाएगी";
+    document.getElementById("dialogCancelBtn").style.display = "none";
+    const ok = document.getElementById("dialogOkBtn");
+    ok.className = "m-btn m-gold";
+    ok.textContent = "समझ गया";
+    ok.onclick = closeDialog;
+    document.getElementById("dialogBox").classList.add("show");
   }
 
   function openPlayerCountSelector(modeKey, modeLabel) {
@@ -2138,13 +2311,6 @@
     if (document.getElementById("gameScreen").style.display === "flex") {
       refreshBoardBanner();
     }
-  }
-
-  function resetModalParts() {
-    document.getElementById("playerCountGrid").style.display = "none";
-    document.getElementById("dialogList").style.display = "none";
-    document.getElementById("dialogOkBtn").style.display = "inline-block";
-    document.getElementById("dialogCancelBtn").style.display = "inline-block";
   }
 
   function openLeaderboard() {
@@ -2204,7 +2370,7 @@
       list.appendChild(li);
     });
 
-    document.getElementById("dialogTitle").textContent = "🪙 भारत कॉइन टेबल";
+    document.getElementById("dialogTitle").textContent = "🪙 भारत टूर्नामेंट और कॉइन टेबल";
     document.getElementById("dialogText").textContent = "टेबल चुनें और 1–4 खिलाड़ी सेट करें:";
     document.getElementById("dialogOkBtn").style.display = "none";
     document.getElementById("dialogCancelBtn").textContent = "बंद करें";
@@ -2412,7 +2578,7 @@
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
     setReaction("🎲", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस उछालें`);
-    triggerFx("⚡ NEO LUDO");
+    triggerFx("👑 ROYAL LUDO");
     startBgMusic();
     renderSeatDicePods();
     drawBoard();
@@ -2719,7 +2885,6 @@
     const [r, c] = xy;
     const rawLeft = ((c + 0.5) / 15) * 100;
     const rawTop = ((r + 0.5) / 15) * 100;
-    /* Clamped safely inside every edge so goti head stays 100% inside board */
     return {
       left: Math.min(96.4, Math.max(3.6, rawLeft)),
       top: Math.min(95.8, Math.max(4.8, rawTop))
