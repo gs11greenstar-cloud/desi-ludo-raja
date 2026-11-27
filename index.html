@@ -8,16 +8,16 @@
 <meta name="theme-color" content="#0f3c91" />
 <style>
   :root {
-    --bg-1: #1f74f2;
-    --bg-2: #11429c;
-    --bg-3: #081d4a;
-    --gold-1: #fff099;
-    --gold-2: #ffb300;
+    --bg-1: #2484ff;
+    --bg-2: #1147ab;
+    --bg-3: #071b47;
+    --gold-1: #fff3a8;
+    --gold-2: #ffae00;
     --red: #e53935;
     --green: #2e7d32;
     --yellow: #fdd835;
     --blue: #1e88e5;
-    --panel: rgba(7, 24, 64, 0.86);
+    --panel: rgba(6, 20, 56, 0.88);
   }
 
   * {
@@ -42,6 +42,7 @@
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
   /* Glossy Shine Sweep Effect */
@@ -53,66 +54,74 @@
   .shine-box::after {
     content: "";
     position: absolute;
-    top: -40%;
-    left: -120%;
-    width: 55%;
-    height: 180%;
+    top: -45%;
+    left: -130%;
+    width: 58%;
+    height: 190%;
     background: linear-gradient(
       115deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.42) 50%,
-      transparent 80%
+      transparent 18%,
+      rgba(255, 255, 255, 0.48) 50%,
+      transparent 82%
     );
     transform: skewX(-18deg);
-    animation: shineSweep 3.4s infinite ease-in-out;
+    animation: shineSweep 3.2s infinite ease-in-out;
     pointer-events: none;
   }
 
   @keyframes shineSweep {
-    0%   { left: -120%; }
-    45%  { left: 150%; }
-    100% { left: 150%; }
+    0%   { left: -130%; }
+    42%  { left: 155%; }
+    100% { left: 155%; }
   }
 
-  /* ================= START SCREEN ================= */
+  /* ================= START SCREEN (ROYAL ARCADE LOBBY) ================= */
   #startScreen {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 12px;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.025) 0px,
+        rgba(255, 255, 255, 0.025) 14px,
+        rgba(0, 0, 0, 0.045) 14px,
+        rgba(0, 0, 0, 0.045) 28px
+      ),
+      radial-gradient(circle at 50% 16%, #2b8cff 0%, #1147ab 58%, #071940 100%);
   }
 
   .top-hud {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    padding: 9px 10px;
-    background: var(--panel);
-    border-bottom: 1.5px solid rgba(255, 240, 153, 0.38);
+    gap: 5px;
+    padding: 7px 8px;
+    background: linear-gradient(180deg, rgba(14, 43, 107, 0.96), rgba(6, 18, 48, 0.96));
+    border-bottom: 1.5px solid rgba(255, 243, 168, 0.42);
   }
 
   .user-chip {
     display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 3px 9px 3px 3px;
-    border-radius: 999px;
+    gap: 6px;
+    padding: 2px 8px 2px 2px;
+    border-radius: 12px;
     background: rgba(255, 255, 255, 0.08);
     border: 1.5px solid var(--gold-1);
     cursor: pointer;
   }
 
   .avatar-circle {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
     border: 2px solid var(--gold-2);
     background: #173a7a;
     display: grid;
     place-items: center;
-    font-size: 17px;
+    font-size: 16px;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -126,64 +135,63 @@
   .user-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.15;
+    line-height: 1.1;
   }
 
   .user-name {
-    font-size: 12px;
-    font-weight: 800;
-    max-width: 72px;
+    font-size: 11px;
+    font-weight: 900;
+    max-width: 62px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .user-edit {
-    font-size: 10px;
+    font-size: 9px;
     color: var(--gold-1);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .hud-right {
     display: flex;
     align-items: center;
-    gap: 5px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    gap: 4px;
+    flex-wrap: nowrap;
   }
 
-  .coins-box {
+  .curr-pill {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 4px 7px;
+    gap: 3px;
+    padding: 3px 6px;
     border-radius: 999px;
-    background: #061436;
+    background: #05112c;
     border: 1.5px solid var(--gold-2);
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 10.5px;
+    font-weight: 900;
     color: var(--gold-1);
   }
 
-  .add-coin-btn {
-    width: 17px;
-    height: 17px;
+  .plus-mini {
+    width: 15px;
+    height: 15px;
     border: none;
-    border-radius: 50%;
-    background: linear-gradient(180deg, #5ef03b, #238c00);
+    border-radius: 4px;
+    background: linear-gradient(180deg, #64f43c, #1f8b00);
     color: #fff;
     font-weight: 900;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
     line-height: 1;
   }
 
-  .hud-btn {
-    height: 32px;
-    padding: 0 8px;
-    border-radius: 9px;
-    border: 1.5px solid rgba(255, 240, 153, 0.5);
-    background: linear-gradient(180deg, #3282f6, #14439c);
+  .hud-icon-btn {
+    height: 29px;
+    padding: 0 7px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255, 243, 168, 0.55);
+    background: linear-gradient(180deg, #3b8bff, #13449e);
     color: #fff;
     font-size: 11px;
     font-weight: 800;
@@ -191,51 +199,185 @@
   }
 
   .lang-select {
-    height: 32px;
-    max-width: 112px;
-    border-radius: 9px;
+    height: 29px;
+    max-width: 92px;
+    border-radius: 8px;
     border: 1.5px solid var(--gold-1);
-    background: #092154;
+    background: #081e4d;
     color: var(--gold-1);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
-    padding: 0 5px;
+    padding: 0 4px;
     cursor: pointer;
   }
 
-  .hero-banner {
+  /* Hero Title & 3D Emblem Showcase */
+  .hero-showcase {
+    position: relative;
     text-align: center;
-    padding: 10px 14px 2px;
+    padding: 6px 10px 4px;
   }
 
-  .hero-crown {
-    font-size: 28px;
-    line-height: 1;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
+  .side-badges {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
   }
 
-  .hero-title {
-    margin: 3px 0 0;
-    font-size: 28px;
+  .pack-badge {
+    background: linear-gradient(180deg, #ffd54f, #e65100);
+    border: 1.5px solid #fff59d;
+    border-radius: 10px;
+    padding: 4px 7px;
+    font-size: 10px;
     font-weight: 900;
-    background: linear-gradient(180deg, #fff8c4 0%, #ffd026 55%, #ff8800 100%);
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  .right-badges {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .free-perk-btn {
+    background: linear-gradient(180deg, #ff7043, #bf360c);
+    border: 1.5px solid #ffe082;
+    border-radius: 10px;
+    padding: 4px 7px;
+    font-size: 9.5px;
+    font-weight: 900;
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  .crown-emblem {
+    font-size: 24px;
+    line-height: 1;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+  }
+
+  .hero-logo-txt {
+    margin: 2px 0 0;
+    font-size: 26px;
+    font-weight: 950;
+    letter-spacing: 0.4px;
+    background: linear-gradient(180deg, #fffbe0 0%, #ffd52e 52%, #ff7b00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 0 #662900);
+    filter: drop-shadow(0 3px 0 #592100);
   }
 
-  .hero-sub {
-    margin: 2px 0 0;
-    font-size: 11px;
-    color: #d6e8ff;
+  .hero-tagline {
+    margin: 2px 0 6px;
+    font-size: 10.5px;
+    color: #d9ecff;
     font-weight: 700;
   }
 
-  .lobby-cards {
-    padding: 8px 12px;
+  /* Center 3D Pawn + Dice + Mini Board Graphic */
+  .hero-3d-stage {
+    margin: 0 auto;
+    width: 240px;
+    height: 82px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mini-tilted-board {
+    width: 118px;
+    height: 62px;
+    background: #fff;
+    border: 2px solid #ffd54f;
+    border-radius: 8px;
+    transform: perspective(260px) rotateX(28deg);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .mt-r { background: #e53935; }
+  .mt-g { background: #2e7d32; }
+  .mt-b { background: #1e88e5; }
+  .mt-y { background: #fdd835; }
+
+  .hero-pawn {
+    position: absolute;
+    width: 28px;
+    height: 36px;
+    bottom: 6px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+  }
+
+  .hp-head {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #222;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  .hp-cone {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 18px solid currentColor;
+    margin-top: -3px;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.45));
+  }
+
+  .hp-blue { left: 16px; color: #1e88e5; }
+  .hp-blue .hp-head { background: radial-gradient(circle at 35% 30%, #90caf9, #1565c0); }
+
+  .hp-red { left: 48px; bottom: 20px; color: #e53935; transform: scale(0.82); }
+  .hp-red .hp-head { background: radial-gradient(circle at 35% 30%, #ff8a80, #c62828); }
+
+  .hp-yellow { right: 16px; color: #fbc02d; }
+  .hp-yellow .hp-head { background: radial-gradient(circle at 35% 30%, #fff59d, #f57f17); }
+
+  .hero-3d-dice {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #ffffff, #dce6f7);
+    border: 2px solid #ffd54f;
+    color: #0b2254;
+    font-size: 18px;
+    font-weight: 950;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Main Mode Grid */
+  .modes-wrap {
+    padding: 4px 10px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
   }
 
   .grid-3 {
@@ -250,168 +392,192 @@
     gap: 8px;
   }
 
-  .mode-tile {
-    position: relative;
-    border-radius: 15px;
+  .arcade-card {
+    border-radius: 14px;
     border: 2px solid var(--gold-1);
-    padding: 11px 6px;
+    padding: 9px 5px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 5px 0 #071b47, 0 8px 16px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 4px 0 #071b47, 0 8px 14px rgba(0, 0, 0, 0.35);
     transition: transform 0.08s ease;
   }
 
-  .mode-tile:active {
+  .arcade-card:active {
     transform: translateY(3px);
-    box-shadow: 0 2px 0 #071b47;
+    box-shadow: 0 1px 0 #071b47;
   }
 
-  .tile-gold {
-    background: linear-gradient(180deg, #ffd147, #e06d00);
+  .card-gold {
+    background: linear-gradient(180deg, #ffd447, #e06d00);
   }
 
-  .tile-blue {
-    background: linear-gradient(180deg, #43a4ff, #1452bd);
+  .card-blue {
+    background: linear-gradient(180deg, #42a5ff, #134eb8);
   }
 
-  .tile-emerald {
-    background: linear-gradient(180deg, #26c6da, #00695c);
-  }
-
-  .hot-tag {
-    position: absolute;
-    top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #d81b60;
-    color: #fff;
-    font-size: 8.5px;
-    font-weight: 900;
-    padding: 1px 6px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-
-  .tile-ico {
-    font-size: 24px;
-    margin-top: 5px;
-    line-height: 1.1;
-  }
-
-  .tile-name {
-    margin-top: 5px;
-    font-size: 11.5px;
-    font-weight: 900;
+  .card-title {
+    font-size: 12px;
+    font-weight: 950;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+    margin-top: 3px;
   }
 
-  .tile-hint {
-    margin-top: 2px;
+  .card-sub {
     font-size: 9.5px;
-    color: #f4f9ff;
-    font-weight: 600;
+    font-weight: 800;
+    color: #092600;
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 999px;
+    display: inline-block;
+    padding: 1px 7px;
+    margin-top: 3px;
   }
 
-  .invite-strip {
-    margin: 0 12px 8px;
-    padding: 8px 10px;
-    border-radius: 13px;
-    background: var(--panel);
-    border: 1.5px solid rgba(255, 240, 153, 0.45);
+  .card-blue .card-sub {
+    color: #fff;
+    background: rgba(5, 18, 48, 0.42);
+  }
+
+  /* Tournament & Season Claim Banner */
+  .tournament-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6px;
+    padding: 0 10px;
   }
 
-  .inv-title {
-    font-size: 11px;
-    font-weight: 800;
+  .tourney-pill {
+    flex: 1;
+    border-radius: 12px;
+    border: 1.5px solid var(--gold-1);
+    background: linear-gradient(180deg, #2d7cf0, #0f3b8c);
+    padding: 6px 8px;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 950;
     color: var(--gold-1);
+    cursor: pointer;
+    box-shadow: 0 3px 0 #06173b;
   }
 
-  .inv-btns {
+  .season-claim-btn {
+    border-radius: 12px;
+    border: 2px solid #fff59d;
+    background: linear-gradient(180deg, #ffe066, #d96b00);
+    padding: 6px 12px;
+    font-size: 11.5px;
+    font-weight: 950;
+    color: #241000;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #662900;
+  }
+
+  /* Invite + 3s Voice Bar */
+  .utility-bar {
+    margin: 4px 10px;
+    padding: 7px 9px;
+    border-radius: 12px;
+    background: var(--panel);
+    border: 1.5px solid rgba(255, 240, 153, 0.42);
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 6px;
+    flex-wrap: wrap;
   }
 
   .wa-btn {
     border: 1.5px solid #b9f6ca;
-    border-radius: 9px;
-    padding: 5px 10px;
+    border-radius: 8px;
+    padding: 4px 9px;
     background: linear-gradient(180deg, #25d366, #128c7e);
     color: #fff;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
     cursor: pointer;
   }
 
-  .other-inv-btn {
+  .other-btn {
     border: 1.5px solid var(--gold-1);
-    border-radius: 9px;
-    padding: 5px 10px;
+    border-radius: 8px;
+    padding: 4px 9px;
     background: linear-gradient(180deg, #3b82f6, #1d4ed8);
     color: #fff;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
     cursor: pointer;
-  }
-
-  .voice-box {
-    margin: 0 12px;
-    padding: 9px 11px;
-    border-radius: 13px;
-    background: var(--panel);
-    border: 1.5px solid rgba(255, 215, 79, 0.45);
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-wrap: wrap;
   }
 
   .rec-btn {
     border: 1.5px solid var(--gold-1);
     border-radius: 999px;
-    padding: 6px 12px;
+    padding: 4px 10px;
     background: linear-gradient(180deg, #ff5252, #b71c1c);
     color: #fff;
-    font-size: 11.5px;
+    font-size: 10.5px;
     font-weight: 800;
     cursor: pointer;
   }
 
   .rec-btn.active-rec {
-    animation: pulseRec 0.7s infinite alternate;
+    animation: pulseRec 0.65s infinite alternate;
   }
 
   @keyframes pulseRec {
     from { transform: scale(1); }
-    to { transform: scale(1.06); }
+    to   { transform: scale(1.06); }
   }
 
   .play-voice-btn {
     border: none;
     border-radius: 999px;
-    padding: 6px 11px;
+    padding: 4px 9px;
     background: rgba(255, 255, 255, 0.18);
     color: #fff;
-    font-size: 11.5px;
+    font-size: 10.5px;
     font-weight: 800;
     cursor: pointer;
   }
 
   .play-voice-btn:disabled {
     opacity: 0.45;
-    cursor: not-allowed;
   }
 
-  .voice-status {
-    flex: 1;
-    min-width: 100px;
-    text-align: right;
-    font-size: 11px;
-    font-weight: 700;
+  .status-mini {
+    font-size: 10px;
+    font-weight: 800;
     color: var(--gold-1);
+  }
+
+  /* Bottom Navigation Bar (HOME / EVENT / ADDA / INVENTORY / SOCIAL) */
+  .bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: linear-gradient(180deg, #1344a6, #071a42);
+    border-top: 1.5px solid rgba(255, 243, 168, 0.45);
+    padding: 4px 2px 5px;
+  }
+
+  .nav-tab {
+    border: none;
+    background: transparent;
+    color: #b7d4ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 9.5px;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 3px 2px;
+    border-radius: 9px;
+  }
+
+  .nav-tab.tab-active {
+    background: linear-gradient(180deg, #4fa2ff, #1956c4);
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   /* ================= GAME SCREEN ================= */
@@ -442,7 +608,6 @@
     font-size: 12.5px;
     font-weight: 900;
     color: var(--gold-1);
-    white-space: nowrap;
   }
 
   .header-actions {
@@ -468,7 +633,7 @@
 
   .seat-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
     gap: 6px;
   }
 
@@ -489,10 +654,6 @@
     opacity: 1;
     border-color: var(--gold-1);
     box-shadow: 0 0 13px rgba(255, 240, 153, 0.52);
-  }
-
-  .pod-meta {
-    min-width: 0;
   }
 
   .pod-name {
@@ -656,7 +817,6 @@
     pointer-events: none;
   }
 
-  /* Pro 3D Pin Token with Shine & Shadow */
   .pro-pin {
     position: absolute;
     width: 6.2%;
@@ -695,7 +855,7 @@
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
     border: 1.8px solid #1c1c1c;
-    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.45), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.8);
+    box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.45), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -711,7 +871,7 @@
     width: 45%;
     height: 25%;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.75);
     transform: rotate(25deg);
     pointer-events: none;
   }
@@ -774,11 +934,11 @@
     color: var(--gold-1);
   }
 
-  /* MODAL */
+  /* MODAL & 1-2-3-4 PLAYER PICKER */
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.74);
+    background: rgba(0, 0, 0, 0.76);
     display: none;
     align-items: center;
     justify-content: center;
@@ -793,12 +953,43 @@
   .modal-card {
     width: 100%;
     max-width: 355px;
-    background: linear-gradient(180deg, #1b4ea8, #0b2254);
+    background: linear-gradient(180deg, #1d54b8, #091f4d);
     border: 2px solid var(--gold-1);
     border-radius: 16px;
     padding: 15px;
     text-align: center;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+  }
+
+  .count-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .cnt-choice-btn {
+    border: 2px solid var(--gold-1);
+    border-radius: 12px;
+    padding: 10px 4px;
+    background: linear-gradient(180deg, #ffd447, #e06d00);
+    color: #fff;
+    font-weight: 950;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #071b47;
+  }
+
+  .cnt-choice-num {
+    display: block;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .cnt-choice-sub {
+    display: block;
+    font-size: 9px;
+    margin-top: 2px;
+    color: #fff8cc;
   }
 
   .lb-list {
@@ -808,7 +999,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    max-height: 240px;
+    max-height: 230px;
     overflow-y: auto;
     text-align: left;
   }
@@ -882,12 +1073,19 @@
       </div>
 
       <div class="hud-right">
-        <div class="coins-box">
+        <div class="curr-pill">
+          <span>💎</span>
+          <span id="gemsText">150</span>
+          <button class="plus-mini" onclick="event.stopPropagation(); addGems(25);">+</button>
+        </div>
+
+        <div class="curr-pill">
           <span>🪙</span>
           <span id="coinsText">2,500</span>
-          <button class="add-coin-btn" onclick="event.stopPropagation(); addCoins(250);">+</button>
+          <button class="plus-mini" onclick="event.stopPropagation(); addCoins(250);">+</button>
         </div>
-        <button class="hud-btn" onclick="openLeaderboard()">🏆</button>
+
+        <button class="hud-icon-btn" onclick="openLeaderboard()">🏆</button>
         <select id="langSelect" class="lang-select" onchange="onLangChange(this.value)">
           <option value="hi">हिंदी (MP)</option>
           <option value="en">English (IN)</option>
@@ -899,71 +1097,119 @@
           <option value="pa">ਪੰਜਾਬੀ (PB)</option>
           <option value="kn">ಕನ್ನಡ (KA)</option>
         </select>
-        <button id="startSoundBtn" class="hud-btn" onclick="switchSound()">🔊</button>
+        <button id="startSoundBtn" class="hud-icon-btn" onclick="switchSound()">🔊</button>
       </div>
     </header>
 
-    <div class="hero-banner">
-      <div class="hero-crown">👑</div>
-      <h1 id="brandTitle" class="hero-title">देसी लूडो राजा</h1>
-      <p id="brandSub" class="hero-sub">6 पर खुद बाहर • सिंगल गोटी खुद चले • शाइन व FX</p>
+    <!-- Royal Crown + 3D Pawns Showcase -->
+    <div class="hero-showcase">
+      <div class="side-badges">
+        <div class="pack-badge shine-box" onclick="addCoins(500)">🪙 +500</div>
+        <div class="pack-badge shine-box" onclick="openLeaderboard()">👑 LIVE</div>
+      </div>
+
+      <div class="right-badges">
+        <div class="free-perk-btn shine-box" onclick="addGems(50)">💎 FREE</div>
+        <div class="free-perk-btn shine-box" onclick="openCoinTableDialog()">🎯 TABLE</div>
+      </div>
+
+      <div class="crown-emblem">👑</div>
+      <h1 id="brandTitle" class="hero-logo-txt">देसी लूडो राजा</h1>
+      <div id="brandSub" class="hero-tagline">1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • सिंगल गोटी खुद चले</div>
+
+      <div class="hero-3d-stage">
+        <div class="hero-pawn hp-blue">
+          <span class="hp-head"></span>
+          <span class="hp-cone"></span>
+        </div>
+        <div class="hero-pawn hp-red">
+          <span class="hp-head"></span>
+          <span class="hp-cone"></span>
+        </div>
+
+        <div class="mini-tilted-board">
+          <div class="mt-r"></div>
+          <div class="mt-g"></div>
+          <div class="mt-b"></div>
+          <div class="mt-y"></div>
+        </div>
+
+        <div class="hero-3d-dice shine-box">🎲</div>
+
+        <div class="hero-pawn hp-yellow">
+          <span class="hp-head"></span>
+          <span class="hp-cone"></span>
+        </div>
+      </div>
     </div>
 
-    <main class="lobby-cards">
+    <!-- Main Mode Tiles (Selecting any mode opens 1-2-3-4 player selector first) -->
+    <main class="modes-wrap">
       <div class="grid-3">
-        <div class="mode-tile tile-gold shine-box" onclick="launchGame('pass', 2)">
-          <div class="tile-ico">👥</div>
-          <div id="lbl2P" class="tile-name">2 PLAYERS</div>
-          <div class="tile-hint">2 सीट • पास प्ले</div>
+        <div class="arcade-card card-gold shine-box" onclick="openPlayerCountSelector('online', 'ONLINE')">
+          <div style="font-size:20px;">🌐</div>
+          <div id="mOnline" class="card-title">ONLINE</div>
+          <div class="card-sub">1–4 Players</div>
         </div>
 
-        <div class="mode-tile tile-gold shine-box" onclick="launchGame('pass', 3)">
-          <span class="hot-tag">3 SEAT</span>
-          <div class="tile-ico">🎯</div>
-          <div id="lbl3P" class="tile-name">3 PLAYERS</div>
-          <div class="tile-hint">3 सीट • पास प्ले</div>
+        <div class="arcade-card card-gold shine-box" onclick="openPlayerCountSelector('team', 'TEAM UP')">
+          <div style="font-size:20px;">⚔️</div>
+          <div id="mTeam" class="card-title">TEAM UP</div>
+          <div class="card-sub">1–4 Players</div>
         </div>
 
-        <div class="mode-tile tile-gold shine-box" onclick="launchGame('pass', 4)">
-          <span class="hot-tag">4 SEAT</span>
-          <div class="tile-ico">🎲</div>
-          <div id="lbl4P" class="tile-name">4 PLAYERS</div>
-          <div class="tile-hint">4 सीट • पास प्ले</div>
+        <div class="arcade-card card-gold shine-box" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
+          <div style="font-size:20px;">🤝</div>
+          <div id="mFriends" class="card-title">FRIENDS</div>
+          <div class="card-sub">1–4 Players</div>
         </div>
       </div>
 
       <div class="grid-2">
-        <div class="mode-tile tile-blue shine-box" onclick="launchGame('bot', 2)">
-          <div class="tile-ico">🤖</div>
-          <div id="lblBot" class="tile-name">VS BOT</div>
-          <div class="tile-hint">You vs Computer</div>
+        <div class="arcade-card card-blue shine-box" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
+          <div style="font-size:20px;">🤖 VS</div>
+          <div id="mBot" class="card-title">COMPUTER</div>
+          <div class="card-sub">1–4 Seat Setup</div>
         </div>
 
-        <div class="mode-tile tile-emerald shine-box" onclick="openCoinTableDialog()">
-          <div class="tile-ico">🪙</div>
-          <div id="lblCoinTable" class="tile-name">COIN TABLE</div>
-          <div class="tile-hint">भारत कॉइन टेबल व रैंक</div>
+        <div class="arcade-card card-blue shine-box" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
+          <div style="font-size:20px;">📱🎲</div>
+          <div id="mPass" class="card-title">PASS N PLAY</div>
+          <div class="card-sub">1–4 Seat Setup</div>
         </div>
       </div>
     </main>
 
-    <!-- WhatsApp & Other Invite Strip -->
-    <div class="invite-strip">
-      <span id="inviteLabel" class="inv-title">📲 दोस्तों को बुलाएं:</span>
-      <div class="inv-btns">
+    <!-- Tournament & Season Claim Strip -->
+    <div class="tournament-row">
+      <div class="tourney-pill shine-box" onclick="openCoinTableDialog()">🏆 TOURNAMENT & COIN TABLE</div>
+      <button class="season-claim-btn shine-box" onclick="addCoins(300)">🎁 CLAIM</button>
+    </div>
+
+    <!-- Invite + 3s Voice Strip -->
+    <div class="utility-bar">
+      <div style="display:flex; gap:5px; align-items:center;">
         <button class="wa-btn shine-box" onclick="inviteWhatsApp()">WhatsApp</button>
-        <button class="other-inv-btn shine-box" onclick="inviteOther()">Other</button>
+        <button class="other-btn shine-box" onclick="inviteOther()">Other</button>
+      </div>
+      <div style="display:flex; gap:5px; align-items:center;">
+        <button id="recBtn" class="rec-btn" onclick="startVoice3s()">🎙️ 3s</button>
+        <button id="playVoiceBtn" class="play-voice-btn" onclick="playVoiceClip()" disabled>▶️</button>
+        <span id="lobbyStatus" class="status-mini">तैयार!</span>
       </div>
     </div>
 
-    <div class="voice-box">
-      <button id="recBtn" class="rec-btn" onclick="startVoice3s()">🎙️ 3s Voice</button>
-      <button id="playVoiceBtn" class="play-voice-btn" onclick="playVoiceClip()" disabled>▶️ सुनें</button>
-      <span id="lobbyStatus" class="voice-status">तैयार! मोड चुनें</span>
-    </div>
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button class="nav-tab tab-active" onclick="setActiveTab(this, 'home')"><span>🏠</span><span>HOME</span></button>
+      <button class="nav-tab" onclick="setActiveTab(this, 'event')"><span>🎉</span><span>EVENT</span></button>
+      <button class="nav-tab" onclick="setActiveTab(this, 'adda')"><span>🎙️</span><span>ADDA</span></button>
+      <button class="nav-tab" onclick="setActiveTab(this, 'inventory')"><span>🎲</span><span>INVENTORY</span></button>
+      <button class="nav-tab" onclick="setActiveTab(this, 'social')"><span>🏆</span><span>SOCIAL</span></button>
+    </nav>
   </section>
 
-  <!-- GAME SCREEN -->
+  <!-- GAME BOARD SCREEN -->
   <section id="gameScreen">
     <header class="game-header">
       <span class="game-logo">👑 देसी लूडो राजा</span>
@@ -1035,8 +1281,9 @@
 
 <div id="dialogBox" class="modal-bg">
   <div class="modal-card">
-    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--gold-1); font-size:16px;">सूचना</h3>
-    <p id="dialogText" style="margin:0; font-size:12.5px; color:#eef6ff;"></p>
+    <h3 id="dialogTitle" style="margin:0 0 6px; color:var(--gold-1); font-size:15px;">सूचना</h3>
+    <p id="dialogText" style="margin:0; font-size:12px; color:#eef6ff;"></p>
+    <div id="playerCountGrid" class="count-picker-grid" style="display:none;"></div>
     <ul id="dialogList" class="lb-list" style="display:none;"></ul>
     <div id="dialogBtns" class="modal-btns">
       <button id="dialogOkBtn" class="m-btn m-gold" onclick="closeDialog()">ठीक है</button>
@@ -1046,9 +1293,10 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_india_pro_v3";
+  const STORAGE_KEY = "dlr_royal_lobby_v4";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
+    gems: 150,
     coins: 2500,
     dp: "",
     lang: "hi",
@@ -1058,99 +1306,90 @@
   const I18N = {
     hi: {
       title: "देसी लूडो राजा",
-      sub: "6 पर खुद बाहर • सिंगल गोटी खुद चले • शाइन व FX",
-      p2: "2 PLAYERS", p3: "3 PLAYERS", p4: "4 PLAYERS",
-      bot: "VS BOT", coinTable: "COIN TABLE",
-      invite: "📲 दोस्तों को बुलाएं:",
-      ready: "तैयार! मोड चुनें",
+      sub: "1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • सिंगल गोटी खुद चले",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "तैयार!",
       exitTitle: "⚠️ बाहर जाने की चेतावनी",
       exitMsg: "क्या आप सच में खेल छोड़ना चाहते हैं? मौजूदा मैच बंद हो जाएगा।",
       stay: "खेलते रहें", exitYes: "हाँ, बाहर जाएं"
     },
     en: {
       title: "DESI LUDO RAJA",
-      sub: "Auto-Out on 6 • Auto-Step on Single Token • Shine FX",
-      p2: "2 PLAYERS", p3: "3 PLAYERS", p4: "4 PLAYERS",
-      bot: "VS BOT", coinTable: "COIN TABLE",
-      invite: "📲 Invite Friends:",
-      ready: "Ready! Pick a mode",
+      sub: "Pick 1–2–3–4 Players First • Auto-Out on 6 • Auto-Step",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "Ready!",
       exitTitle: "⚠️ Exit Warning",
       exitMsg: "Current match progress will stop! Sure you want to exit?",
       stay: "Stay & Play", exitYes: "Yes, Exit"
     },
     mr: {
       title: "देसी लुडो राजा",
-      sub: "६ वर आपोआप बाहेर • एकच सोंगटी स्वतः चालेल • शाइन FX",
-      p2: "२ खेळाडू", p3: "३ खेळाडू", p4: "४ खेळाडू",
-      bot: "VS BOT", coinTable: "कॉइन टेबल",
-      invite: "📲 मित्रांना बोलवा:",
-      ready: "तयार! मोड निवडा",
+      sub: "१–२–३–४ खेळाडू निवडा • ६ वर आपोआप बाहेर • शाइन FX",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "तयार!",
       exitTitle: "⚠️ बाहेर पडण्याचा इशारा",
       exitMsg: "तुम्हाला खरोखर गेम सोडायचा आहे का?",
       stay: "खेळत राहा", exitYes: "हो, बाहेर जा"
     },
     ta: {
       title: "தேசி லுடோ ராஜா",
-      sub: "6 வந்தால் தானாக வெளியே • ஒற்றை காயை தானாக நகரும்",
-      p2: "2 வீரர்கள்", p3: "3 வீரர்கள்", p4: "4 வீரர்கள்",
-      bot: "VS BOT", coinTable: "நாணய அட்டவணை",
-      invite: "📲 நண்பர்களை அழை:",
-      ready: "தயார்! பயன்முறை தேர்வு",
+      sub: "1–2–3–4 வீரர்கள் தேர்வு • 6 வந்தால் தானாக வெளியே",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "தயார்!",
       exitTitle: "⚠️ வெளியேறும் எச்சரிக்கை",
       exitMsg: "விளையாட்டை விட்டு வெளியேற விரும்புகிறீர்களா?",
       stay: "தொடரவும்", exitYes: "ஆம், வெளியேறு"
     },
     te: {
       title: "దేశీ లూడో రాజా",
-      sub: "6 వస్తే ఆటో అవుట్ • సింగిల్ కాయిన్ ఆటో మూవ్ • షైన్ FX",
-      p2: "2 ఆటగాళ్లు", p3: "3 ఆటగాళ్లు", p4: "4 ఆటగాళ్లు",
-      bot: "VS BOT", coinTable: "కాయిన్ టేబుల్",
-      invite: "📲 స్నేహితులను ఆహ్వానించండి:",
-      ready: "సిద్ధం! మోడ్ ఎంచుకోండి",
+      sub: "1–2–3–4 ఆటగాళ్ల ఎంపిక • 6 వస్తే ఆటో అవుట్ • షైన్ FX",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "సిద్ధం!",
       exitTitle: "⚠️ నిష్క్రమణ హెచ్చరిక",
       exitMsg: "మీరు నిజంగా ఆట నుండి నిష్క్రమించాలనుకుంటున్నారా?",
       stay: "ఆడుతూ ఉండండి", exitYes: "అవును, నిష్క్రమించు"
     },
     bn: {
       title: "দেশি লুডো রাজা",
-      sub: "৬ এলে নিজেই বাইরে • একক গুটি নিজেই চলে • শাইন FX",
-      p2: "২ প্লেয়ার", p3: "৩ প্লেয়ার", p4: "৪ প্লেয়ার",
-      bot: "VS BOT", coinTable: "কয়েন টেবিল",
-      invite: "📲 বন্ধুদের আমন্ত্রণ:",
-      ready: "প্রস্তুত! মোড বেছে নিন",
+      sub: "১–২–৩–৪ প্লেয়ার বাছুন • ৬ এলে নিজেই বাইরে • শাইন FX",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "প্রস্তুত!",
       exitTitle: "⚠️ বের হওয়ার সতর্কতা",
       exitMsg: "আপনি কি সত্যিই খেলা ছাড়তে চান?",
       stay: "খেলে যান", exitYes: "হ্যাঁ, বের হন"
     },
     gu: {
       title: "દેશી લુડો રાજા",
-      sub: "૬ પર આપમેળે બહાર • સિંગલ ગોટી આપમેળે ચાલે • શાઈન FX",
-      p2: "૨ ખેલાડી", p3: "૩ ખેલાડી", p4: "૪ ખેલાડી",
-      bot: "VS BOT", coinTable: "કોઈન ટેબલ",
-      invite: "📲 મિત્રોને બોલાવો:",
-      ready: "તૈયાર! મોડ પસંદ કરો",
+      sub: "૧–૨–૩–૪ ખેલાડી પસંદ કરો • ૬ પર આપમેળે બહાર • શાઈન FX",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "તૈયાર!",
       exitTitle: "⚠️ બહાર જવાની ચેતવણી",
       exitMsg: "શું તમે ખરેખર રમત છોડવા માંગો છો?",
       stay: "રમતા રહો", exitYes: "હા, બહાર જાઓ"
     },
     pa: {
       title: "ਦੇਸੀ ਲੂਡੋ ਰਾਜਾ",
-      sub: "੬ ਤੇ ਆਪਣੇ ਆਪ ਬਾਹਰ • ਇਕੱਲੀ ਗੋਟੀ ਆਪੇ ਚੱਲੇ • ਸ਼ਾਈਨ FX",
-      p2: "੨ ਖਿਡਾਰੀ", p3: "੩ ਖਿਡਾਰੀ", p4: "੪ ਖਿਡਾਰੀ",
-      bot: "VS BOT", coinTable: "ਕੋਇਨ ਟੇਬਲ",
-      invite: "📲 ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ:",
-      ready: "ਤਿਆਰ! ਮੋਡ ਚੁਣੋ",
+      sub: "੧–੨–੩–੪ ਖਿਡਾਰੀ ਚੁਣੋ • ੬ ਤੇ ਆਪਣੇ ਆਪ ਬਾਹਰ • ਸ਼ਾਈਨ FX",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "ਤਿਆਰ!",
       exitTitle: "⚠️ ਬਾਹਰ ਜਾਣ ਦੀ ਚੇਤਾਵਨੀ",
       exitMsg: "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਖੇਡ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
       stay: "ਖੇਡਦੇ ਰਹੋ", exitYes: "ਹਾਂ, ਬਾਹਰ ਜਾਓ"
     },
     kn: {
       title: "ದೇಸಿ ಲೂಡೋ ರಾಜ",
-      sub: "6 ಬಂದರೆ ತಾನಾಗಿಯೇ ಹೊರಗೆ • ಒಂದೇ ಕಾಯಿ ತಾನಾಗಿ ಚಲಿಸುತ್ತದೆ",
-      p2: "2 ಆಟಗಾರರು", p3: "3 ಆಟಗಾರರು", p4: "4 ಆಟಗಾರರು",
-      bot: "VS BOT", coinTable: "ಕಾಯಿನ್ ಟೇಬಲ್",
-      invite: "📲 ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ:",
-      ready: "ಸಿದ್ಧ! ಮೋಡ್ ಆಯ್ಕೆಮಾಡಿ",
+      sub: "1–2–3–4 ಆಟಗಾರರ ಆಯ್ಕೆ • 6 ಬಂದರೆ ತಾನಾಗಿಯೇ ಹೊರಗೆ",
+      online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
+      bot: "COMPUTER", pass: "PASS N PLAY",
+      ready: "ಸಿದ್ಧ!",
       exitTitle: "⚠️ ನಿರ್ಗಮನ ಎಚ್ಚರಿಕೆ",
       exitMsg: "ನೀವು ನಿಜವಾಗಿಯೂ ಆಟದಿಂದ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?",
       stay: "ಆಡುತ್ತಿರಿ", exitYes: "ಹೌದು, ನಿರ್ಗಮಿಸಿ"
@@ -1158,15 +1397,15 @@
   };
 
   const INDIA_CITIES_LB = [
-    { rank: 1, name: "विक्रम सिंह", city: "इंदौर, MP", coins: 18500 },
-    { rank: 2, name: "आदित्य शर्मा", city: "जबलपुर, MP", coins: 16200 },
-    { rank: 3, name: "रोहन देशमुख", city: "मुंबई, MH", coins: 14850 },
-    { rank: 4, name: "अमन वर्मा", city: "दिल्ली, DL", coins: 13400 },
-    { rank: 5, name: "कार्तिक राव", city: "बेंगलुरु, KA", coins: 12100 },
-    { rank: 6, name: "सुंदरम अय्यर", city: "चेन्नई, TN", coins: 11050 },
-    { rank: 7, name: "साई रेड्डी", city: "हैदराबाद, TS", coins: 9800 },
-    { rank: 8, name: "सौरभ चटर्जी", city: "कोलकाता, WB", coins: 8650 },
-    { rank: 9, name: "हर्ष पटेल", city: "अहमदाबाद, GJ", coins: 7400 }
+    { name: "विक्रम सिंह", city: "इंदौर, MP", coins: 18500 },
+    { name: "आदित्य शर्मा", city: "जबलपुर, MP", coins: 16200 },
+    { name: "रोहन देशमुख", city: "मुंबई, MH", coins: 14850 },
+    { name: "अमन वर्मा", city: "दिल्ली, DL", coins: 13400 },
+    { name: "कार्तिक राव", city: "बेंगलुरु, KA", coins: 12100 },
+    { name: "सुंदरम अय्यर", city: "चेन्नई, TN", coins: 11050 },
+    { name: "साई रेड्डी", city: "हैदराबाद, TS", coins: 9800 },
+    { name: "सौरभ चटर्जी", city: "कोलकाता, WB", coins: 8650 },
+    { name: "हर्ष पटेल", city: "अहमदाबाद, GJ", coins: 7400 }
   ];
 
   const COIN_TABLES = [
@@ -1213,6 +1452,7 @@
   let match = {
     mode: "bot",
     seats: ["blue", "green"],
+    botColors: new Set(["green"]),
     turn: 0,
     diceValues: { red: "🎲", green: "🎲", yellow: "🎲", blue: "🎲" },
     hasRolled: false,
@@ -1348,9 +1588,10 @@
     }
   }
 
-  /* ================= START SCREEN, LANGUAGES, COIN TABLE & INVITE ================= */
+  /* ================= START SCREEN, 1-2-3-4 SELECTOR & MENUS ================= */
   function syncStartView() {
     const txt = t();
+    document.getElementById("gemsText").textContent = profile.gems.toLocaleString("en-IN");
     document.getElementById("coinsText").textContent = profile.coins.toLocaleString("en-IN");
     document.getElementById("userNameText").textContent = profile.name;
     document.getElementById("langSelect").value = profile.lang;
@@ -1364,13 +1605,54 @@
 
     document.getElementById("brandTitle").textContent = txt.title;
     document.getElementById("brandSub").textContent = txt.sub;
-    document.getElementById("lbl2P").textContent = txt.p2;
-    document.getElementById("lbl3P").textContent = txt.p3;
-    document.getElementById("lbl4P").textContent = txt.p4;
-    document.getElementById("lblBot").textContent = txt.bot;
-    document.getElementById("lblCoinTable").textContent = txt.coinTable;
-    document.getElementById("inviteLabel").textContent = txt.invite;
+    document.getElementById("mOnline").textContent = txt.online;
+    document.getElementById("mTeam").textContent = txt.team;
+    document.getElementById("mFriends").textContent = txt.friends;
+    document.getElementById("mBot").textContent = txt.bot;
+    document.getElementById("mPass").textContent = txt.pass;
     setLobbyNote(txt.ready);
+  }
+
+  function openPlayerCountSelector(modeKey, modeLabel) {
+    resetModalParts();
+    document.getElementById("dialogTitle").textContent = `${modeLabel} — 1–2–3–4 खिलाड़ी चुनें`;
+    document.getElementById("dialogText").textContent = "कितने खिलाड़ियों के साथ खेलना चाहते हैं?";
+
+    const grid = document.getElementById("playerCountGrid");
+    grid.style.display = "grid";
+    grid.innerHTML = "";
+
+    const choices = [
+      { n: 1, tag: "Solo+Bot" },
+      { n: 2, tag: "2 Seats" },
+      { n: 3, tag: "3 Seats" },
+      { n: 4, tag: "4 Seats" }
+    ];
+
+    choices.forEach(ch => {
+      const btn = document.createElement("button");
+      btn.className = "cnt-choice-btn shine-box";
+      btn.innerHTML = `<span class="cnt-choice-num">${ch.n}</span><span class="cnt-choice-sub">${ch.tag}</span>`;
+      btn.onclick = () => {
+        closeDialog();
+        launchGameWithCount(modeKey, ch.n);
+      };
+      grid.appendChild(btn);
+    });
+
+    document.getElementById("dialogOkBtn").style.display = "none";
+    document.getElementById("dialogCancelBtn").style.display = "inline-block";
+    document.getElementById("dialogCancelBtn").textContent = "बंद करें";
+    document.getElementById("dialogBox").classList.add("show");
+  }
+
+  function setActiveTab(tabEl, tabName) {
+    document.querySelectorAll(".nav-tab").forEach(el => el.classList.remove("tab-active"));
+    tabEl.classList.add("tab-active");
+    if (tabName === "event") openCoinTableDialog();
+    else if (tabName === "adda") startVoice3s();
+    else if (tabName === "inventory") openDpDialog();
+    else if (tabName === "social") openLeaderboard();
   }
 
   function onLangChange(langCode) {
@@ -1382,13 +1664,21 @@
     }
   }
 
+  function resetModalParts() {
+    document.getElementById("playerCountGrid").style.display = "none";
+    document.getElementById("dialogList").style.display = "none";
+    document.getElementById("dialogOkBtn").style.display = "inline-block";
+    document.getElementById("dialogCancelBtn").style.display = "inline-block";
+  }
+
   function openLeaderboard() {
+    resetModalParts();
     const list = document.getElementById("dialogList");
     list.style.display = "flex";
     list.innerHTML = "";
 
     const rows = [
-      { rank: "★", name: `${profile.name} (आप)`, city: "भारत", coins: profile.coins },
+      { name: `${profile.name} (आप)`, city: "भारत", coins: profile.coins },
       ...INDIA_CITIES_LB
     ];
 
@@ -1403,7 +1693,7 @@
     });
 
     document.getElementById("dialogTitle").textContent = "🏆 भारत कॉइन लीडरबोर्ड";
-    document.getElementById("dialogText").textContent = "देश के प्रमुख शहरों के टॉप खिलाड़ी:";
+    document.getElementById("dialogText").textContent = "भारत के प्रमुख शहरों की रैंकिंग:";
     document.getElementById("dialogCancelBtn").style.display = "none";
     const ok = document.getElementById("dialogOkBtn");
     ok.className = "m-btn m-gold";
@@ -1413,6 +1703,7 @@
   }
 
   function openCoinTableDialog() {
+    resetModalParts();
     const list = document.getElementById("dialogList");
     list.style.display = "flex";
     list.innerHTML = "";
@@ -1432,22 +1723,21 @@
           persist();
           syncStartView();
         }
-        launchGame("bot", 2);
+        openPlayerCountSelector("bot", tb.title);
       };
       list.appendChild(li);
     });
 
     document.getElementById("dialogTitle").textContent = "🪙 भारत कॉइन टेबल";
-    document.getElementById("dialogText").textContent = "अपनी कॉइन टेबल चुनें और खेल शुरू करें:";
-    document.getElementById("dialogCancelBtn").style.display = "inline-block";
-    document.getElementById("dialogCancelBtn").textContent = "बंद करें";
+    document.getElementById("dialogText").textContent = "टेबल चुनें और 1–4 खिलाड़ी सेट करें:";
     document.getElementById("dialogOkBtn").style.display = "none";
+    document.getElementById("dialogCancelBtn").textContent = "बंद करें";
     document.getElementById("dialogBox").classList.add("show");
   }
 
   function inviteWhatsApp() {
     const msg = encodeURIComponent(
-      `👑 देसी लूडो राजा में आओ! साथ में 2-3-4 खिलाड़ी लूडो खेलते हैं: ${location.href}`
+      `👑 देसी लूडो राजा में आओ! 1–2–3–4 खिलाड़ी लूडो खेलते हैं: ${location.href}`
     );
     window.open(`https://wa.me/?text=${msg}`, "_blank", "noopener");
   }
@@ -1463,15 +1753,13 @@
     if (navigator.clipboard && navigator.clipboard.writeText) {
       await navigator.clipboard.writeText(shareText).catch(() => {});
     }
-    setLobbyNote("इनवाइट लिंक कॉपी हो गया!");
+    setLobbyNote("लिंक कॉपी!");
   }
 
   function openDpDialog() {
-    document.getElementById("dialogList").style.display = "none";
-    document.getElementById("dialogOkBtn").style.display = "inline-block";
+    resetModalParts();
     document.getElementById("dialogTitle").textContent = "कस्टम DP";
     document.getElementById("dialogText").textContent = "अपनी फोटो चुनें (128×128 में सेव होगी):";
-    document.getElementById("dialogCancelBtn").style.display = "inline-block";
     const ok = document.getElementById("dialogOkBtn");
     ok.className = "m-btn m-gold";
     ok.textContent = "फ़ोटो चुनें";
@@ -1498,7 +1786,7 @@
         profile.dp = c.toDataURL("image/jpeg", 0.72);
         persist();
         syncStartView();
-        setLobbyNote("नई DP सेव हो गई!");
+        setLobbyNote("DP सेव!");
       };
       img.src = reader.result;
     };
@@ -1506,8 +1794,7 @@
   }
 
   function closeDialog() {
-    document.getElementById("dialogList").style.display = "none";
-    document.getElementById("dialogOkBtn").style.display = "inline-block";
+    resetModalParts();
     document.getElementById("dialogBox").classList.remove("show");
   }
 
@@ -1516,7 +1803,15 @@
     persist();
     syncStartView();
     playNote(760, 0.1);
-    setLobbyNote(`+${amt} कॉइन्स जुड़े!`);
+    setLobbyNote(`+${amt} 🪙`);
+  }
+
+  function addGems(amt) {
+    profile.gems += amt;
+    persist();
+    syncStartView();
+    playNote(880, 0.1);
+    setLobbyNote(`+${amt} 💎`);
   }
 
   function switchSound() {
@@ -1533,7 +1828,7 @@
 
   async function startVoice3s() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      setLobbyNote("माइक सपोर्ट नहीं है");
+      setLobbyNote("माइक नहीं");
       return;
     }
     try {
@@ -1550,38 +1845,36 @@
         clipUrl = URL.createObjectURL(blob);
         document.getElementById("playVoiceBtn").disabled = false;
         document.getElementById("recBtn").classList.remove("active-rec");
-        document.getElementById("recBtn").textContent = "🎙️ 3s Voice";
-        setLobbyNote("3s वॉयस तैयार! ▶️ दबाएं");
+        document.getElementById("recBtn").textContent = "🎙️ 3s";
+        setLobbyNote("3s तैयार!");
       };
 
       recorder.start();
       document.getElementById("recBtn").classList.add("active-rec");
       document.getElementById("recBtn").textContent = "⏺️ 3s...";
-      setLobbyNote("बोलें... 3s में बंद होगा");
+      setLobbyNote("बोलें...");
 
       clearTimeout(stopTimer);
       stopTimer = setTimeout(() => {
         if (recorder && recorder.state === "recording") recorder.stop();
       }, 3000);
     } catch (_) {
-      setLobbyNote("माइक अनुमति नहीं मिली");
+      setLobbyNote("अनुमति दें");
     }
   }
 
   function playVoiceClip() {
     if (!clipUrl) return;
     new Audio(clipUrl).play();
-    setLobbyNote("वॉयस चल रही है...");
+    setLobbyNote("वॉयस...");
   }
 
   /* ================= EXIT WARNING ================= */
   function requestExitWarning() {
+    resetModalParts();
     const txt = t();
-    document.getElementById("dialogList").style.display = "none";
-    document.getElementById("dialogOkBtn").style.display = "inline-block";
     document.getElementById("dialogTitle").textContent = txt.exitTitle;
     document.getElementById("dialogText").textContent = txt.exitMsg;
-    document.getElementById("dialogCancelBtn").style.display = "inline-block";
     document.getElementById("dialogCancelBtn").textContent = txt.stay;
 
     const ok = document.getElementById("dialogOkBtn");
@@ -1604,32 +1897,29 @@
     }
   });
 
-  /* ================= GAME ENGINE (AUTO-OUT ON 6 + AUTO-STEP ON SINGLE TOKEN) ================= */
-  function seatTitle(color) {
-    if (color === "blue") return profile.name.slice(0, 8) || "You";
-    if (color === "green") return match.mode === "bot" ? "Computer" : "P2";
-    if (color === "red") return match.mode === "bot" ? "Bot-R" : "P3";
-    return match.mode === "bot" ? "Bot-Y" : "P4";
-  }
-
-  function seatDot(color) {
-    return { red: "🔴", green: "🟢", yellow: "🟡", blue: "🔵" }[color];
-  }
-
-  function isBotColor(color) {
-    return match.mode === "bot" && color !== "blue";
-  }
-
-  function launchGame(mode, count) {
+  /* ================= GAME ENGINE (1-2-3-4 SEATS + AUTO-OUT 6 + AUTO-STEP SINGLE) ================= */
+  function launchGameWithCount(modeKey, count) {
     Object.values(match.tokenReactions).forEach(r => r.timer && clearTimeout(r.timer));
-    const seatMap = {
-      2: ["blue", "green"],
-      3: ["blue", "red", "green"],
-      4: ["blue", "red", "green", "yellow"]
-    };
+
+    // 1-player solo mode plays against a bot opponent on a 2-seat board so a full match runs smoothly
+    const seatColors =
+      count === 1 ? ["blue", "green"] :
+      count === 2 ? ["blue", "green"] :
+      count === 3 ? ["blue", "red", "green"] :
+      ["blue", "red", "green", "yellow"];
+
+    const botSet = new Set();
+    if (count === 1 || modeKey === "bot") {
+      seatColors.forEach(c => {
+        if (c !== "blue") botSet.add(c);
+      });
+    }
+
     match = {
-      mode,
-      seats: seatMap[count] || ["blue", "green"],
+      mode: modeKey,
+      countSelected: count,
+      seats: seatColors,
+      botColors: botSet,
       turn: 0,
       diceValues: { red: "🎲", green: "🎲", yellow: "🎲", blue: "🎲" },
       hasRolled: false,
@@ -1644,11 +1934,11 @@
       }
     };
 
-    document.getElementById("cornerTopLabel").textContent = mode === "bot" ? "Computer" : "P2";
+    document.getElementById("cornerTopLabel").textContent = isBotColor("green") ? "Computer" : "P2";
     document.getElementById("cornerBotLabel").textContent = "You";
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
-    setReaction("😊", "खेल शुरू! अपनी सीट के पास वाला डाइस दबाएं");
+    setReaction("😊", `${count}-प्लेयर मोड शुरू! अपनी सीट का डाइस दबाएं`);
     triggerFx("✨ SHINE FX");
     startBgMusic();
     renderSeatDicePods();
@@ -1658,6 +1948,26 @@
     if (isBotColor(activeColor())) {
       setTimeout(() => rollPlayerDice(activeColor(), true), 650);
     }
+  }
+
+  function seatTitle(color) {
+    if (color === "blue") return profile.name.slice(0, 8) || "You";
+    if (isBotColor(color)) {
+      if (color === "green") return "Computer";
+      if (color === "red") return "Bot-R";
+      return "Bot-Y";
+    }
+    if (color === "green") return "P2";
+    if (color === "red") return "P3";
+    return "P4";
+  }
+
+  function seatDot(color) {
+    return { red: "🔴", green: "🟢", yellow: "🟡", blue: "🔵" }[color];
+  }
+
+  function isBotColor(color) {
+    return match.botColors.has(color);
   }
 
   function activeColor() {
@@ -1678,7 +1988,6 @@
     pod.className = `seat-pod shine-box ${isTurn ? "pod-active" : ""}`;
 
     const meta = document.createElement("div");
-    meta.className = "pod-meta";
     meta.innerHTML = `
       <div class="pod-name">${seatDot(color)} ${seatTitle(color)}</div>
       <div class="pod-home">🏠 ${homeCnt}/4</div>
@@ -1737,9 +2046,8 @@
         refreshBoardBanner(val, true);
         setTimeout(advanceTurn, 700);
       } else if (movable.length === 1 || isBotColor(color)) {
-        // Single movable token (or 6 bringing out/moving single piece) moves automatically step-by-step
         refreshBoardBanner(val, false, true);
-        setTimeout(() => executeStepMove(color, movable[0]), 320);
+        setTimeout(() => executeStepMove(color, movable[0]), 300);
       } else {
         refreshBoardBanner(val, false, false);
       }
