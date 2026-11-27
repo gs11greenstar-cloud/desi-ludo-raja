@@ -1063,14 +1063,22 @@
     position: relative;
   }
 
+  /* Wrapper holds board + tokens layer without clipping top heads */
   .board-canvas-wrap {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
     border: 1.5px solid #1e0866;
     border-radius: 7px;
-    overflow: hidden;
     background: #fff;
+  }
+
+  /* Inner clipped layer for grid & SVG lines */
+  .board-inner-clip {
+    position: absolute;
+    inset: 0;
+    border-radius: 5.5px;
+    overflow: hidden;
   }
 
   .ludo-15 {
@@ -1130,29 +1138,29 @@
   .tokens-layer {
     position: absolute;
     inset: 0;
-    z-index: 5;
+    z-index: 6;
     pointer-events: none;
   }
 
-  /* COMPACT BALANCED GOTI (HEAD NEVER GOES OUTSIDE BOARD) + HALCHAL IN ALL GOTIS */
+  /* SLEEK COMPACT GOTI (4.8% x 5.6%, centered anchor -> head ALWAYS stays inside board!) */
   .gem-goti {
     position: absolute;
-    width: 5.1%;
-    height: 6.1%;
-    transform: translate(-50%, -52%);
+    width: 4.8%;
+    height: 5.6%;
+    transform: translate(-50%, -45%);
     pointer-events: auto;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 2.5px 3.5px rgba(0, 0, 0, 0.58));
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
     transition: left 0.11s linear, top 0.11s linear;
     animation: gotiAliveBreathe 1.4s ease-in-out infinite alternate;
   }
 
   @keyframes gotiAliveBreathe {
-    0%   { transform: translate(-50%, -52%) rotate(-3deg) scale(0.98); }
-    100% { transform: translate(-50%, -54%) rotate(3deg) scale(1.03); }
+    0%   { transform: translate(-50%, -45%) rotate(-3deg) scale(0.98); }
+    100% { transform: translate(-50%, -47%) rotate(3deg) scale(1.02); }
   }
 
   /* Lively Halchal in ALL gotis when a step turn is active */
@@ -1161,9 +1169,9 @@
   }
 
   @keyframes gotiAllHalchal {
-    0%   { transform: translate(-50%, -50%) rotate(-8deg) scale(0.96); }
-    50%  { transform: translate(-50%, -56%) rotate(0deg) scale(1.06); }
-    100% { transform: translate(-50%, -50%) rotate(8deg) scale(0.96); }
+    0%   { transform: translate(-50%, -43%) rotate(-8deg) scale(0.96); }
+    50%  { transform: translate(-50%, -48%) rotate(0deg) scale(1.05); }
+    100% { transform: translate(-50%, -43%) rotate(8deg) scale(0.96); }
   }
 
   /* Extra energetic halchal on movable gotis */
@@ -1174,12 +1182,12 @@
   }
 
   @keyframes gotiPickDance {
-    0%   { transform: translate(-50%, -48%) rotate(-11deg) scale(1.0); }
-    100% { transform: translate(-50%, -58%) rotate(11deg) scale(1.13); }
+    0%   { transform: translate(-50%, -42%) rotate(-10deg) scale(1.0); }
+    100% { transform: translate(-50%, -50%) rotate(10deg) scale(1.1); }
   }
 
   .gem-goti.is-moving {
-    transform: translate(-50%, -56%) scale(1.14) !important;
+    transform: translate(-50%, -49%) scale(1.12) !important;
     animation: none !important;
     z-index: 9;
     filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.72));
@@ -1567,44 +1575,47 @@
       <span id="fxBadge" class="fx-pill">⚡ NEO LUDO</span>
     </div>
 
-    <div class="board-stage shine-box">
+    <div class="board-stage">
       <div class="board-canvas-wrap">
-        <div id="ludoGrid15" class="ludo-15"></div>
+        <div class="board-inner-clip">
+          <div id="ludoGrid15" class="ludo-15"></div>
 
-        <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
-          <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
-          <circle cx="220" cy="220" r="52" fill="#ff1744"/>
-          <circle cx="380" cy="220" r="52" fill="#ff1744"/>
-          <circle cx="220" cy="380" r="52" fill="#ff1744"/>
-          <circle cx="380" cy="380" r="52" fill="#ff1744"/>
+          <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
+            <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
+            <circle cx="220" cy="220" r="52" fill="#ff1744"/>
+            <circle cx="380" cy="220" r="52" fill="#ff1744"/>
+            <circle cx="220" cy="380" r="52" fill="#ff1744"/>
+            <circle cx="380" cy="380" r="52" fill="#ff1744"/>
 
-          <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#00692c" stroke-width="10"/>
-          <circle cx="1120" cy="220" r="52" fill="#00e676"/>
-          <circle cx="1280" cy="220" r="52" fill="#00e676"/>
-          <circle cx="1120" cy="380" r="52" fill="#00e676"/>
-          <circle cx="1280" cy="380" r="52" fill="#00e676"/>
+            <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#00692c" stroke-width="10"/>
+            <circle cx="1120" cy="220" r="52" fill="#00e676"/>
+            <circle cx="1280" cy="220" r="52" fill="#00e676"/>
+            <circle cx="1120" cy="380" r="52" fill="#00e676"/>
+            <circle cx="1280" cy="380" r="52" fill="#00e676"/>
 
-          <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#005599" stroke-width="10"/>
-          <circle cx="220" cy="1120" r="52" fill="#00b0ff"/>
-          <circle cx="380" cy="1120" r="52" fill="#00b0ff"/>
-          <circle cx="220" cy="1280" r="52" fill="#00b0ff"/>
-          <circle cx="380" cy="1280" r="52" fill="#00b0ff"/>
+            <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#005599" stroke-width="10"/>
+            <circle cx="220" cy="1120" r="52" fill="#00b0ff"/>
+            <circle cx="380" cy="1120" r="52" fill="#00b0ff"/>
+            <circle cx="220" cy="1280" r="52" fill="#00b0ff"/>
+            <circle cx="380" cy="1280" r="52" fill="#00b0ff"/>
 
-          <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#e65100" stroke-width="10"/>
-          <circle cx="1120" cy="1120" r="52" fill="#ffea00"/>
-          <circle cx="1280" cy="1120" r="52" fill="#ffea00"/>
-          <circle cx="1120" cy="1280" r="52" fill="#ffea00"/>
-          <circle cx="1280" cy="1280" r="52" fill="#ffea00"/>
+            <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#e65100" stroke-width="10"/>
+            <circle cx="1120" cy="1120" r="52" fill="#ffea00"/>
+            <circle cx="1280" cy="1120" r="52" fill="#ffea00"/>
+            <circle cx="1120" cy="1280" r="52" fill="#ffea00"/>
+            <circle cx="1280" cy="1280" r="52" fill="#ffea00"/>
 
-          <polygon points="600,600 900,600 750,750" fill="#00e676" stroke="#111" stroke-width="6"/>
-          <polygon points="900,600 900,900 750,750" fill="#ffea00" stroke="#111" stroke-width="6"/>
-          <polygon points="900,900 600,900 750,750" fill="#00b0ff" stroke="#111" stroke-width="6"/>
-          <polygon points="600,900 600,600 750,750" fill="#ff1744" stroke="#111" stroke-width="6"/>
-        </svg>
+            <polygon points="600,600 900,600 750,750" fill="#00e676" stroke="#111" stroke-width="6"/>
+            <polygon points="900,600 900,900 750,750" fill="#ffea00" stroke="#111" stroke-width="6"/>
+            <polygon points="900,900 600,900 750,750" fill="#00b0ff" stroke="#111" stroke-width="6"/>
+            <polygon points="600,900 600,600 750,750" fill="#ff1744" stroke="#111" stroke-width="6"/>
+          </svg>
 
-        <div id="cornerTopLabel" class="yard-corner-title title-tr">Computer</div>
-        <div id="cornerBotLabel" class="yard-corner-title title-bl">You</div>
+          <div id="cornerTopLabel" class="yard-corner-title title-tr">Computer</div>
+          <div id="cornerBotLabel" class="yard-corner-title title-bl">You</div>
+        </div>
 
+        <!-- Placed outside overflow:hidden so heads & emoji badges NEVER get sliced -->
         <div id="tokensLayer" class="tokens-layer"></div>
       </div>
     </div>
@@ -1631,7 +1642,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_bright_neo_v14";
+  const STORAGE_KEY = "dlr_bright_neo_v15";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1972,7 +1983,6 @@
     playNote(784, 0.14, "triangle", 0.10, 0.16);
   }
 
-  /* Special Joyful Fanfare when a goti enters inside Home! */
   function sfxHomeEntryKhushi() {
     const chord = [523.25, 659.25, 783.99, 1046.5, 1318.5];
     chord.forEach((f, i) => playNote(f, 0.14, "triangle", 0.11, i * 0.08));
@@ -2503,7 +2513,6 @@
         .filter(i => i !== -1);
 
       renderSeatDicePods(null);
-      /* Trigger lively halchal across all tokens on the board */
       drawBoard(movable, null, movable.length > 0);
 
       if (movable.length === 0) {
@@ -2580,7 +2589,6 @@
 
     const finalStep = match.pieces[color][idx];
 
-    /* Joyful Celebration Reaction when a Goti enters inside the Home Goal! */
     if (finalStep === 56) {
       sfxHomeEntryKhushi();
       const homeCount = match.pieces[color].filter(p => p === 56).length;
@@ -2709,12 +2717,12 @@
     }
     const xy = pieceXY(color, step);
     const [r, c] = xy;
-    /* Clamp top/left safely so even on row 0 or col 0/14 the head never goes outside board */
     const rawLeft = ((c + 0.5) / 15) * 100;
     const rawTop = ((r + 0.5) / 15) * 100;
+    /* Clamped safely inside every edge so goti head stays 100% inside board */
     return {
-      left: Math.min(96.5, Math.max(3.5, rawLeft)),
-      top: Math.min(96.2, Math.max(3.9, rawTop))
+      left: Math.min(96.4, Math.max(3.6, rawLeft)),
+      top: Math.min(95.8, Math.max(4.8, rawTop))
     };
   }
 
