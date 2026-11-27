@@ -5,21 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>देसी लूडो राजा — Desi Ludo Raja</title>
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#00c853" />
+<meta name="theme-color" content="#ff4081" />
 <style>
   :root {
-    --sky-1: #38bdf8;
-    --sky-2: #2563eb;
-    --sky-3: #1d4ed8;
-    --emerald-1: #00e676;
-    --emerald-2: #00a844;
     --gold-1: #fff59d;
     --gold-2: #ffb300;
-    --red: #ef4444;
-    --green: #16a34a;
-    --yellow: #facc15;
-    --blue: #2563eb;
-    --panel: rgba(15, 42, 108, 0.84);
+    --red: #ff2e55;
+    --green: #00c853;
+    --yellow: #ffd600;
+    --blue: #00b0ff;
+    --panel: rgba(26, 14, 68, 0.86);
   }
 
   * {
@@ -33,9 +28,10 @@
     min-height: 100dvh;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
     background:
-      radial-gradient(circle at 20% 10%, rgba(0, 230, 118, 0.42), transparent 45%),
-      radial-gradient(circle at 85% 18%, rgba(250, 204, 21, 0.36), transparent 45%),
-      linear-gradient(160deg, #1d70f5 0%, #1348b8 52%, #0d3182 100%);
+      radial-gradient(circle at 15% 10%, rgba(255, 64, 129, 0.55), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(0, 229, 255, 0.5), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(255, 214, 0, 0.42), transparent 50%),
+      linear-gradient(155deg, #5e17eb 0%, #8c1bab 48%, #1e1b6b 100%);
     color: #fff;
     display: flex;
     justify-content: center;
@@ -62,8 +58,8 @@
     padding: 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 42%, rgba(0, 255, 136, 0.48), rgba(0, 168, 68, 0.25) 38%, rgba(16, 68, 168, 0.94) 82%),
-      linear-gradient(145deg, #00c853, #1565c0 68%, #0d47a1);
+      radial-gradient(circle at 50% 42%, rgba(0, 255, 136, 0.55), rgba(0, 200, 83, 0.25) 38%, rgba(49, 16, 112, 0.94) 84%),
+      linear-gradient(145deg, #00e676, #651fff 68%, #d500f9);
     transition: opacity 0.35s ease, transform 0.35s ease;
   }
 
@@ -80,20 +76,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 16px 24px rgba(0, 35, 18, 0.65));
+    filter: drop-shadow(0 16px 26px rgba(0, 25, 15, 0.65));
   }
 
   .star-ring-glow {
     position: absolute;
     inset: 6px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(185, 246, 202, 0.75) 0%, rgba(0, 230, 118, 0.22) 60%, transparent 75%);
+    background: radial-gradient(circle, rgba(185, 246, 202, 0.8) 0%, rgba(0, 230, 118, 0.25) 60%, transparent 75%);
     animation: starPulse 1.3s ease-in-out infinite alternate;
   }
 
   @keyframes starPulse {
-    from { transform: scale(0.92); opacity: 0.75; }
-    to   { transform: scale(1.12); opacity: 1; }
+    from { transform: scale(0.92); opacity: 0.78; }
+    to   { transform: scale(1.13); opacity: 1; }
   }
 
   .green-star-svg {
@@ -101,7 +97,7 @@
     height: 132px;
     position: relative;
     z-index: 2;
-    animation: starPopSpin 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: starPopSpin 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @keyframes starPopSpin {
@@ -168,17 +164,17 @@
     100% { left: 155%; }
   }
 
-  /* ================= VIBRANT & COLOURFUL START SCREEN ================= */
+  /* ================= VIBRANT CARNIVAL START SCREEN ================= */
   #startScreen {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background:
-      radial-gradient(circle at 12% 14%, rgba(0, 230, 118, 0.45), transparent 42%),
-      radial-gradient(circle at 88% 12%, rgba(255, 213, 79, 0.42), transparent 42%),
-      radial-gradient(circle at 50% 62%, rgba(56, 189, 248, 0.35), transparent 55%),
-      linear-gradient(175deg, #2589ff 0%, #1659d4 52%, #103ea3 100%);
+      radial-gradient(circle at 12% 14%, rgba(0, 230, 118, 0.48), transparent 40%),
+      radial-gradient(circle at 88% 12%, rgba(255, 64, 129, 0.52), transparent 42%),
+      radial-gradient(circle at 50% 55%, rgba(0, 229, 255, 0.38), transparent 55%),
+      linear-gradient(165deg, #6200ea 0%, #aa00ff 48%, #283593 100%);
   }
 
   .top-hud {
@@ -187,9 +183,9 @@
     justify-content: space-between;
     gap: 5px;
     padding: 8px 9px;
-    background: linear-gradient(180deg, rgba(25, 86, 204, 0.94), rgba(14, 52, 138, 0.96));
-    border-bottom: 2px solid rgba(255, 245, 157, 0.65);
-    box-shadow: 0 4px 12px rgba(0, 20, 70, 0.35);
+    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.92), rgba(26, 35, 126, 0.95));
+    border-bottom: 2px solid #fff59d;
+    box-shadow: 0 4px 12px rgba(20, 0, 50, 0.38);
   }
 
   .user-chip {
@@ -198,7 +194,7 @@
     gap: 6px;
     padding: 3px 8px 3px 3px;
     border-radius: 13px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.08));
     border: 1.5px solid var(--gold-1);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
     cursor: pointer;
@@ -209,7 +205,7 @@
     height: 35px;
     border-radius: 10px;
     border: 2px solid var(--gold-1);
-    background: linear-gradient(180deg, #00e676, #00897b);
+    background: linear-gradient(135deg, #ff4081, #ff9100);
     display: grid;
     place-items: center;
     font-size: 17px;
@@ -257,12 +253,11 @@
     gap: 3px;
     padding: 3px 6px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #0c2c73, #071b4a);
+    background: rgba(24, 9, 58, 0.85);
     border: 1.5px solid var(--gold-1);
     font-size: 10.5px;
     font-weight: 900;
     color: var(--gold-1);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   }
 
   .plus-mini {
@@ -283,11 +278,10 @@
     padding: 0 7px;
     border-radius: 9px;
     border: 1.5px solid #fff59d;
-    background: linear-gradient(180deg, #4fc3f7, #1565c0);
+    background: linear-gradient(180deg, #ff6e40, #d84315);
     color: #fff;
     font-size: 11px;
     font-weight: 900;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.28);
     cursor: pointer;
   }
 
@@ -296,7 +290,7 @@
     max-width: 90px;
     border-radius: 9px;
     border: 1.5px solid var(--gold-1);
-    background: #0b296b;
+    background: #311b92;
     color: var(--gold-1);
     font-size: 10px;
     font-weight: 800;
@@ -322,14 +316,13 @@
   }
 
   .pack-badge {
-    background: linear-gradient(180deg, #ffd54f, #f57c00);
+    background: linear-gradient(180deg, #ffea00, #ff6d00);
     border: 1.5px solid #fff9c4;
     border-radius: 10px;
     padding: 4px 8px;
     font-size: 10px;
     font-weight: 950;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    color: #210900;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
     cursor: pointer;
   }
@@ -345,8 +338,8 @@
   }
 
   .free-perk-btn {
-    background: linear-gradient(180deg, #00e676, #00897b);
-    border: 1.5px solid #e8fff2;
+    background: linear-gradient(180deg, #00e5ff, #0091ea);
+    border: 1.5px solid #e0f7fa;
     border-radius: 10px;
     padding: 4px 8px;
     font-size: 9.5px;
@@ -366,16 +359,16 @@
     margin: 2px 0 0;
     font-size: 27px;
     font-weight: 950;
-    background: linear-gradient(180deg, #ffffff 0%, #ffe066 55%, #ff8f00 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #fff176 50%, #ff9100 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 0 #5c2400);
+    filter: drop-shadow(0 3px 0 #4a0e3d);
   }
 
   .hero-tagline {
     margin: 2px 0 6px;
     font-size: 10.5px;
-    color: #e3f2fd;
+    color: #fff3e0;
     font-weight: 800;
   }
 
@@ -403,10 +396,10 @@
     overflow: hidden;
   }
 
-  .mt-r { background: #ef4444; }
-  .mt-g { background: #16a34a; }
-  .mt-b { background: #2563eb; }
-  .mt-y { background: #facc15; }
+  .mt-r { background: #ff2e55; }
+  .mt-g { background: #00c853; }
+  .mt-b { background: #00b0ff; }
+  .mt-y { background: #ffd600; }
 
   .hero-pawn {
     position: absolute;
@@ -436,14 +429,14 @@
     margin-top: -3px;
   }
 
-  .hp-blue { left: 14px; color: #2563eb; }
-  .hp-blue .hp-head { background: radial-gradient(circle at 35% 30%, #90caf9, #1565c0); }
+  .hp-blue { left: 14px; color: #00b0ff; }
+  .hp-blue .hp-head { background: radial-gradient(circle at 35% 30%, #b3e5fc, #0277bd); }
 
-  .hp-red { left: 48px; bottom: 20px; color: #ef4444; transform: scale(0.84); }
+  .hp-red { left: 48px; bottom: 20px; color: #ff2e55; transform: scale(0.84); }
   .hp-red .hp-head { background: radial-gradient(circle at 35% 30%, #ff8a80, #c62828); }
 
-  .hp-yellow { right: 14px; color: #facc15; }
-  .hp-yellow .hp-head { background: radial-gradient(circle at 35% 30%, #fff59d, #f57f17); }
+  .hp-yellow { right: 14px; color: #ffd600; }
+  .hp-yellow .hp-head { background: radial-gradient(circle at 35% 30%, #fff9c4, #f57f17); }
 
   .hero-3d-dice {
     position: absolute;
@@ -453,9 +446,9 @@
     width: 36px;
     height: 36px;
     border-radius: 9px;
-    background: linear-gradient(145deg, #ffffff, #e3f2fd);
-    border: 2px solid #fff59d;
-    color: #0b2254;
+    background: linear-gradient(145deg, #ffffff, #ffe082);
+    border: 2px solid #ff4081;
+    color: #311b92;
     font-size: 18px;
     font-weight: 950;
     display: grid;
@@ -463,7 +456,7 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.42);
   }
 
-  /* Big Colourful Professional Mode Cards */
+  /* ================= 5 UNIQUE DESIGN MODE CARDS ================= */
   .modes-wrap {
     padding: 4px 10px 4px;
     display: flex;
@@ -480,68 +473,108 @@
   .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 9px;
   }
 
-  .arcade-card {
-    border-radius: 16px;
-    border: 2.2px solid #fff59d;
-    padding: 13px 6px;
+  .unique-card {
+    padding: 12px 6px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 5px 0 #0a286e, 0 10px 18px rgba(0, 0, 0, 0.36);
+    position: relative;
     transition: transform 0.08s ease;
   }
 
-  .arcade-card:active {
+  .unique-card:active {
     transform: translateY(3px);
-    box-shadow: 0 2px 0 #0a286e;
   }
 
-  .card-amber {
-    background: linear-gradient(180deg, #ffde59 0%, #ff9800 55%, #ef6c00 100%);
+  /* Option 1: ONLINE — Sunburst Orange-Coral Pill-Top */
+  .opt-online {
+    border-radius: 22px 22px 12px 12px;
+    border: 2.5px solid #fff59d;
+    background: linear-gradient(155deg, #ff9100 0%, #ff3d00 55%, #dd2c00 100%);
+    box-shadow: 0 5px 0 #7f1d00, 0 10px 18px rgba(0, 0, 0, 0.35);
   }
 
-  .card-green {
-    background: linear-gradient(180deg, #69f0ae 0%, #00c853 55%, #007e33 100%);
+  /* Option 2: TEAM UP — Emerald-Teal Shield Cut */
+  .opt-team {
+    border-radius: 12px 12px 24px 24px;
+    border: 2.5px solid #b9f6ca;
+    background: linear-gradient(155deg, #00e676 0%, #00bfa5 55%, #00695c 100%);
+    box-shadow: 0 5px 0 #003d33, 0 10px 18px rgba(0, 0, 0, 0.35);
   }
 
-  .card-pink {
-    background: linear-gradient(180deg, #ff80ab 0%, #ec407a 55%, #ad1457 100%);
+  /* Option 3: FRIENDS — Neon Rose-Magenta Ticket */
+  .opt-friends {
+    border-radius: 20px 8px 20px 8px;
+    border: 2.5px solid #ffc1e3;
+    background: linear-gradient(155deg, #ff4081 0%, #f50057 55%, #ad1457 100%);
+    box-shadow: 0 5px 0 #6a0032, 0 10px 18px rgba(0, 0, 0, 0.35);
   }
 
-  .card-azure {
-    background: linear-gradient(180deg, #4fc3f7 0%, #1e88e5 55%, #0d47a1 100%);
+  /* Option 4: COMPUTER — Electric Cyan-Turquoise Cyber Pod */
+  .opt-computer {
+    border-radius: 10px 24px 10px 24px;
+    border: 2.5px solid #b2ebf2;
+    background: linear-gradient(145deg, #00e5ff 0%, #0091ea 55%, #01579b 100%);
+    box-shadow: 0 5px 0 #002f6c, 0 10px 18px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 8px;
   }
 
-  .card-purple {
-    background: linear-gradient(180deg, #b388ff 0%, #7c4dff 55%, #4527a0 100%);
+  /* Option 5: PASS N PLAY — Royal Gold-Violet Arena Pod */
+  .opt-pass {
+    border-radius: 24px 10px 24px 10px;
+    border: 2.5px solid #ffe57f;
+    background: linear-gradient(145deg, #ffd740 0%, #ff6f00 52%, #6a1b9a 100%);
+    box-shadow: 0 5px 0 #38006b, 0 10px 18px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 8px;
   }
 
-  .card-ico-big {
-    font-size: 25px;
-    line-height: 1.1;
-    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+  .badge-ring {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.24);
+    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 3px 6px rgba(0, 0, 0, 0.28);
+    flex-shrink: 0;
   }
 
   .card-title-big {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 950;
     letter-spacing: 0.2px;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.38);
     margin-top: 4px;
   }
 
+  .opt-computer .card-title-big,
+  .opt-pass .card-title-big {
+    margin-top: 0;
+    text-align: left;
+  }
+
   .card-sub-pill {
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 900;
-    color: #0b2254;
-    background: rgba(255, 255, 255, 0.88);
+    color: #1f0a3d;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 999px;
     display: inline-block;
     padding: 2px 8px;
-    margin-top: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 3px;
   }
 
   /* Tournament & Season Claim Strip */
@@ -555,22 +588,22 @@
 
   .tourney-pill {
     flex: 1;
-    border-radius: 12px;
+    border-radius: 13px;
     border: 2px solid #fff59d;
-    background: linear-gradient(180deg, #29b6f6, #0277bd);
+    background: linear-gradient(90deg, #ff4081, #7c4dff, #00b0ff);
     padding: 7px 8px;
     text-align: center;
     font-size: 11.5px;
     font-weight: 950;
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 4px 0 #082766, 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 0 #260e69;
   }
 
   .season-claim-btn {
-    border-radius: 12px;
+    border-radius: 13px;
     border: 2px solid #fff9c4;
-    background: linear-gradient(180deg, #ffe066, #f57c00);
+    background: linear-gradient(180deg, #ffea00, #ff6d00);
     padding: 7px 13px;
     font-size: 11.5px;
     font-weight: 950;
@@ -584,9 +617,8 @@
     margin: 4px 10px;
     padding: 7px 9px;
     border-radius: 13px;
-    background: linear-gradient(180deg, rgba(20, 68, 168, 0.9), rgba(10, 38, 108, 0.94));
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+    background: linear-gradient(90deg, rgba(69, 26, 138, 0.92), rgba(136, 14, 79, 0.9));
+    border: 1.5px solid rgba(255, 245, 157, 0.65);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -598,7 +630,7 @@
     border: 1.5px solid #e8fff2;
     border-radius: 8px;
     padding: 4px 9px;
-    background: linear-gradient(180deg, #25d366, #128c7e);
+    background: linear-gradient(180deg, #00e676, #00897b);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -609,7 +641,7 @@
     border: 1.5px solid #fff59d;
     border-radius: 8px;
     padding: 4px 9px;
-    background: linear-gradient(180deg, #42a5f5, #1565c0);
+    background: linear-gradient(180deg, #00b0ff, #1565c0);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -640,7 +672,7 @@
     border: none;
     border-radius: 999px;
     padding: 4px 9px;
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.25);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -661,15 +693,15 @@
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background: linear-gradient(180deg, #1b63e0, #0c358a);
-    border-top: 2px solid rgba(255, 245, 157, 0.6);
+    background: linear-gradient(90deg, #4a148c, #880e4f, #1a237e);
+    border-top: 2px solid #fff59d;
     padding: 4px 2px 5px;
   }
 
   .nav-tab {
     border: none;
     background: transparent;
-    color: #dceeff;
+    color: #fce4ec;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -682,12 +714,12 @@
   }
 
   .nav-tab.tab-active {
-    background: linear-gradient(180deg, #64b5f6, #1976d2);
+    background: linear-gradient(180deg, #ff80ab, #ad1457);
     color: #fff;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
   }
 
-  /* ================= GAME SCREEN & ATTRACTIVE BOARD BACKDROP ================= */
+  /* ================= GAME SCREEN & VIBRANT BOARD BACKDROP ================= */
   #gameScreen {
     display: none;
     flex: 1;
@@ -696,22 +728,21 @@
     padding: 6px 8px 10px;
     gap: 5px;
     background:
-      radial-gradient(circle at 20% 20%, rgba(0, 230, 118, 0.34), transparent 45%),
-      radial-gradient(circle at 80% 78%, rgba(255, 213, 79, 0.32), transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.34), rgba(14, 52, 136, 0.96) 78%),
-      linear-gradient(160deg, #1976d2, #0d3a96);
+      radial-gradient(circle at 18% 18%, rgba(255, 64, 129, 0.44), transparent 45%),
+      radial-gradient(circle at 82% 80%, rgba(0, 229, 255, 0.42), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(255, 214, 0, 0.25), rgba(45, 18, 108, 0.95) 80%),
+      linear-gradient(155deg, #5e17eb, #8c1bab, #1e1b6b);
   }
 
   .game-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(180deg, rgba(22, 78, 188, 0.92), rgba(12, 46, 122, 0.95));
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.92));
+    border: 1.5px solid #fff59d;
     border-radius: 12px;
     padding: 5px 8px;
     gap: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
 
   .game-logo {
@@ -730,7 +761,7 @@
     border: 1px solid #fff59d;
     border-radius: 8px;
     padding: 4px 7px;
-    background: linear-gradient(180deg, #42a5f5, #1565c0);
+    background: linear-gradient(180deg, #ff6e40, #d84315);
     color: #fff;
     font-size: 10.5px;
     font-weight: 800;
@@ -738,7 +769,7 @@
   }
 
   .mini-exit {
-    background: linear-gradient(180deg, #ef5350, #c62828);
+    background: linear-gradient(180deg, #ff1744, #b71c1c);
   }
 
   .seat-row {
@@ -748,23 +779,22 @@
   }
 
   .seat-pod {
-    background: linear-gradient(180deg, rgba(24, 80, 192, 0.94), rgba(12, 44, 116, 0.96));
-    border: 2px solid rgba(255, 255, 255, 0.32);
+    background: linear-gradient(180deg, rgba(81, 45, 168, 0.94), rgba(49, 27, 146, 0.96));
+    border: 2px solid rgba(255, 255, 255, 0.35);
     border-radius: 12px;
     padding: 5px 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    opacity: 0.76;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+    opacity: 0.78;
     transition: all 0.15s ease;
   }
 
   .seat-pod.pod-active {
     opacity: 1;
     border-color: #fff59d;
-    box-shadow: 0 0 14px rgba(255, 245, 157, 0.65);
+    box-shadow: 0 0 14px rgba(255, 245, 157, 0.72);
   }
 
   .pod-name {
@@ -787,7 +817,7 @@
     flex-shrink: 0;
     border-radius: 10px;
     border: 2px solid #fff59d;
-    background: #1a3773;
+    background: #311b92;
     color: #fff;
     font-size: 17px;
     font-weight: 950;
@@ -797,9 +827,9 @@
   }
 
   .seat-pod.pod-active .pod-dice {
-    background: linear-gradient(180deg, #ffffff, #e3f2fd);
-    color: #0b2254;
-    box-shadow: 0 0 10px rgba(255, 245, 157, 0.8);
+    background: linear-gradient(180deg, #ffffff, #fff9c4);
+    color: #311b92;
+    box-shadow: 0 0 10px rgba(255, 245, 157, 0.85);
   }
 
   .pod-dice.rolling {
@@ -813,8 +843,8 @@
   }
 
   .reaction-ribbon {
-    background: linear-gradient(180deg, rgba(16, 56, 142, 0.94), rgba(9, 34, 92, 0.96));
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.94));
+    border: 1.5px solid #fff59d;
     border-radius: 11px;
     padding: 5px 9px;
     display: flex;
@@ -842,18 +872,18 @@
     font-weight: 900;
     padding: 2px 7px;
     border-radius: 999px;
-    background: rgba(0, 230, 118, 0.25);
+    background: rgba(0, 230, 118, 0.28);
     border: 1px solid #b9f6ca;
     color: #fff;
     white-space: nowrap;
   }
 
-  /* Board Stage with Colorful Royal Glow Frame */
+  /* Board Stage with Rainbow Royal Frame */
   .board-stage {
-    background: linear-gradient(135deg, #fff59d, #00e676, #4fc3f7, #ffd54f);
+    background: linear-gradient(135deg, #ff4081, #ffd600, #00e676, #00b0ff);
     padding: 4px;
     border-radius: 11px;
-    box-shadow: 0 10px 26px rgba(0, 20, 70, 0.55), 0 0 18px rgba(105, 240, 174, 0.42);
+    box-shadow: 0 10px 26px rgba(24, 5, 68, 0.58), 0 0 18px rgba(255, 214, 0, 0.45);
     position: relative;
   }
 
@@ -895,7 +925,7 @@
   .sq-white { background: #ffffff; }
 
   .sq-fx-flash {
-    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 14px #00e676;
+    box-shadow: inset 0 0 0 2.5px #ffffff, 0 0 14px #ffd600;
     filter: brightness(1.2);
   }
 
@@ -928,100 +958,46 @@
     pointer-events: none;
   }
 
-  /* Bigger, Bold 3D Pin Tokens with Shadow & Shine */
-  .pro-pin {
+  /* ================= 3D ROYAL CROWNED PAWN GOTI ================= */
+  .royal-pawn {
     position: absolute;
-    width: 7.4%;
-    height: 8.6%;
-    transform: translate(-50%, -70%);
+    width: 7.8%;
+    height: 9.8%;
+    transform: translate(-50%, -76%);
     pointer-events: auto;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.6));
     transition: left 0.11s linear, top 0.11s linear, transform 0.11s ease;
   }
 
-  .pin-shadow {
-    position: absolute;
-    bottom: -4%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 74%;
-    height: 24%;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.55);
-    pointer-events: none;
+  .royal-pawn svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
 
-  .pro-pin.is-moving .pin-shadow {
-    width: 96%;
-    height: 32%;
-    bottom: -13%;
-    background: rgba(0, 0, 0, 0.78);
-  }
-
-  .pin-body {
-    width: 86%;
-    height: 86%;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    border: 2px solid #181818;
-    box-shadow: -1px 2px 4px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(255, 255, 255, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pin-body::before {
-    content: "";
-    position: absolute;
-    top: 7%;
-    left: 11%;
-    width: 48%;
-    height: 26%;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    transform: rotate(25deg);
-    pointer-events: none;
-  }
-
-  .pin-eye {
-    width: 48%;
-    height: 48%;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 1.4px solid #222;
-    transform: rotate(45deg);
-    z-index: 2;
-  }
-
-  .p-red .pin-body    { background: radial-gradient(circle at 30% 30%, #ff9e80, #c62828); }
-  .p-green .pin-body  { background: radial-gradient(circle at 30% 30%, #b9f6ca, #1b5e20); }
-  .p-blue .pin-body   { background: radial-gradient(circle at 30% 30%, #84ffff, #0277bd); }
-  .p-yellow .pin-body { background: radial-gradient(circle at 30% 30%, #ffff8d, #f9a825); }
-
-  .pro-pin.is-moving {
-    transform: translate(-50%, -86%) scale(1.22);
+  .royal-pawn.is-moving {
+    transform: translate(-50%, -94%) scale(1.24);
     z-index: 9;
+    filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.78));
   }
 
-  .pro-pin.can-pick .pin-body {
-    box-shadow: 0 0 0 2.5px #fff59d, 0 0 12px #00e676;
-    animation: pinBob 0.55s infinite alternate;
+  .royal-pawn.can-pick {
+    animation: royalHop 0.55s infinite alternate;
+    filter: drop-shadow(0 0 8px #fff59d) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.65));
   }
 
-  @keyframes pinBob {
-    from { transform: rotate(-45deg) scale(1); }
-    to   { transform: rotate(-45deg) scale(1.16); }
+  @keyframes royalHop {
+    from { transform: translate(-50%, -76%) scale(1); }
+    to   { transform: translate(-50%, -88%) scale(1.16); }
   }
 
   .pin-emo-tag {
     position: absolute;
-    top: -16px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     background: #ffffff;
@@ -1038,8 +1014,8 @@
 
   .status-banner {
     text-align: center;
-    background: linear-gradient(180deg, rgba(20, 68, 168, 0.92), rgba(10, 38, 108, 0.96));
-    border: 1.5px solid rgba(255, 245, 157, 0.55);
+    background: linear-gradient(90deg, rgba(74, 20, 140, 0.94), rgba(136, 14, 79, 0.94));
+    border: 1.5px solid #fff59d;
     border-radius: 11px;
     padding: 6px 10px;
     font-size: 11.5px;
@@ -1051,7 +1027,7 @@
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(6, 22, 66, 0.72);
+    background: rgba(24, 6, 58, 0.74);
     display: none;
     align-items: center;
     justify-content: center;
@@ -1066,9 +1042,9 @@
   .modal-card {
     width: 100%;
     max-width: 355px;
-    background: linear-gradient(180deg, #256ce8, #103b96);
+    background: linear-gradient(165deg, #6a1b9a, #ad1457, #283593);
     border: 2.2px solid #fff59d;
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 15px;
     text-align: center;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
@@ -1085,11 +1061,11 @@
     border: 2px solid #fff59d;
     border-radius: 12px;
     padding: 10px 4px;
-    background: linear-gradient(180deg, #69f0ae, #00a844);
-    color: #fff;
+    background: linear-gradient(180deg, #ffea00, #ff6d00);
+    color: #210900;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 4px 0 #072c6b;
+    box-shadow: 0 4px 0 #5c1900;
   }
 
   .cnt-choice-num {
@@ -1102,7 +1078,7 @@
     display: block;
     font-size: 9px;
     margin-top: 2px;
-    color: #e8fff2;
+    color: #3d1200;
   }
 
   .lb-list {
@@ -1121,7 +1097,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(11, 36, 94, 0.78);
+    background: rgba(26, 10, 62, 0.8);
     border: 1px solid rgba(255, 245, 157, 0.45);
     border-radius: 10px;
     padding: 6px 9px;
@@ -1130,7 +1106,7 @@
   }
 
   .lb-city {
-    color: #b3e5fc;
+    color: #80deea;
     font-size: 10px;
   }
 
@@ -1166,7 +1142,7 @@
   }
 
   .m-dark {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.22);
     color: #fff;
   }
 </style>
@@ -1282,38 +1258,43 @@
       </div>
     </div>
 
+    <!-- 5 Unique Design Mode Cards -->
     <main class="modes-wrap">
       <div class="grid-3">
-        <div class="arcade-card card-amber shine-box" onclick="openPlayerCountSelector('online', 'ONLINE')">
-          <div class="card-ico-big">🌐</div>
+        <div class="unique-card opt-online shine-box" onclick="openPlayerCountSelector('online', 'ONLINE')">
+          <div class="badge-ring">🌐</div>
           <div id="mOnline" class="card-title-big">ONLINE</div>
           <div class="card-sub-pill">1–4 Players</div>
         </div>
 
-        <div class="arcade-card card-green shine-box" onclick="openPlayerCountSelector('team', 'TEAM UP')">
-          <div class="card-ico-big">⚔️</div>
+        <div class="unique-card opt-team shine-box" onclick="openPlayerCountSelector('team', 'TEAM UP')">
+          <div class="badge-ring">⚔️</div>
           <div id="mTeam" class="card-title-big">TEAM UP</div>
           <div class="card-sub-pill">1–4 Players</div>
         </div>
 
-        <div class="arcade-card card-pink shine-box" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
-          <div class="card-ico-big">🤝</div>
+        <div class="unique-card opt-friends shine-box" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
+          <div class="badge-ring">🤝</div>
           <div id="mFriends" class="card-title-big">FRIENDS</div>
           <div class="card-sub-pill">1–4 Players</div>
         </div>
       </div>
 
       <div class="grid-2">
-        <div class="arcade-card card-azure shine-box" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
-          <div class="card-ico-big">🤖 VS</div>
-          <div id="mBot" class="card-title-big">COMPUTER</div>
-          <div class="card-sub-pill">1–4 Seat Setup</div>
+        <div class="unique-card opt-computer shine-box" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
+          <div class="badge-ring">🤖</div>
+          <div>
+            <div id="mBot" class="card-title-big">COMPUTER</div>
+            <div class="card-sub-pill">1–4 Seat Setup</div>
+          </div>
         </div>
 
-        <div class="arcade-card card-purple shine-box" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
-          <div class="card-ico-big">📱🎲</div>
-          <div id="mPass" class="card-title-big">PASS N PLAY</div>
-          <div class="card-sub-pill">1–4 Seat Setup</div>
+        <div class="unique-card opt-pass shine-box" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
+          <div class="badge-ring">🎲</div>
+          <div>
+            <div id="mPass" class="card-title-big">PASS N PLAY</div>
+            <div class="card-sub-pill">1–4 Seat Setup</div>
+          </div>
         </div>
       </div>
     </main>
@@ -1370,33 +1351,33 @@
 
         <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
           <rect x="100" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#b71c1c" stroke-width="10"/>
-          <circle cx="220" cy="220" r="52" fill="#ef4444"/>
-          <circle cx="380" cy="220" r="52" fill="#ef4444"/>
-          <circle cx="220" cy="380" r="52" fill="#ef4444"/>
-          <circle cx="380" cy="380" r="52" fill="#ef4444"/>
+          <circle cx="220" cy="220" r="52" fill="#ff2e55"/>
+          <circle cx="380" cy="220" r="52" fill="#ff2e55"/>
+          <circle cx="220" cy="380" r="52" fill="#ff2e55"/>
+          <circle cx="380" cy="380" r="52" fill="#ff2e55"/>
 
           <rect x="1000" y="100" width="400" height="400" rx="18" fill="#ffffff" stroke="#1b5e20" stroke-width="10"/>
-          <circle cx="1120" cy="220" r="52" fill="#16a34a"/>
-          <circle cx="1280" cy="220" r="52" fill="#16a34a"/>
-          <circle cx="1120" cy="380" r="52" fill="#16a34a"/>
-          <circle cx="1280" cy="380" r="52" fill="#16a34a"/>
+          <circle cx="1120" cy="220" r="52" fill="#00c853"/>
+          <circle cx="1280" cy="220" r="52" fill="#00c853"/>
+          <circle cx="1120" cy="380" r="52" fill="#00c853"/>
+          <circle cx="1280" cy="380" r="52" fill="#00c853"/>
 
           <rect x="100" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#0d47a1" stroke-width="10"/>
-          <circle cx="220" cy="1120" r="52" fill="#2563eb"/>
-          <circle cx="380" cy="1120" r="52" fill="#2563eb"/>
-          <circle cx="220" cy="1280" r="52" fill="#2563eb"/>
-          <circle cx="380" cy="1280" r="52" fill="#2563eb"/>
+          <circle cx="220" cy="1120" r="52" fill="#00b0ff"/>
+          <circle cx="380" cy="1120" r="52" fill="#00b0ff"/>
+          <circle cx="220" cy="1280" r="52" fill="#00b0ff"/>
+          <circle cx="380" cy="1280" r="52" fill="#00b0ff"/>
 
           <rect x="1000" y="1000" width="400" height="400" rx="18" fill="#ffffff" stroke="#f57f17" stroke-width="10"/>
-          <circle cx="1120" cy="1120" r="52" fill="#facc15"/>
-          <circle cx="1280" cy="1120" r="52" fill="#facc15"/>
-          <circle cx="1120" cy="1280" r="52" fill="#facc15"/>
-          <circle cx="1280" cy="1280" r="52" fill="#facc15"/>
+          <circle cx="1120" cy="1120" r="52" fill="#ffd600"/>
+          <circle cx="1280" cy="1120" r="52" fill="#ffd600"/>
+          <circle cx="1120" cy="1280" r="52" fill="#ffd600"/>
+          <circle cx="1280" cy="1280" r="52" fill="#ffd600"/>
 
-          <polygon points="600,600 900,600 750,750" fill="#16a34a" stroke="#222" stroke-width="6"/>
-          <polygon points="900,600 900,900 750,750" fill="#facc15" stroke="#222" stroke-width="6"/>
-          <polygon points="900,900 600,900 750,750" fill="#2563eb" stroke="#222" stroke-width="6"/>
-          <polygon points="600,900 600,600 750,750" fill="#ef4444" stroke="#222" stroke-width="6"/>
+          <polygon points="600,600 900,600 750,750" fill="#00c853" stroke="#222" stroke-width="6"/>
+          <polygon points="900,600 900,900 750,750" fill="#ffd600" stroke="#222" stroke-width="6"/>
+          <polygon points="900,900 600,900 750,750" fill="#00b0ff" stroke="#222" stroke-width="6"/>
+          <polygon points="600,900 600,600 750,750" fill="#ff2e55" stroke="#222" stroke-width="6"/>
         </svg>
 
         <div id="cornerTopLabel" class="yard-corner-title title-tr">Computer</div>
@@ -1428,7 +1409,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_green_star_v5";
+  const STORAGE_KEY = "dlr_royal_carnival_v6";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1441,7 +1422,7 @@
   const I18N = {
     hi: {
       title: "देसी लूडो राजा",
-      sub: "1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • सिंगल गोटी खुद चले",
+      sub: "1–2–3–4 खिलाड़ी चुनें • 6 पर खुद बाहर • कॉल पर ऑटो-म्यूट",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "तैयार!",
@@ -1451,7 +1432,7 @@
     },
     en: {
       title: "DESI LUDO RAJA",
-      sub: "Pick 1–2–3–4 Players First • Auto-Out on 6 • Auto-Step",
+      sub: "Pick 1–2–3–4 Players • Auto-Out on 6 • Auto-Mute on Calls",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "Ready!",
@@ -1461,7 +1442,7 @@
     },
     mr: {
       title: "देसी लुडो राजा",
-      sub: "१–२–३–४ खेळाडू निवडा • ६ वर आपोआप बाहेर • शाइन FX",
+      sub: "१–२–३–४ खेळाडू निवडा • ६ वर आपोआप बाहेर • कॉलवर म्यूट",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "तयार!",
@@ -1481,7 +1462,7 @@
     },
     te: {
       title: "దేశీ లూడో రాజా",
-      sub: "1–2–3–4 ఆటగాళ్ల ఎంపిక • 6 వస్తే ఆటో అవుట్ • షైన్ FX",
+      sub: "1–2–3–4 ఆటగాళ్ల ఎంపిక • 6 వస్తే ఆటో అవుట్",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "సిద్ధం!",
@@ -1491,7 +1472,7 @@
     },
     bn: {
       title: "দেশি লুডো রাজা",
-      sub: "১–২–৩–৪ প্লেয়ার বাছুন • ৬ এলে নিজেই বাইরে • শাইন FX",
+      sub: "১–২–৩–৪ প্লেয়ার বাছুন • ৬ এলে নিজেই বাইরে",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "প্রস্তুত!",
@@ -1501,7 +1482,7 @@
     },
     gu: {
       title: "દેશી લુડો રાજા",
-      sub: "૧–૨–૩–૪ ખેલાડી પસંદ કરો • ૬ પર આપમેળે બહાર • શાઈન FX",
+      sub: "૧–૨–૩–૪ ખેલાડી પસંદ કરો • ૬ પર આપમેળે બહાર",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "તૈયાર!",
@@ -1511,7 +1492,7 @@
     },
     pa: {
       title: "ਦੇਸੀ ਲੂਡੋ ਰਾਜਾ",
-      sub: "੧–੨–੩–੪ ਖਿਡਾਰੀ ਚੁਣੋ • ੬ ਤੇ ਆਪਣੇ ਆਪ ਬਾਹਰ • ਸ਼ਾਈਨ FX",
+      sub: "੧–੨–੩–੪ ਖਿਡਾਰੀ ਚੁਣੋ • ੬ ਤੇ ਆਪਣੇ ਆਪ ਬਾਹਰ",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       ready: "ਤਿਆਰ!",
@@ -1558,6 +1539,7 @@
 
   let audioCtx = null;
   let bgmTimer = null;
+  let appInBackground = false;
 
   const TRACK_52 = [
     [6,1],[6,2],[6,3],[6,4],[6,5],
@@ -1611,6 +1593,37 @@
     return I18N[profile.lang] || I18N.hi;
   }
 
+  /* ================= CALL / BACKGROUND AUTO-MUTE HANDLER ================= */
+  function pauseGameAudioForCallOrBg() {
+    appInBackground = true;
+    stopBgMusic();
+    if (audioCtx && audioCtx.state === "running") {
+      audioCtx.suspend().catch(() => {});
+    }
+  }
+
+  function resumeGameAudioFromBg() {
+    appInBackground = false;
+    if (!profile.sound) return;
+    if (audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume().catch(() => {});
+    }
+    if (document.getElementById("gameScreen").style.display === "flex") {
+      startBgMusic();
+    }
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pauseGameAudioForCallOrBg();
+    else resumeGameAudioFromBg();
+  });
+
+  window.addEventListener("pagehide", pauseGameAudioForCallOrBg);
+  window.addEventListener("blur", pauseGameAudioForCallOrBg);
+  window.addEventListener("focus", () => {
+    if (!document.hidden) resumeGameAudioFromBg();
+  });
+
   /* ================= GREEN STAR INTRO CONTROL ================= */
   function dismissSplash() {
     clearTimeout(splashTimer);
@@ -1635,7 +1648,7 @@
 
   /* ================= MUSIC, SOUND & SPECIAL FX ================= */
   function ensureAudio() {
-    if (!profile.sound) return null;
+    if (!profile.sound || appInBackground || document.hidden) return null;
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
@@ -1647,7 +1660,7 @@
 
   function playNote(freq, dur = 0.09, type = "triangle", vol = 0.08, delay = 0) {
     const ctx = ensureAudio();
-    if (!ctx) return;
+    if (!ctx || ctx.state !== "running") return;
     const startAt = ctx.currentTime + delay;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -1701,11 +1714,12 @@
 
   function startBgMusic() {
     stopBgMusic();
-    if (!profile.sound) return;
+    if (!profile.sound || appInBackground || document.hidden) return;
     const bassPattern = [196, 246.94, 293.66, 246.94];
     let step = 0;
     bgmTimer = setInterval(() => {
-      if (!profile.sound || document.getElementById("gameScreen").style.display !== "flex") return;
+      if (!profile.sound || appInBackground || document.hidden) return;
+      if (document.getElementById("gameScreen").style.display !== "flex") return;
       playNote(bassPattern[step % bassPattern.length], 0.12, "sine", 0.025, 0);
       step++;
     }, 650);
@@ -1976,7 +1990,7 @@
     profile.sound = !profile.sound;
     persist();
     syncStartView();
-    if (profile.sound) startBgMusic();
+    if (profile.sound && !appInBackground) startBgMusic();
     else stopBgMusic();
   }
 
@@ -2054,6 +2068,38 @@
       requestExitWarning();
     }
   });
+
+  /* ================= ROYAL 3D CROWNED PAWN SVG BUILDER ================= */
+  const PAWN_PALETTE = {
+    red:    { top: "#ff8a80", mid: "#ff2e55", dark: "#9a0026" },
+    green:  { top: "#b9f6ca", mid: "#00c853", dark: "#005b25" },
+    blue:   { top: "#84ffff", mid: "#00b0ff", dark: "#004c8c" },
+    yellow: { top: "#ffff8d", mid: "#ffd600", dark: "#c79100" }
+  };
+
+  function buildRoyalPawnSvg(color, idx) {
+    const p = PAWN_PALETTE[color];
+    const gid = `pg_${color}_${idx}`;
+    return `
+      <svg viewBox="0 0 64 80">
+        <defs>
+          <radialGradient id="${gid}" cx="35%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="${p.top}"/>
+            <stop offset="55%" stop-color="${p.mid}"/>
+            <stop offset="100%" stop-color="${p.dark}"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="32" cy="73" rx="22" ry="5.5" fill="rgba(0,0,0,0.48)"/>
+        <path d="M13 68 C13 55, 22 44, 26 36 L38 36 C42 44, 51 55, 51 68 Z"
+              fill="url(#${gid})" stroke="#1d122b" stroke-width="2.6" stroke-linejoin="round"/>
+        <ellipse cx="32" cy="68" rx="19" ry="4.5" fill="#fff59d" stroke="#1d122b" stroke-width="2"/>
+        <rect x="22" y="32" width="20" height="5" rx="2.5" fill="#ffd600" stroke="#1d122b" stroke-width="1.8"/>
+        <circle cx="32" cy="21" r="13" fill="url(#${gid})" stroke="#1d122b" stroke-width="2.6"/>
+        <path d="M24 10 L27 4 L32 8 L37 4 L40 10 Z" fill="#ffd600" stroke="#1d122b" stroke-width="1.5" stroke-linejoin="round"/>
+        <ellipse cx="27" cy="17" rx="3.4" ry="2" transform="rotate(-25 27 17)" fill="rgba(255,255,255,0.85)"/>
+      </svg>
+    `;
+  }
 
   /* ================= GAME ENGINE ================= */
   function launchGameWithCount(modeKey, count) {
@@ -2442,38 +2488,28 @@
     match.seats.forEach(col => {
       match.pieces[col].forEach((step, idx) => {
         const pos = piecePctPosition(col, step, idx);
-        const pin = document.createElement("div");
-        pin.className = `pro-pin p-${col}`;
-        pin.style.left = `${pos.left}%`;
-        pin.style.top = `${pos.top}%`;
+        const pawn = document.createElement("div");
+        pawn.className = `royal-pawn p-${col}`;
+        pawn.style.left = `${pos.left}%`;
+        pawn.style.top = `${pos.top}%`;
 
         const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
         const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
-        if (canPick) pin.classList.add("can-pick");
-        if (isMoving) pin.classList.add("is-moving");
+        if (canPick) pawn.classList.add("can-pick");
+        if (isMoving) pawn.classList.add("is-moving");
 
-        const shadow = document.createElement("span");
-        shadow.className = "pin-shadow";
-
-        const body = document.createElement("span");
-        body.className = "pin-body";
-        const eye = document.createElement("span");
-        eye.className = "pin-eye";
-        body.appendChild(eye);
-
-        pin.appendChild(shadow);
-        pin.appendChild(body);
+        pawn.innerHTML = buildRoyalPawnSvg(col, idx);
 
         const emoInfo = match.tokenReactions[`${col}-${idx}`];
         if (emoInfo) {
           const tag = document.createElement("span");
           tag.className = "pin-emo-tag";
           tag.textContent = emoInfo.emoji;
-          pin.appendChild(tag);
+          pawn.appendChild(tag);
         }
 
-        pin.onclick = () => executeStepMove(col, idx);
-        tokensLayer.appendChild(pin);
+        pawn.onclick = () => executeStepMove(col, idx);
+        tokensLayer.appendChild(pawn);
       });
     });
   }
