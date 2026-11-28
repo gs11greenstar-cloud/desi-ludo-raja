@@ -107,7 +107,7 @@
     100% { left: 165%; }
   }
 
-  /* ================= GREEN STAR SPLASH ================= */
+  /* ================= FULL GLOSSY GREEN STAR + SEPARATE LUDO BOARD SPLASH ================= */
   #greenStarSplash {
     position: fixed;
     inset: 0;
@@ -115,13 +115,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 24px;
+    justify-content: space-evenly;
+    padding: 18px 20px 22px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 40%, rgba(16, 185, 129, 0.32), transparent 55%),
-      linear-gradient(160deg, #04102e 0%, #0d3685 52%, #042f2e 100%);
-    transition: opacity 0.28s ease, transform 0.28s ease;
+      radial-gradient(circle at 50% 26%, rgba(16, 185, 129, 0.42), transparent 52%),
+      radial-gradient(circle at 50% 74%, rgba(56, 189, 248, 0.24), transparent 55%),
+      linear-gradient(165deg, #030e29 0%, #0b327d 48%, #032625 100%);
+    transition: opacity 0.32s ease, transform 0.32s ease;
   }
 
   #greenStarSplash.hide-splash {
@@ -130,10 +131,17 @@
     pointer-events: none;
   }
 
+  /* Zone 1: Top Glossy Green Star Stage */
+  .splash-star-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .star-stage {
     position: relative;
-    width: 164px;
-    height: 164px;
+    width: 176px;
+    height: 176px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,60 +153,183 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(255, 215, 0, 0.36) 0deg 10deg,
-      transparent 10deg 30deg
+      rgba(255, 234, 0, 0.38) 0deg 10deg,
+      transparent 10deg 28deg
     );
-    -webkit-mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
-    mask-image: radial-gradient(circle, transparent 28%, black 52%, transparent 74%);
-    animation: spinSlow 8s linear infinite;
+    -webkit-mask-image: radial-gradient(circle, transparent 24%, black 50%, transparent 74%);
+    mask-image: radial-gradient(circle, transparent 24%, black 50%, transparent 74%);
+    animation: spinSlow 7s linear infinite;
   }
 
+  .star-halo-glow {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.65) 0%, rgba(16, 185, 129, 0.15) 55%, transparent 75%);
+    animation: haloPulse 1.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes haloPulse {
+    from { transform: scale(0.92); opacity: 0.72; }
+    to   { transform: scale(1.14); opacity: 1; }
+  }
+
+  /* Cute Star Entry + Fluid Wave Flow */
   .green-star-hero {
-    width: 118px;
-    height: 118px;
+    width: 142px;
+    height: 142px;
     position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.65));
-    animation: starSpringIn 0.7s cubic-bezier(0.2, 1.35, 0.35, 1) forwards;
+    z-index: 3;
+    filter:
+      drop-shadow(0 0 16px rgba(16, 185, 129, 0.85))
+      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.68));
+    animation:
+      cuteStarEntrance 0.75s cubic-bezier(0.22, 1.45, 0.36, 1) forwards,
+      cuteStarFlow 2.4s ease-in-out 0.72s infinite;
   }
 
-  @keyframes starSpringIn {
-    0%   { transform: scale(0.25) rotate(-50deg); opacity: 0; }
-    72%  { transform: scale(1.1) rotate(6deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  @keyframes cuteStarEntrance {
+    0%   { transform: scale(0.18) rotate(-42deg) translateY(18px); opacity: 0; }
+    55%  { transform: scale(1.14, 0.92) rotate(9deg) translateY(-6px); opacity: 1; }
+    78%  { transform: scale(0.95, 1.06) rotate(-5deg) translateY(2px); opacity: 1; }
+    100% { transform: scale(1, 1) rotate(0deg) translateY(0px); opacity: 1; }
+  }
+
+  @keyframes cuteStarFlow {
+    0%   { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+    25%  { transform: translate(5px, -7px) rotate(5deg) scale(1.04, 0.98); }
+    50%  { transform: translate(0px, -2px) rotate(0deg) scale(0.98, 1.03); }
+    75%  { transform: translate(-5px, -7px) rotate(-5deg) scale(1.04, 0.98); }
+    100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+  }
+
+  /* Twinkling Cute Sparkles Around the Glossy Star */
+  .cute-sparkle {
+    position: absolute;
+    z-index: 4;
+    pointer-events: none;
+    animation: sparkleTwinkle 1.3s ease-in-out infinite alternate;
+  }
+
+  .sp-1 { top: 14px; left: 18px; width: 20px; height: 20px; animation-delay: 0s; }
+  .sp-2 { top: 18px; right: 16px; width: 17px; height: 17px; animation-delay: 0.35s; }
+  .sp-3 { bottom: 22px; left: 22px; width: 15px; height: 15px; animation-delay: 0.65s; }
+  .sp-4 { bottom: 18px; right: 20px; width: 21px; height: 21px; animation-delay: 0.2s; }
+
+  @keyframes sparkleTwinkle {
+    0%   { transform: scale(0.45) rotate(0deg); opacity: 0.35; }
+    100% { transform: scale(1.18) rotate(25deg); opacity: 1; }
   }
 
   .splash-title {
-    margin: 8px 0 4px;
-    font-size: 26px;
+    margin: 4px 0 3px;
+    font-size: 27px;
     font-weight: 950;
-    letter-spacing: 1px;
-    background: linear-gradient(180deg, #ffffff 0%, #ffea00 55%, #ff9100 100%);
+    letter-spacing: 1.2px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffea00 52%, #ff8f00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.7));
   }
 
   .splash-sub {
-    margin: 0 0 18px;
+    margin: 0;
     font-size: 12px;
-    font-weight: 800;
-    color: #bae6fd;
-    background: rgba(5, 18, 51, 0.8);
-    border: 1px solid rgba(255, 202, 40, 0.5);
-    padding: 5px 15px;
+    font-weight: 900;
+    color: #e0f2fe;
+    background: rgba(5, 18, 51, 0.85);
+    border: 1.4px solid rgba(255, 202, 40, 0.65);
+    padding: 4px 16px;
     border-radius: 999px;
+  }
+
+  /* Zone 2: Separate Dedicated Ludo Board Showcase Dock */
+  .splash-board-dock {
+    width: 100%;
+    max-width: 275px;
+    background: linear-gradient(180deg, rgba(15, 42, 108, 0.88) 0%, rgba(5, 16, 46, 0.94) 100%);
+    border: 2px solid rgba(255, 202, 40, 0.78);
+    border-radius: 22px;
+    padding: 12px 14px 10px;
+    box-shadow:
+      0 6px 0 #451a03,
+      0 14px 28px rgba(0, 0, 0, 0.72),
+      inset 0 2px 4px rgba(255, 255, 255, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    animation: splashBoardRise 0.65s cubic-bezier(0.2, 1.25, 0.35, 1) 0.22s both;
+  }
+
+  @keyframes splashBoardRise {
+    0%   { transform: translateY(28px) scale(0.86); opacity: 0; }
+    100% { transform: translateY(0px) scale(1); opacity: 1; }
+  }
+
+  .splash-board-stage {
+    position: relative;
+    width: 122px;
+    height: 122px;
+    padding: 4px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #fff59d, #ffca28, #d97706);
+    box-shadow: 0 5px 0 #78350f, 0 10px 18px rgba(0, 0, 0, 0.65);
+  }
+
+  .splash-mini-board {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid #451a03;
+    background: #ffffff;
+  }
+
+  .splash-pawn-badge {
+    position: absolute;
+    width: 28px;
+    height: 34px;
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
+    z-index: 3;
+  }
+
+  .spb-left  { left: -16px; bottom: 8px; animation: badgeFloat 1.6s ease-in-out infinite; }
+  .spb-right { right: -16px; top: 8px; animation: badgeFloat 1.6s ease-in-out 0.4s infinite; }
+
+  .splash-mini-die {
+    position: absolute;
+    right: -18px;
+    bottom: -6px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #ffffff, #e2e8f0);
+    border: 1.8px solid #0f172a;
+    padding: 3px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transform: rotate(12deg);
+    z-index: 4;
+  }
+
+  .splash-dock-caption {
+    font-size: 10.5px;
+    font-weight: 900;
+    color: #ffea00;
+    letter-spacing: 0.5px;
   }
 
   .splash-skip-btn {
     border: 2px solid #fff9c4;
     border-radius: 999px;
-    padding: 10px 28px;
+    padding: 10px 30px;
     background: linear-gradient(180deg, #ffea00, #ff6d00);
     color: #210800;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 950;
     cursor: pointer;
-    box-shadow: 0 5px 0 #8c3800, 0 10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 0 #8c3800, 0 10px 20px rgba(0, 0, 0, 0.55);
   }
 
   /* ================= PRO ROYAL LOBBY (#startScreen) ================= */
@@ -1150,7 +1281,6 @@
     100% { transform: translate(-50%, -76%) scale(calc(var(--g-scale, 1) * 1.03)) rotate(2deg); }
   }
 
-  /* FEAR MODE (जब दुश्मन गोटी 1-6 कदम पीछे आ जाए) */
   .gem-goti.goti-fear {
     animation: gotiFearTremble 0.24s ease-in-out infinite alternate !important;
     filter: drop-shadow(0 0 8px #38bdf8) drop-shadow(0 0 12px #a855f7) drop-shadow(0 4px 5px rgba(0,0,0,0.65));
@@ -1163,7 +1293,6 @@
     100% { transform: translate(-46%, -73.7%) scale(calc(var(--g-scale, 1) * 0.96)) rotate(11deg); }
   }
 
-  /* KILLER MODE (जो गोटी 1-6 कदम पीछे रहकर शिकार करने की स्थिति में हो) */
   .gem-goti.goti-killer {
     animation: gotiKillerHunt 0.48s ease-in-out infinite alternate !important;
     filter: drop-shadow(0 0 8px #ef233c) drop-shadow(0 0 13px #ff9100) drop-shadow(0 5px 6px rgba(0,0,0,0.75));
@@ -1568,34 +1697,146 @@
     .ludo-orb { width: 33px; height: 33px; font-size: 16px; }
     .card-artwork { height: 52px; }
     .card-ribbon { font-size: 10px; }
+    .star-stage { width: 150px; height: 150px; }
+    .green-star-hero { width: 122px; height: 122px; }
+    .splash-board-stage { width: 104px; height: 104px; }
   }
 </style>
 </head>
 <body>
 
-<!-- GREEN STAR INTRO -->
+<!-- FULL GLOSSY GREEN STAR + SEPARATE LUDO BOARD INTRO -->
 <div id="greenStarSplash" onclick="dismissSplash()">
-  <div class="star-stage">
-    <div class="star-rays"></div>
-    <svg class="green-star-hero" viewBox="0 0 120 120">
-      <defs>
-        <radialGradient id="gStarGem" cx="38%" cy="30%" r="72%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="42%" stop-color="#06d6a0"/>
-          <stop offset="100%" stop-color="#047857"/>
-        </radialGradient>
-      </defs>
-      <polygon
-        points="60,7 75,41 112,45 84,70 92,108 60,88 28,108 36,70 8,45 45,41"
-        fill="url(#gStarGem)"
-        stroke="#ffca28"
-        stroke-width="3.5"
-        stroke-linejoin="round"
-      />
-    </svg>
+  <!-- Top Zone: Full Glossy 3D Green Star with Cute Flow & Shine -->
+  <div class="splash-star-zone">
+    <div class="star-stage">
+      <div class="star-rays"></div>
+      <div class="star-halo-glow"></div>
+
+      <!-- Twinkling Cute Sparkles -->
+      <svg class="cute-sparkle sp-1" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#ffffff"/></svg>
+      <svg class="cute-sparkle sp-2" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#ffea00"/></svg>
+      <svg class="cute-sparkle sp-3" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#a7f3d0"/></svg>
+      <svg class="cute-sparkle sp-4" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#ffffff"/></svg>
+
+      <!-- Multi-Faceted Full Glossy 3D Crystal Star -->
+      <svg class="green-star-hero" viewBox="0 0 160 160">
+        <defs>
+          <radialGradient id="gStarCore" cx="35%" cy="28%" r="76%">
+            <stop offset="0%" stop-color="#ecfdf5"/>
+            <stop offset="28%" stop-color="#34d399"/>
+            <stop offset="68%" stop-color="#059669"/>
+            <stop offset="100%" stop-color="#022c22"/>
+          </radialGradient>
+          <linearGradient id="gStarGlossTop" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.92)"/>
+            <stop offset="65%" stop-color="rgba(255,255,255,0.22)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+          <linearGradient id="gStarSweepBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+            <stop offset="45%" stop-color="rgba(255,255,255,0.85)"/>
+            <stop offset="55%" stop-color="rgba(255,255,255,0.85)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+          <clipPath id="starPolyClip">
+            <polygon points="80,10 100,55 150,60 112,94 123,144 80,118 37,144 48,94 10,60 60,55"/>
+          </clipPath>
+        </defs>
+
+        <!-- Base 3D Emerald Body + Golden Rim -->
+        <polygon
+          points="80,10 100,55 150,60 112,94 123,144 80,118 37,144 48,94 10,60 60,55"
+          fill="url(#gStarCore)"
+          stroke="#ffca28"
+          stroke-width="4.5"
+          stroke-linejoin="round"
+        />
+
+        <!-- 3D Sculpted Crystal Facets -->
+        <g clip-path="url(#starPolyClip)">
+          <polygon points="80,80 80,10 100,55" fill="rgba(255,255,255,0.28)"/>
+          <polygon points="80,80 150,60 112,94" fill="rgba(6,78,59,0.26)"/>
+          <polygon points="80,80 123,144 80,118" fill="rgba(2,44,34,0.34)"/>
+          <polygon points="80,80 37,144 48,94" fill="rgba(255,255,255,0.14)"/>
+          <polygon points="80,80 10,60 60,55" fill="rgba(255,255,255,0.34)"/>
+
+          <!-- Wet Top Glass Specular Curve -->
+          <ellipse cx="76" cy="44" rx="58" ry="34" fill="url(#gStarGlossTop)"/>
+          <ellipse cx="64" cy="34" rx="14" ry="6.5" transform="rotate(-24 64 34)" fill="rgba(255,255,255,0.92)"/>
+
+          <!-- Animated Gloss Shine Beam Sweeping Across Star -->
+          <rect x="-140" y="0" width="90" height="160" fill="url(#gStarSweepBeam)" transform="skewX(-22)">
+            <animate attributeName="x" from="-140" to="220" dur="1.75s" repeatCount="indefinite"/>
+          </rect>
+        </g>
+      </svg>
+    </div>
+
+    <div class="splash-title">GREEN STAR</div>
+    <div class="splash-sub">देसी लूडो राजा • 3D स्टूडियो एडिशन</div>
   </div>
-  <div class="splash-title">GREEN STAR</div>
-  <div class="splash-sub">देसी लूडो राजा • 3D स्टूडियो एडिशन</div>
+
+  <!-- Separate Dedicated Place for Ludo Board on Intro -->
+  <div class="splash-board-dock shine-box">
+    <div class="splash-board-stage">
+      <div id="splashPawnLeft" class="splash-pawn-badge spb-left"></div>
+      <div id="splashPawnRight" class="splash-pawn-badge spb-right"></div>
+      <div id="splashMiniDie" class="splash-mini-die"></div>
+
+      <svg class="splash-mini-board" viewBox="0 0 150 150">
+        <!-- Cross Tracks -->
+        <rect x="0" y="0" width="150" height="150" fill="#f8fafc"/>
+        <!-- Colored Home Paths -->
+        <rect x="10" y="70" width="50" height="10" fill="#ef233c"/>
+        <rect x="10" y="60" width="10" height="10" fill="#ef233c"/>
+        <rect x="70" y="10" width="10" height="50" fill="#10b981"/>
+        <rect x="80" y="10" width="10" height="10" fill="#10b981"/>
+        <rect x="90" y="70" width="50" height="10" fill="#eab308"/>
+        <rect x="130" y="80" width="10" height="10" fill="#eab308"/>
+        <rect x="70" y="90" width="10" height="50" fill="#0284c7"/>
+        <rect x="60" y="130" width="10" height="10" fill="#0284c7"/>
+
+        <!-- 4 Yards -->
+        <rect x="0" y="0" width="60" height="60" fill="#ef233c"/>
+        <rect x="8" y="8" width="44" height="44" rx="6" fill="#ffffff"/>
+        <circle cx="21" cy="21" r="5.5" fill="#ffe4e6" stroke="#ef233c" stroke-width="1.5"/>
+        <circle cx="39" cy="21" r="5.5" fill="#ffe4e6" stroke="#ef233c" stroke-width="1.5"/>
+        <circle cx="21" cy="39" r="5.5" fill="#ffe4e6" stroke="#ef233c" stroke-width="1.5"/>
+        <circle cx="39" cy="39" r="5.5" fill="#ffe4e6" stroke="#ef233c" stroke-width="1.5"/>
+
+        <rect x="90" y="0" width="60" height="60" fill="#10b981"/>
+        <rect x="98" y="8" width="44" height="44" rx="6" fill="#ffffff"/>
+        <circle cx="111" cy="21" r="5.5" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+        <circle cx="129" cy="21" r="5.5" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+        <circle cx="111" cy="39" r="5.5" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+        <circle cx="129" cy="39" r="5.5" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+
+        <rect x="0" y="90" width="60" height="60" fill="#0284c7"/>
+        <rect x="8" y="98" width="44" height="44" rx="6" fill="#ffffff"/>
+        <circle cx="21" cy="111" r="5.5" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="39" cy="111" r="5.5" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="21" cy="129" r="5.5" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="39" cy="129" r="5.5" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+
+        <rect x="90" y="90" width="60" height="60" fill="#eab308"/>
+        <rect x="98" y="98" width="44" height="44" rx="6" fill="#ffffff"/>
+        <circle cx="111" cy="111" r="5.5" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+        <circle cx="129" cy="111" r="5.5" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+        <circle cx="111" cy="129" r="5.5" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+        <circle cx="129" cy="129" r="5.5" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+
+        <!-- Center 4-Triangle Royal Goal -->
+        <polygon points="60,60 90,60 75,75" fill="#10b981"/>
+        <polygon points="90,60 90,90 75,75" fill="#eab308"/>
+        <polygon points="90,90 60,90 75,75" fill="#0284c7"/>
+        <polygon points="60,90 60,60 75,75" fill="#ef233c"/>
+        <circle cx="75" cy="75" r="6" fill="#ffffff" stroke="#ffca28" stroke-width="1.8"/>
+      </svg>
+    </div>
+    <div class="splash-dock-caption">👑 रॉयल 3D लूडो अखाड़ा तैयार है</div>
+  </div>
+
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">खेल शुरू करें ▶</button>
 </div>
 
@@ -2045,7 +2286,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_pro_studio_v19";
+  const STORAGE_KEY = "dlr_pro_studio_v20";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -2251,7 +2492,7 @@
     el.classList.add("hide-splash");
     setTimeout(() => {
       el.style.display = "none";
-    }, 300);
+    }, 320);
   }
 
   function replayGreenStarSplash() {
@@ -2261,10 +2502,10 @@
     el.classList.remove("hide-splash");
     sfxOutKhushi();
     clearTimeout(splashTimer);
-    splashTimer = setTimeout(dismissSplash, 2000);
+    splashTimer = setTimeout(dismissSplash, 3200);
   }
 
-  splashTimer = setTimeout(dismissSplash, 2000);
+  splashTimer = setTimeout(dismissSplash, 3200);
 
   const PIP_MAP = {
     1: [4],
@@ -2436,10 +2677,9 @@
     }
   }
 
-  /* ================= PERSISTENT FEAR & KILLER THREAT RADAR ================= */
   function computeThreatStates() {
-    const fearMap = {};   // key: "color-idx" -> closest steps behind (1..6)
-    const killerMap = {}; // key: "color-idx" -> true
+    const fearMap = {};
+    const killerMap = {};
 
     const activeTrackTokens = [];
     match.seats.forEach(col => {
@@ -2493,7 +2733,6 @@
     );
   }
 
-  /* ================= FIREWORKS & CONFETTI ENGINE ================= */
   function startFireworksCelebration(durationMs = 0) {
     stopFireworksCelebration();
     const overlay = document.getElementById("victoryOverlay");
@@ -2681,6 +2920,12 @@
     document.getElementById("langSelect").value = profile.lang;
     document.getElementById("heroDiceFace").innerHTML = buildPippedDiceHtml(5);
 
+    /* Populate Splash Screen Separate Ludo Board Showcase */
+    document.getElementById("splashPawnLeft").innerHTML = buildStudioGotiSvg("blue", "sp_l");
+    document.getElementById("splashPawnRight").innerHTML = buildStudioGotiSvg("green", "sp_r");
+    document.getElementById("splashMiniDie").innerHTML = buildPippedDiceHtml(6);
+
+    /* Populate Lobby Diorama */
     document.getElementById("dioPawnR").innerHTML = buildStudioGotiSvg("red", "hero_r");
     document.getElementById("dioPawnG").innerHTML = buildStudioGotiSvg("green", "hero_g");
     document.getElementById("dioPawnB").innerHTML = buildStudioGotiSvg("blue", "hero_b");
