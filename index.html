@@ -1289,7 +1289,7 @@
     pointer-events: none;
   }
 
-  /* ================= BOLD 3D GOTIS + FEAR MODE + KILLER MODE ================= */
+  /* ================= BOLD 3D GOTIS — CALM BY DEFAULT, ONLY YOUR PLAYABLE GOTIS POP UP ================= */
   .gem-goti {
     position: absolute;
     width: 7.6%;
@@ -1302,62 +1302,55 @@
     justify-content: center;
     filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.55));
     transition: left 0.12s linear, top 0.12s linear;
-    animation: gotiStudioIdle 1.5s ease-in-out infinite alternate;
-  }
-
-  @keyframes gotiStudioIdle {
-    0%   { transform: translate(-50%, -73.7%) scale(var(--g-scale, 1)) rotate(-2deg); }
-    100% { transform: translate(-50%, -76%) scale(calc(var(--g-scale, 1) * 1.03)) rotate(2deg); }
   }
 
   .gem-goti.goti-fear {
-    animation: gotiFearTremble 0.24s ease-in-out infinite alternate !important;
-    filter: drop-shadow(0 0 8px #38bdf8) drop-shadow(0 0 12px #a855f7) drop-shadow(0 4px 5px rgba(0,0,0,0.65));
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.75)) drop-shadow(0 4px 5px rgba(0,0,0,0.65));
     z-index: 7;
   }
 
-  @keyframes gotiFearTremble {
-    0%   { transform: translate(-54%, -73.7%) scale(calc(var(--g-scale, 1) * 0.96)) rotate(-11deg); }
-    50%  { transform: translate(-50%, -76.5%) scale(calc(var(--g-scale, 1) * 1.01)) rotate(0deg); }
-    100% { transform: translate(-46%, -73.7%) scale(calc(var(--g-scale, 1) * 0.96)) rotate(11deg); }
-  }
-
   .gem-goti.goti-killer {
-    animation: gotiKillerHunt 0.48s ease-in-out infinite alternate !important;
-    filter: drop-shadow(0 0 8px #ef233c) drop-shadow(0 0 13px #ff9100) drop-shadow(0 5px 6px rgba(0,0,0,0.75));
+    filter: drop-shadow(0 0 6px rgba(239, 35, 60, 0.78)) drop-shadow(0 4px 6px rgba(0,0,0,0.7));
     z-index: 8;
   }
 
-  @keyframes gotiKillerHunt {
-    0%   { transform: translate(-50%, -72%) scale(calc(var(--g-scale, 1) * 1.05)) rotate(-5deg); }
-    100% { transform: translate(-50%, -81%) scale(calc(var(--g-scale, 1) * 1.15)) rotate(5deg); }
-  }
-
-  .gem-goti.all-halchal {
-    animation: gotiAllHalchal 0.42s ease-in-out infinite alternate !important;
-  }
-
-  @keyframes gotiAllHalchal {
-    0%   { transform: translate(-50%, -72%) scale(var(--g-scale, 1)) rotate(-7deg); }
-    50%  { transform: translate(-50%, -79%) scale(calc(var(--g-scale, 1) * 1.07)) rotate(0deg); }
-    100% { transform: translate(-50%, -72%) scale(var(--g-scale, 1)) rotate(7deg); }
-  }
-
+  /* ONLY the active human player's playable gotis get this pop-up animation */
   .gem-goti.can-pick {
-    animation: gotiPickDance 0.36s ease-in-out infinite alternate !important;
-    filter: drop-shadow(0 0 7px #ffea00) drop-shadow(0 5px 6px rgba(0, 0, 0, 0.7));
-    z-index: 9;
+    animation: gotiPickPopUp 0.44s cubic-bezier(0.22, 1.35, 0.36, 1) infinite alternate !important;
+    filter: drop-shadow(0 0 9px #ffea00) drop-shadow(0 0 15px rgba(255, 255, 255, 0.85)) drop-shadow(0 7px 8px rgba(0, 0, 0, 0.75));
+    z-index: 12 !important;
   }
 
-  @keyframes gotiPickDance {
-    0%   { transform: translate(-50%, -71%) scale(1.02) rotate(-9deg); }
-    100% { transform: translate(-50%, -82%) scale(1.13) rotate(9deg); }
+  .gem-goti.can-pick::before {
+    content: "";
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    width: 135%;
+    height: 55%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    border: 2.5px solid #ffea00;
+    background: radial-gradient(circle, rgba(255, 234, 0, 0.45), transparent 72%);
+    box-shadow: 0 0 12px #ffea00;
+    animation: pickRingPulse 0.44s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes pickRingPulse {
+    0%   { transform: translateX(-50%) scale(0.88); opacity: 0.75; }
+    100% { transform: translateX(-50%) scale(1.22); opacity: 1; }
+  }
+
+  @keyframes gotiPickPopUp {
+    0%   { transform: translate(-50%, -76%) scale(1.06); }
+    100% { transform: translate(-50%, -95%) scale(1.24); }
   }
 
   .gem-goti.is-moving {
-    transform: translate(-50%, -82%) scale(1.15) !important;
+    transform: translate(-50%, -84%) scale(1.16) !important;
     animation: none !important;
-    z-index: 10;
+    z-index: 13 !important;
     filter: drop-shadow(0 7px 9px rgba(0, 0, 0, 0.75));
   }
 
@@ -1520,7 +1513,7 @@
   .vic-pawn-dance {
     width: 44px;
     height: 52px;
-    animation: gotiPickDance 0.42s ease-in-out infinite alternate;
+    animation: gotiPickPopUp 0.42s ease-in-out infinite alternate;
   }
 
   .vic-reward-box {
@@ -2308,7 +2301,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_pro_studio_v22";
+  const STORAGE_KEY = "dlr_pro_studio_v23";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -2685,7 +2678,7 @@
     }
   }
 
-  /* ================= LOBBY-ONLY MUSIC, REALISTIC DICE & MELODIC GOTI STEP SFX ================= */
+  /* ================= STUDIO WEB AUDIO ENGINE (LOBBY MUSIC + REALISTIC DICE + WOOD/KALIMBA GOTI STEP) ================= */
   function ensureAudio() {
     if (appInBackground || document.hidden) return null;
     if (!audioCtx) {
@@ -2696,11 +2689,11 @@
       audioCtx.resume().catch(() => {});
     }
     if (audioCtx && !diceNoiseBuffer) {
-      const len = Math.floor(audioCtx.sampleRate * 0.045);
+      const len = Math.floor(audioCtx.sampleRate * 0.055);
       diceNoiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
       const data = diceNoiseBuffer.getChannelData(0);
       for (let i = 0; i < len; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.35));
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.28));
       }
     }
     return audioCtx;
@@ -2819,58 +2812,90 @@
     }
   }
 
-  /* Realistic Physical Dice Rattle + Wooden Board Clatter */
+  /* Studio-Grade Physical Resin Dice Rattle + Wooden Board Thud & Multi-Bounce */
   function sfxDice() {
     if (!profile.sound) return;
     const ctx = ensureAudio();
     if (!ctx || ctx.state !== "running") return;
 
-    function triggerDieClack(delaySec, strength, pitchScale) {
+    function triggerDieImpact(delaySec, strength, freqMult, withBoardThud = false) {
       const startAt = ctx.currentTime + delaySec;
 
+      // 1. Crisp resin click transient
       if (diceNoiseBuffer) {
         const src = ctx.createBufferSource();
         src.buffer = diceNoiseBuffer;
-        const filter = ctx.createBiquadFilter();
-        filter.type = "bandpass";
-        filter.frequency.setValueAtTime(2100 * pitchScale, startAt);
-        filter.Q.setValueAtTime(2.6, startAt);
+
+        const bp = ctx.createBiquadFilter();
+        bp.type = "bandpass";
+        bp.frequency.setValueAtTime(2650 * freqMult, startAt);
+        bp.Q.setValueAtTime(2.2, startAt);
 
         const nGain = ctx.createGain();
         nGain.gain.setValueAtTime(0.001, startAt);
-        nGain.gain.linearRampToValueAtTime(0.24 * strength, startAt + 0.003);
-        nGain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.036);
+        nGain.gain.linearRampToValueAtTime(0.30 * strength, startAt + 0.002);
+        nGain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.032);
 
-        src.connect(filter);
-        filter.connect(nGain);
+        src.connect(bp);
+        bp.connect(nGain);
         nGain.connect(ctx.destination);
         src.start(startAt);
       }
 
-      const bodyOsc = ctx.createOscillator();
-      const bodyGain = ctx.createGain();
-      bodyOsc.type = "triangle";
-      bodyOsc.frequency.setValueAtTime(980 * pitchScale, startAt);
-      bodyOsc.frequency.exponentialRampToValueAtTime(310 * pitchScale, startAt + 0.026);
+      // 2. Dual acrylic harmonic knock
+      [2150 * freqMult, 4350 * freqMult].forEach((f, idx) => {
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = idx === 0 ? "triangle" : "sine";
+        osc.frequency.setValueAtTime(f, startAt);
+        osc.frequency.exponentialRampToValueAtTime(f * 0.42, startAt + 0.022);
 
-      bodyGain.gain.setValueAtTime(0.001, startAt);
-      bodyGain.gain.linearRampToValueAtTime(0.16 * strength, startAt + 0.002);
-      bodyGain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.028);
+        g.gain.setValueAtTime(0.001, startAt);
+        g.gain.linearRampToValueAtTime((idx === 0 ? 0.16 : 0.09) * strength, startAt + 0.0015);
+        g.gain.exponentialRampToValueAtTime(0.001, startAt + 0.024);
 
-      bodyOsc.connect(bodyGain);
-      bodyGain.connect(ctx.destination);
-      bodyOsc.start(startAt);
-      bodyOsc.stop(startAt + 0.032);
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(startAt);
+        osc.stop(startAt + 0.028);
+      });
+
+      // 3. Deep wooden Ludo board thud on board landing
+      if (withBoardThud) {
+        const thudOsc = ctx.createOscillator();
+        const thudFilter = ctx.createBiquadFilter();
+        const thudGain = ctx.createGain();
+
+        thudOsc.type = "sine";
+        thudOsc.frequency.setValueAtTime(190, startAt);
+        thudOsc.frequency.exponentialRampToValueAtTime(64, startAt + 0.065);
+
+        thudFilter.type = "lowpass";
+        thudFilter.frequency.setValueAtTime(420, startAt);
+
+        thudGain.gain.setValueAtTime(0.001, startAt);
+        thudGain.gain.linearRampToValueAtTime(0.32 * strength, startAt + 0.004);
+        thudGain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.072);
+
+        thudOsc.connect(thudFilter);
+        thudFilter.connect(thudGain);
+        thudGain.connect(ctx.destination);
+        thudOsc.start(startAt);
+        thudOsc.stop(startAt + 0.078);
+      }
     }
 
-    // Rattle in air (0ms - 150ms) + Board landing & double-bounce (225ms - 360ms)
-    triggerDieClack(0.00, 0.55, 1.15);
-    triggerDieClack(0.042, 0.72, 1.24);
-    triggerDieClack(0.085, 0.85, 1.10);
-    triggerDieClack(0.135, 0.75, 1.20);
-    triggerDieClack(0.225, 1.00, 0.94);
-    triggerDieClack(0.295, 0.62, 1.04);
-    triggerDieClack(0.355, 0.34, 1.12);
+    // Cup/hand shake rattle (0ms - 170ms)
+    triggerDieImpact(0.000, 0.50, 1.18, false);
+    triggerDieImpact(0.044, 0.68, 1.28, false);
+    triggerDieImpact(0.088, 0.82, 1.12, false);
+    triggerDieImpact(0.138, 0.72, 1.24, false);
+
+    // Main wooden board landing + natural multi-bounce settle (215ms - 375ms)
+    triggerDieImpact(0.215, 1.00, 0.94, true);
+    triggerDieImpact(0.285, 0.58, 1.04, true);
+    triggerDieImpact(0.338, 0.30, 1.12, false);
+    triggerDieImpact(0.378, 0.14, 1.20, false);
   }
 
   function sfxSuperSix() {
@@ -2884,19 +2909,74 @@
     playNote(1174.66, 0.18, "triangle", 0.13, 0.08);
   }
 
-  /* Melodic Sargam Marimba Step Sound for Goti Movement */
+  /* Studio-Grade Tactile Wooden Pop + Silky Kalimba/Santoor Sargam Step Sound */
   const STEP_SARGAM = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
 
   function sfxStep(backwards = false, stepNum = 1) {
+    if (!profile.sound) return;
+    const ctx = ensureAudio();
+    if (!ctx || ctx.state !== "running") return;
+    const now = ctx.currentTime;
+
     if (backwards) {
-      playNote(520, 0.07, "sawtooth", 0.09, 0);
-      playNote(390, 0.07, "triangle", 0.09, 0.04);
-    } else {
-      const idx = (Math.max(1, stepNum) - 1) % STEP_SARGAM.length;
-      const freq = STEP_SARGAM[idx];
-      playNote(freq, 0.14, "triangle", 0.15, 0);
-      playNote(freq * 2, 0.09, "sine", 0.055, 0.012);
+      // Smooth descending wooden slide when retreating
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(460, now);
+      osc.frequency.exponentialRampToValueAtTime(240, now + 0.085);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.11, now + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.095);
+      return;
     }
+
+    // Layer 1: Crisp wooden token placement "tok"
+    const woodOsc = ctx.createOscillator();
+    const woodGain = ctx.createGain();
+    woodOsc.type = "sine";
+    woodOsc.frequency.setValueAtTime(310, now);
+    woodOsc.frequency.exponentialRampToValueAtTime(125, now + 0.036);
+    woodGain.gain.setValueAtTime(0.001, now);
+    woodGain.gain.linearRampToValueAtTime(0.18, now + 0.003);
+    woodGain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+    woodOsc.connect(woodGain);
+    woodGain.connect(ctx.destination);
+    woodOsc.start(now);
+    woodOsc.stop(now + 0.045);
+
+    // Layer 2: Ascending melodic kalimba/santoor chime (Sa-Re-Ga-Pa-Dha-Sa')
+    const idx = (Math.max(1, stepNum) - 1) % STEP_SARGAM.length;
+    const baseFreq = STEP_SARGAM[idx];
+
+    const chimeOsc = ctx.createOscillator();
+    const chimeGain = ctx.createGain();
+    chimeOsc.type = "sine";
+    chimeOsc.frequency.setValueAtTime(baseFreq, now);
+    chimeGain.gain.setValueAtTime(0.001, now);
+    chimeGain.gain.linearRampToValueAtTime(0.16, now + 0.008);
+    chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.17);
+    chimeOsc.connect(chimeGain);
+    chimeGain.connect(ctx.destination);
+    chimeOsc.start(now);
+    chimeOsc.stop(now + 0.18);
+
+    // Layer 3: Soft octave harmonic shimmer
+    const overOsc = ctx.createOscillator();
+    const overGain = ctx.createGain();
+    overOsc.type = "triangle";
+    overOsc.frequency.setValueAtTime(baseFreq * 2, now);
+    overGain.gain.setValueAtTime(0.001, now);
+    overGain.gain.linearRampToValueAtTime(0.055, now + 0.006);
+    overGain.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
+    overOsc.connect(overGain);
+    overGain.connect(ctx.destination);
+    overOsc.start(now);
+    overOsc.stop(now + 0.12);
   }
 
   function sfxOutKhushi() {
@@ -3369,7 +3449,7 @@
     document.getElementById("dialogTitle").textContent = "देसी लूडो राजा — नियम";
     document.getElementById("dialogText").innerHTML =
       "• 6 आने पर गोटी अपने आप घर से बाहर निकलेगी और <b>SUPER 6</b> शॉकवेव चलेगी<br>" +
-      "• पीछे रहने वाली गोटी <b>किलर मोड (😈⚔️)</b> में और आगे वाली गोटी <b>डर मोड (😨)</b> में रहेगी<br>" +
+      "• डाइस चलने के बाद केवल <b>आपकी चलने वाली गोटी</b> ही सुनहरे रिंग के साथ पॉप-अप होगी<br>" +
       "• दुश्मन की गोटी काटने पर स्क्रीन शेक + विस्फोट इफेक्ट और गोटी रोते हुए वापस जाएगी<br>" +
       "• चारों गोटियां घर पहुंचने पर आतिशबाज़ी और ग्रैंड विक्ट्री सेलिब्रेशन होगा";
     document.getElementById("dialogCancelBtn").style.display = "none";
@@ -3798,7 +3878,8 @@
       const killerPick = movable.find(idx => canPieceCaptureOnRoll(color, idx, val));
 
       renderSeatDicePods(null);
-      drawBoard(movable, null, movable.length > 0);
+      // Only pass movable indices of the active player so ONLY their playable pieces pop up
+      drawBoard(movable, null);
 
       if (movable.length === 0) {
         setReaction("😐", `${seatTitle(color)} का ${val} आया — कोई चाल नहीं`);
@@ -3810,7 +3891,7 @@
         setTimeout(() => executeStepMove(color, chosenIdx), 480);
       } else {
         if (killerPick !== undefined) {
-          setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! चमकती गोटी से दुश्मन को काटें!`);
+          setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! पॉप-अप गोटी से दुश्मन को काटें!`);
         }
         refreshBoardBanner(val, false, false);
       }
@@ -3858,7 +3939,7 @@
       spawnSpecialEffect(scr.x, scr.y, ["#06d6a0", "#ffea00", "#ffffff"], 26, true);
       triggerFx("🎉 AUTO OUT!", entryXY);
       setReaction("😄🎉", `${seatTitle(color)} की गोटी 6 पर खुद बाहर आई — खुशी!`, color, idx);
-      drawBoard([], { color, idx }, false);
+      drawBoard([], { color, idx });
       await sleep(300);
     } else {
       for (let s = 1; s <= diceVal; s++) {
@@ -3875,7 +3956,7 @@
           setReaction("😊", `${seatTitle(color)} आगे बढ़ा (${s}/${diceVal})`, color, idx);
         }
 
-        drawBoard([], { color, idx }, false);
+        drawBoard([], { color, idx });
         await sleep(150);
       }
     }
@@ -3906,7 +3987,7 @@
         3200
       );
       renderSeatDicePods(null);
-      drawBoard([], null, false);
+      drawBoard([], null);
       await sleep(520);
     }
 
@@ -3925,7 +4006,7 @@
                 spawnSpecialEffect(hitScr.x, hitScr.y, ["#ef233c", "#ff9100", "#ffea00", "#ffffff"], 44, true);
                 triggerFx("⚔️ KILLER!", pieceXY(color, finalStep));
                 setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! ${seatTitle(opp)} की गोटी कटी!`, color, idx);
-                drawBoard([], { color, idx }, false);
+                drawBoard([], { color, idx });
                 await sleep(350);
 
                 sfxCrySad();
@@ -3933,7 +4014,7 @@
                   match.pieces[opp][oIdx] = backStep;
                   sfxStep(true, backStep);
                   setReaction("😭", `${seatTitle(opp)} रोते हुए पीछे जा रही है...`, opp, oIdx);
-                  drawBoard([], { color: opp, idx: oIdx }, false);
+                  drawBoard([], { color: opp, idx: oIdx });
                   await sleep(100);
                 }
                 match.pieces[opp][oIdx] = -1;
@@ -3993,7 +4074,7 @@
     } else if (autoMoving) {
       el.textContent = `${label} का ${val} आया — चाल चल रही है...`;
     } else if (val) {
-      el.textContent = `${label} ने ${val} चला — चमकती गोटी चुनें`;
+      el.textContent = `${label} ने ${val} चला — ऊपर उठी गोटी चुनें`;
     } else if (homeBonus) {
       el.textContent = `🥳 गोटी घर पहुंची! ${label} को बोनस डाइस मिला`;
     } else {
@@ -4026,7 +4107,7 @@
     return `<svg width="58%" height="58%" viewBox="0 0 24 24" style="transform:rotate(${rotDeg}deg)"><path d="M5 12H18M13 7L18 12L13 17" stroke="${fill}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`;
   }
 
-  function drawBoard(movableList = [], movingMeta = null, allHalchal = false) {
+  function drawBoard(movableList = [], movingMeta = null) {
     const grid = document.getElementById("ludoGrid15");
     const tokensLayer = document.getElementById("tokensLayer");
     grid.innerHTML = "";
@@ -4096,6 +4177,9 @@
       });
     });
 
+    const curTurnColor = activeColor();
+    const isHumanTurn = !isBotColor(curTurnColor);
+
     allTokens.forEach(item => {
       const { col, step, idx, xy } = item;
       let leftPct, topPct, scaleVal = 1;
@@ -4125,15 +4209,17 @@
       goti.style.left = `${leftPct}%`;
       goti.style.top = `${topPct}%`;
       goti.style.setProperty("--g-scale", scaleVal);
-      goti.style.animationDelay = `${idx * 0.16}s`;
 
-      const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
+      // Strictly ONLY the active human player's movable gotis pop up!
+      const canPick = isHumanTurn && col === curTurnColor && match.hasRolled && movableList.includes(idx);
       const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
 
       if (isFear) goti.classList.add("goti-fear");
       if (isKiller) goti.classList.add("goti-killer");
-      if (allHalchal) goti.classList.add("all-halchal");
-      if (canPick) goti.classList.add("can-pick");
+      if (canPick) {
+        goti.classList.add("can-pick");
+        goti.style.animationDelay = `${idx * 0.08}s`;
+      }
       if (isMoving) goti.classList.add("is-moving");
 
       goti.innerHTML = buildStudioGotiSvg(col, idx);
