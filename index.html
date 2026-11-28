@@ -214,7 +214,6 @@
       linear-gradient(180deg, #06163d 0%, #1045a8 46%, #061842 100%);
   }
 
-  /* Golden Sunburst Light Rays Behind Center Lobby */
   #startScreen::before {
     content: "";
     position: absolute;
@@ -237,7 +236,6 @@
     z-index: 1;
   }
 
-  /* Top Glass & Gold HUD */
   .top-hud {
     display: flex;
     align-items: center;
@@ -349,7 +347,6 @@
     cursor: pointer;
   }
 
-  /* ================= CENTER LOBBY CORE (DENSE, ZERO DEAD SPACE) ================= */
   .lobby-center-stack {
     flex: 1;
     display: flex;
@@ -407,7 +404,6 @@
     letter-spacing: 0.3px;
   }
 
-  /* Royal Crown + Unclipped Hindi Title + 3D Letter Orbs */
   .brand-lockup {
     display: flex;
     flex-direction: column;
@@ -473,7 +469,6 @@
     box-shadow: 0 3px 0 #78350f, 0 5px 10px rgba(0, 0, 0, 0.45);
   }
 
-  /* 3D Perspective Studio Diorama */
   .studio-diorama {
     width: 236px;
     height: 82px;
@@ -528,7 +523,6 @@
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.65);
   }
 
-  /* ================= RICH LAYERED 3D MODE CARDS ================= */
   .modes-wrap {
     padding: 2px 10px;
     display: flex;
@@ -621,7 +615,6 @@
     box-shadow: 0 0 6px #00e676;
   }
 
-  /* ================= COMPACT SCULPTED TOURNAMENT & REWARDS ================= */
   .tourney-row {
     display: flex;
     align-items: center;
@@ -749,7 +742,6 @@
     padding: 2px 5px;
   }
 
-  /* ================= CLEAN STUDIO BOTTOM NAVIGATION ================= */
   .bottom-nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -896,7 +888,7 @@
     white-space: nowrap;
   }
 
-  /* COMPACT CORNER-ALIGNED PLAYER PODS (NO STRETCHED EMPTY BARS!) */
+  /* COMPACT CORNER-ALIGNED PLAYER PODS */
   .seat-row {
     display: flex;
     align-items: center;
@@ -966,7 +958,6 @@
     box-shadow: 0 0 6px #ffea00;
   }
 
-  /* BIG 56x56 3D DICE WITH MID-AIR TOSSED ARC */
   .pod-dice-big {
     width: 56px;
     height: 56px;
@@ -1138,12 +1129,7 @@
     pointer-events: none;
   }
 
-  /*
-    BOLD, PRO-SIZED 3D STUDIO GOTI (7.6% width x 8.4% height):
-    - Almost 2x larger than previous tiny specks!
-    - Circular golden base center in SVG (viewBox 0 0 64 76) is at (32, 56) = (50%, 73.7%)
-    - translate(-50%, -73.7%) locks the golden pedestal dead-center on every yard circle & board square!
-  */
+  /* ================= BOLD 3D GOTIS + FEAR MODE + KILLER MODE ================= */
   .gem-goti {
     position: absolute;
     width: 7.6%;
@@ -1164,6 +1150,31 @@
     100% { transform: translate(-50%, -76%) scale(calc(var(--g-scale, 1) * 1.03)) rotate(2deg); }
   }
 
+  /* FEAR MODE (जब दुश्मन गोटी 1-6 कदम पीछे आ जाए) */
+  .gem-goti.goti-fear {
+    animation: gotiFearTremble 0.24s ease-in-out infinite alternate !important;
+    filter: drop-shadow(0 0 8px #38bdf8) drop-shadow(0 0 12px #a855f7) drop-shadow(0 4px 5px rgba(0,0,0,0.65));
+    z-index: 7;
+  }
+
+  @keyframes gotiFearTremble {
+    0%   { transform: translate(-54%, -73.7%) scale(calc(var(--g-scale, 1) * 0.96)) rotate(-11deg); }
+    50%  { transform: translate(-50%, -76.5%) scale(calc(var(--g-scale, 1) * 1.01)) rotate(0deg); }
+    100% { transform: translate(-46%, -73.7%) scale(calc(var(--g-scale, 1) * 0.96)) rotate(11deg); }
+  }
+
+  /* KILLER MODE (जो गोटी 1-6 कदम पीछे रहकर शिकार करने की स्थिति में हो) */
+  .gem-goti.goti-killer {
+    animation: gotiKillerHunt 0.48s ease-in-out infinite alternate !important;
+    filter: drop-shadow(0 0 8px #ef233c) drop-shadow(0 0 13px #ff9100) drop-shadow(0 5px 6px rgba(0,0,0,0.75));
+    z-index: 8;
+  }
+
+  @keyframes gotiKillerHunt {
+    0%   { transform: translate(-50%, -72%) scale(calc(var(--g-scale, 1) * 1.05)) rotate(-5deg); }
+    100% { transform: translate(-50%, -81%) scale(calc(var(--g-scale, 1) * 1.15)) rotate(5deg); }
+  }
+
   .gem-goti.all-halchal {
     animation: gotiAllHalchal 0.42s ease-in-out infinite alternate !important;
   }
@@ -1177,7 +1188,7 @@
   .gem-goti.can-pick {
     animation: gotiPickDance 0.36s ease-in-out infinite alternate !important;
     filter: drop-shadow(0 0 7px #ffea00) drop-shadow(0 5px 6px rgba(0, 0, 0, 0.7));
-    z-index: 8;
+    z-index: 9;
   }
 
   @keyframes gotiPickDance {
@@ -1188,7 +1199,7 @@
   .gem-goti.is-moving {
     transform: translate(-50%, -82%) scale(1.15) !important;
     animation: none !important;
-    z-index: 9;
+    z-index: 10;
     filter: drop-shadow(0 7px 9px rgba(0, 0, 0, 0.75));
   }
 
@@ -1200,19 +1211,32 @@
 
   .pin-emo-tag {
     position: absolute;
-    top: -13px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     background: #ffffff;
     color: #0f172a;
-    border: 1.4px solid #1e293b;
+    border: 1.5px solid #1e293b;
     border-radius: 999px;
-    padding: 0 4px;
-    font-size: 10px;
-    line-height: 1.2;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    padding: 0 5px;
+    font-size: 10.5px;
+    font-weight: 900;
+    line-height: 1.25;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
     white-space: nowrap;
-    z-index: 12;
+    z-index: 14;
+  }
+
+  .pin-emo-tag.tag-killer {
+    background: linear-gradient(180deg, #ff4d6d, #b91c1c);
+    color: #ffffff;
+    border-color: #ffea00;
+  }
+
+  .pin-emo-tag.tag-fear {
+    background: linear-gradient(180deg, #e0f2fe, #bae6fd);
+    color: #0c4a6e;
+    border-color: #0284c7;
   }
 
   .status-banner {
@@ -1224,6 +1248,159 @@
     font-size: 12px;
     font-weight: 900;
     color: #ffea00;
+  }
+
+  /* ================= GRAND VICTORY CELEBRATION OVERLAY ================= */
+  #victoryOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: radial-gradient(circle at 50% 42%, rgba(255, 202, 40, 0.28), rgba(3, 11, 33, 0.92) 72%);
+    backdrop-filter: blur(5px);
+  }
+
+  #victoryOverlay.show {
+    display: flex;
+  }
+
+  #victoryCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .victory-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 375px;
+    border-radius: 24px;
+    border: 3px solid #ffea00;
+    background: linear-gradient(180deg, #1e40af 0%, #0f172a 100%);
+    padding: 20px 16px 18px;
+    text-align: center;
+    box-shadow:
+      0 8px 0 #78350f,
+      0 0 42px rgba(255, 215, 0, 0.65),
+      0 24px 48px rgba(0, 0, 0, 0.85);
+    animation: victoryPopIn 0.55s cubic-bezier(0.2, 1.35, 0.35, 1) forwards;
+  }
+
+  @keyframes victoryPopIn {
+    0%   { transform: scale(0.45) translateY(30px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .vic-sunburst {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 6px;
+    display: grid;
+    place-items: center;
+  }
+
+  .vic-rays {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 234, 0, 0.45) 0deg 12deg,
+      transparent 12deg 24deg
+    );
+    -webkit-mask-image: radial-gradient(circle, black 25%, transparent 72%);
+    mask-image: radial-gradient(circle, black 25%, transparent 72%);
+    animation: spinSlow 6s linear infinite;
+  }
+
+  .vic-trophy {
+    position: relative;
+    z-index: 2;
+    width: 86px;
+    height: 86px;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.65));
+    animation: badgeFloat 1.4s ease-in-out infinite;
+  }
+
+  .vic-title {
+    font-size: 23px;
+    font-weight: 950;
+    background: linear-gradient(180deg, #ffffff 0%, #ffea00 55%, #ff8f00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 2px 0;
+  }
+
+  .vic-winner-pill {
+    display: inline-block;
+    margin: 4px 0 10px;
+    padding: 5px 18px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fff59d, #ffca28, #f57f17);
+    color: #240900;
+    border: 2px solid #ffffff;
+    font-size: 15px;
+    font-weight: 950;
+    box-shadow: 0 4px 0 #78350f;
+  }
+
+  .vic-pawns-parade {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 6px 0 12px;
+  }
+
+  .vic-pawn-dance {
+    width: 44px;
+    height: 52px;
+    animation: gotiPickDance 0.42s ease-in-out infinite alternate;
+  }
+
+  .vic-reward-box {
+    background: rgba(4, 13, 36, 0.85);
+    border: 1.8px solid #ffca28;
+    border-radius: 14px;
+    padding: 8px 12px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 950;
+    color: #ffea00;
+  }
+
+  .vic-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .vic-btn {
+    border: 2px solid #ffffff;
+    border-radius: 14px;
+    padding: 11px 10px;
+    font-size: 13px;
+    font-weight: 950;
+    cursor: pointer;
+  }
+
+  .vic-btn-replay {
+    background: linear-gradient(180deg, #00e676, #00a152);
+    color: #03210e;
+    box-shadow: 0 4px 0 #064e3b;
+  }
+
+  .vic-btn-home {
+    background: linear-gradient(180deg, #ffea00, #ff8f00);
+    color: #240900;
+    box-shadow: 0 4px 0 #78350f;
   }
 
   /* ================= MODALS ================= */
@@ -1472,10 +1649,8 @@
       </div>
     </header>
 
-    <!-- BALANCED CENTER LOBBY STACK -->
     <div class="lobby-center-stack">
       <div class="hero-showcase">
-        <!-- Left Rail -->
         <div class="side-rail-left">
           <div class="rail-btn shine-box pop-pill-1" onclick="addCoins(500)">
             <svg width="21" height="21" viewBox="0 0 24 24">
@@ -1501,7 +1676,6 @@
           </div>
         </div>
 
-        <!-- Right Rail -->
         <div class="side-rail-right">
           <div class="rail-btn shine-box pop-pill-1" onclick="claimDailyBonus()">
             <svg width="21" height="21" viewBox="0 0 24 24">
@@ -1537,7 +1711,6 @@
           </div>
         </div>
 
-        <!-- Brand Lockup -->
         <div class="brand-lockup">
           <svg class="brand-crown" viewBox="0 0 80 44">
             <defs>
@@ -1561,7 +1734,6 @@
           <div id="brandBotTag" class="brand-raja-pill">राजा • RAJA</div>
         </div>
 
-        <!-- 3D Perspective Studio Diorama -->
         <div class="studio-diorama">
           <div class="diorama-board">
             <div class="db-r"></div>
@@ -1578,10 +1750,8 @@
         </div>
       </div>
 
-      <!-- RICH LAYERED 3D MODE CARDS -->
       <main class="modes-wrap">
         <div class="modes-3">
-          <!-- ONLINE -->
           <div class="mode-unit">
             <div class="studio-card shine-box pop-float-1" onclick="openPlayerCountSelector('online', 'ONLINE')">
               <div class="card-artwork">
@@ -1601,7 +1771,6 @@
             <div class="online-count"><span class="pulse-dot"></span> 90,434</div>
           </div>
 
-          <!-- TEAM UP -->
           <div class="mode-unit">
             <div class="studio-card shine-box pop-float-2" onclick="openPlayerCountSelector('team', 'TEAM UP')">
               <div class="card-artwork">
@@ -1617,7 +1786,6 @@
             <div class="online-count"><span class="pulse-dot"></span> 1,704</div>
           </div>
 
-          <!-- FRIENDS -->
           <div class="mode-unit">
             <div class="studio-card shine-box pop-float-3" onclick="openPlayerCountSelector('friends', 'FRIENDS')">
               <div class="card-artwork">
@@ -1637,7 +1805,6 @@
         </div>
 
         <div class="modes-2">
-          <!-- COMPUTER -->
           <div class="studio-card shine-box pop-float-4" onclick="openPlayerCountSelector('bot', 'COMPUTER')">
             <div class="card-artwork">
               <svg width="114" height="48" viewBox="0 0 120 50">
@@ -1655,7 +1822,6 @@
             <div id="mBot" class="card-ribbon">COMPUTER</div>
           </div>
 
-          <!-- PASS N PLAY -->
           <div class="studio-card shine-box pop-float-5" onclick="openPlayerCountSelector('pass', 'PASS N PLAY')">
             <div class="card-artwork">
               <svg width="114" height="48" viewBox="0 0 120 50">
@@ -1674,7 +1840,6 @@
         </div>
       </main>
 
-      <!-- COMPACT TOURNAMENT BAR -->
       <div class="tourney-row">
         <div class="circle-medallion shine-box pop-pill-1" onclick="openCoinTableDialog()" title="Coin Tables">
           <span style="font-size:17px;font-weight:950;color:#ffea00;">7</span>
@@ -1697,7 +1862,6 @@
         </div>
       </div>
 
-      <!-- COMPACT SEASON CLAIM + FREE REWARD + LUCKY SPIN -->
       <div class="rewards-row">
         <div class="reward-card-mini shine-box pop-pill-1" onclick="watchVideoReward()">
           <div style="font-size:8.5px;font-weight:950;color:#ffea00;">FREE</div>
@@ -1716,7 +1880,6 @@
       </div>
     </div>
 
-    <!-- CLEAN STUDIO BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
       <button class="nav-tab tab-active" onclick="setActiveTab(this, 'home')">
         <svg width="18" height="18" viewBox="0 0 24 24"><path d="M3 11L12 3L21 11V20H15V14H9V20H3V11Z" fill="currentColor"/></svg>
@@ -1772,9 +1935,7 @@
         <div class="board-inner-clip">
           <div id="ludoGrid15" class="ludo-15"></div>
 
-          <!-- Luxury 1500x1500 Studio Vector Board Overlay -->
           <svg class="board-overlay-svg" viewBox="0 0 1500 1500" preserveAspectRatio="none">
-            <!-- Red Home Yard -->
             <rect x="78" y="78" width="444" height="444" rx="34" fill="#ffffff" stroke="#991b1b" stroke-width="11"/>
             <rect x="96" y="96" width="408" height="408" rx="24" fill="#fff5f5" stroke="#fecdd3" stroke-width="4"/>
             <circle cx="215" cy="215" r="56" fill="#ffe4e6" stroke="#ef233c" stroke-width="9"/>
@@ -1782,7 +1943,6 @@
             <circle cx="215" cy="385" r="56" fill="#ffe4e6" stroke="#ef233c" stroke-width="9"/>
             <circle cx="385" cy="385" r="56" fill="#ffe4e6" stroke="#ef233c" stroke-width="9"/>
 
-            <!-- Green Home Yard -->
             <rect x="978" y="78" width="444" height="444" rx="34" fill="#ffffff" stroke="#065f46" stroke-width="11"/>
             <rect x="996" y="96" width="408" height="408" rx="24" fill="#f0fdf4" stroke="#a7f3d0" stroke-width="4"/>
             <circle cx="1115" cy="215" r="56" fill="#d1fae5" stroke="#10b981" stroke-width="9"/>
@@ -1790,7 +1950,6 @@
             <circle cx="1115" cy="385" r="56" fill="#d1fae5" stroke="#10b981" stroke-width="9"/>
             <circle cx="1285" cy="385" r="56" fill="#d1fae5" stroke="#10b981" stroke-width="9"/>
 
-            <!-- Blue Home Yard -->
             <rect x="78" y="978" width="444" height="444" rx="34" fill="#ffffff" stroke="#075985" stroke-width="11"/>
             <rect x="96" y="996" width="408" height="408" rx="24" fill="#f0f9ff" stroke="#bae6fd" stroke-width="4"/>
             <circle cx="215" cy="1115" r="56" fill="#e0f2fe" stroke="#0284c7" stroke-width="9"/>
@@ -1798,7 +1957,6 @@
             <circle cx="215" cy="1285" r="56" fill="#e0f2fe" stroke="#0284c7" stroke-width="9"/>
             <circle cx="385" cy="1285" r="56" fill="#e0f2fe" stroke="#0284c7" stroke-width="9"/>
 
-            <!-- Yellow Home Yard -->
             <rect x="978" y="978" width="444" height="444" rx="34" fill="#ffffff" stroke="#92400e" stroke-width="11"/>
             <rect x="996" y="996" width="408" height="408" rx="24" fill="#fefce8" stroke="#fef08a" stroke-width="4"/>
             <circle cx="1115" cy="1115" r="56" fill="#fef9c3" stroke="#eab308" stroke-width="9"/>
@@ -1806,7 +1964,6 @@
             <circle cx="1115" cy="1285" r="56" fill="#fef9c3" stroke="#eab308" stroke-width="9"/>
             <circle cx="1285" cy="1285" r="56" fill="#fef9c3" stroke="#eab308" stroke-width="9"/>
 
-            <!-- Center 4-Triangle Royal Home Goal -->
             <polygon points="600,600 900,600 750,750" fill="#10b981" stroke="#1e293b" stroke-width="7"/>
             <polygon points="900,600 900,900 750,750" fill="#eab308" stroke="#1e293b" stroke-width="7"/>
             <polygon points="900,900 600,900 750,750" fill="#0284c7" stroke="#1e293b" stroke-width="7"/>
@@ -1827,6 +1984,41 @@
 
     <div id="boardMsg" class="status-banner">अपनी सीट के बड़े डाइस को उछालने के लिए टैप करें</div>
   </section>
+</div>
+
+<!-- GRAND VICTORY CELEBRATION OVERLAY -->
+<div id="victoryOverlay">
+  <canvas id="victoryCanvas"></canvas>
+  <div class="victory-card shine-box">
+    <div class="vic-sunburst">
+      <div class="vic-rays"></div>
+      <svg class="vic-trophy" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="vicCupGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="45%" stop-color="#ffea00"/>
+            <stop offset="100%" stop-color="#ff6d00"/>
+          </linearGradient>
+        </defs>
+        <path d="M22 22 H78 V46 C78 63 65 73 50 73 C35 73 22 63 22 46 Z" fill="url(#vicCupGold)" stroke="#fff" stroke-width="3"/>
+        <path d="M22 28 H10 C10 43 16 50 24 51" fill="none" stroke="#ffca28" stroke-width="5" stroke-linecap="round"/>
+        <path d="M78 28 H90 C90 43 84 50 76 51" fill="none" stroke="#ffca28" stroke-width="5" stroke-linecap="round"/>
+        <rect x="42" y="72" width="16" height="14" rx="2" fill="#ff9100"/>
+        <rect x="30" y="84" width="40" height="9" rx="4" fill="#ffca28" stroke="#fff" stroke-width="2"/>
+        <polygon points="50,31 54,41 65,42 57,49 59,60 50,54 41,60 43,49 35,42 46,41" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <div class="vic-title">🎉 महा-विजय जश्न! 🎉</div>
+    <div id="vicWinnerName" class="vic-winner-pill">👑 राजा खिलाड़ी जीते!</div>
+    <div id="vicPawnsParade" class="vic-pawns-parade"></div>
+    <div id="vicRewardText" class="vic-reward-box">🪙 +500 जीत के कॉइन &nbsp;|&nbsp; 💎 +25 हीरे मिले!</div>
+
+    <div class="vic-actions">
+      <button class="vic-btn vic-btn-replay shine-box" onclick="replaySameMatch()">🔄 फिर से खेलें</button>
+      <button class="vic-btn vic-btn-home shine-box" onclick="exitVictoryToHome()">🏠 लॉबी में जाएं</button>
+    </div>
+  </div>
 </div>
 
 <input type="file" id="dpInput" accept="image/*" style="display:none" onchange="onDpSelected(event)" />
@@ -1853,7 +2045,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_pro_studio_v18";
+  const STORAGE_KEY = "dlr_pro_studio_v19";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -1967,6 +2159,7 @@
   let audioCtx = null;
   let bgmTimer = null;
   let appInBackground = false;
+  let victoryAnimId = null;
 
   const TRACK_52 = [
     [6,1],[6,2],[6,3],[6,4],[6,5],
@@ -1996,6 +2189,7 @@
 
   let match = {
     mode: "bot",
+    countSelected: 1,
     seats: ["blue", "green"],
     botColors: new Set(["green"]),
     turn: 0,
@@ -2034,7 +2228,8 @@
     if (audioCtx && audioCtx.state === "suspended") {
       audioCtx.resume().catch(() => {});
     }
-    if (document.getElementById("gameScreen").style.display === "flex") {
+    if (document.getElementById("gameScreen").style.display === "flex" &&
+        !document.getElementById("victoryOverlay").classList.contains("show")) {
       startBgMusic();
     }
   }
@@ -2098,11 +2293,6 @@
     return `<div class="pip-grid">${dots}</div>`;
   }
 
-  /*
-    BOLD 3D SCULPTED STUDIO GOTI (viewBox="0 0 64 76"):
-    - Wide golden-rimmed pedestal centered at (32, 56) = (50%, 73.7%)
-    - Faceted 3D glossy teardrop body + large spherical glass head
-  */
   const STUDIO_PAWN_PALETTE = {
     red:    { top: "#ff9aa2", mid: "#ef233c", deep: "#880e4f", rim: "#ffe4e6" },
     green:  { top: "#a7f3d0", mid: "#059669", deep: "#022c22", rim: "#d1fae5" },
@@ -2135,19 +2325,13 @@
             <stop offset="100%" stop-color="#92400e"/>
           </linearGradient>
         </defs>
-        <!-- Ground ambient shadow -->
         <ellipse cx="32" cy="61.5" rx="22" ry="9" fill="rgba(2, 6, 23, 0.45)"/>
-        <!-- Golden 3D metallic pedestal centered at (32, 56) -->
         <ellipse cx="32" cy="56.5" rx="20.5" ry="11.5" fill="url(#${gGold})" stroke="#451a03" stroke-width="1.4"/>
         <ellipse cx="32" cy="55" rx="17" ry="9.2" fill="url(#${gBody})"/>
-        <!-- Sculpted 3D cone body -->
         <path d="M16 54.5 C16.5 41, 24 33, 26 26 L38 26 C40 33, 47.5 41, 48 54.5 Z"
               fill="url(#${gBody})" stroke="${p.rim}" stroke-width="1" stroke-linejoin="round"/>
-        <!-- Golden neck collar -->
         <ellipse cx="32" cy="26.5" rx="7.6" ry="2.6" fill="url(#${gGold})"/>
-        <!-- Large 3D Glossy Sphere Head -->
         <circle cx="32" cy="17" r="12.5" fill="url(#${gHead})" stroke="${p.rim}" stroke-width="1"/>
-        <!-- Specular glass shine -->
         <ellipse cx="27" cy="12.2" rx="3.8" ry="2.2" transform="rotate(-28 27 12.2)" fill="rgba(255,255,255,0.9)"/>
       </svg>
     `;
@@ -2220,8 +2404,16 @@
   }
 
   function sfxWinGrand() {
-    const notes = [523, 659, 784, 1046, 784, 1046];
-    notes.forEach((n, i) => playNote(n, 0.13, "triangle", 0.10, i * 0.11));
+    const fanfare = [
+      [523.25, 0.14, 0.00],
+      [659.25, 0.14, 0.12],
+      [783.99, 0.14, 0.24],
+      [1046.5, 0.28, 0.36],
+      [783.99, 0.14, 0.66],
+      [1046.5, 0.35, 0.80],
+      [1318.5, 0.45, 1.05]
+    ];
+    fanfare.forEach(([f, d, dl]) => playNote(f, d, "triangle", 0.12, dl));
   }
 
   function startBgMusic() {
@@ -2242,6 +2434,216 @@
       clearInterval(bgmTimer);
       bgmTimer = null;
     }
+  }
+
+  /* ================= PERSISTENT FEAR & KILLER THREAT RADAR ================= */
+  function computeThreatStates() {
+    const fearMap = {};   // key: "color-idx" -> closest steps behind (1..6)
+    const killerMap = {}; // key: "color-idx" -> true
+
+    const activeTrackTokens = [];
+    match.seats.forEach(col => {
+      match.pieces[col].forEach((step, idx) => {
+        if (step >= 0 && step <= 50) {
+          const spot = (COLOR_START[col] + step) % 52;
+          activeTrackTokens.push({ col, idx, step, spot });
+        }
+      });
+    });
+
+    for (let i = 0; i < activeTrackTokens.length; i++) {
+      const ahead = activeTrackTokens[i];
+      if (SAFE_SPOTS.has(ahead.spot)) continue;
+
+      for (let j = 0; j < activeTrackTokens.length; j++) {
+        if (i === j) continue;
+        const behind = activeTrackTokens[j];
+        if (ahead.col === behind.col) continue;
+
+        const dist = (ahead.spot - behind.spot + 52) % 52;
+        if (dist >= 1 && dist <= 6) {
+          const aKey = `${ahead.col}-${ahead.idx}`;
+          const bKey = `${behind.col}-${behind.idx}`;
+          if (!fearMap[aKey] || dist < fearMap[aKey]) {
+            fearMap[aKey] = dist;
+          }
+          killerMap[bKey] = true;
+        }
+      }
+    }
+
+    return { fearMap, killerMap };
+  }
+
+  function canPieceCaptureOnRoll(color, idx, diceVal) {
+    const step = match.pieces[color][idx];
+    if (step === -1 && diceVal === 6) {
+      const targetSpot = COLOR_START[color] % 52;
+      if (SAFE_SPOTS.has(targetSpot)) return false;
+      return match.seats.some(opp =>
+        opp !== color && match.pieces[opp].some(oStep => oStep >= 0 && oStep <= 50 && (COLOR_START[opp] + oStep) % 52 === targetSpot)
+      );
+    }
+    const nextStep = step + diceVal;
+    if (nextStep < 0 || nextStep > 50) return false;
+    const targetSpot = (COLOR_START[color] + nextStep) % 52;
+    if (SAFE_SPOTS.has(targetSpot)) return false;
+    return match.seats.some(opp =>
+      opp !== color && match.pieces[opp].some(oStep => oStep >= 0 && oStep <= 50 && (COLOR_START[opp] + oStep) % 52 === targetSpot)
+    );
+  }
+
+  /* ================= FIREWORKS & CONFETTI ENGINE ================= */
+  function startFireworksCelebration(durationMs = 0) {
+    stopFireworksCelebration();
+    const overlay = document.getElementById("victoryOverlay");
+    const canvas = document.getElementById("victoryCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+
+    const colors = ["#ffea00", "#ef233c", "#06d6a0", "#38bdf8", "#f97316", "#e879f9", "#ffffff"];
+    const confetti = Array.from({ length: 85 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: 6 + Math.random() * 6,
+      h: 4 + Math.random() * 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: 2.2 + Math.random() * 3.4,
+      vx: -1.5 + Math.random() * 3,
+      rot: Math.random() * Math.PI * 2,
+      vRot: -0.12 + Math.random() * 0.24
+    }));
+
+    const sparks = [];
+    function spawnFireworkBurst() {
+      const cx = canvas.width * (0.2 + Math.random() * 0.6);
+      const cy = canvas.height * (0.14 + Math.random() * 0.36);
+      const burstColor = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 36; i++) {
+        const angle = (Math.PI * 2 * i) / 36 + (Math.random() * 0.15);
+        const speed = 2.2 + Math.random() * 4.4;
+        sparks.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: i % 3 === 0 ? "#ffffff" : burstColor,
+          radius: 2.2 + Math.random() * 2
+        });
+      }
+    }
+
+    spawnFireworkBurst();
+    setTimeout(spawnFireworkBurst, 320);
+    let burstTick = 0;
+    const startTime = performance.now();
+
+    function frame(now) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      burstTick++;
+      if (burstTick % 42 === 0) {
+        spawnFireworkBurst();
+      }
+
+      confetti.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vRot;
+        if (p.y > canvas.height + 16) {
+          p.y = -12;
+          p.x = Math.random() * canvas.width;
+        }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy += 0.06;
+        s.alpha -= 0.018;
+        if (s.alpha <= 0) {
+          sparks.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = s.alpha;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = s.color;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      if (durationMs > 0 && now - startTime > durationMs && !overlay.classList.contains("show")) {
+        stopFireworksCelebration();
+        return;
+      }
+      victoryAnimId = requestAnimationFrame(frame);
+    }
+
+    victoryAnimId = requestAnimationFrame(frame);
+  }
+
+  function stopFireworksCelebration() {
+    if (victoryAnimId) {
+      cancelAnimationFrame(victoryAnimId);
+      victoryAnimId = null;
+    }
+    const canvas = document.getElementById("victoryCanvas");
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  function showGrandVictoryCelebration(winnerColor) {
+    stopBgMusic();
+    sfxWinGrand();
+    addCoins(500);
+    addGems(25);
+
+    const winnerLabel = `${seatDot(winnerColor)} ${seatTitle(winnerColor)} जीते!`;
+    document.getElementById("vicWinnerName").textContent = winnerLabel;
+
+    const parade = document.getElementById("vicPawnsParade");
+    parade.innerHTML = "";
+    for (let i = 0; i < 4; i++) {
+      const div = document.createElement("div");
+      div.className = "vic-pawn-dance";
+      div.style.animationDelay = `${i * 0.14}s`;
+      div.innerHTML = buildStudioGotiSvg(winnerColor, `vic_${i}`);
+      parade.appendChild(div);
+    }
+
+    const overlay = document.getElementById("victoryOverlay");
+    overlay.classList.add("show");
+    startFireworksCelebration(0);
+  }
+
+  function replaySameMatch() {
+    stopFireworksCelebration();
+    document.getElementById("victoryOverlay").classList.remove("show");
+    launchGameWithCount(match.mode, match.countSelected || 1);
+  }
+
+  function exitVictoryToHome() {
+    stopFireworksCelebration();
+    document.getElementById("victoryOverlay").classList.remove("show");
+    document.getElementById("gameScreen").style.display = "none";
+    document.getElementById("startScreen").style.display = "flex";
   }
 
   function triggerFx(label, coord = null) {
@@ -2357,9 +2759,9 @@
     document.getElementById("dialogTitle").textContent = "देसी लूडो राजा — नियम";
     document.getElementById("dialogText").innerHTML =
       "• 6 आने पर गोटी अपने आप घर से बाहर निकलेगी<br>" +
+      "• पीछे रहने वाली गोटी <b>किलर मोड (😈⚔️)</b> में और आगे वाली गोटी <b>डर मोड (😨)</b> में रहेगी<br>" +
       "• दुश्मन की गोटी काटने पर किलर इफेक्ट और गोटी रोते हुए वापस जाएगी<br>" +
-      "• घर (Home) के अंदर जाने पर खुशी का जश्न और बोनस डाइस मिलेगा<br>" +
-      "• फोन कॉल या ऐप मिनिमाइज़ होने पर आवाज़ अपने आप बंद हो जाएगी";
+      "• चारों गोटियां घर पहुंचने पर आतिशबाज़ी और ग्रैंड विक्ट्री सेलिब्रेशन होगा";
     document.getElementById("dialogCancelBtn").style.display = "none";
     const ok = document.getElementById("dialogOkBtn");
     ok.className = "m-btn m-gold";
@@ -2614,7 +3016,9 @@
   history.pushState({ dlrGame: true }, "");
   window.addEventListener("popstate", () => {
     history.pushState({ dlrGame: true }, "");
-    if (document.getElementById("gameScreen").style.display === "flex") {
+    if (document.getElementById("victoryOverlay").classList.contains("show")) {
+      exitVictoryToHome();
+    } else if (document.getElementById("gameScreen").style.display === "flex") {
       requestExitWarning();
     }
   });
@@ -2741,7 +3145,6 @@
     topRow.innerHTML = "";
     botRow.innerHTML = "";
 
-    /* Align pods to their matching board corners: Red (top-left), Green (top-right), Blue (bot-left), Yellow (bot-right) */
     if (match.seats.includes("red")) topRow.appendChild(buildPodElement("red", tossingColor, false));
     if (match.seats.includes("green")) topRow.appendChild(buildPodElement("green", tossingColor, true));
 
@@ -2771,6 +3174,8 @@
         .map((p, i) => (isMovable(p, val) ? i : -1))
         .filter(i => i !== -1);
 
+      const killerPick = movable.find(idx => canPieceCaptureOnRoll(color, idx, val));
+
       renderSeatDicePods(null);
       drawBoard(movable, null, movable.length > 0);
 
@@ -2779,9 +3184,13 @@
         refreshBoardBanner(val, true);
         setTimeout(advanceTurn, 700);
       } else if (movable.length === 1 || isBotColor(color)) {
+        const chosenIdx = killerPick !== undefined ? killerPick : movable[0];
         refreshBoardBanner(val, false, true);
-        setTimeout(() => executeStepMove(color, movable[0]), 480);
+        setTimeout(() => executeStepMove(color, chosenIdx), 480);
       } else {
+        if (killerPick !== undefined) {
+          setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! चमकती गोटी से दुश्मन को काटें!`);
+        }
         refreshBoardBanner(val, false, false);
       }
     }, 420);
@@ -2836,9 +3245,9 @@
         if (match.pieces[color][idx] === 56) {
           setReaction("🥳🏠", `${seatTitle(color)} की गोटी घर में प्रवेश कर रही है!`, color, idx);
         } else if (checkNearDanger(color, match.pieces[color][idx])) {
-          setReaction("😨", `${seatTitle(color)} दुश्मन के पास — डर!`, color, idx);
+          setReaction("😨", `${seatTitle(color)} दुश्मन के पास — डर मोड!`, color, idx);
         } else {
-          setReaction("😊", `${seatTitle(color)} मुस्कुराते हुए आगे बढ़ा (${s}/${diceVal})`, color, idx);
+          setReaction("😊", `${seatTitle(color)} आगे बढ़ा (${s}/${diceVal})`, color, idx);
         }
 
         drawBoard([], { color, idx }, false);
@@ -2854,10 +3263,10 @@
       triggerFx(`🥳 HOME ${homeCount}/4!`, pieceXY(color, 56));
       setReaction(
         "🥳🎉😄",
-        `वाह! ${seatTitle(color)} की गोटी घर के अंदर पहुंची (${homeCount}/4) — जबरदस्त खुशी!`,
+        `वाह! ${seatTitle(color)} की गोटी घर पहुंची (${homeCount}/4) — खुशी का जश्न!`,
         color,
         idx,
-        3500
+        3200
       );
       renderSeatDicePods(null);
       drawBoard([], null, false);
@@ -2903,15 +3312,10 @@
     match.busy = false;
 
     if (match.pieces[color].every(p => p === 56)) {
-      stopBgMusic();
-      sfxWinGrand();
       triggerFx("👑 WINNER!");
-      setReaction("🤩🥳👑", `ज़बरदस्त! ${seatTitle(color)} जीत गया — महा-खुशी!`, color, idx);
-      addCoins(150);
+      setReaction("🤩🥳👑", `ज़बरदस्त! ${seatTitle(color)} जीत गया — महा-जश्न!`, color, idx);
       drawBoard();
-      await sleep(850);
-      document.getElementById("gameScreen").style.display = "none";
-      document.getElementById("startScreen").style.display = "flex";
+      showGrandVictoryCelebration(color);
       return;
     }
 
@@ -2947,7 +3351,7 @@
     if (blocked) {
       el.textContent = `${label} का ${val} आया — अगली बारी`;
     } else if (autoMoving) {
-      el.textContent = `${label} का ${val} आया — सब गोटियों में हलचल, चाल चल रही है...`;
+      el.textContent = `${label} का ${val} आया — चाल चल रही है...`;
     } else if (val) {
       el.textContent = `${label} ने ${val} चला — चमकती गोटी चुनें`;
     } else if (homeBonus) {
@@ -2987,6 +3391,8 @@
     const tokensLayer = document.getElementById("tokensLayer");
     grid.innerHTML = "";
     tokensLayer.innerHTML = "";
+
+    const { fearMap, killerMap } = computeThreatStates();
 
     const cells = Array.from({ length: 15 }, () =>
       Array.from({ length: 15 }, () => {
@@ -3065,10 +3471,14 @@
         const count = Math.min(4, group.length);
         const [dx, dy] = CLUSTER_OFFSETS[count - 1][slot % 4];
         leftPct = Math.min(95.5, Math.max(4.5, baseLeft + dx));
-        /* Clamp top >= 5.2% so bold 8.4%-tall goti stays 100% inside board even on row 0 */
         topPct = Math.min(96.5, Math.max(5.2, baseTop + dy));
         if (count > 1) scaleVal = 0.82;
       }
+
+      const tKey = `${col}-${idx}`;
+      const isKiller = Boolean(killerMap[tKey]);
+      const fearDist = fearMap[tKey] || 0;
+      const isFear = fearDist > 0;
 
       const goti = document.createElement("div");
       goti.className = `gem-goti p-${col}`;
@@ -3079,13 +3489,16 @@
 
       const canPick = col === activeColor() && movableList.includes(idx) && !isBotColor(col);
       const isMoving = movingMeta && movingMeta.color === col && movingMeta.idx === idx;
+
+      if (isFear) goti.classList.add("goti-fear");
+      if (isKiller) goti.classList.add("goti-killer");
       if (allHalchal) goti.classList.add("all-halchal");
       if (canPick) goti.classList.add("can-pick");
       if (isMoving) goti.classList.add("is-moving");
 
       goti.innerHTML = buildStudioGotiSvg(col, idx);
 
-      const emoInfo = match.tokenReactions[`${col}-${idx}`];
+      const emoInfo = match.tokenReactions[tKey];
       if (emoInfo) {
         const tag = document.createElement("span");
         tag.className = "pin-emo-tag";
@@ -3096,6 +3509,16 @@
         homeTag.className = "pin-emo-tag";
         homeTag.textContent = "🥳";
         goti.appendChild(homeTag);
+      } else if (isKiller) {
+        const kTag = document.createElement("span");
+        kTag.className = "pin-emo-tag tag-killer";
+        kTag.textContent = "😈⚔️";
+        goti.appendChild(kTag);
+      } else if (isFear) {
+        const fTag = document.createElement("span");
+        fTag.className = "pin-emo-tag tag-fear";
+        fTag.textContent = fearDist <= 2 ? "😰" : "😨";
+        goti.appendChild(fTag);
       }
 
       goti.onclick = () => executeStepMove(col, idx);
