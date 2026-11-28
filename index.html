@@ -52,6 +52,27 @@
     overflow: hidden;
   }
 
+  .shell.fx-shake {
+    animation: arenaShake 0.36s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+
+  @keyframes arenaShake {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, -2px, 0); }
+    30%, 50%, 70% { transform: translate3d(-5px, 2px, 0); }
+    40%, 60% { transform: translate3d(5px, -1px, 0); }
+  }
+
+  /* Live Special Effects Canvas Overlay */
+  #fxCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 85;
+  }
+
   /* ================= SMOOTH STUDIO ANIMATIONS ================= */
   @keyframes cardBob {
     0%, 100% { transform: translateY(0px) scale(1); }
@@ -116,11 +137,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    padding: 18px 20px 22px;
+    padding: 16px 20px 22px;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 26%, rgba(16, 185, 129, 0.42), transparent 52%),
-      radial-gradient(circle at 50% 74%, rgba(56, 189, 248, 0.24), transparent 55%),
+      radial-gradient(circle at 50% 24%, rgba(16, 185, 129, 0.5), transparent 52%),
+      radial-gradient(circle at 50% 76%, rgba(56, 189, 248, 0.28), transparent 55%),
       linear-gradient(165deg, #030e29 0%, #0b327d 48%, #032625 100%);
     transition: opacity 0.32s ease, transform 0.32s ease;
   }
@@ -131,7 +152,6 @@
     pointer-events: none;
   }
 
-  /* Zone 1: Top Glossy Green Star Stage */
   .splash-star-zone {
     display: flex;
     flex-direction: column;
@@ -140,8 +160,8 @@
 
   .star-stage {
     position: relative;
-    width: 176px;
-    height: 176px;
+    width: 184px;
+    height: 184px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,84 +173,82 @@
     border-radius: 50%;
     background: repeating-conic-gradient(
       from 0deg,
-      rgba(255, 234, 0, 0.38) 0deg 10deg,
-      transparent 10deg 28deg
+      rgba(255, 234, 0, 0.42) 0deg 10deg,
+      transparent 10deg 26deg
     );
-    -webkit-mask-image: radial-gradient(circle, transparent 24%, black 50%, transparent 74%);
-    mask-image: radial-gradient(circle, transparent 24%, black 50%, transparent 74%);
-    animation: spinSlow 7s linear infinite;
+    -webkit-mask-image: radial-gradient(circle, transparent 22%, black 50%, transparent 74%);
+    mask-image: radial-gradient(circle, transparent 22%, black 50%, transparent 74%);
+    animation: spinSlow 6.5s linear infinite;
   }
 
   .star-halo-glow {
     position: absolute;
-    width: 128px;
-    height: 128px;
+    width: 138px;
+    height: 138px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(52, 211, 153, 0.65) 0%, rgba(16, 185, 129, 0.15) 55%, transparent 75%);
-    animation: haloPulse 1.8s ease-in-out infinite alternate;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.78) 0%, rgba(16, 185, 129, 0.22) 55%, transparent 76%);
+    animation: haloPulse 1.6s ease-in-out infinite alternate;
   }
 
   @keyframes haloPulse {
-    from { transform: scale(0.92); opacity: 0.72; }
-    to   { transform: scale(1.14); opacity: 1; }
+    from { transform: scale(0.9); opacity: 0.75; }
+    to   { transform: scale(1.18); opacity: 1; }
   }
 
-  /* Cute Star Entry + Fluid Wave Flow */
   .green-star-hero {
-    width: 142px;
-    height: 142px;
+    width: 148px;
+    height: 148px;
     position: relative;
     z-index: 3;
     filter:
-      drop-shadow(0 0 16px rgba(16, 185, 129, 0.85))
-      drop-shadow(0 12px 20px rgba(0, 0, 0, 0.68));
+      drop-shadow(0 0 18px rgba(16, 185, 129, 0.95))
+      drop-shadow(0 14px 22px rgba(0, 0, 0, 0.72));
     animation:
-      cuteStarEntrance 0.75s cubic-bezier(0.22, 1.45, 0.36, 1) forwards,
-      cuteStarFlow 2.4s ease-in-out 0.72s infinite;
+      cuteStarEntrance 0.72s cubic-bezier(0.22, 1.45, 0.36, 1) forwards,
+      cuteStarFlow 2.2s ease-in-out 0.7s infinite;
   }
 
   @keyframes cuteStarEntrance {
-    0%   { transform: scale(0.18) rotate(-42deg) translateY(18px); opacity: 0; }
-    55%  { transform: scale(1.14, 0.92) rotate(9deg) translateY(-6px); opacity: 1; }
-    78%  { transform: scale(0.95, 1.06) rotate(-5deg) translateY(2px); opacity: 1; }
+    0%   { transform: scale(0.16) rotate(-45deg) translateY(20px); opacity: 0; }
+    55%  { transform: scale(1.16, 0.9) rotate(10deg) translateY(-7px); opacity: 1; }
+    78%  { transform: scale(0.94, 1.07) rotate(-5deg) translateY(2px); opacity: 1; }
     100% { transform: scale(1, 1) rotate(0deg) translateY(0px); opacity: 1; }
   }
 
   @keyframes cuteStarFlow {
     0%   { transform: translate(0px, 0px) rotate(0deg) scale(1); }
-    25%  { transform: translate(5px, -7px) rotate(5deg) scale(1.04, 0.98); }
-    50%  { transform: translate(0px, -2px) rotate(0deg) scale(0.98, 1.03); }
-    75%  { transform: translate(-5px, -7px) rotate(-5deg) scale(1.04, 0.98); }
+    25%  { transform: translate(6px, -8px) rotate(6deg) scale(1.05, 0.97); }
+    50%  { transform: translate(0px, -2px) rotate(0deg) scale(0.97, 1.04); }
+    75%  { transform: translate(-6px, -8px) rotate(-6deg) scale(1.05, 0.97); }
     100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
   }
 
-  /* Twinkling Cute Sparkles Around the Glossy Star */
   .cute-sparkle {
     position: absolute;
     z-index: 4;
     pointer-events: none;
-    animation: sparkleTwinkle 1.3s ease-in-out infinite alternate;
+    animation: sparkleTwinkle 1.15s ease-in-out infinite alternate;
   }
 
-  .sp-1 { top: 14px; left: 18px; width: 20px; height: 20px; animation-delay: 0s; }
-  .sp-2 { top: 18px; right: 16px; width: 17px; height: 17px; animation-delay: 0.35s; }
-  .sp-3 { bottom: 22px; left: 22px; width: 15px; height: 15px; animation-delay: 0.65s; }
-  .sp-4 { bottom: 18px; right: 20px; width: 21px; height: 21px; animation-delay: 0.2s; }
+  .sp-1 { top: 12px; left: 16px; width: 22px; height: 22px; animation-delay: 0s; }
+  .sp-2 { top: 16px; right: 14px; width: 19px; height: 19px; animation-delay: 0.3s; }
+  .sp-3 { bottom: 20px; left: 20px; width: 16px; height: 16px; animation-delay: 0.6s; }
+  .sp-4 { bottom: 16px; right: 18px; width: 22px; height: 22px; animation-delay: 0.18s; }
 
   @keyframes sparkleTwinkle {
-    0%   { transform: scale(0.45) rotate(0deg); opacity: 0.35; }
-    100% { transform: scale(1.18) rotate(25deg); opacity: 1; }
+    0%   { transform: scale(0.4) rotate(0deg); opacity: 0.3; }
+    100% { transform: scale(1.24) rotate(30deg); opacity: 1; }
   }
 
   .splash-title {
     margin: 4px 0 3px;
-    font-size: 27px;
+    font-size: 28px;
     font-weight: 950;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.3px;
     background: linear-gradient(180deg, #ffffff 0%, #ffea00 52%, #ff8f00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.72));
   }
 
   .splash-sub {
@@ -238,29 +256,29 @@
     font-size: 12px;
     font-weight: 900;
     color: #e0f2fe;
-    background: rgba(5, 18, 51, 0.85);
-    border: 1.4px solid rgba(255, 202, 40, 0.65);
+    background: rgba(5, 18, 51, 0.88);
+    border: 1.4px solid rgba(255, 202, 40, 0.7);
     padding: 4px 16px;
     border-radius: 999px;
   }
 
-  /* Zone 2: Separate Dedicated Ludo Board Showcase Dock */
+  /* Separate Dedicated Ludo Board Showcase Dock */
   .splash-board-dock {
     width: 100%;
-    max-width: 275px;
-    background: linear-gradient(180deg, rgba(15, 42, 108, 0.88) 0%, rgba(5, 16, 46, 0.94) 100%);
-    border: 2px solid rgba(255, 202, 40, 0.78);
+    max-width: 285px;
+    background: linear-gradient(180deg, rgba(15, 42, 108, 0.9) 0%, rgba(5, 16, 46, 0.96) 100%);
+    border: 2.2px solid rgba(255, 202, 40, 0.85);
     border-radius: 22px;
     padding: 12px 14px 10px;
     box-shadow:
       0 6px 0 #451a03,
-      0 14px 28px rgba(0, 0, 0, 0.72),
-      inset 0 2px 4px rgba(255, 255, 255, 0.25);
+      0 14px 28px rgba(0, 0, 0, 0.75),
+      inset 0 2px 4px rgba(255, 255, 255, 0.28);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 7px;
-    animation: splashBoardRise 0.65s cubic-bezier(0.2, 1.25, 0.35, 1) 0.22s both;
+    animation: splashBoardRise 0.65s cubic-bezier(0.2, 1.25, 0.35, 1) 0.2s both;
   }
 
   @keyframes splashBoardRise {
@@ -270,8 +288,8 @@
 
   .splash-board-stage {
     position: relative;
-    width: 122px;
-    height: 122px;
+    width: 126px;
+    height: 126px;
     padding: 4px;
     border-radius: 14px;
     background: linear-gradient(145deg, #fff59d, #ffca28, #d97706);
@@ -289,22 +307,22 @@
 
   .splash-pawn-badge {
     position: absolute;
-    width: 28px;
-    height: 34px;
-    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.65));
+    width: 30px;
+    height: 36px;
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.68));
     z-index: 3;
   }
 
-  .spb-left  { left: -16px; bottom: 8px; animation: badgeFloat 1.6s ease-in-out infinite; }
-  .spb-right { right: -16px; top: 8px; animation: badgeFloat 1.6s ease-in-out 0.4s infinite; }
+  .spb-left  { left: -18px; bottom: 8px; animation: badgeFloat 1.5s ease-in-out infinite; }
+  .spb-right { right: -18px; top: 8px; animation: badgeFloat 1.5s ease-in-out 0.35s infinite; }
 
   .splash-mini-die {
     position: absolute;
     right: -18px;
     bottom: -6px;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
     background: linear-gradient(145deg, #ffffff, #e2e8f0);
     border: 1.8px solid #0f172a;
     padding: 3px;
@@ -314,8 +332,8 @@
   }
 
   .splash-dock-caption {
-    font-size: 10.5px;
-    font-weight: 900;
+    font-size: 11px;
+    font-weight: 950;
     color: #ffea00;
     letter-spacing: 0.5px;
   }
@@ -323,10 +341,10 @@
   .splash-skip-btn {
     border: 2px solid #fff9c4;
     border-radius: 999px;
-    padding: 10px 30px;
+    padding: 11px 32px;
     background: linear-gradient(180deg, #ffea00, #ff6d00);
     color: #210800;
-    font-size: 14px;
+    font-size: 14.5px;
     font-weight: 950;
     cursor: pointer;
     box-shadow: 0 5px 0 #8c3800, 0 10px 20px rgba(0, 0, 0, 0.55);
@@ -371,8 +389,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    padding: 8px 10px;
+    gap: 5px;
+    padding: 8px 8px;
     background: linear-gradient(180deg, rgba(4, 14, 40, 0.94), rgba(10, 34, 88, 0.88));
     border-bottom: 2px solid #ffca28;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
@@ -381,14 +399,14 @@
   .hud-left {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
 
   .dp-frame {
     position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
     border: 2px solid #ffca28;
     background: linear-gradient(145deg, #2563eb, #1e3a8a);
     display: grid;
@@ -400,7 +418,7 @@
   .dp-frame img {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 9px;
     object-fit: cover;
   }
 
@@ -419,46 +437,52 @@
   }
 
   .hud-icon-pill {
-    width: 31px;
-    height: 31px;
-    border-radius: 10px;
+    width: 29px;
+    height: 29px;
+    border-radius: 9px;
     border: 1.5px solid rgba(255, 202, 40, 0.8);
     background: linear-gradient(180deg, #1d4ed8, #0f296b);
     color: #ffffff;
     display: grid;
     place-items: center;
     cursor: pointer;
+    font-size: 13px;
     box-shadow: 0 2px 0 #051233;
+  }
+
+  .hud-icon-pill.pill-off {
+    opacity: 0.58;
+    filter: grayscale(0.7);
   }
 
   .hud-right {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
   }
 
   .wallet-pill {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 3px 4px 3px 7px;
+    gap: 3px;
+    padding: 3px 4px 3px 6px;
     border-radius: 999px;
     background: rgba(4, 13, 36, 0.9);
     border: 1.5px solid rgba(255, 202, 40, 0.55);
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 900;
     color: #ffffff;
   }
 
   .plus-chip {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
     border: none;
     border-radius: 50%;
     background: linear-gradient(180deg, #00e676, #00a152);
     color: #03210e;
     font-weight: 950;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -466,15 +490,15 @@
   }
 
   .lang-select {
-    height: 29px;
-    max-width: 72px;
+    height: 28px;
+    max-width: 68px;
     border-radius: 9px;
     border: 1.5px solid rgba(255, 202, 40, 0.8);
     background: #061539;
     color: #ffea00;
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 900;
-    padding: 0 3px;
+    padding: 0 2px;
     cursor: pointer;
   }
 
@@ -941,31 +965,37 @@
     background: linear-gradient(180deg, rgba(4, 14, 40, 0.94), rgba(10, 34, 88, 0.9));
     border: 1.8px solid #ffca28;
     border-radius: 12px;
-    padding: 5px 9px;
-    gap: 5px;
+    padding: 5px 8px;
+    gap: 4px;
   }
 
   .game-logo {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 950;
     color: #ffea00;
+    white-space: nowrap;
   }
 
   .header-actions {
     display: flex;
-    gap: 5px;
+    gap: 4px;
     align-items: center;
   }
 
   .mini-btn {
     border: 1.4px solid rgba(255, 202, 40, 0.85);
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 4px 7px;
     background: linear-gradient(180deg, #2563eb, #1e3a8a);
     color: #ffffff;
     font-size: 11px;
     font-weight: 900;
     cursor: pointer;
+  }
+
+  .mini-btn.pill-off {
+    opacity: 0.58;
+    filter: grayscale(0.7);
   }
 
   .mini-btn.active-rec {
@@ -1019,7 +1049,6 @@
     white-space: nowrap;
   }
 
-  /* COMPACT CORNER-ALIGNED PLAYER PODS */
   .seat-row {
     display: flex;
     align-items: center;
@@ -1536,13 +1565,13 @@
   .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(4, 14, 38, 0.82);
+    background: rgba(4, 14, 38, 0.84);
     backdrop-filter: blur(5px);
     display: none;
     align-items: center;
     justify-content: center;
     padding: 16px;
-    z-index: 60;
+    z-index: 98;
   }
 
   .modal-bg.show {
@@ -1697,29 +1726,29 @@
     .ludo-orb { width: 33px; height: 33px; font-size: 16px; }
     .card-artwork { height: 52px; }
     .card-ribbon { font-size: 10px; }
-    .star-stage { width: 150px; height: 150px; }
-    .green-star-hero { width: 122px; height: 122px; }
-    .splash-board-stage { width: 104px; height: 104px; }
+    .star-stage { width: 156px; height: 156px; }
+    .green-star-hero { width: 126px; height: 126px; }
+    .splash-board-stage { width: 108px; height: 108px; }
   }
 </style>
 </head>
 <body>
 
+<!-- LIVE SPECIAL EFFECTS OVERLAY CANVAS -->
+<canvas id="fxCanvas"></canvas>
+
 <!-- FULL GLOSSY GREEN STAR + SEPARATE LUDO BOARD INTRO -->
 <div id="greenStarSplash" onclick="dismissSplash()">
-  <!-- Top Zone: Full Glossy 3D Green Star with Cute Flow & Shine -->
   <div class="splash-star-zone">
     <div class="star-stage">
       <div class="star-rays"></div>
       <div class="star-halo-glow"></div>
 
-      <!-- Twinkling Cute Sparkles -->
       <svg class="cute-sparkle sp-1" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#ffffff"/></svg>
       <svg class="cute-sparkle sp-2" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#ffea00"/></svg>
       <svg class="cute-sparkle sp-3" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#a7f3d0"/></svg>
       <svg class="cute-sparkle sp-4" viewBox="0 0 24 24"><path d="M12 1L14.8 9.2L23 12L14.8 14.8L12 23L9.2 14.8L1 12L9.2 9.2Z" fill="#ffffff"/></svg>
 
-      <!-- Multi-Faceted Full Glossy 3D Crystal Star -->
       <svg class="green-star-hero" viewBox="0 0 160 160">
         <defs>
           <radialGradient id="gStarCore" cx="35%" cy="28%" r="76%">
@@ -1729,14 +1758,14 @@
             <stop offset="100%" stop-color="#022c22"/>
           </radialGradient>
           <linearGradient id="gStarGlossTop" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.92)"/>
-            <stop offset="65%" stop-color="rgba(255,255,255,0.22)"/>
+            <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
+            <stop offset="65%" stop-color="rgba(255,255,255,0.24)"/>
             <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
           </linearGradient>
           <linearGradient id="gStarSweepBeam" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-            <stop offset="45%" stop-color="rgba(255,255,255,0.85)"/>
-            <stop offset="55%" stop-color="rgba(255,255,255,0.85)"/>
+            <stop offset="45%" stop-color="rgba(255,255,255,0.9)"/>
+            <stop offset="55%" stop-color="rgba(255,255,255,0.9)"/>
             <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
           </linearGradient>
           <clipPath id="starPolyClip">
@@ -1744,7 +1773,6 @@
           </clipPath>
         </defs>
 
-        <!-- Base 3D Emerald Body + Golden Rim -->
         <polygon
           points="80,10 100,55 150,60 112,94 123,144 80,118 37,144 48,94 10,60 60,55"
           fill="url(#gStarCore)"
@@ -1753,21 +1781,18 @@
           stroke-linejoin="round"
         />
 
-        <!-- 3D Sculpted Crystal Facets -->
         <g clip-path="url(#starPolyClip)">
-          <polygon points="80,80 80,10 100,55" fill="rgba(255,255,255,0.28)"/>
+          <polygon points="80,80 80,10 100,55" fill="rgba(255,255,255,0.3)"/>
           <polygon points="80,80 150,60 112,94" fill="rgba(6,78,59,0.26)"/>
           <polygon points="80,80 123,144 80,118" fill="rgba(2,44,34,0.34)"/>
-          <polygon points="80,80 37,144 48,94" fill="rgba(255,255,255,0.14)"/>
-          <polygon points="80,80 10,60 60,55" fill="rgba(255,255,255,0.34)"/>
+          <polygon points="80,80 37,144 48,94" fill="rgba(255,255,255,0.16)"/>
+          <polygon points="80,80 10,60 60,55" fill="rgba(255,255,255,0.36)"/>
 
-          <!-- Wet Top Glass Specular Curve -->
           <ellipse cx="76" cy="44" rx="58" ry="34" fill="url(#gStarGlossTop)"/>
-          <ellipse cx="64" cy="34" rx="14" ry="6.5" transform="rotate(-24 64 34)" fill="rgba(255,255,255,0.92)"/>
+          <ellipse cx="64" cy="34" rx="15" ry="7" transform="rotate(-24 64 34)" fill="rgba(255,255,255,0.95)"/>
 
-          <!-- Animated Gloss Shine Beam Sweeping Across Star -->
           <rect x="-140" y="0" width="90" height="160" fill="url(#gStarSweepBeam)" transform="skewX(-22)">
-            <animate attributeName="x" from="-140" to="220" dur="1.75s" repeatCount="indefinite"/>
+            <animate attributeName="x" from="-140" to="220" dur="1.55s" repeatCount="indefinite"/>
           </rect>
         </g>
       </svg>
@@ -1785,9 +1810,7 @@
       <div id="splashMiniDie" class="splash-mini-die"></div>
 
       <svg class="splash-mini-board" viewBox="0 0 150 150">
-        <!-- Cross Tracks -->
         <rect x="0" y="0" width="150" height="150" fill="#f8fafc"/>
-        <!-- Colored Home Paths -->
         <rect x="10" y="70" width="50" height="10" fill="#ef233c"/>
         <rect x="10" y="60" width="10" height="10" fill="#ef233c"/>
         <rect x="70" y="10" width="10" height="50" fill="#10b981"/>
@@ -1797,7 +1820,6 @@
         <rect x="70" y="90" width="10" height="50" fill="#0284c7"/>
         <rect x="60" y="130" width="10" height="10" fill="#0284c7"/>
 
-        <!-- 4 Yards -->
         <rect x="0" y="0" width="60" height="60" fill="#ef233c"/>
         <rect x="8" y="8" width="44" height="44" rx="6" fill="#ffffff"/>
         <circle cx="21" cy="21" r="5.5" fill="#ffe4e6" stroke="#ef233c" stroke-width="1.5"/>
@@ -1826,7 +1848,6 @@
         <circle cx="111" cy="129" r="5.5" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
         <circle cx="129" cy="129" r="5.5" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
 
-        <!-- Center 4-Triangle Royal Goal -->
         <polygon points="60,60 90,60 75,75" fill="#10b981"/>
         <polygon points="90,60 90,90 75,75" fill="#eab308"/>
         <polygon points="90,90 60,90 75,75" fill="#0284c7"/>
@@ -1840,24 +1861,25 @@
   <button class="splash-skip-btn shine-box" onclick="event.stopPropagation(); dismissSplash();">खेल शुरू करें ▶</button>
 </div>
 
-<div class="shell">
+<div class="shell" id="appShell">
   <!-- PRO ROYAL LOBBY (#startScreen) -->
   <section id="startScreen">
     <header class="top-hud">
       <div class="hud-left">
         <div class="dp-frame" onclick="openDpDialog()">
           <div id="userAvatar" style="width:100%;height:100%;display:grid;place-items:center;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
               <path d="M3 18L2 8L8 12L12 5L16 12L22 8L21 18H3Z" fill="#ffca28" stroke="#fff" stroke-width="1.5"/>
             </svg>
           </div>
           <span class="lvl-badge">★1</span>
         </div>
 
-        <button id="startSoundBtn" class="hud-icon-pill" onclick="switchSound()" title="Sound">🔊</button>
+        <button id="startMusicBtn" class="hud-icon-pill" onclick="toggleMusic()" title="Background Music">🎵</button>
+        <button id="startSoundBtn" class="hud-icon-pill" onclick="switchSound()" title="Sound FX">🔊</button>
 
         <button class="hud-icon-pill" onclick="inviteWhatsApp()" title="Invite Friends">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
             <path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .17 1L8.91 8.7a3 3 0 0 0-1.91-.7 3 3 0 1 0 1.91 5.3l6.26 3.7a3 3 0 1 0 .83-1.4l-6.26-3.7a3.1 3.1 0 0 0 0-1.8l6.26-3.7A3 3 0 0 0 18 8Z" fill="#ffca28"/>
           </svg>
         </button>
@@ -1865,13 +1887,13 @@
 
       <div class="hud-right">
         <div class="wallet-pill">
-          <svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12,2 22,9 12,22 2,9" fill="#38bdf8"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24"><polygon points="12,2 22,9 12,22 2,9" fill="#38bdf8"/></svg>
           <span id="gemsText">150</span>
           <button class="plus-chip" onclick="addGems(25)">+</button>
         </div>
 
         <div class="wallet-pill">
-          <svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffca28"/><circle cx="12" cy="12" r="6.5" fill="#f59e0b"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffca28"/><circle cx="12" cy="12" r="6.5" fill="#f59e0b"/></svg>
           <span id="coinsText">2,250</span>
           <button class="plus-chip" onclick="addCoins(250)">+</button>
         </div>
@@ -2158,7 +2180,8 @@
         <button class="mini-btn" onclick="openLeaderboard()">🏆</button>
         <button id="gameRecBtn" class="mini-btn" onclick="startVoice3s()">🎙️ 3s</button>
         <button id="gamePlayVoiceBtn" class="mini-btn" onclick="playVoiceClip()" style="display:none;">▶️</button>
-        <button id="boardSoundBtn" class="mini-btn" onclick="switchSound()">🔊</button>
+        <button id="boardMusicBtn" class="mini-btn" onclick="toggleMusic()" title="Music">🎵</button>
+        <button id="boardSoundBtn" class="mini-btn" onclick="switchSound()" title="SFX">🔊</button>
         <button class="mini-btn mini-exit" onclick="requestExitWarning()">बाहर</button>
       </div>
     </header>
@@ -2172,7 +2195,7 @@
     <div id="topDiceRow" class="seat-row"></div>
 
     <div class="board-stage">
-      <div class="board-canvas-wrap">
+      <div class="board-canvas-wrap" id="boardCanvasWrap">
         <div class="board-inner-clip">
           <div id="ludoGrid15" class="ludo-15"></div>
 
@@ -2286,88 +2309,108 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_pro_studio_v20";
+  const STORAGE_KEY = "dlr_pro_studio_v21";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
     coins: 2250,
     dp: "",
     lang: "hi",
-    sound: true
+    sound: true,
+    music: true
   };
+  if (typeof profile.music === "undefined") profile.music = true;
 
   const I18N = {
     hi: {
       topTag: "देसी", botTag: "राजा • RAJA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ बाहर जाने की चेतावनी",
-      exitMsg: "क्या आप सच में खेल छोड़ना चाहते हैं? मौजूदा मैच बंद हो जाएगा।",
-      stay: "खेलते रहें", exitYes: "हाँ, बाहर जाएं"
+      exitTitle: "⚠️ मैच छोड़ने की चेतावनी",
+      exitMsg: "क्या आप सच में चल रहे मैच से बाहर निकलना चाहते हैं? आपकी चाल बंद हो जाएगी।",
+      appExitTitle: "⚠️ ऐप बंद करने की चेतावनी",
+      appExitMsg: "क्या आप सच में देसी लूडो राजा ऐप से बाहर निकलना चाहते हैं?",
+      stay: "खेलते रहें", exitYes: "हाँ, बाहर जाएं", appExitYes: "हाँ, ऐप बंद करें"
     },
     en: {
       topTag: "DESI", botTag: "RAJA • ROYAL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ Exit Warning",
-      exitMsg: "Current match progress will stop! Sure you want to exit?",
-      stay: "Stay & Play", exitYes: "Yes, Exit"
+      exitTitle: "⚠️ Leave Match Warning",
+      exitMsg: "Current match progress will stop! Sure you want to leave the match?",
+      appExitTitle: "⚠️ Exit App Warning",
+      appExitMsg: "Are you sure you want to close Desi Ludo Raja?",
+      stay: "Stay & Play", exitYes: "Yes, Leave", appExitYes: "Yes, Exit App"
     },
     mr: {
       topTag: "देसी", botTag: "राजा • MAHARASHTRA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ बाहेर पडण्याचा इशारा",
-      exitMsg: "तुम्हाला खरोखर गेम सोडायचा आहे का?",
-      stay: "खेळत राहा", exitYes: "हो, बाहेर जा"
+      exitTitle: "⚠️ मॅच सोडण्याचा इशारा",
+      exitMsg: "तुम्हाला खरोखर चालू मॅचमधून बाहेर पडायचे आहे का?",
+      appExitTitle: "⚠️ अ‍ॅप बंद करण्याचा इशारा",
+      appExitMsg: "तुम्हाला खरोखर देसी लूडो राजा अ‍ॅप बंद करायचे आहे का?",
+      stay: "खेळत राहा", exitYes: "हो, बाहेर जा", appExitYes: "हो, अ‍ॅप बंद करा"
     },
     ta: {
       topTag: "தேசி", botTag: "ராஜா • TAMIL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
       exitTitle: "⚠️ வெளியேறும் எச்சரிக்கை",
-      exitMsg: "விளையாட்டை விட்டு வெளியேற விரும்புகிறீர்களா?",
-      stay: "தொடரவும்", exitYes: "ஆம், வெளியேறு"
+      exitMsg: "நடக்கும் ஆட்டத்திலிருந்து வெளியேற விரும்புகிறீர்களா?",
+      appExitTitle: "⚠️ செயலியை மூடும் எச்சரிக்கை",
+      appExitMsg: "தேசி லூடோ ராஜா செயலியை மூட விரும்புகிறீர்களா?",
+      stay: "தொடரவும்", exitYes: "ஆம், வெளியேறு", appExitYes: "ஆம், மூடு"
     },
     te: {
       topTag: "దేశీ", botTag: "రాజా • TELUGU",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ నిష్క్రమణ హెచ్చరిక",
-      exitMsg: "మీరు నిజంగా ఆట నుండి నిష్క్రమించాలనుకుంటున్నారా?",
-      stay: "ఆడుతూ ఉండండి", exitYes: "అవును, నిష్క్రమించు"
+      exitTitle: "⚠️ మ్యాచ్ నిష్క్రమణ హెచ్చరిక",
+      exitMsg: "మీరు నిజంగా ఆట నుండి బయటకు రావాలనుకుంటున్నారా?",
+      appExitTitle: "⚠️ యాప్ మూసివేత హెచ్చరిక",
+      appExitMsg: "మీరు నిజంగా దేశీ లూడో రాజా యాప్ నుండి నిష్క్రమించాలనుకుంటున్నారా?",
+      stay: "ఆడుతూ ఉండండి", exitYes: "అవును, బయటకు", appExitYes: "అవును, మూసివేయి"
     },
     bn: {
       topTag: "দেশি", botTag: "রাজা • BENGAL",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ বের হওয়ার সতর্কতা",
-      exitMsg: "আপনি কি সত্যিই খেলা ছাড়তে চান?",
-      stay: "খেলে যান", exitYes: "হ্যাঁ, বের হন"
+      exitTitle: "⚠️ ম্যাচ ছাড়ার সতর্কতা",
+      exitMsg: "আপনি কি সত্যিই চলমান ম্যাচ থেকে বের হতে চান?",
+      appExitTitle: "⚠️ অ্যাপ বন্ধের সতর্কতা",
+      appExitMsg: "আপনি কি সত্যিই দেশি লুডো রাজা অ্যাপ বন্ধ করতে চান?",
+      stay: "খেলে যান", exitYes: "হ্যাঁ, বের হন", appExitYes: "হ্যাঁ, বন্ধ করুন"
     },
     gu: {
       topTag: "દેશી", botTag: "રાજા • GUJARAT",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ બહાર જવાની ચેતવણી",
-      exitMsg: "શું તમે ખરેખર રમત છોડવા માંગો છો?",
-      stay: "રમતા રહો", exitYes: "હા, બહાર જાઓ"
+      exitTitle: "⚠️ મેચ છોડવાની ચેતવણી",
+      exitMsg: "શું તમે ખરેખર ચાલુ મેચમાંથી બહાર નીકળવા માંગો છો?",
+      appExitTitle: "⚠️ એપ બંધ કરવાની ચેતવણી",
+      appExitMsg: "શું તમે ખરેખર દેસી લૂડો રાજા એપ બંધ કરવા માંગો છો?",
+      stay: "રમતા રહો", exitYes: "હા, બહાર જાઓ", appExitYes: "હા, બંધ કરો"
     },
     pa: {
       topTag: "ਦੇਸੀ", botTag: "ਰਾਜਾ • PUNJAB",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ ਬਾਹਰ ਜਾਣ ਦੀ ਚੇਤਾਵਨੀ",
-      exitMsg: "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਖੇਡ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
-      stay: "ਖੇਡਦੇ ਰਹੋ", exitYes: "ਹਾਂ, ਬਾਹਰ ਜਾਓ"
+      exitTitle: "⚠️ ਮੈਚ ਛੱਡਣ ਦੀ ਚੇਤਾਵਨੀ",
+      exitMsg: "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਚੱਲ ਰਹੇ ਮੈਚ ਵਿੱਚੋਂ ਬਾਹਰ ਜਾਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+      appExitTitle: "⚠️ ਐਪ ਬੰਦ ਕਰਨ ਦੀ ਚੇਤਾਵਨੀ",
+      appExitMsg: "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਦੇਸੀ ਲੂਡੋ ਰਾਜਾ ਐਪ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+      stay: "ਖੇਡਦੇ ਰਹੋ", exitYes: "ਹਾਂ, ਬਾਹਰ ਜਾਓ", appExitYes: "ਹਾਂ, ਬੰਦ ਕਰੋ"
     },
     kn: {
       topTag: "ದೇಸಿ", botTag: "ರಾಜ • KARNATAKA",
       online: "ONLINE", team: "TEAM UP", friends: "FRIENDS",
       bot: "COMPUTER", pass: "PASS N PLAY",
-      exitTitle: "⚠️ ನಿರ್ಗಮನ ಎಚ್ಚರಿಕೆ",
-      exitMsg: "ನೀವು ನಿಜವಾಗಿಯೂ ಆಟದಿಂದ ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?",
-      stay: "ಆಡುತ್ತಿರಿ", exitYes: "ಹೌದು, ನಿರ್ಗಮಿಸಿ"
+      exitTitle: "⚠️ ಪಂದ್ಯ ಬಿಡುವ ಎಚ್ಚರಿಕೆ",
+      exitMsg: "ನೀವು ನಿಜವಾಗಿಯೂ ನಡೆಯುತ್ತಿರುವ ಪಂದ್ಯದಿಂದ ಹೊರಬರಲು ಬಯಸುವಿರಾ?",
+      appExitTitle: "⚠️ ಆಪ್ ಮುಚ್ಚುವ ಎಚ್ಚರಿಕೆ",
+      appExitMsg: "ನೀವು ನಿಜವಾಗಿಯೂ ದೇಸಿ ಲೂಡೋ ರಾಜ ಆಪ್ ಮುಚ್ಚಲು ಬಯಸುವಿರಾ?",
+      stay: "ಆಡುತ್ತಿರಿ", exitYes: "ಹೌದು, ಹೊರಬನ್ನಿ", appExitYes: "ಹೌದು, ಮುಚ್ಚಿ"
     }
   };
 
@@ -2400,6 +2443,7 @@
   let audioCtx = null;
   let bgmTimer = null;
   let appInBackground = false;
+  let allowRealExit = false;
   let victoryAnimId = null;
 
   const TRACK_52 = [
@@ -2455,6 +2499,214 @@
     return I18N[profile.lang] || I18N.hi;
   }
 
+  /* ================= ANDROID TWA / MOBILE BACK-BUTTON GUARD ================= */
+  function armBackTrap() {
+    if (allowRealExit) return;
+    try {
+      if (!history.state || history.state.dlrGuard !== "active") {
+        history.replaceState({ dlrGuard: "base" }, "", location.href);
+        history.pushState({ dlrGuard: "active" }, "", location.href);
+      }
+    } catch (_) {}
+  }
+
+  armBackTrap();
+
+  window.addEventListener("popstate", () => {
+    if (allowRealExit) return;
+    try {
+      history.pushState({ dlrGuard: "active" }, "", location.href);
+    } catch (_) {}
+
+    const dialog = document.getElementById("dialogBox");
+    const victory = document.getElementById("victoryOverlay");
+    const gameScr = document.getElementById("gameScreen");
+
+    if (dialog.classList.contains("show")) {
+      closeDialog();
+    } else if (victory.classList.contains("show")) {
+      exitVictoryToHome();
+    } else if (gameScr.style.display === "flex") {
+      requestExitWarning();
+    } else {
+      requestAppExitWarning();
+    }
+  });
+
+  window.addEventListener("beforeunload", (e) => {
+    if (!allowRealExit && document.getElementById("gameScreen").style.display === "flex") {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  });
+
+  function requestAppExitWarning() {
+    resetModalParts();
+    const txt = t();
+    document.getElementById("dialogTitle").textContent = txt.appExitTitle;
+    document.getElementById("dialogText").textContent = txt.appExitMsg;
+    document.getElementById("dialogCancelBtn").textContent = txt.stay;
+
+    const ok = document.getElementById("dialogOkBtn");
+    ok.className = "m-btn m-danger";
+    ok.textContent = txt.appExitYes;
+    ok.onclick = () => {
+      allowRealExit = true;
+      stopBgMusic();
+      closeDialog();
+      window.close();
+      history.go(-2);
+    };
+    document.getElementById("dialogBox").classList.add("show");
+  }
+
+  /* ================= LIVE PARTICLE & SHOCKWAVE SPECIAL EFFECTS ENGINE ================= */
+  const fxParticles = [];
+  const fxRings = [];
+  let fxLoopRunning = false;
+
+  function resizeFxCanvas() {
+    const c = document.getElementById("fxCanvas");
+    if (!c) return;
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeFxCanvas);
+  resizeFxCanvas();
+
+  function boardCoordToScreen(xy) {
+    const wrap = document.getElementById("boardCanvasWrap");
+    if (!wrap || !xy) {
+      return { x: window.innerWidth * 0.5, y: window.innerHeight * 0.48 };
+    }
+    const rect = wrap.getBoundingClientRect();
+    const [r, c] = xy;
+    return {
+      x: rect.left + ((c + 0.5) / 15) * rect.width,
+      y: rect.top + ((r + 0.5) / 15) * rect.height
+    };
+  }
+
+  function podToScreen(color) {
+    const el = document.querySelector(`.seat-pod[data-seat="${color}"]`);
+    if (!el) return { x: window.innerWidth * 0.5, y: window.innerHeight * 0.25 };
+    const rect = el.getBoundingClientRect();
+    return { x: rect.left + rect.width * 0.5, y: rect.top + rect.height * 0.5 };
+  }
+
+  function triggerScreenShake() {
+    const shell = document.getElementById("appShell");
+    if (!shell) return;
+    shell.classList.remove("fx-shake");
+    void shell.offsetWidth;
+    shell.classList.add("fx-shake");
+    setTimeout(() => shell.classList.remove("fx-shake"), 380);
+  }
+
+  function spawnSpecialEffect(x, y, palette = ["#ffea00", "#ff9100", "#ffffff"], count = 26, withRing = true) {
+    resizeFxCanvas();
+    if (withRing) {
+      fxRings.push({
+        x, y,
+        r: 8,
+        maxR: 68,
+        alpha: 0.95,
+        color: palette[0]
+      });
+    }
+    for (let i = 0; i < count; i++) {
+      const ang = (Math.PI * 2 * i) / count + (Math.random() * 0.25);
+      const spd = 2.0 + Math.random() * 4.8;
+      fxParticles.push({
+        x, y,
+        vx: Math.cos(ang) * spd,
+        vy: Math.sin(ang) * spd - 0.6,
+        size: 3 + Math.random() * 4,
+        alpha: 1,
+        color: palette[i % palette.length],
+        isStar: i % 3 === 0
+      });
+    }
+    if (!fxLoopRunning) {
+      fxLoopRunning = true;
+      requestAnimationFrame(stepFxLoop);
+    }
+  }
+
+  function stepFxLoop() {
+    const c = document.getElementById("fxCanvas");
+    const ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    for (let i = fxRings.length - 1; i >= 0; i--) {
+      const rg = fxRings[i];
+      rg.r += 3.6;
+      rg.alpha -= 0.04;
+      if (rg.alpha <= 0) {
+        fxRings.splice(i, 1);
+        continue;
+      }
+      ctx.save();
+      ctx.globalAlpha = rg.alpha;
+      ctx.strokeStyle = rg.color;
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.arc(rg.x, rg.y, rg.r, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    for (let i = fxParticles.length - 1; i >= 0; i--) {
+      const p = fxParticles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.11;
+      p.alpha -= 0.026;
+      if (p.alpha <= 0) {
+        fxParticles.splice(i, 1);
+        continue;
+      }
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    if (fxParticles.length > 0 || fxRings.length > 0) {
+      requestAnimationFrame(stepFxLoop);
+    } else {
+      fxLoopRunning = false;
+    }
+  }
+
+  /* ================= DESI ROYAL BACKGROUND MUSIC & SFX ENGINE ================= */
+  function ensureAudio() {
+    if (appInBackground || document.hidden) return null;
+    if (!audioCtx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (Ctx) audioCtx = new Ctx();
+    }
+    if (audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume().catch(() => {});
+    }
+    return audioCtx;
+  }
+
+  function unlockAudioAndMusic() {
+    armBackTrap();
+    const ctx = ensureAudio();
+    if (ctx && profile.music && !bgmTimer && !appInBackground) {
+      startBgMusic();
+    }
+  }
+
+  ["pointerdown", "touchstart", "click"].forEach(evt => {
+    document.addEventListener(evt, unlockAudioAndMusic, { passive: true });
+  });
+
   function pauseGameAudioForCallOrBg() {
     appInBackground = true;
     stopBgMusic();
@@ -2465,12 +2717,10 @@
 
   function resumeGameAudioFromBg() {
     appInBackground = false;
-    if (!profile.sound) return;
     if (audioCtx && audioCtx.state === "suspended") {
       audioCtx.resume().catch(() => {});
     }
-    if (document.getElementById("gameScreen").style.display === "flex" &&
-        !document.getElementById("victoryOverlay").classList.contains("show")) {
+    if (profile.music && !document.getElementById("victoryOverlay").classList.contains("show")) {
       startBgMusic();
     }
   }
@@ -2486,8 +2736,145 @@
     if (!document.hidden) resumeGameAudioFromBg();
   });
 
+  function playNote(freq, dur = 0.11, type = "triangle", vol = 0.12, delay = 0, isMusic = false) {
+    if (isMusic && !profile.music) return;
+    if (!isMusic && !profile.sound) return;
+    const ctx = ensureAudio();
+    if (!ctx || ctx.state !== "running") return;
+
+    const startAt = ctx.currentTime + delay;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, startAt);
+    gain.gain.setValueAtTime(0.001, startAt);
+    gain.gain.linearRampToValueAtTime(vol, startAt + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.001, startAt + dur);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(startAt);
+    osc.stop(startAt + dur + 0.02);
+  }
+
+  function playTablaBeat(isDha = true) {
+    if (!profile.music) return;
+    const ctx = ensureAudio();
+    if (!ctx || ctx.state !== "running") return;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(isDha ? 145 : 230, now);
+    osc.frequency.exponentialRampToValueAtTime(isDha ? 68 : 135, now + 0.11);
+    gain.gain.setValueAtTime(0.11, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.13);
+  }
+
+  /* Upbeat Indian Royal Pentatonic Melody + Tabla Rhythm */
+  const DESI_ROYAL_MELODY = [
+    523.25, 587.33, 659.25, 783.99,
+    880.00, 783.99, 659.25, 587.33,
+    659.25, 783.99, 1046.50, 880.00,
+    783.99, 659.25, 587.33, 523.25
+  ];
+
+  function startBgMusic() {
+    stopBgMusic();
+    if (!profile.music || appInBackground || document.hidden) return;
+    let beatIdx = 0;
+    bgmTimer = setInterval(() => {
+      if (!profile.music || appInBackground || document.hidden) return;
+      if (document.getElementById("victoryOverlay").classList.contains("show")) return;
+
+      const note = DESI_ROYAL_MELODY[beatIdx % DESI_ROYAL_MELODY.length];
+      playNote(note, 0.22, "triangle", 0.075, 0, true);
+      if (beatIdx % 2 === 0) {
+        playTablaBeat(beatIdx % 4 === 0);
+      }
+      beatIdx++;
+    }, 340);
+  }
+
+  function stopBgMusic() {
+    if (bgmTimer) {
+      clearInterval(bgmTimer);
+      bgmTimer = null;
+    }
+  }
+
+  function sfxDice() {
+    playNote(340, 0.06, "square", 0.09, 0);
+    playNote(560, 0.07, "triangle", 0.11, 0.07);
+    playNote(760, 0.08, "triangle", 0.11, 0.15);
+    playNote(440, 0.07, "sine", 0.10, 0.26);
+  }
+
+  function sfxSuperSix() {
+    [523.25, 659.25, 783.99, 1046.5].forEach((f, i) =>
+      playNote(f, 0.13, "triangle", 0.14, i * 0.06)
+    );
+  }
+
+  function sfxSafeStar() {
+    playNote(880, 0.12, "sine", 0.12, 0);
+    playNote(1174.66, 0.18, "triangle", 0.13, 0.08);
+  }
+
+  function sfxStep(backwards = false) {
+    if (backwards) {
+      playNote(520, 0.07, "sawtooth", 0.09, 0);
+      playNote(390, 0.07, "triangle", 0.09, 0.04);
+    } else {
+      playNote(600, 0.06, "sine", 0.10, 0);
+    }
+  }
+
+  function sfxOutKhushi() {
+    playNote(523, 0.09, "triangle", 0.13, 0);
+    playNote(659, 0.09, "triangle", 0.13, 0.08);
+    playNote(784, 0.16, "triangle", 0.14, 0.16);
+  }
+
+  function sfxHomeEntryKhushi() {
+    const chord = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+    chord.forEach((f, i) => playNote(f, 0.15, "triangle", 0.14, i * 0.07));
+  }
+
+  function sfxCaptureKiller() {
+    playNote(210, 0.16, "sawtooth", 0.15, 0);
+    playNote(140, 0.20, "sawtooth", 0.15, 0.10);
+    playNote(920, 0.14, "square", 0.11, 0.18);
+  }
+
+  function sfxCrySad() {
+    playNote(490, 0.14, "sine", 0.11, 0);
+    playNote(410, 0.18, "sine", 0.11, 0.14);
+    playNote(320, 0.24, "sine", 0.11, 0.30);
+  }
+
+  function sfxWinGrand() {
+    const fanfare = [
+      [523.25, 0.15, 0.00],
+      [659.25, 0.15, 0.12],
+      [783.99, 0.15, 0.24],
+      [1046.5, 0.30, 0.36],
+      [783.99, 0.15, 0.66],
+      [1046.5, 0.36, 0.80],
+      [1318.5, 0.48, 1.05]
+    ];
+    fanfare.forEach(([f, d, dl]) => playNote(f, d, "triangle", 0.16, dl));
+  }
+
+  /* ================= GREEN STAR SPLASH ================= */
   function dismissSplash() {
     clearTimeout(splashTimer);
+    unlockAudioAndMusic();
+    sfxOutKhushi();
+    spawnSpecialEffect(window.innerWidth * 0.5, window.innerHeight * 0.28, ["#06d6a0", "#ffea00", "#ffffff"], 32, true);
     const el = document.getElementById("greenStarSplash");
     el.classList.add("hide-splash");
     setTimeout(() => {
@@ -2578,105 +2965,7 @@
     `;
   }
 
-  function ensureAudio() {
-    if (!profile.sound || appInBackground || document.hidden) return null;
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (audioCtx.state === "suspended") {
-      audioCtx.resume().catch(() => {});
-    }
-    return audioCtx;
-  }
-
-  function playNote(freq, dur = 0.09, type = "triangle", vol = 0.08, delay = 0) {
-    const ctx = ensureAudio();
-    if (!ctx || ctx.state !== "running") return;
-    const startAt = ctx.currentTime + delay;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, startAt);
-    gain.gain.setValueAtTime(vol, startAt);
-    gain.gain.exponentialRampToValueAtTime(0.001, startAt + dur);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(startAt);
-    osc.stop(startAt + dur + 0.01);
-  }
-
-  function sfxDice() {
-    playNote(320, 0.05, "square", 0.05, 0);
-    playNote(540, 0.06, "triangle", 0.07, 0.07);
-    playNote(740, 0.07, "triangle", 0.07, 0.16);
-    playNote(420, 0.06, "sine", 0.06, 0.28);
-  }
-
-  function sfxStep(backwards = false) {
-    if (backwards) {
-      playNote(520, 0.07, "sawtooth", 0.06, 0);
-      playNote(390, 0.07, "triangle", 0.06, 0.04);
-    } else {
-      playNote(580, 0.055, "sine", 0.07, 0);
-    }
-  }
-
-  function sfxOutKhushi() {
-    playNote(523, 0.08, "triangle", 0.09, 0);
-    playNote(659, 0.08, "triangle", 0.09, 0.08);
-    playNote(784, 0.14, "triangle", 0.10, 0.16);
-  }
-
-  function sfxHomeEntryKhushi() {
-    const chord = [523.25, 659.25, 783.99, 1046.5, 1318.5];
-    chord.forEach((f, i) => playNote(f, 0.14, "triangle", 0.11, i * 0.08));
-  }
-
-  function sfxCaptureKiller() {
-    playNote(220, 0.14, "sawtooth", 0.10, 0);
-    playNote(150, 0.18, "sawtooth", 0.10, 0.10);
-    playNote(880, 0.12, "square", 0.07, 0.18);
-  }
-
-  function sfxCrySad() {
-    playNote(490, 0.14, "sine", 0.08, 0);
-    playNote(410, 0.18, "sine", 0.08, 0.14);
-    playNote(320, 0.24, "sine", 0.08, 0.30);
-  }
-
-  function sfxWinGrand() {
-    const fanfare = [
-      [523.25, 0.14, 0.00],
-      [659.25, 0.14, 0.12],
-      [783.99, 0.14, 0.24],
-      [1046.5, 0.28, 0.36],
-      [783.99, 0.14, 0.66],
-      [1046.5, 0.35, 0.80],
-      [1318.5, 0.45, 1.05]
-    ];
-    fanfare.forEach(([f, d, dl]) => playNote(f, d, "triangle", 0.12, dl));
-  }
-
-  function startBgMusic() {
-    stopBgMusic();
-    if (!profile.sound || appInBackground || document.hidden) return;
-    const bassPattern = [196, 246.94, 293.66, 246.94];
-    let step = 0;
-    bgmTimer = setInterval(() => {
-      if (!profile.sound || appInBackground || document.hidden) return;
-      if (document.getElementById("gameScreen").style.display !== "flex") return;
-      playNote(bassPattern[step % bassPattern.length], 0.12, "sine", 0.025, 0);
-      step++;
-    }, 650);
-  }
-
-  function stopBgMusic() {
-    if (bgmTimer) {
-      clearInterval(bgmTimer);
-      bgmTimer = null;
-    }
-  }
-
+  /* ================= FEAR & KILLER THREAT RADAR ================= */
   function computeThreatStates() {
     const fearMap = {};
     const killerMap = {};
@@ -2733,6 +3022,7 @@
     );
   }
 
+  /* ================= GRAND VICTORY FIREWORKS ================= */
   function startFireworksCelebration(durationMs = 0) {
     stopFireworksCelebration();
     const overlay = document.getElementById("victoryOverlay");
@@ -2746,7 +3036,7 @@
     resize();
 
     const colors = ["#ffea00", "#ef233c", "#06d6a0", "#38bdf8", "#f97316", "#e879f9", "#ffffff"];
-    const confetti = Array.from({ length: 85 }, () => ({
+    const confetti = Array.from({ length: 90 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height - canvas.height,
       w: 6 + Math.random() * 6,
@@ -2760,12 +3050,12 @@
 
     const sparks = [];
     function spawnFireworkBurst() {
-      const cx = canvas.width * (0.2 + Math.random() * 0.6);
+      const cx = canvas.width * (0.18 + Math.random() * 0.64);
       const cy = canvas.height * (0.14 + Math.random() * 0.36);
       const burstColor = colors[Math.floor(Math.random() * colors.length)];
-      for (let i = 0; i < 36; i++) {
-        const angle = (Math.PI * 2 * i) / 36 + (Math.random() * 0.15);
-        const speed = 2.2 + Math.random() * 4.4;
+      for (let i = 0; i < 38; i++) {
+        const angle = (Math.PI * 2 * i) / 38 + (Math.random() * 0.15);
+        const speed = 2.2 + Math.random() * 4.6;
         sparks.push({
           x: cx,
           y: cy,
@@ -2773,13 +3063,13 @@
           vy: Math.sin(angle) * speed,
           alpha: 1,
           color: i % 3 === 0 ? "#ffffff" : burstColor,
-          radius: 2.2 + Math.random() * 2
+          radius: 2.2 + Math.random() * 2.2
         });
       }
     }
 
     spawnFireworkBurst();
-    setTimeout(spawnFireworkBurst, 320);
+    setTimeout(spawnFireworkBurst, 300);
     let burstTick = 0;
     const startTime = performance.now();
 
@@ -2787,7 +3077,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       burstTick++;
-      if (burstTick % 42 === 0) {
+      if (burstTick % 38 === 0) {
         spawnFireworkBurst();
       }
 
@@ -2883,6 +3173,7 @@
     document.getElementById("victoryOverlay").classList.remove("show");
     document.getElementById("gameScreen").style.display = "none";
     document.getElementById("startScreen").style.display = "flex";
+    if (profile.music) startBgMusic();
   }
 
   function triggerFx(label, coord = null) {
@@ -2920,20 +3211,27 @@
     document.getElementById("langSelect").value = profile.lang;
     document.getElementById("heroDiceFace").innerHTML = buildPippedDiceHtml(5);
 
-    /* Populate Splash Screen Separate Ludo Board Showcase */
     document.getElementById("splashPawnLeft").innerHTML = buildStudioGotiSvg("blue", "sp_l");
     document.getElementById("splashPawnRight").innerHTML = buildStudioGotiSvg("green", "sp_r");
     document.getElementById("splashMiniDie").innerHTML = buildPippedDiceHtml(6);
 
-    /* Populate Lobby Diorama */
     document.getElementById("dioPawnR").innerHTML = buildStudioGotiSvg("red", "hero_r");
     document.getElementById("dioPawnG").innerHTML = buildStudioGotiSvg("green", "hero_g");
     document.getElementById("dioPawnB").innerHTML = buildStudioGotiSvg("blue", "hero_b");
     document.getElementById("dioPawnY").innerHTML = buildStudioGotiSvg("yellow", "hero_y");
 
-    const ico = profile.sound ? "🔊" : "🔇";
-    document.getElementById("startSoundBtn").textContent = ico;
-    document.getElementById("boardSoundBtn").textContent = ico;
+    const sIco = profile.sound ? "🔊" : "🔇";
+    const sBtn1 = document.getElementById("startSoundBtn");
+    const sBtn2 = document.getElementById("boardSoundBtn");
+    sBtn1.textContent = sIco;
+    sBtn2.textContent = sIco;
+    sBtn1.classList.toggle("pill-off", !profile.sound);
+    sBtn2.classList.toggle("pill-off", !profile.sound);
+
+    const mBtn1 = document.getElementById("startMusicBtn");
+    const mBtn2 = document.getElementById("boardMusicBtn");
+    mBtn1.classList.toggle("pill-off", !profile.music);
+    mBtn2.classList.toggle("pill-off", !profile.music);
 
     if (profile.dp) {
       document.getElementById("userAvatar").innerHTML = `<img src="${profile.dp}" alt="DP" />`;
@@ -2950,10 +3248,12 @@
 
   function claimDailyBonus() {
     addCoins(250);
+    spawnSpecialEffect(window.innerWidth * 0.5, window.innerHeight * 0.5, ["#ffea00", "#ff9100", "#ffffff"], 26, true);
   }
 
   function watchVideoReward() {
     addCoins(1000);
+    spawnSpecialEffect(window.innerWidth * 0.25, window.innerHeight * 0.82, ["#ffea00", "#06d6a0", "#ffffff"], 28, true);
   }
 
   function resetModalParts() {
@@ -2991,6 +3291,7 @@
         if (won.type === "coins") addCoins(won.val);
         else addGems(won.val);
         sfxHomeEntryKhushi();
+        spawnSpecialEffect(window.innerWidth * 0.5, window.innerHeight * 0.45, ["#ffea00", "#06d6a0", "#ef233c"], 34, true);
         document.getElementById("dialogText").textContent = `🥳 बधाई हो! आपने ${won.label}`;
       }, 2250);
     };
@@ -3003,9 +3304,9 @@
     resetModalParts();
     document.getElementById("dialogTitle").textContent = "देसी लूडो राजा — नियम";
     document.getElementById("dialogText").innerHTML =
-      "• 6 आने पर गोटी अपने आप घर से बाहर निकलेगी<br>" +
+      "• 6 आने पर गोटी अपने आप घर से बाहर निकलेगी और <b>SUPER 6</b> शॉकवेव चलेगी<br>" +
       "• पीछे रहने वाली गोटी <b>किलर मोड (😈⚔️)</b> में और आगे वाली गोटी <b>डर मोड (😨)</b> में रहेगी<br>" +
-      "• दुश्मन की गोटी काटने पर किलर इफेक्ट और गोटी रोते हुए वापस जाएगी<br>" +
+      "• दुश्मन की गोटी काटने पर स्क्रीन शेक + विस्फोट इफेक्ट और गोटी रोते हुए वापस जाएगी<br>" +
       "• चारों गोटियां घर पहुंचने पर आतिशबाज़ी और ग्रैंड विक्ट्री सेलिब्रेशन होगा";
     document.getElementById("dialogCancelBtn").style.display = "none";
     const ok = document.getElementById("dialogOkBtn");
@@ -3183,21 +3484,28 @@
     profile.coins += amt;
     persist();
     syncStartView();
-    playNote(760, 0.1);
+    playNote(760, 0.11);
   }
 
   function addGems(amt) {
     profile.gems += amt;
     persist();
     syncStartView();
-    playNote(880, 0.1);
+    playNote(880, 0.11);
   }
 
   function switchSound() {
     profile.sound = !profile.sound;
     persist();
     syncStartView();
-    if (profile.sound && !appInBackground) startBgMusic();
+    if (profile.sound) playNote(720, 0.1);
+  }
+
+  function toggleMusic() {
+    profile.music = !profile.music;
+    persist();
+    syncStartView();
+    if (profile.music && !appInBackground) startBgMusic();
     else stopBgMusic();
   }
 
@@ -3251,25 +3559,16 @@
     ok.textContent = txt.exitYes;
     ok.onclick = () => {
       closeDialog();
-      stopBgMusic();
       document.getElementById("gameScreen").style.display = "none";
       document.getElementById("startScreen").style.display = "flex";
+      if (profile.music) startBgMusic();
     };
     document.getElementById("dialogBox").classList.add("show");
   }
 
-  history.pushState({ dlrGame: true }, "");
-  window.addEventListener("popstate", () => {
-    history.pushState({ dlrGame: true }, "");
-    if (document.getElementById("victoryOverlay").classList.contains("show")) {
-      exitVictoryToHome();
-    } else if (document.getElementById("gameScreen").style.display === "flex") {
-      requestExitWarning();
-    }
-  });
-
   function launchGameWithCount(modeKey, count) {
     Object.values(match.tokenReactions).forEach(r => r.timer && clearTimeout(r.timer));
+    armBackTrap();
 
     const seatColors =
       count === 1 ? ["blue", "green"] :
@@ -3309,7 +3608,7 @@
     document.getElementById("gameScreen").style.display = "flex";
     setReaction("🎲", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस उछालें`);
     triggerFx("👑 ROYAL LUDO");
-    startBgMusic();
+    if (profile.music) startBgMusic();
     renderSeatDicePods();
     drawBoard();
     refreshBoardBanner();
@@ -3354,6 +3653,7 @@
     const homeCnt = match.pieces[color].filter(x => x === 56).length;
 
     const pod = document.createElement("div");
+    pod.dataset.seat = color;
     pod.className = `seat-pod shine-box ${isTurn ? "pod-active" : ""} ${alignRight ? "pod-right" : ""}`;
 
     let dotsHtml = "";
@@ -3406,6 +3706,8 @@
 
     match.busy = true;
     sfxDice();
+    const pPos = podToScreen(color);
+    spawnSpecialEffect(pPos.x, pPos.y, ["#38bdf8", "#ffea00", "#ffffff"], 18, true);
     setReaction("🌪️", `${seatTitle(color)} ने डाइस हवा में उछाला!`);
     renderSeatDicePods(color);
 
@@ -3414,6 +3716,12 @@
       match.diceValues[color] = val;
       match.hasRolled = true;
       match.busy = false;
+
+      if (val === 6) {
+        sfxSuperSix();
+        triggerFx("🔥 SUPER 6!");
+        spawnSpecialEffect(pPos.x, pPos.y, ["#ffea00", "#ff6d00", "#ef233c", "#ffffff"], 34, true);
+      }
 
       const movable = match.pieces[color]
         .map((p, i) => (isMovable(p, val) ? i : -1))
@@ -3476,7 +3784,10 @@
     if (startStep === -1 && diceVal === 6) {
       match.pieces[color][idx] = 0;
       sfxOutKhushi();
-      triggerFx("🎉 AUTO OUT!", pieceXY(color, 0));
+      const entryXY = pieceXY(color, 0);
+      const scr = boardCoordToScreen(entryXY);
+      spawnSpecialEffect(scr.x, scr.y, ["#06d6a0", "#ffea00", "#ffffff"], 26, true);
+      triggerFx("🎉 AUTO OUT!", entryXY);
       setReaction("😄🎉", `${seatTitle(color)} की गोटी 6 पर खुद बाहर आई — खुशी!`, color, idx);
       drawBoard([], { color, idx }, false);
       await sleep(300);
@@ -3502,9 +3813,22 @@
 
     const finalStep = match.pieces[color][idx];
 
+    /* Safe Star Special Effect */
+    if (finalStep >= 0 && finalStep <= 50) {
+      const landedSpot = (COLOR_START[color] + finalStep) % 52;
+      if (SAFE_SPOTS.has(landedSpot)) {
+        sfxSafeStar();
+        const starScr = boardCoordToScreen(pieceXY(color, finalStep));
+        spawnSpecialEffect(starScr.x, starScr.y, ["#ffea00", "#38bdf8", "#ffffff"], 26, true);
+        triggerFx("🛡️ STAR SAFE!", pieceXY(color, finalStep));
+      }
+    }
+
     if (finalStep === 56) {
       sfxHomeEntryKhushi();
       const homeCount = match.pieces[color].filter(p => p === 56).length;
+      const homeScr = boardCoordToScreen([7, 7]);
+      spawnSpecialEffect(homeScr.x, homeScr.y, ["#ffea00", "#06d6a0", "#ef233c", "#38bdf8", "#ffffff"], 42, true);
       triggerFx(`🥳 HOME ${homeCount}/4!`, pieceXY(color, 56));
       setReaction(
         "🥳🎉😄",
@@ -3528,6 +3852,9 @@
             if (oStep >= 0 && oStep <= 50) {
               if ((COLOR_START[opp] + oStep) % 52 === landedGlobal) {
                 sfxCaptureKiller();
+                triggerScreenShake();
+                const hitScr = boardCoordToScreen(pieceXY(color, finalStep));
+                spawnSpecialEffect(hitScr.x, hitScr.y, ["#ef233c", "#ff9100", "#ffea00", "#ffffff"], 44, true);
                 triggerFx("⚔️ KILLER!", pieceXY(color, finalStep));
                 setReaction("😈⚔️", `${seatTitle(color)} किलर मोड में! ${seatTitle(opp)} की गोटी कटी!`, color, idx);
                 drawBoard([], { color, idx }, false);
