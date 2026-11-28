@@ -1875,7 +1875,7 @@
           <span class="lvl-badge">★1</span>
         </div>
 
-        <button id="startMusicBtn" class="hud-icon-pill" onclick="toggleMusic()" title="Background Music">🎵</button>
+        <button id="startMusicBtn" class="hud-icon-pill" onclick="toggleMusic()" title="Lobby Music">🎵</button>
         <button id="startSoundBtn" class="hud-icon-pill" onclick="switchSound()" title="Sound FX">🔊</button>
 
         <button class="hud-icon-pill" onclick="inviteWhatsApp()" title="Invite Friends">
@@ -2180,7 +2180,6 @@
         <button class="mini-btn" onclick="openLeaderboard()">🏆</button>
         <button id="gameRecBtn" class="mini-btn" onclick="startVoice3s()">🎙️ 3s</button>
         <button id="gamePlayVoiceBtn" class="mini-btn" onclick="playVoiceClip()" style="display:none;">▶️</button>
-        <button id="boardMusicBtn" class="mini-btn" onclick="toggleMusic()" title="Music">🎵</button>
         <button id="boardSoundBtn" class="mini-btn" onclick="switchSound()" title="SFX">🔊</button>
         <button class="mini-btn mini-exit" onclick="requestExitWarning()">बाहर</button>
       </div>
@@ -2309,7 +2308,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "dlr_pro_studio_v21";
+  const STORAGE_KEY = "dlr_pro_studio_v22";
   let profile = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || {
     name: "राजा खिलाड़ी",
     gems: 150,
@@ -2441,6 +2440,7 @@
   let currentSpinDeg = 0;
 
   let audioCtx = null;
+  let diceNoiseBuffer = null;
   let bgmTimer = null;
   let appInBackground = false;
   let allowRealExit = false;
@@ -2499,6 +2499,11 @@
     return I18N[profile.lang] || I18N.hi;
   }
 
+  function isGameActive() {
+    const gs = document.getElementById("gameScreen");
+    return Boolean(gs && gs.style.display === "flex");
+  }
+
   /* ================= ANDROID TWA / MOBILE BACK-BUTTON GUARD ================= */
   function armBackTrap() {
     if (allowRealExit) return;
@@ -2520,13 +2525,12 @@
 
     const dialog = document.getElementById("dialogBox");
     const victory = document.getElementById("victoryOverlay");
-    const gameScr = document.getElementById("gameScreen");
 
     if (dialog.classList.contains("show")) {
       closeDialog();
     } else if (victory.classList.contains("show")) {
       exitVictoryToHome();
-    } else if (gameScr.style.display === "flex") {
+    } else if (isGameActive()) {
       requestExitWarning();
     } else {
       requestAppExitWarning();
@@ -2534,7 +2538,7 @@
   });
 
   window.addEventListener("beforeunload", (e) => {
-    if (!allowRealExit && document.getElementById("gameScreen").style.display === "flex") {
+    if (!allowRealExit && isGameActive()) {
       e.preventDefault();
       e.returnValue = "";
     }
@@ -2623,8 +2627,7 @@
         vy: Math.sin(ang) * spd - 0.6,
         size: 3 + Math.random() * 4,
         alpha: 1,
-        color: palette[i % palette.length],
-        isStar: i % 3 === 0
+        color: palette[i % palette.length]
       });
     }
     if (!fxLoopRunning) {
@@ -2682,7 +2685,7 @@
     }
   }
 
-  /* ================= DESI ROYAL BACKGROUND MUSIC & SFX ENGINE ================= */
+  /* ================= LOBBY-ONLY MUSIC, REALISTIC DICE & MELODIC GOTI STEP SFX ================= */
   function ensureAudio() {
     if (appInBackground || document.hidden) return null;
     if (!audioCtx) {
@@ -2692,13 +2695,21 @@
     if (audioCtx && audioCtx.state === "suspended") {
       audioCtx.resume().catch(() => {});
     }
+    if (audioCtx && !diceNoiseBuffer) {
+      const len = Math.floor(audioCtx.sampleRate * 0.045);
+      diceNoiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+      const data = diceNoiseBuffer.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.35));
+      }
+    }
     return audioCtx;
   }
 
   function unlockAudioAndMusic() {
     armBackTrap();
     const ctx = ensureAudio();
-    if (ctx && profile.music && !bgmTimer && !appInBackground) {
+    if (ctx && profile.music && !bgmTimer && !appInBackground && !isGameActive()) {
       startBgMusic();
     }
   }
@@ -2720,7 +2731,7 @@
     if (audioCtx && audioCtx.state === "suspended") {
       audioCtx.resume().catch(() => {});
     }
-    if (profile.music && !document.getElementById("victoryOverlay").classList.contains("show")) {
+    if (profile.music && !isGameActive() && !document.getElementById("victoryOverlay").classList.contains("show")) {
       startBgMusic();
     }
   }
@@ -2737,7 +2748,7 @@
   });
 
   function playNote(freq, dur = 0.11, type = "triangle", vol = 0.12, delay = 0, isMusic = false) {
-    if (isMusic && !profile.music) return;
+    if (isMusic && (!profile.music || isGameActive())) return;
     if (!isMusic && !profile.sound) return;
     const ctx = ensureAudio();
     if (!ctx || ctx.state !== "running") return;
@@ -2757,7 +2768,7 @@
   }
 
   function playTablaBeat(isDha = true) {
-    if (!profile.music) return;
+    if (!profile.music || isGameActive()) return;
     const ctx = ensureAudio();
     if (!ctx || ctx.state !== "running") return;
     const now = ctx.currentTime;
@@ -2774,7 +2785,6 @@
     osc.stop(now + 0.13);
   }
 
-  /* Upbeat Indian Royal Pentatonic Melody + Tabla Rhythm */
   const DESI_ROYAL_MELODY = [
     523.25, 587.33, 659.25, 783.99,
     880.00, 783.99, 659.25, 587.33,
@@ -2784,10 +2794,13 @@
 
   function startBgMusic() {
     stopBgMusic();
-    if (!profile.music || appInBackground || document.hidden) return;
+    if (!profile.music || appInBackground || document.hidden || isGameActive()) return;
     let beatIdx = 0;
     bgmTimer = setInterval(() => {
-      if (!profile.music || appInBackground || document.hidden) return;
+      if (!profile.music || appInBackground || document.hidden || isGameActive()) {
+        stopBgMusic();
+        return;
+      }
       if (document.getElementById("victoryOverlay").classList.contains("show")) return;
 
       const note = DESI_ROYAL_MELODY[beatIdx % DESI_ROYAL_MELODY.length];
@@ -2806,11 +2819,58 @@
     }
   }
 
+  /* Realistic Physical Dice Rattle + Wooden Board Clatter */
   function sfxDice() {
-    playNote(340, 0.06, "square", 0.09, 0);
-    playNote(560, 0.07, "triangle", 0.11, 0.07);
-    playNote(760, 0.08, "triangle", 0.11, 0.15);
-    playNote(440, 0.07, "sine", 0.10, 0.26);
+    if (!profile.sound) return;
+    const ctx = ensureAudio();
+    if (!ctx || ctx.state !== "running") return;
+
+    function triggerDieClack(delaySec, strength, pitchScale) {
+      const startAt = ctx.currentTime + delaySec;
+
+      if (diceNoiseBuffer) {
+        const src = ctx.createBufferSource();
+        src.buffer = diceNoiseBuffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(2100 * pitchScale, startAt);
+        filter.Q.setValueAtTime(2.6, startAt);
+
+        const nGain = ctx.createGain();
+        nGain.gain.setValueAtTime(0.001, startAt);
+        nGain.gain.linearRampToValueAtTime(0.24 * strength, startAt + 0.003);
+        nGain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.036);
+
+        src.connect(filter);
+        filter.connect(nGain);
+        nGain.connect(ctx.destination);
+        src.start(startAt);
+      }
+
+      const bodyOsc = ctx.createOscillator();
+      const bodyGain = ctx.createGain();
+      bodyOsc.type = "triangle";
+      bodyOsc.frequency.setValueAtTime(980 * pitchScale, startAt);
+      bodyOsc.frequency.exponentialRampToValueAtTime(310 * pitchScale, startAt + 0.026);
+
+      bodyGain.gain.setValueAtTime(0.001, startAt);
+      bodyGain.gain.linearRampToValueAtTime(0.16 * strength, startAt + 0.002);
+      bodyGain.gain.exponentialRampToValueAtTime(0.001, startAt + 0.028);
+
+      bodyOsc.connect(bodyGain);
+      bodyGain.connect(ctx.destination);
+      bodyOsc.start(startAt);
+      bodyOsc.stop(startAt + 0.032);
+    }
+
+    // Rattle in air (0ms - 150ms) + Board landing & double-bounce (225ms - 360ms)
+    triggerDieClack(0.00, 0.55, 1.15);
+    triggerDieClack(0.042, 0.72, 1.24);
+    triggerDieClack(0.085, 0.85, 1.10);
+    triggerDieClack(0.135, 0.75, 1.20);
+    triggerDieClack(0.225, 1.00, 0.94);
+    triggerDieClack(0.295, 0.62, 1.04);
+    triggerDieClack(0.355, 0.34, 1.12);
   }
 
   function sfxSuperSix() {
@@ -2824,12 +2884,18 @@
     playNote(1174.66, 0.18, "triangle", 0.13, 0.08);
   }
 
-  function sfxStep(backwards = false) {
+  /* Melodic Sargam Marimba Step Sound for Goti Movement */
+  const STEP_SARGAM = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+
+  function sfxStep(backwards = false, stepNum = 1) {
     if (backwards) {
       playNote(520, 0.07, "sawtooth", 0.09, 0);
       playNote(390, 0.07, "triangle", 0.09, 0.04);
     } else {
-      playNote(600, 0.06, "sine", 0.10, 0);
+      const idx = (Math.max(1, stepNum) - 1) % STEP_SARGAM.length;
+      const freq = STEP_SARGAM[idx];
+      playNote(freq, 0.14, "triangle", 0.15, 0);
+      playNote(freq * 2, 0.09, "sine", 0.055, 0.012);
     }
   }
 
@@ -3229,9 +3295,7 @@
     sBtn2.classList.toggle("pill-off", !profile.sound);
 
     const mBtn1 = document.getElementById("startMusicBtn");
-    const mBtn2 = document.getElementById("boardMusicBtn");
-    mBtn1.classList.toggle("pill-off", !profile.music);
-    mBtn2.classList.toggle("pill-off", !profile.music);
+    if (mBtn1) mBtn1.classList.toggle("pill-off", !profile.music);
 
     if (profile.dp) {
       document.getElementById("userAvatar").innerHTML = `<img src="${profile.dp}" alt="DP" />`;
@@ -3363,7 +3427,7 @@
     profile.lang = langCode;
     persist();
     syncStartView();
-    if (document.getElementById("gameScreen").style.display === "flex") {
+    if (isGameActive()) {
       refreshBoardBanner();
     }
   }
@@ -3505,7 +3569,7 @@
     profile.music = !profile.music;
     persist();
     syncStartView();
-    if (profile.music && !appInBackground) startBgMusic();
+    if (profile.music && !appInBackground && !isGameActive()) startBgMusic();
     else stopBgMusic();
   }
 
@@ -3570,6 +3634,9 @@
     Object.values(match.tokenReactions).forEach(r => r.timer && clearTimeout(r.timer));
     armBackTrap();
 
+    // Stop lobby background music immediately as soon as the game starts
+    stopBgMusic();
+
     const seatColors =
       count === 1 ? ["blue", "green"] :
       count === 2 ? ["blue", "green"] :
@@ -3606,9 +3673,10 @@
     document.getElementById("cornerBotLabel").textContent = "You";
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "flex";
+    stopBgMusic();
+
     setReaction("🎲", `${count}-प्लेयर मोड शुरू! अपनी सीट का बड़ा डाइस उछालें`);
     triggerFx("👑 ROYAL LUDO");
-    if (profile.music) startBgMusic();
     renderSeatDicePods();
     drawBoard();
     refreshBoardBanner();
@@ -3783,6 +3851,7 @@
 
     if (startStep === -1 && diceVal === 6) {
       match.pieces[color][idx] = 0;
+      sfxStep(false, 6);
       sfxOutKhushi();
       const entryXY = pieceXY(color, 0);
       const scr = boardCoordToScreen(entryXY);
@@ -3794,7 +3863,7 @@
     } else {
       for (let s = 1; s <= diceVal; s++) {
         match.pieces[color][idx] = startStep + s;
-        sfxStep(false);
+        sfxStep(false, s);
         const curXY = pieceXY(color, match.pieces[color][idx]);
         triggerFx(`✨ ${s}/${diceVal}`, curXY);
 
@@ -3813,7 +3882,6 @@
 
     const finalStep = match.pieces[color][idx];
 
-    /* Safe Star Special Effect */
     if (finalStep >= 0 && finalStep <= 50) {
       const landedSpot = (COLOR_START[color] + finalStep) % 52;
       if (SAFE_SPOTS.has(landedSpot)) {
@@ -3863,7 +3931,7 @@
                 sfxCrySad();
                 for (let backStep = oStep - 1; backStep >= 0; backStep--) {
                   match.pieces[opp][oIdx] = backStep;
-                  sfxStep(true);
+                  sfxStep(true, backStep);
                   setReaction("😭", `${seatTitle(opp)} रोते हुए पीछे जा रही है...`, opp, oIdx);
                   drawBoard([], { color: opp, idx: oIdx }, false);
                   await sleep(100);
